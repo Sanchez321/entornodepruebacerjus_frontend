@@ -1,14 +1,17 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ConsultaService } from '../services/consulta.service';
-import { VMConsultaListaGeneralSimple } from '../models/consulta.vm';
-import { Materia,MATERIA_CONSULTA_OPCIONES,LLEVA_CASO_OPCIONES, LlevaCasoConNosotros } from '../models/consulta.dominio';
+import { VMConsultaListaGeneralSimple, VMConsultaReporteTablaOptions, } from '../models/consulta.vm';
+import {Materia,MATERIA_CONSULTA_OPCIONES,LLEVA_CASO_OPCIONES,LlevaCasoConNosotros,REPORTE_ESTADO_OPCIONES,REPORTE_FORMATO_OPCIONES,
+  REPORTE_MES_OPCIONES,REPORTE_MODO_OPCIONES,ReporteEstado,ReporteFormato,ReporteModo,canSeeReporteOption,reporteModoFuerzaActivos,
+  } from '../models/consulta.dominio';
 import { NotificacionesService } from '@/app/components/notificaciones/services/notificaciones.service';
 import { Subscription } from 'rxjs';
 import { PageMetaService } from '@/app/services/page_meta.service';
+import { AuthStore } from '@/app/auth/auth.store';
 
 @Component({
   selector: 'app-consulta-lista',
@@ -22,6 +25,18 @@ export class ConsultaLista implements OnInit ,OnDestroy {
     private notify = inject(NotificacionesService);
     private pageMeta = inject(PageMetaService);
     private subForm = new Subscription();
+
+    private auth = inject(AuthStore);
+
+    downloading = false;
+    guardarDrive = false;
+    showExportModal = false;
+    userLevel: number | null = null;
+
+    private subExportForm = new Subscription();
+
+    readonly formatoReporteOpciones = REPORTE_FORMATO_OPCIONES;
+    readonly mesReporteOpciones = REPORTE_MES_OPCIONES;
 
     readonly materiaOpciones = MATERIA_CONSULTA_OPCIONES;
     readonly llevaCasoOpciones = LLEVA_CASO_OPCIONES;
@@ -94,6 +109,16 @@ export class ConsultaLista implements OnInit ,OnDestroy {
         });
 
         this.load();
+        this.userLevel = this.auth.getLevel();
+
+        this.subExportForm.add(
+            this.exportForm.get('modo')!.valueChanges.subscribe(() => {
+                this.syncEstadoReporte();
+            }),
+        );
+
+        this.syncModoReporteInicial();
+        this.syncEstadoReporte();
 
         this.subForm.add(
             this.form.valueChanges
@@ -117,6 +142,7 @@ export class ConsultaLista implements OnInit ,OnDestroy {
     }
     ngOnDestroy(): void {
         this.subForm.unsubscribe();
+        this.subExportForm.unsubscribe();
         this.cancelTimers();
         this.pageMeta.clear();
     }
@@ -260,6 +286,7 @@ export class ConsultaLista implements OnInit ,OnDestroy {
     trackById(_index: number, item: VMConsultaListaGeneralSimple) {
         return item.id;
     }
+
     private syncMateriaOtros(): void {
         const value = this.form.get('materias')!.value as Materia;
         const otrosCtrl = this.form.get('materiaOtros')!;
@@ -273,4 +300,172 @@ export class ConsultaLista implements OnInit ,OnDestroy {
 
         otrosCtrl.updateValueAndValidity({ emitEvent: false });
     }
+
+    exportForm = this.fb.group({
+        formato: new FormControl<ReporteFormato>('xlsx', {
+            nonNullable: true,
+            validators: [Validators.required],
+        }),
+
+        modo: new FormControl<ReporteModo>('ASESOR', {
+            nonNullable: true,
+            validators: [Validators.required],
+        }),
+
+        estado: new FormControl<ReporteEstado>('ACTIVOS', {
+            nonNullable: true,
+            validators: [Validators.required],
+        }),
+
+        anio: new FormControl(new Date().getFullYear(), {
+            nonNullable: true,
+            validators: [Validators.required, Validators.min(2000), Validators.max(2100)],
+        }),
+
+        mes: new FormControl(new Date().getMonth() + 1, {
+            nonNullable: true,
+            validators: [Validators.required, Validators.min(1), Validators.max(12)],
+        }),
+    });
+
+    get modoReporteOpciones() {
+        return REPORTE_MODO_OPCIONES.filter(o =>
+            canSeeReporteOption(this.userLevel, o.minLevel),
+        );
+    }
+
+    get estadoReporteOpciones() {
+        return REPORTE_ESTADO_OPCIONES.filter(o =>
+            canSeeReporteOption(this.userLevel, o.minLevel),
+        );
+    }
+
+    get estadoForzadoActivo(): boolean {
+        return reporteModoFuerzaActivos(this.exportForm.get('modo')!.value);
+    }
+
+    abrirModalExportacion(): void {
+        this.showExportModal = true;
+        this.syncModoReporteInicial();
+        this.syncEstadoReporte();
+    }
+
+    cerrarModalExportacion(): void {
+        if (this.downloading) return;
+        this.showExportModal = false;
+    }
+
+    private syncModoReporteInicial(): void {
+        const modoCtrl = this.exportForm.get('modo')!;
+        const current = modoCtrl.value;
+
+        const permitido = this.modoReporteOpciones.some(o => o.value === current);
+
+        if (!permitido) {
+            modoCtrl.setValue('ASESOR', { emitEvent: false });
+        }
+    }
+
+    private syncEstadoReporte(): void {
+        const estadoCtrl = this.exportForm.get('estado')!;
+
+        if (this.estadoForzadoActivo) {
+            estadoCtrl.setValue('ACTIVOS', { emitEvent: false });
+            estadoCtrl.disable({ emitEvent: false });
+            return;
+        }
+
+        estadoCtrl.enable({ emitEvent: false });
+
+        const current = estadoCtrl.value;
+        const permitido = this.estadoReporteOpciones.some(o => o.value === current);
+
+        if (!permitido) {
+            estadoCtrl.setValue('ACTIVOS', { emitEvent: false });
+        }
+        }
+
+    async descargarConsultasTabla(): Promise<void> {
+      if (this.downloading) return;
+
+      if (this.exportForm.invalid) {
+        this.exportForm.markAllAsTouched();
+
+        await this.notify.ok({
+          variant: 'warning',
+          title: 'Datos incompletos',
+          message: 'Seleccione correctamente las opciones de exportación.',
+          primaryText: 'Aceptar',
+        });
+
+        return;
+      }
+
+      const v = this.exportForm.getRawValue();
+
+      const opts: VMConsultaReporteTablaOptions = {
+        formato: v.formato,
+        modo: v.modo,
+        estado: v.estado,
+        anio: v.anio,
+        mes: v.mes,
+      };
+
+      this.downloading = true;
+
+      try {
+        const result = await this.service.descargarConsultasTabla(
+          opts,
+          this.guardarDrive,
+        );
+
+        this.showExportModal = false;
+        await this.mostrarResultadoExportacion(result);
+      } catch {
+        await this.notify.ok({
+          variant: 'warning',
+          title: 'No se pudo descargar',
+          message: 'No se pudo generar el archivo de consultas.',
+          primaryText: 'Aceptar',
+        });
+      } finally {
+        this.downloading = false;
+      }
+    }
+
+    private async mostrarResultadoExportacion(result: {
+      driveStatus: string | null;
+      driveMessage: string | null;
+    }): Promise<void> {
+      if (!this.guardarDrive) {
+        await this.notify.ok({
+          variant: 'success',
+          title: 'Descarga iniciada',
+          message: 'El archivo de consultas se generó correctamente.',
+          primaryText: 'Aceptar',
+        });
+        return;
+      }
+
+      if (result.driveStatus === 'SAVED') {
+        await this.notify.ok({
+          variant: 'success',
+          title: 'Reporte generado',
+          message: 'El reporte se descargó y también se guardó en Drive.',
+          primaryText: 'Aceptar',
+        });
+        return;
+      }
+
+      await this.notify.ok({
+        variant: 'warning',
+        title: 'Descarga completada',
+        message:
+          result.driveStatus === 'FAILED'
+            ? `El reporte se descargó, pero falló el guardado en Drive.${result.driveMessage ? ` ${result.driveMessage}` : ''}`
+            : 'El reporte se descargó, pero el servidor no confirmó el guardado en Drive.',
+        primaryText: 'Aceptar',
+      });
+    }
+
 }

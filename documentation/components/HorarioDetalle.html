@@ -1,0 +1,2747 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">frontend documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  HorarioDetalle</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/pages/horario/horario.detalle/horario.detalle.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" class="nav-link"
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.dev/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.dev/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-horario-detalle</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                        <div>        <code><a href="https://angular.dev/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+</div>
+                        <div>        <code><a href="https://angular.dev/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./horario.detalle.css</code></td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./horario.detalle.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./horario.detalle.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+        <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <p class="comment"><i>No results matching.</i></p>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="https://angular.dev/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/core/OnInit" target="_blank" >OnInit</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+</div>
+
+    <div class="tab-pane fade " id="api">    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#bloquesPlano" >bloquesPlano</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#diaOrder" >diaOrder</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#diasSemana" >diasSemana</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#fb" >fb</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#form" >form</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#idhorario" >idhorario</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#isEditing" >isEditing</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#notify" >notify</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#open" >open</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#originalData" >originalData</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#pageMeta" >pageMeta</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#route" >route</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#router" >router</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#service" >service</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#submitting" >submitting</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#addBloque" >addBloque</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#bloquesActivos" >bloquesActivos</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#estadoBadgeClass" >estadoBadgeClass</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#estadoLabel" >estadoLabel</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#groupByHoras" >groupByHoras</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#normalizeBloquesForCompare" >normalizeBloquesForCompare</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#onCancel" >onCancel</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#onDiaChange" >onDiaChange</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#onEdit" >onEdit</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#onSave" >onSave</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#removeBloque" >removeBloque</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#resetBloquesForm" >resetBloquesForm</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#sortDias" >sortDias</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#validaBloques" >validaBloques</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Accessors</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--accessor" aria-hidden="true">A</span>
+                                <a href="#bloquesFA" >bloquesFA</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addBloque"></a>
+                    <span class="name">
+                        <span ><b>addBloque</b></span>
+                        <a href="#addBloque"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addBloque()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="313"
+                                    class="link-to-prism">src/app/pages/horario/horario.detalle/horario.detalle.ts:313</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="bloquesActivos"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>bloquesActivos</b></span>
+                        <a href="#bloquesActivos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>bloquesActivos(bloques: VMHorarioBloqueForm[])</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="399"
+                                    class="link-to-prism">src/app/pages/horario/horario.detalle/horario.detalle.ts:399</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>bloques</td>
+                                            <td>
+                                                        <code>VMHorarioBloqueForm[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>VMHorarioBloqueForm[]</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="estadoBadgeClass"></a>
+                    <span class="name">
+                        <span ><b>estadoBadgeClass</b></span>
+                        <a href="#estadoBadgeClass"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>estadoBadgeClass(v: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="69"
+                                    class="link-to-prism">src/app/pages/horario/horario.detalle/horario.detalle.ts:69</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>v</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="estadoLabel"></a>
+                    <span class="name">
+                        <span ><b>estadoLabel</b></span>
+                        <a href="#estadoLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>estadoLabel(v: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="62"
+                                    class="link-to-prism">src/app/pages/horario/horario.detalle/horario.detalle.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>v</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="groupByHoras"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>groupByHoras</b></span>
+                        <a href="#groupByHoras"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>groupByHoras(plano: VMHorarioBloque[])</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="356"
+                                    class="link-to-prism">src/app/pages/horario/horario.detalle/horario.detalle.ts:356</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>plano</td>
+                                            <td>
+                                                        <code>VMHorarioBloque[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>VMHorarioBloqueForm[]</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="116"
+                                    class="link-to-prism">src/app/pages/horario/horario.detalle/horario.detalle.ts:116</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="76"
+                                    class="link-to-prism">src/app/pages/horario/horario.detalle/horario.detalle.ts:76</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="normalizeBloquesForCompare"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>normalizeBloquesForCompare</b></span>
+                        <a href="#normalizeBloquesForCompare"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>normalizeBloquesForCompare(bloques: VMHorarioBloqueForm[])</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="408"
+                                    class="link-to-prism">src/app/pages/horario/horario.detalle/horario.detalle.ts:408</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>bloques</td>
+                                            <td>
+                                                        <code>VMHorarioBloqueForm[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>VMHorarioBloqueForm[]</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onCancel"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>onCancel</b></span>
+                        <a href="#onCancel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onCancel()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="127"
+                                    class="link-to-prism">src/app/pages/horario/horario.detalle/horario.detalle.ts:127</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onDiaChange"></a>
+                    <span class="name">
+                        <span ><b>onDiaChange</b></span>
+                        <a href="#onDiaChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onDiaChange(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, dia: <a href="../miscellaneous/typealiases.html#DiaSemana" target="_self">DiaSemana</a>, checked: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="334"
+                                    class="link-to-prism">src/app/pages/horario/horario.detalle/horario.detalle.ts:334</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>dia</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#DiaSemana" target="_self" >DiaSemana</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>checked</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onEdit"></a>
+                    <span class="name">
+                        <span ><b>onEdit</b></span>
+                        <a href="#onEdit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onEdit(ev: <a href="https://angular.dev/api/router/Event" target="_blank">Event</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="120"
+                                    class="link-to-prism">src/app/pages/horario/horario.detalle/horario.detalle.ts:120</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>ev</td>
+                                            <td>
+                                                            <code><a href="https://angular.dev/api/router/Event" target="_blank" >Event</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSave"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>onSave</b></span>
+                        <a href="#onSave"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onSave()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="174"
+                                    class="link-to-prism">src/app/pages/horario/horario.detalle/horario.detalle.ts:174</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeBloque"></a>
+                    <span class="name">
+                        <span ><b>removeBloque</b></span>
+                        <a href="#removeBloque"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeBloque(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="326"
+                                    class="link-to-prism">src/app/pages/horario/horario.detalle/horario.detalle.ts:326</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resetBloquesForm"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>resetBloquesForm</b></span>
+                        <a href="#resetBloquesForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>resetBloquesForm(bloques: VMHorarioBloqueForm[])</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="377"
+                                    class="link-to-prism">src/app/pages/horario/horario.detalle/horario.detalle.ts:377</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>bloques</td>
+                                            <td>
+                                                        <code>VMHorarioBloqueForm[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sortDias"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>sortDias</b></span>
+                        <a href="#sortDias"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>sortDias(dias: <a href="../miscellaneous/typealiases.html#DiaSemana" target="_self">DiaSemana[]</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="395"
+                                    class="link-to-prism">src/app/pages/horario/horario.detalle/horario.detalle.ts:395</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>dias</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#DiaSemana" target="_self" >DiaSemana[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#DiaSemana" target="_self" >DiaSemana[]</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validaBloques"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>validaBloques</b></span>
+                        <a href="#validaBloques"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>validaBloques(bloques: VMHorarioBloqueForm[])</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="423"
+                                    class="link-to-prism">src/app/pages/horario/horario.detalle/horario.detalle.ts:423</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>bloques</td>
+                                            <td>
+                                                        <code>VMHorarioBloqueForm[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>string | null</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="bloquesPlano"></a>
+                    <span class="name">
+                        <span ><b>bloquesPlano</b></span>
+                        <a href="#bloquesPlano"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>VMHorarioBloque[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/pages/horario/horario.detalle/horario.detalle.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="diaOrder"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>diaOrder</b></span>
+                        <a href="#diaOrder"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#DiaSemana" target="_self" >Record&lt;DiaSemana, number&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    LU: 0, MA: 1, MI: 2, JU: 3, VI: 4, SA: 5, DO: 6,
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/pages/horario/horario.detalle/horario.detalle.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="diasSemana"></a>
+                    <span class="name">
+                        <span ><b>diasSemana</b></span>
+                        <a href="#diasSemana"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>DIAS_SEMANA</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/pages/horario/horario.detalle/horario.detalle.ts:35</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fb"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>fb</b></span>
+                        <a href="#fb"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(FormBuilder)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/pages/horario/horario.detalle/horario.detalle.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="form"></a>
+                    <span class="name">
+                        <span ><b>form</b></span>
+                        <a href="#form"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.fb.group({
+    nombre: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+    tz: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+    estado: new FormControl&lt;number&gt;(1, { nonNullable: true }), // 1&#x3D;Activo, 2&#x3D;Inactivo, 0&#x3D;Eliminado
+    bloques: this.fb.array&lt;BloqueFormGroup&gt;([]),
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/pages/horario/horario.detalle/horario.detalle.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="idhorario"></a>
+                    <span class="name">
+                        <span ><b>idhorario</b></span>
+                        <a href="#idhorario"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/pages/horario/horario.detalle/horario.detalle.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isEditing"></a>
+                    <span class="name">
+                        <span ><b>isEditing</b></span>
+                        <a href="#isEditing"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/pages/horario/horario.detalle/horario.detalle.ts:42</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="notify"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>notify</b></span>
+                        <a href="#notify"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(NotificacionesService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/pages/horario/horario.detalle/horario.detalle.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="open"></a>
+                    <span class="name">
+                        <span ><b>open</b></span>
+                        <a href="#open"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/pages/horario/horario.detalle/horario.detalle.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="originalData"></a>
+                    <span class="name">
+                        <span ><b>originalData</b></span>
+                        <a href="#originalData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/VMHorarioDetalle.html" target="_self" >VMHorarioDetalle</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/pages/horario/horario.detalle/horario.detalle.ts:60</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pageMeta"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>pageMeta</b></span>
+                        <a href="#pageMeta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(PageMetaService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/pages/horario/horario.detalle/horario.detalle.ts:33</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="route"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>route</b></span>
+                        <a href="#route"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ActivatedRoute)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/pages/horario/horario.detalle/horario.detalle.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="router"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>router</b></span>
+                        <a href="#router"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(Router)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/pages/horario/horario.detalle/horario.detalle.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="service"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>service</b></span>
+                        <a href="#service"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(HorarioService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/pages/horario/horario.detalle/horario.detalle.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="submitting"></a>
+                    <span class="name">
+                        <span ><b>submitting</b></span>
+                        <a href="#submitting"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/pages/horario/horario.detalle/horario.detalle.ts:44</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="bloquesFA"></a>
+                        <span class="name"><b>bloquesFA</b><a href="#bloquesFA"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>bloquesFA()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/pages/horario/horario.detalle/horario.detalle.ts:56</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, OnDestroy, inject } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import {ReactiveFormsModule,FormBuilder,FormControl,FormGroup,FormArray,} from &#x27;@angular/forms&#x27;;
+import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;;
+
+import { HorarioService } from &#x27;../services/horario.service&#x27;;
+import { VMHorarioDetalle, VMHorarioBloque, VMHorarioBloqueForm } from &#x27;../models/horario.vm&#x27;;
+import { NotificacionesService } from &#x27;@/app/components/notificaciones/services/notificaciones.service&#x27;;
+import { PageMetaService } from &#x27;@/app/services/page_meta.service&#x27;;
+
+import { DIAS_SEMANA, DiaSemana } from &#x27;../models/horario.dominio&#x27;;
+import { DTOHorarioBloqueCreate } from &#x27;../models/horario.dto&#x27;;
+
+type BloqueFormGroup &#x3D; FormGroup&lt;{
+  dias: FormControl&lt;DiaSemana[]&gt;;
+  horaInicio: FormControl&lt;string&gt;;
+  horaFin: FormControl&lt;string&gt;;
+}&gt;;
+
+@Component({
+  selector: &#x27;app-horario-detalle&#x27;,
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: &#x27;./horario.detalle.html&#x27;,
+  styleUrl: &#x27;./horario.detalle.css&#x27;,
+})
+export class HorarioDetalle implements OnInit, OnDestroy {
+  private route &#x3D; inject(ActivatedRoute);
+  private router &#x3D; inject(Router);
+  private service &#x3D; inject(HorarioService);
+  private fb &#x3D; inject(FormBuilder);
+  private notify &#x3D; inject(NotificacionesService);
+  private pageMeta &#x3D; inject(PageMetaService);
+
+  diasSemana &#x3D; DIAS_SEMANA;
+
+  private readonly diaOrder: Record&lt;DiaSemana, number&gt; &#x3D; {
+    LU: 0, MA: 1, MI: 2, JU: 3, VI: 4, SA: 5, DO: 6,
+  };
+
+  idhorario!: number;
+  isEditing &#x3D; false;
+  open &#x3D; true;
+  submitting &#x3D; false;
+
+  // Tabla (modo lectura): un registro por día
+  bloquesPlano: VMHorarioBloque[] &#x3D; [];
+
+  form &#x3D; this.fb.group({
+    nombre: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+    tz: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+    estado: new FormControl&lt;number&gt;(1, { nonNullable: true }), // 1&#x3D;Activo, 2&#x3D;Inactivo, 0&#x3D;Eliminado
+    bloques: this.fb.array&lt;BloqueFormGroup&gt;([]),
+  });
+
+  get bloquesFA(): FormArray&lt;BloqueFormGroup&gt; {
+    return this.form.controls.bloques as FormArray&lt;BloqueFormGroup&gt;;
+  }
+
+  originalData!: VMHorarioDetalle;
+
+  estadoLabel(v: number): string {
+    if (v &#x3D;&#x3D;&#x3D; 1) return &#x27;Activo&#x27;;
+    if (v &#x3D;&#x3D;&#x3D; 2) return &#x27;Inactivo&#x27;;
+    if (v &#x3D;&#x3D;&#x3D; 0) return &#x27;Eliminado&#x27;;
+    return &#x60;Estado ${v}&#x60;;
+  }
+
+  estadoBadgeClass(v: number): string {
+    if (v &#x3D;&#x3D;&#x3D; 1) return &#x27;bg-success&#x27;;
+    if (v &#x3D;&#x3D;&#x3D; 2) return &#x27;bg-warning text-dark&#x27;;
+    if (v &#x3D;&#x3D;&#x3D; 0) return &#x27;bg-danger&#x27;;
+    return &#x27;bg-secondary&#x27;;
+  }
+
+  ngOnInit(): void {
+    this.form.disable();
+
+    const id &#x3D; Number(this.route.snapshot.paramMap.get(&#x27;id&#x27;));
+    if (!id) return;
+
+    this.idhorario &#x3D; id;
+
+    this.pageMeta.replace({
+      titulo: &#x27;Horario:&#x27;,
+      ruta: [&#x27;/horario&#x27;],
+    });
+
+    this.service.getById(id).subscribe({
+      next: (data: VMHorarioDetalle) &#x3D;&gt; {
+
+        this.originalData &#x3D; data;
+
+        this.form.patchValue({
+          nombre: data.nombre,
+          tz: data.tz,
+          estado: data.estado,
+        });
+
+        this.bloquesPlano &#x3D; data.bloques ?? [];
+        this.resetBloquesForm(this.groupByHoras(this.bloquesPlano));
+
+        this.pageMeta.set({
+          titulo: &#x60;Horario: ${data.nombre}&#x60;,
+        });
+
+        this.form.disable();
+        this.isEditing &#x3D; false;
+      },
+      error: () &#x3D;&gt; {
+        // Interceptor maneja errores
+      },
+    });
+  }
+
+  ngOnDestroy() {
+    this.pageMeta.clear();
+  }
+
+  onEdit(ev: Event): void {
+    ev.stopPropagation();
+    this.isEditing &#x3D; true;
+    this.open &#x3D; true;
+    this.form.enable();
+  }
+
+  async onCancel(): Promise&lt;void&gt; {
+    const raw &#x3D; this.form.getRawValue();
+
+    const headerChanged &#x3D;
+      (raw.nombre ?? &#x27;&#x27;) !&#x3D;&#x3D; this.originalData.nombre ||
+      (raw.tz ?? &#x27;&#x27;) !&#x3D;&#x3D; this.originalData.tz ||
+      (raw.estado ?? 1) !&#x3D;&#x3D; this.originalData.estado;
+
+    const currentBloques &#x3D; this.normalizeBloquesForCompare(
+      (raw.bloques ?? []).map((b): VMHorarioBloqueForm &#x3D;&gt; ({
+        dias: (b.dias ?? []) as DiaSemana[],
+        horaInicio: (b.horaInicio ?? &#x27;&#x27;).trim(),
+        horaFin: (b.horaFin ?? &#x27;&#x27;).trim(),
+      })),
+    );
+
+    const originalGrouped &#x3D; this.normalizeBloquesForCompare(
+      this.groupByHoras(this.originalData.bloques ?? []),
+    );
+
+    const blocksChanged &#x3D;
+      JSON.stringify(currentBloques) !&#x3D;&#x3D; JSON.stringify(originalGrouped);
+
+    if (headerChanged || blocksChanged) {
+      const ok &#x3D; await this.notify.confirm({
+        variant: &#x27;warning&#x27;,
+        title: &#x27;Descartar cambios&#x27;,
+        message: &#x27;Hay cambios sin guardar. ¿Deseas descartarlos?&#x27;,
+        confirmText: &#x27;Descartar&#x27;,
+        cancelText: &#x27;Seguir editando&#x27;,
+      });
+      if (!ok) return;
+    }
+
+    this.form.patchValue({
+      nombre: this.originalData.nombre,
+      tz: this.originalData.tz,
+      estado: this.originalData.estado,
+    });
+
+    this.bloquesPlano &#x3D; this.originalData.bloques ?? [];
+    this.resetBloquesForm(this.groupByHoras(this.bloquesPlano));
+
+    this.form.disable();
+    this.isEditing &#x3D; false;
+  }
+
+  async onSave(): Promise&lt;void&gt; {
+    if (this.submitting) return;
+
+    const raw &#x3D; this.form.getRawValue();
+    const nombre &#x3D; (raw.nombre ?? &#x27;&#x27;).trim();
+    const tz &#x3D; (raw.tz ?? &#x27;&#x27;).trim();
+    const estado &#x3D; Number(raw.estado ?? this.originalData.estado);
+
+    if (!nombre) {
+      await this.notify.ok({
+        variant: &#x27;warning&#x27;,
+        title: &#x27;Datos incompletos&#x27;,
+        message: &#x27;Debe ingresar un nombre válido.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    const bloquesVm: VMHorarioBloqueForm[] &#x3D; (raw.bloques ?? []).map((b) &#x3D;&gt; ({
+      dias: (b.dias ?? []) as DiaSemana[],
+      horaInicio: (b.horaInicio ?? &#x27;&#x27;).trim(),
+      horaFin: (b.horaFin ?? &#x27;&#x27;).trim(),
+    }));
+
+    const msgBloques &#x3D; this.validaBloques(bloquesVm);
+    if (msgBloques) {
+      this.bloquesFA.controls.forEach((g) &#x3D;&gt; {
+        Object.values(g.controls).forEach((c) &#x3D;&gt; {
+          c.markAsTouched();
+          c.updateValueAndValidity({ onlySelf: true });
+        });
+      });
+
+      await this.notify.ok({
+        variant: &#x27;warning&#x27;,
+        title: &#x27;Falta información&#x27;,
+        message: msgBloques,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    // Confirmación especial si marca Eliminado
+    if (estado &#x3D;&#x3D;&#x3D; 0 &amp;&amp; this.originalData.estado !&#x3D;&#x3D; 0) {
+      const ok &#x3D; await this.notify.confirm({
+        variant: &#x27;warning&#x27;,
+        title: &#x27;Eliminar (soft delete)&#x27;,
+        message: &#x27;Este horario quedará como ELIMINADO. ¿Deseas continuar?&#x27;,
+        confirmText: &#x27;Eliminar&#x27;,
+        cancelText: &#x27;Cancelar&#x27;,
+      });
+      if (!ok) return;
+    } else {
+      const ok &#x3D; await this.notify.confirm({
+        variant: &#x27;info&#x27;,
+        title: &#x27;Guardar cambios&#x27;,
+        message: &#x27;¿Deseas guardar los cambios del horario?&#x27;,
+        confirmText: &#x27;Guardar&#x27;,
+        cancelText: &#x27;Cancelar&#x27;,
+      });
+      if (!ok) return;
+    }
+
+    const activos &#x3D; this.bloquesActivos(bloquesVm);
+    const bloquesDto: DTOHorarioBloqueCreate[] &#x3D; activos.map((b) &#x3D;&gt; ({
+      dias: this.sortDias(b.dias),
+      hora_inicio: b.horaInicio,
+      hora_fin: b.horaFin,
+    }));
+
+    const cambios: Partial&lt;{
+      ho_nombre: string;
+      ho_tz: string;
+      ho_estado: number;
+      bloques: DTOHorarioBloqueCreate[];
+    }&gt; &#x3D; {
+      bloques: bloquesDto, // en detalle enviamos siempre bloques para consistencia con el editor
+    };
+
+    if (nombre !&#x3D;&#x3D; this.originalData.nombre) cambios.ho_nombre &#x3D; nombre;
+    if (tz !&#x3D;&#x3D; this.originalData.tz) cambios.ho_tz &#x3D; tz;
+    if (estado !&#x3D;&#x3D; this.originalData.estado) cambios.ho_estado &#x3D; estado;
+
+    // Si realmente no cambió nada, evitar request
+    if (
+      cambios.ho_nombre &#x3D;&#x3D; null &amp;&amp;
+      cambios.ho_tz &#x3D;&#x3D; null &amp;&amp;
+      cambios.ho_estado &#x3D;&#x3D; null &amp;&amp;
+      JSON.stringify(this.normalizeBloquesForCompare(bloquesVm)) &#x3D;&#x3D;&#x3D;
+        JSON.stringify(this.normalizeBloquesForCompare(this.groupByHoras(this.originalData.bloques ?? [])))
+    ) {
+      await this.notify.ok({
+        variant: &#x27;info&#x27;,
+        title: &#x27;Sin cambios&#x27;,
+        message: &#x27;No hay cambios que guardar.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    this.submitting &#x3D; true;
+    try {
+      const updated &#x3D; await this.service.update(this.idhorario, cambios);
+
+      await this.notify.ok({
+        variant: &#x27;success&#x27;,
+        title: &#x27;Cambios guardados&#x27;,
+        message: &#x27;El horario se actualizó correctamente.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+
+      // Si quedó eliminado, regresamos al listado (porque GET /horario/:id luego será 404 por su backend)
+      if (updated.estado &#x3D;&#x3D;&#x3D; 0) {
+        this.router.navigateByUrl(&#x27;/horario&#x27;);
+        return;
+      }
+
+      this.originalData &#x3D; updated;
+      this.bloquesPlano &#x3D; updated.bloques ?? [];
+
+      this.form.patchValue({
+        nombre: updated.nombre,
+        tz: updated.tz,
+        estado: updated.estado,
+      });
+
+      this.resetBloquesForm(this.groupByHoras(this.bloquesPlano));
+
+      this.form.disable();
+      this.isEditing &#x3D; false;
+    } catch {
+      // Error ya manejado por interceptor global
+    } finally {
+      this.submitting &#x3D; false;
+    }
+  }
+
+  // ----------------- Bloques UI -----------------
+
+  addBloque() {
+    const g: BloqueFormGroup &#x3D; this.fb.group({
+      dias: new FormControl&lt;DiaSemana[]&gt;([], { nonNullable: true }),
+      horaInicio: new FormControl&lt;string&gt;(&#x27;&#x27;, { nonNullable: true }),
+      horaFin: new FormControl&lt;string&gt;(&#x27;&#x27;, { nonNullable: true }),
+    });
+
+    this.bloquesFA.push(g);
+    this.bloquesFA.markAsDirty();
+    this.bloquesFA.markAsTouched();
+    this.bloquesFA.updateValueAndValidity();
+  }
+
+  removeBloque(index: number) {
+    if (this.bloquesFA.length &lt;&#x3D; 1) return;
+    this.bloquesFA.removeAt(index);
+    this.bloquesFA.markAsDirty();
+    this.bloquesFA.markAsTouched();
+    this.bloquesFA.updateValueAndValidity();
+  }
+
+  onDiaChange(index: number, dia: DiaSemana, checked: boolean) {
+    const bloque &#x3D; this.bloquesFA.at(index);
+    if (!bloque) return;
+
+    const diasControl &#x3D; bloque.controls.dias;
+    const current &#x3D; diasControl.value ?? [];
+
+    let next: DiaSemana[];
+    if (checked) {
+      if (current.includes(dia)) return;
+      next &#x3D; [...current, dia];
+    } else {
+      next &#x3D; current.filter((d) &#x3D;&gt; d !&#x3D;&#x3D; dia);
+    }
+
+    diasControl.setValue(next);
+    diasControl.markAsDirty();
+    diasControl.markAsTouched();
+  }
+
+  // ----------------- Transformaciones y validación -----------------
+
+  private groupByHoras(plano: VMHorarioBloque[]): VMHorarioBloqueForm[] {
+    const map &#x3D; new Map&lt;string, VMHorarioBloqueForm&gt;();
+
+    for (const b of plano ?? []) {
+      const key &#x3D; &#x60;${b.horaInicio}|${b.horaFin}&#x60;;
+      const cur &#x3D; map.get(key) ?? { dias: [], horaInicio: b.horaInicio, horaFin: b.horaFin };
+      if (!cur.dias.includes(b.dia)) cur.dias.push(b.dia);
+      map.set(key, cur);
+    }
+
+    const arr &#x3D; Array.from(map.values());
+    if (arr.length &#x3D;&#x3D;&#x3D; 0) return [{ dias: [], horaInicio: &#x27;&#x27;, horaFin: &#x27;&#x27; }];
+
+    arr.sort((a, b) &#x3D;&gt;
+      (a.horaInicio || &#x27;&#x27;).localeCompare(b.horaInicio || &#x27;&#x27;) ||
+      (a.horaFin || &#x27;&#x27;).localeCompare(b.horaFin || &#x27;&#x27;),
+    );
+
+    return arr.map((x) &#x3D;&gt; ({ ...x, dias: this.sortDias(x.dias) }));
+  }
+
+  private resetBloquesForm(bloques: VMHorarioBloqueForm[]) {
+    this.bloquesFA.clear();
+
+    const list &#x3D; (bloques &amp;&amp; bloques.length) ? bloques : [{ dias: [], horaInicio: &#x27;&#x27;, horaFin: &#x27;&#x27; }];
+
+    for (const b of list) {
+      const g: BloqueFormGroup &#x3D; this.fb.group({
+        dias: new FormControl&lt;DiaSemana[]&gt;(b.dias ?? [], { nonNullable: true }),
+        horaInicio: new FormControl&lt;string&gt;(b.horaInicio ?? &#x27;&#x27;, { nonNullable: true }),
+        horaFin: new FormControl&lt;string&gt;(b.horaFin ?? &#x27;&#x27;, { nonNullable: true }),
+      });
+      this.bloquesFA.push(g);
+    }
+
+    this.bloquesFA.markAsPristine();
+    this.bloquesFA.markAsUntouched();
+  }
+
+  private sortDias(dias: DiaSemana[]): DiaSemana[] {
+    return [...(dias ?? [])].sort((a, b) &#x3D;&gt; (this.diaOrder[a] ?? 999) - (this.diaOrder[b] ?? 999));
+  }
+
+  private bloquesActivos(bloques: VMHorarioBloqueForm[]): VMHorarioBloqueForm[] {
+    return (bloques ?? []).filter(
+      (b) &#x3D;&gt;
+        (b.dias &amp;&amp; b.dias.length &gt; 0) ||
+        (b.horaInicio &amp;&amp; b.horaInicio.trim() !&#x3D;&#x3D; &#x27;&#x27;) ||
+        (b.horaFin &amp;&amp; b.horaFin.trim() !&#x3D;&#x3D; &#x27;&#x27;),
+    );
+  }
+
+  private normalizeBloquesForCompare(bloques: VMHorarioBloqueForm[]): VMHorarioBloqueForm[] {
+    const activos &#x3D; this.bloquesActivos(bloques).map((b) &#x3D;&gt; ({
+      dias: this.sortDias(b.dias),
+      horaInicio: (b.horaInicio ?? &#x27;&#x27;).trim(),
+      horaFin: (b.horaFin ?? &#x27;&#x27;).trim(),
+    }));
+
+    activos.sort((a, b) &#x3D;&gt;
+      (a.horaInicio || &#x27;&#x27;).localeCompare(b.horaInicio || &#x27;&#x27;) ||
+      (a.horaFin || &#x27;&#x27;).localeCompare(b.horaFin || &#x27;&#x27;),
+    );
+
+    return activos;
+  }
+
+  private validaBloques(bloques: VMHorarioBloqueForm[]): string | null {
+    const activos &#x3D; this.bloquesActivos(bloques);
+
+    if (!activos || activos.length &#x3D;&#x3D;&#x3D; 0) {
+      return &#x27;Debe definir al menos un bloque de días y horas.&#x27;;
+    }
+    if (activos.some((b) &#x3D;&gt; !b.dias || b.dias.length &#x3D;&#x3D;&#x3D; 0)) {
+      return &#x27;Cada bloque debe tener al menos un día seleccionado.&#x27;;
+    }
+    if (activos.some((b) &#x3D;&gt; !b.horaInicio || !b.horaFin)) {
+      return &#x27;Cada bloque debe tener hora de inicio y hora de fin.&#x27;;
+    }
+    if (activos.some((b) &#x3D;&gt; (b.horaInicio || &#x27;&#x27;) &gt;&#x3D; (b.horaFin || &#x27;&#x27;))) {
+      return &#x27;En cada bloque la hora de inicio debe ser menor que la hora de fin.&#x27;;
+    }
+
+    return null;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container&quot;&gt;
+  &lt;div class&#x3D;&quot;row justify-content-center&quot;&gt;
+    &lt;div class&#x3D;&quot;col-12 col-lg-8 mb-4&quot;&gt;
+      &lt;div class&#x3D;&quot;card shadow-sm&quot;&gt;
+
+        &lt;!-- Encabezado colapsable --&gt;
+        &lt;div
+          class&#x3D;&quot;card-header d-flex justify-content-between align-items-center&quot;
+          (click)&#x3D;&quot;open &#x3D; !open&quot;
+          role&#x3D;&quot;button&quot;
+          [attr.aria-expanded]&#x3D;&quot;open&quot;&gt;
+          &lt;div class&#x3D;&quot;d-flex align-items-center gap-2&quot;&gt;
+            &lt;span class&#x3D;&quot;fw-semibold&quot;&gt;Información del horario&lt;/span&gt;
+            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-secondary&quot; (click)&#x3D;&quot;onEdit($event)&quot;&gt;
+              Editar
+            &lt;/button&gt;
+          &lt;/div&gt;
+          &lt;span class&#x3D;&quot;caret&quot;&gt;{{ open ? &quot;▴&quot; : &quot;▾&quot; }}&lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Cuerpo --&gt;
+        &lt;form class&#x3D;&quot;card-body&quot; [hidden]&#x3D;&quot;!open&quot; [formGroup]&#x3D;&quot;form&quot;&gt;
+          &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+            &lt;div class&#x3D;&quot;col-12 col-md-4&quot;&gt; 
+              &lt;label class&#x3D;&quot;form-label&quot;&gt;Nombre del horario&lt;/label&gt;
+              &lt;input type&#x3D;&quot;text&quot;
+                     formControlName&#x3D;&quot;nombre&quot;
+                     [class.value-box-edit]&#x3D;&quot;isEditing&quot;
+                     [class.value-box-noedit]&#x3D;&quot;!isEditing&quot;/&gt;
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;col-12 col-md-4&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot;&gt;Zona horaria&lt;/label&gt;
+              &lt;input type&#x3D;&quot;text&quot;
+                     formControlName&#x3D;&quot;tz&quot;
+                     [class.value-box-edit]&#x3D;&quot;isEditing&quot;
+                     [class.value-box-noedit]&#x3D;&quot;!isEditing&quot;/&gt;
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;col-12 col-md-4&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot;&gt;Estado&lt;/label&gt;
+
+              @if (!isEditing) {
+                &lt;div class&#x3D;&quot;mt-1&quot;&gt;
+                  &lt;span class&#x3D;&quot;badge&quot; [ngClass]&#x3D;&quot;estadoBadgeClass(form.controls.estado.value)&quot;&gt;
+                    {{ estadoLabel(form.controls.estado.value) }}
+                  &lt;/span&gt;
+                &lt;/div&gt;
+              }
+
+              @if (isEditing) {
+                &lt;select class&#x3D;&quot;form-control&quot; formControlName&#x3D;&quot;estado&quot;&gt;
+                  &lt;option [ngValue]&#x3D;&quot;1&quot;&gt;Activo&lt;/option&gt;
+                  &lt;option [ngValue]&#x3D;&quot;2&quot;&gt;Inactivo&lt;/option&gt;
+                  &lt;option [ngValue]&#x3D;&quot;0&quot;&gt;Eliminado&lt;/option&gt;
+                &lt;/select&gt;
+              }
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div style&#x3D;&quot;height: 1rem;&quot;&gt;&lt;/div&gt;
+
+          &lt;!-- Sección: Bloques --&gt;
+          &lt;div&gt;
+            &lt;div class&#x3D;&quot;d-flex justify-content-between align-items-center mb-2&quot;&gt;
+              &lt;div class&#x3D;&quot;section-title&quot;&gt;Bloques de días y horas&lt;/div&gt;
+
+              @if (isEditing) {
+                &lt;button type&#x3D;&quot;button&quot;
+                        class&#x3D;&quot;btn btn-sm btn-outline-primary&quot;
+                        (click)&#x3D;&quot;addBloque()&quot;&gt;
+                  Añadir bloque
+                &lt;/button&gt;
+              }
+            &lt;/div&gt;
+
+            &lt;!-- Modo lectura: tabla plana --&gt;
+            @if (!isEditing) {
+              &lt;div class&#x3D;&quot;table-responsive&quot;&gt;
+                &lt;table class&#x3D;&quot;table table-bordered table-sm align-middle mb-0&quot;&gt;
+                  &lt;thead class&#x3D;&quot;table-light&quot;&gt;
+                    &lt;tr&gt;
+                      &lt;th class&#x3D;&quot;text-center&quot;&gt;Día&lt;/th&gt;
+                      &lt;th class&#x3D;&quot;text-center&quot;&gt;Hora inicio&lt;/th&gt;
+                      &lt;th class&#x3D;&quot;text-center&quot;&gt;Hora fin&lt;/th&gt;
+                    &lt;/tr&gt;
+                  &lt;/thead&gt;
+                  &lt;tbody&gt;
+                    @for (b of bloquesPlano; track b.id) {
+                      &lt;tr&gt;
+                        &lt;td class&#x3D;&quot;text-center&quot;&gt;{{ b.dia }}&lt;/td&gt;
+                        &lt;td class&#x3D;&quot;text-center&quot;&gt;{{ b.horaInicio }}&lt;/td&gt;
+                        &lt;td class&#x3D;&quot;text-center&quot;&gt;{{ b.horaFin }}&lt;/td&gt;
+                      &lt;/tr&gt;
+                    }
+                    @if (bloquesPlano.length &#x3D;&#x3D;&#x3D; 0) {
+                      &lt;tr&gt;
+                        &lt;td colspan&#x3D;&quot;3&quot; class&#x3D;&quot;text-center text-muted&quot;&gt;
+                          Sin bloques registrados
+                        &lt;/td&gt;
+                      &lt;/tr&gt;
+                    }
+                  &lt;/tbody&gt;
+                &lt;/table&gt;
+              &lt;/div&gt;
+            }
+
+            &lt;!-- Modo edición: editor agrupado --&gt;
+            @if (isEditing) {
+              &lt;div formArrayName&#x3D;&quot;bloques&quot;&gt;
+                @for (bloque of bloquesFA.controls; let i &#x3D; $index; track i) {
+                  &lt;div [formGroupName]&#x3D;&quot;i&quot; class&#x3D;&quot;border rounded p-3 mb-2&quot;&gt;
+                    &lt;div class&#x3D;&quot;row g-3 align-items-end&quot;&gt;
+
+                      &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;
+                        &lt;label class&#x3D;&quot;form-label fw-semibold&quot;&gt;Días&lt;/label&gt;
+                        &lt;div class&#x3D;&quot;d-flex flex-wrap gap-2&quot;&gt;
+                          @for (d of diasSemana; track d.value) {
+                            &lt;div class&#x3D;&quot;form-check form-check-inline&quot;&gt;
+                              &lt;input class&#x3D;&quot;form-check-input&quot;
+                                     type&#x3D;&quot;checkbox&quot;
+                                     [value]&#x3D;&quot;d.value&quot;
+                                     (change)&#x3D;&quot;onDiaChange(i, d.value, $event.target.checked)&quot;
+                                     [checked]&#x3D;&quot;bloquesFA.at(i).controls.dias.value.includes(d.value)&quot;&gt;
+                              &lt;label class&#x3D;&quot;form-check-label&quot;&gt;{{ d.label }}&lt;/label&gt;
+                            &lt;/div&gt;
+                          }
+                        &lt;/div&gt;
+                      &lt;/div&gt;
+
+                      &lt;div class&#x3D;&quot;col-12 col-md-3 col-lg-2&quot;&gt;
+                        &lt;label class&#x3D;&quot;form-label fw-semibold&quot;&gt;Hora inicio&lt;/label&gt;
+                        &lt;input type&#x3D;&quot;time&quot;
+                               class&#x3D;&quot;form-control&quot;
+                               formControlName&#x3D;&quot;horaInicio&quot;&gt;
+                      &lt;/div&gt;
+
+                      &lt;div class&#x3D;&quot;col-12 col-md-3 col-lg-2&quot;&gt;
+                        &lt;label class&#x3D;&quot;form-label fw-semibold&quot;&gt;Hora fin&lt;/label&gt;
+                        &lt;input type&#x3D;&quot;time&quot;
+                               class&#x3D;&quot;form-control&quot;
+                               formControlName&#x3D;&quot;horaFin&quot;&gt;
+                      &lt;/div&gt;
+
+                      &lt;div class&#x3D;&quot;col-12 col-md-3 col-lg-2 text-md-end mt-2 mt-md-0&quot;&gt;
+                        @if (bloquesFA.length &gt; 1) {
+                          &lt;button type&#x3D;&quot;button&quot;
+                                  class&#x3D;&quot;btn btn-sm btn-outline-danger&quot;
+                                  (click)&#x3D;&quot;removeBloque(i)&quot;&gt;
+                            Eliminar
+                          &lt;/button&gt;
+                        }
+                      &lt;/div&gt;
+
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                }
+              &lt;/div&gt;
+
+              @if (bloquesFA.length &#x3D;&#x3D;&#x3D; 0) {
+                &lt;div class&#x3D;&quot;text-center text-muted&quot;&gt;Sin bloques registrados&lt;/div&gt;
+              }
+            }
+          &lt;/div&gt;
+
+          &lt;div style&#x3D;&quot;height: 1rem;&quot;&gt;&lt;/div&gt;
+
+          @if (isEditing) {
+            &lt;div class&#x3D;&quot;d-flex justify-content-between mt-4&quot;&gt;
+              &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-warning&quot; (click)&#x3D;&quot;onCancel()&quot; [disabled]&#x3D;&quot;submitting&quot;&gt;
+                Cancelar
+              &lt;/button&gt;
+              &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-success&quot; (click)&#x3D;&quot;onSave()&quot; [disabled]&#x3D;&quot;submitting&quot;&gt;
+                Guardar
+              &lt;/button&gt;
+            &lt;/div&gt;
+          }
+        &lt;/form&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./horario.detalle.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">/* Reutilizamos el mismo estilo visual del detalle de ciudadano */
+.value-box-noedit {
+  display: block;
+  width: 100%;
+  padding: .475rem .75rem;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: .375rem;
+  min-height: calc(1.5em + .95rem + 2px);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  cursor: default;
+  pointer-events: none;
+  user-select: none;
+}
+
+.value-box-edit {
+  display: block;
+  width: 100%;
+  padding: .475rem .75rem;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: .375rem;
+  min-height: calc(1.5em + .95rem + 2px);
+  line-height: 1.5;
+}
+
+.card-header {
+  cursor: pointer;
+  user-select: none;
+}
+
+.section-title {
+  font-weight: 600;
+  color: #6c757d;
+  margin-bottom: .25rem;
+}
+
+.caret {
+  font-size: 1rem;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="container">  <div class="row justify-content-center">    <div class="col-12 col-lg-8 mb-4">      <div class="card shadow-sm">        <!-- Encabezado colapsable -->        <div          class="card-header d-flex justify-content-between align-items-center"          (click)="open = !open"          role="button"          [attr.aria-expanded]="open">          <div class="d-flex align-items-center gap-2">            <span class="fw-semibold">Información del horario</span>            <button type="button" class="btn btn-secondary" (click)="onEdit($event)">              Editar            </button>          </div>          <span class="caret">{{ open ? "▴" : "▾" }}</span>        </div>        <!-- Cuerpo -->        <form class="card-body" [hidden]="!open" [formGroup]="form">          <div class="row g-3">            <div class="col-12 col-md-4">               <label class="form-label">Nombre del horario</label>              <input type="text"                     formControlName="nombre"                     [class.value-box-edit]="isEditing"                     [class.value-box-noedit]="!isEditing"/>            </div>            <div class="col-12 col-md-4">              <label class="form-label">Zona horaria</label>              <input type="text"                     formControlName="tz"                     [class.value-box-edit]="isEditing"                     [class.value-box-noedit]="!isEditing"/>            </div>            <div class="col-12 col-md-4">              <label class="form-label">Estado</label>              @if (!isEditing) {                <div class="mt-1">                  <span class="badge" [ngClass]="estadoBadgeClass(form.controls.estado.value)">                    {{ estadoLabel(form.controls.estado.value) }}                  </span>                </div>              }              @if (isEditing) {                <select class="form-control" formControlName="estado">                  <option [ngValue]="1">Activo</option>                  <option [ngValue]="2">Inactivo</option>                  <option [ngValue]="0">Eliminado</option>                </select>              }            </div>          </div>          <div style="height: 1rem;"></div>          <!-- Sección: Bloques -->          <div>            <div class="d-flex justify-content-between align-items-center mb-2">              <div class="section-title">Bloques de días y horas</div>              @if (isEditing) {                <button type="button"                        class="btn btn-sm btn-outline-primary"                        (click)="addBloque()">                  Añadir bloque                </button>              }            </div>            <!-- Modo lectura: tabla plana -->            @if (!isEditing) {              <div class="table-responsive">                <table class="table table-bordered table-sm align-middle mb-0">                  <thead class="table-light">                    <tr>                      <th class="text-center">Día</th>                      <th class="text-center">Hora inicio</th>                      <th class="text-center">Hora fin</th>                    </tr>                  </thead>                  <tbody>                    @for (b of bloquesPlano; track b.id) {                      <tr>                        <td class="text-center">{{ b.dia }}</td>                        <td class="text-center">{{ b.horaInicio }}</td>                        <td class="text-center">{{ b.horaFin }}</td>                      </tr>                    }                    @if (bloquesPlano.length === 0) {                      <tr>                        <td colspan="3" class="text-center text-muted">                          Sin bloques registrados                        </td>                      </tr>                    }                  </tbody>                </table>              </div>            }            <!-- Modo edición: editor agrupado -->            @if (isEditing) {              <div formArrayName="bloques">                @for (bloque of bloquesFA.controls; let i = $index; track i) {                  <div [formGroupName]="i" class="border rounded p-3 mb-2">                    <div class="row g-3 align-items-end">                      <div class="col-12 col-md-6">                        <label class="form-label fw-semibold">Días</label>                        <div class="d-flex flex-wrap gap-2">                          @for (d of diasSemana; track d.value) {                            <div class="form-check form-check-inline">                              <input class="form-check-input"                                     type="checkbox"                                     [value]="d.value"                                     (change)="onDiaChange(i, d.value, $event.target.checked)"                                     [checked]="bloquesFA.at(i).controls.dias.value.includes(d.value)">                              <label class="form-check-label">{{ d.label }}</label>                            </div>                          }                        </div>                      </div>                      <div class="col-12 col-md-3 col-lg-2">                        <label class="form-label fw-semibold">Hora inicio</label>                        <input type="time"                               class="form-control"                               formControlName="horaInicio">                      </div>                      <div class="col-12 col-md-3 col-lg-2">                        <label class="form-label fw-semibold">Hora fin</label>                        <input type="time"                               class="form-control"                               formControlName="horaFin">                      </div>                      <div class="col-12 col-md-3 col-lg-2 text-md-end mt-2 mt-md-0">                        @if (bloquesFA.length > 1) {                          <button type="button"                                  class="btn btn-sm btn-outline-danger"                                  (click)="removeBloque(i)">                            Eliminar                          </button>                        }                      </div>                    </div>                  </div>                }              </div>              @if (bloquesFA.length === 0) {                <div class="text-center text-muted">Sin bloques registrados</div>              }            }          </div>          <div style="height: 1rem;"></div>          @if (isEditing) {            <div class="d-flex justify-content-between mt-4">              <button type="button" class="btn btn-warning" (click)="onCancel()" [disabled]="submitting">                Cancelar              </button>              <button type="button" class="btn btn-success" (click)="onSave()" [disabled]="submitting">                Guardar              </button>            </div>          }        </form>      </div>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AnaliticasDashboard', 'selector': 'app-analiticas-dashboard'},{'name': 'App', 'selector': 'app-root'},{'name': 'AsistenciaLista', 'selector': 'app-asistencia-lista'},{'name': 'AsistenciasDashboard', 'selector': 'app-asistencias-dashboard'},{'name': 'AudienciaCalendario', 'selector': 'app-audiencia-calendario'},{'name': 'AudienciaDetalle', 'selector': 'app-audiencia-detalle'},{'name': 'AudienciaRegistrar', 'selector': 'app-audiencia-registrar'},{'name': 'CiudadanoDetalle', 'selector': 'app-ciudadano-detalle'},{'name': 'CiudadanoLista', 'selector': 'app-ciudadano-lista'},{'name': 'CiudadanoRegistrar', 'selector': 'app-ciudadano-registrar'},{'name': 'ConfirmarCorreo', 'selector': 'app-cuenta-confirmar-correo'},{'name': 'ConsultaDetalle', 'selector': 'app-consulta-detalle'},{'name': 'ConsultaLista', 'selector': 'app-consulta-lista'},{'name': 'ConsultaListaCiudadano', 'selector': 'app-consulta-lista-ciudadano'},{'name': 'ConsultaRegistar', 'selector': 'app-consulta-registrar'},{'name': 'DocumentosListaEntidad', 'selector': 'app-documentos-lista-entidad'},{'name': 'DocumentosListaGeneral', 'selector': 'app-documentos-lista-general'},{'name': 'DocumentosRegistrar', 'selector': 'app-documentos-registrar'},{'name': 'DocumentosRutaBaseLista', 'selector': 'app-documentos-ruta-base-lista'},{'name': 'DocumentosRutaBaseRegistrar', 'selector': 'app-documentos-ruta-base-registrar'},{'name': 'ExportarConDriveComponent', 'selector': 'app-exportar-con-drive'},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'Header', 'selector': 'app-header'},{'name': 'HorarioDetalle', 'selector': 'app-horario-detalle'},{'name': 'HorarioLista', 'selector': 'app-horario-lista'},{'name': 'HorarioRegistrar', 'selector': 'app-horario-registrar'},{'name': 'Ingresar', 'selector': 'app-cuenta-ingresar'},{'name': 'JustificacionListaMis', 'selector': 'app-justificacion-lista-mis'},{'name': 'JustificacionListaPendientes', 'selector': 'app-justificacion-lista-pendientes'},{'name': 'JustificacionRegistrar', 'selector': 'app-justificacion-registrar'},{'name': 'Main_layout', 'selector': 'app-main-layout'},{'name': 'NotificacionestVer', 'selector': 'app-notificaciones-ver'},{'name': 'PaginaNoEncontradaComponent', 'selector': 'app-pagina-no-encontrada'},{'name': 'Perfil', 'selector': 'app-cuenta-perfil'},{'name': 'ProcesoDetalle', 'selector': 'app-proceso-detalle'},{'name': 'ProcesoLista', 'selector': 'app-proceso-lista'},{'name': 'ProcesoRegistrar', 'selector': 'app-proceso-registrar'},{'name': 'Registar', 'selector': 'app-cuenta-registrar'},{'name': 'SeguimientoListaConsulta', 'selector': 'app-seguimiento-lista-consulta'},{'name': 'SeguimientoRegistar', 'selector': 'app-seguimiento-registrar'},{'name': 'Sidebar', 'selector': 'app-sidebar'},{'name': 'Simple_layout', 'selector': 'app-simple_layout'},{'name': 'TramiteDetalle', 'selector': 'app-tramite-detalle'},{'name': 'TramiteLista', 'selector': 'app-tramite-lista'},{'name': 'TramiteRegistrar', 'selector': 'app-tramite-registrar'},{'name': 'UsuarioDetalle', 'selector': 'app-usuario-detalle'},{'name': 'UsuarioHorarioListaUsuario', 'selector': 'app-usuario-horario-lista-usuario'},{'name': 'UsuarioLista', 'selector': 'app-usuario-lista'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'HorarioDetalle'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'HorarioDetalle.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -45,3 +45,8 @@ export interface DTOCuentaChangePassword {
   us_contrasena: string;       // contraseña actual
   us_new_contrasena: string;   // nueva contraseña
 }
+export interface DTOCuentaConfirmarCorreoResponse {
+  us_ID: number;
+  us_estado: number;
+  message: string;
+}

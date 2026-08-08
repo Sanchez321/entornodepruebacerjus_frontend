@@ -1,0 +1,2383 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">frontend documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  Sidebar</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/components/sidebar/sidebar.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" class="nav-link"
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.dev/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.dev/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+                    <code><a href="https://angular.dev/api/core/OnChanges" target="_blank" >OnChanges</a></code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-sidebar</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                        <div>        <code><a href="https://angular.dev/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+</div>
+                        <div>        <code><a href="https://angular.dev/api/router/RouterLink" target="_blank" >RouterLink</a></code>
+</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./sidebar.css</code></td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./sidebar.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+        <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="../components/Main_layout.html" target="_self" >Main_layout</a></code>
+                                </li>
+                        </ul>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="https://angular.dev/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/router/RouterLink" target="_blank" >RouterLink</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/core/OnInit" target="_blank" >OnInit</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/core/OnChanges" target="_blank" >OnChanges</a></code>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+</div>
+
+    <div class="tab-pane fade " id="api">    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#currentUrl" >currentUrl</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#initializedByRoute" >initializedByRoute</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#openGroups" >openGroups</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#subRouter" >subRouter</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#belongsToAdmin" >belongsToAdmin</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#belongsToAsesoria" >belongsToAsesoria</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#belongsToDocumentos" >belongsToDocumentos</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#belongsToSupervision" >belongsToSupervision</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#canSee" >canSee</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#cleanUrl" >cleanUrl</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#firstSegmentIs" >firstSegmentIs</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#isAdminActive" >isAdminActive</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#isAsesoriaActive" >isAsesoriaActive</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#isDocumentosActive" >isDocumentosActive</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#isPerfilActive" >isPerfilActive</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#isSupervisionActive" >isSupervisionActive</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#ngOnChanges" >ngOnChanges</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#openCurrentRouteGroupOnce" >openCurrentRouteGroupOnce</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#toggleGroup" >toggleGroup</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">I</span><a href="#loggedIn" >loggedIn</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">I</span><a href="#userLevel" >userLevel</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(router: <a href="https://angular.dev/api/router/Router" target="_blank">Router</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/components/sidebar/sidebar.ts:28</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.dev/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="loggedIn"></a>
+                        <b>loggedIn</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/components/sidebar/sidebar.ts:16</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="userLevel"></a>
+                        <b>userLevel</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/components/sidebar/sidebar.ts:15</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>1 = admin, 2 = supervisor, 3 = asesor; null/otros = sin sesión</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="belongsToAdmin"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>belongsToAdmin</b></span>
+                        <a href="#belongsToAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>belongsToAdmin(url: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="200"
+                                    class="link-to-prism">src/app/components/sidebar/sidebar.ts:200</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>url</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="belongsToAsesoria"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>belongsToAsesoria</b></span>
+                        <a href="#belongsToAsesoria"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>belongsToAsesoria(url: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="177"
+                                    class="link-to-prism">src/app/components/sidebar/sidebar.ts:177</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>url</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="belongsToDocumentos"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>belongsToDocumentos</b></span>
+                        <a href="#belongsToDocumentos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>belongsToDocumentos(url: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="188"
+                                    class="link-to-prism">src/app/components/sidebar/sidebar.ts:188</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>url</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="belongsToSupervision"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>belongsToSupervision</b></span>
+                        <a href="#belongsToSupervision"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>belongsToSupervision(url: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="192"
+                                    class="link-to-prism">src/app/components/sidebar/sidebar.ts:192</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>url</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="canSee"></a>
+                    <span class="name">
+                        <span ><b>canSee</b></span>
+                        <a href="#canSee"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>canSee(requiredLevel: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="61"
+                                    class="link-to-prism">src/app/components/sidebar/sidebar.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Regla correcta: menor número = más permisos</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>requiredLevel</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cleanUrl"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>cleanUrl</b></span>
+                        <a href="#cleanUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>cleanUrl()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="212"
+                                    class="link-to-prism">src/app/components/sidebar/sidebar.ts:212</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="firstSegmentIs"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>firstSegmentIs</b></span>
+                        <a href="#firstSegmentIs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>firstSegmentIs(segment: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, url: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="208"
+                                    class="link-to-prism">src/app/components/sidebar/sidebar.ts:208</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>segment</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>url</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isAdminActive"></a>
+                    <span class="name">
+                        <span ><b>isAdminActive</b></span>
+                        <a href="#isAdminActive"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isAdminActive(item: "usuarios" | "horario")</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="123"
+                                    class="link-to-prism">src/app/components/sidebar/sidebar.ts:123</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                        <code>&quot;usuarios&quot; | &quot;horario&quot;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isAsesoriaActive"></a>
+                    <span class="name">
+                        <span ><b>isAsesoriaActive</b></span>
+                        <a href="#isAsesoriaActive"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isAsesoriaActive(item: "asistencia" | "ciudadano" | "consulta" | "proceso" | "tramite" | "audiencia")</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="69"
+                                    class="link-to-prism">src/app/components/sidebar/sidebar.ts:69</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                        <code>&quot;asistencia&quot; | &quot;ciudadano&quot; | &quot;consulta&quot; | &quot;proceso&quot; | &quot;tramite&quot; | &quot;audiencia&quot;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isDocumentosActive"></a>
+                    <span class="name">
+                        <span ><b>isDocumentosActive</b></span>
+                        <a href="#isDocumentosActive"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isDocumentosActive(item: "documentos" | "rutasBase")</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="95"
+                                    class="link-to-prism">src/app/components/sidebar/sidebar.ts:95</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                        <code>&quot;documentos&quot; | &quot;rutasBase&quot;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isPerfilActive"></a>
+                    <span class="name">
+                        <span ><b>isPerfilActive</b></span>
+                        <a href="#isPerfilActive"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isPerfilActive()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="135"
+                                    class="link-to-prism">src/app/components/sidebar/sidebar.ts:135</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isSupervisionActive"></a>
+                    <span class="name">
+                        <span ><b>isSupervisionActive</b></span>
+                        <a href="#isSupervisionActive"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isSupervisionActive(item: "analiticas" | "controlusuario" | "justificacion")</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="108"
+                                    class="link-to-prism">src/app/components/sidebar/sidebar.ts:108</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                        <code>&quot;analiticas&quot; | &quot;controlusuario&quot; | &quot;justificacion&quot;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnChanges"></a>
+                    <span class="name">
+                        <span ><b>ngOnChanges</b></span>
+                        <a href="#ngOnChanges"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnChanges(_changes: <a href="https://angular.dev/api/core/SimpleChanges" target="_blank">SimpleChanges</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="48"
+                                    class="link-to-prism">src/app/components/sidebar/sidebar.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>_changes</td>
+                                            <td>
+                                                            <code><a href="https://angular.dev/api/core/SimpleChanges" target="_blank" >SimpleChanges</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="56"
+                                    class="link-to-prism">src/app/components/sidebar/sidebar.ts:56</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="32"
+                                    class="link-to-prism">src/app/components/sidebar/sidebar.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openCurrentRouteGroupOnce"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>openCurrentRouteGroupOnce</b></span>
+                        <a href="#openCurrentRouteGroupOnce"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>openCurrentRouteGroupOnce()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="140"
+                                    class="link-to-prism">src/app/components/sidebar/sidebar.ts:140</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleGroup"></a>
+                    <span class="name">
+                        <span ><b>toggleGroup</b></span>
+                        <a href="#toggleGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleGroup(group: "asesoria" | "documentos" | "supervision" | "admin")</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="65"
+                                    class="link-to-prism">src/app/components/sidebar/sidebar.ts:65</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>group</td>
+                                            <td>
+                                                        <code>&quot;asesoria&quot; | &quot;documentos&quot; | &quot;supervision&quot; | &quot;admin&quot;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentUrl"></a>
+                    <span class="name">
+                        <span ><b>currentUrl</b></span>
+                        <a href="#currentUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/components/sidebar/sidebar.ts:18</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initializedByRoute"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>initializedByRoute</b></span>
+                        <a href="#initializedByRoute"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/components/sidebar/sidebar.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openGroups"></a>
+                    <span class="name">
+                        <span ><b>openGroups</b></span>
+                        <a href="#openGroups"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    asesoria: false,
+    documentos: false,
+    supervision: false,
+    admin: false,
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/components/sidebar/sidebar.ts:20</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subRouter"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>subRouter</b></span>
+                        <a href="#subRouter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/components/sidebar/sidebar.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input, OnDestroy, OnInit, OnChanges, SimpleChanges } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { Router, RouterLink, NavigationEnd } from &#x27;@angular/router&#x27;;
+import { filter, Subscription } from &#x27;rxjs&#x27;;
+
+@Component({
+  selector: &#x27;app-sidebar&#x27;,
+  standalone: true,
+  imports: [CommonModule, RouterLink],
+  templateUrl: &#x27;./sidebar.html&#x27;,
+  styleUrls: [&#x27;./sidebar.css&#x27;]
+})
+export class Sidebar implements OnInit, OnDestroy, OnChanges {
+  /** 1 &#x3D; admin, 2 &#x3D; supervisor, 3 &#x3D; asesor; null/otros &#x3D; sin sesión */
+  @Input() userLevel: number | null &#x3D; null;
+  @Input() loggedIn &#x3D; false;
+
+  currentUrl &#x3D; &#x27;&#x27;;
+
+  openGroups &#x3D; {
+    asesoria: false,
+    documentos: false,
+    supervision: false,
+    admin: false,
+  };
+
+  private subRouter?: Subscription;
+  private initializedByRoute &#x3D; false;
+
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    this.currentUrl &#x3D; this.router.url;
+    this.openCurrentRouteGroupOnce();
+
+    this.subRouter &#x3D; this.router.events
+      .pipe(filter(e &#x3D;&gt; e instanceof NavigationEnd))
+      .subscribe((e) &#x3D;&gt; {
+        const nav &#x3D; e as NavigationEnd;
+        this.currentUrl &#x3D; nav.urlAfterRedirects;
+
+        if (!this.initializedByRoute) {
+          this.openCurrentRouteGroupOnce();
+        }
+      });
+  }
+
+  ngOnChanges(_changes: SimpleChanges): void {
+    /*
+      Cuando loggedIn/userLevel llegan después del ngOnInit,
+      se intenta una sola vez abrir el grupo correspondiente.
+    */
+    this.openCurrentRouteGroupOnce();
+  }
+
+  ngOnDestroy(): void {
+    this.subRouter?.unsubscribe();
+  }
+
+  /** Regla correcta: menor número &#x3D; más permisos */
+  canSee(requiredLevel: number): boolean {
+    return this.loggedIn &amp;&amp; this.userLevel !&#x3D; null &amp;&amp; this.userLevel &lt;&#x3D; requiredLevel;
+  }
+
+  toggleGroup(group: keyof typeof this.openGroups): void {
+    this.openGroups[group] &#x3D; !this.openGroups[group];
+  }
+
+  isAsesoriaActive(
+    item: &#x27;asistencia&#x27; | &#x27;ciudadano&#x27; | &#x27;consulta&#x27; | &#x27;proceso&#x27; | &#x27;tramite&#x27; | &#x27;audiencia&#x27;
+  ): boolean {
+    const url &#x3D; this.cleanUrl();
+
+    switch (item) {
+      case &#x27;asistencia&#x27;:
+        return this.firstSegmentIs(&#x27;asistencia&#x27;, url);
+
+      case &#x27;ciudadano&#x27;:
+        return this.firstSegmentIs(&#x27;ciudadano&#x27;, url);
+
+      case &#x27;consulta&#x27;:
+        return this.firstSegmentIs(&#x27;consulta&#x27;, url);
+
+      case &#x27;proceso&#x27;:
+        return this.firstSegmentIs(&#x27;proceso&#x27;, url);
+
+      case &#x27;tramite&#x27;:
+        return this.firstSegmentIs(&#x27;tramite&#x27;, url);
+
+      case &#x27;audiencia&#x27;:
+        return this.firstSegmentIs(&#x27;audiencia&#x27;, url);
+    }
+  }
+
+  isDocumentosActive(item: &#x27;documentos&#x27; | &#x27;rutasBase&#x27;): boolean {
+    const url &#x3D; this.cleanUrl();
+
+    switch (item) {
+      case &#x27;documentos&#x27;:
+        return url &#x3D;&#x3D;&#x3D; &#x27;/documentos&#x27;;
+
+      case &#x27;rutasBase&#x27;:
+        return url &#x3D;&#x3D;&#x3D; &#x27;/documentos/rutas-base&#x27; ||
+          url.startsWith(&#x27;/documentos/rutas-base/&#x27;);
+    }
+  }
+
+  isSupervisionActive(item: &#x27;analiticas&#x27; | &#x27;controlusuario&#x27; | &#x27;justificacion&#x27;): boolean {
+    const url &#x3D; this.cleanUrl();
+
+    switch (item) {
+      case &#x27;analiticas&#x27;:
+        return this.firstSegmentIs(&#x27;analiticas&#x27;, url);
+
+      case &#x27;controlusuario&#x27;:
+        return this.firstSegmentIs(&#x27;controlusuario&#x27;, url);
+
+      case &#x27;justificacion&#x27;:
+        return this.firstSegmentIs(&#x27;justificacion&#x27;, url);
+    }
+  }
+
+  isAdminActive(item: &#x27;usuarios&#x27; | &#x27;horario&#x27;): boolean {
+    const url &#x3D; this.cleanUrl();
+
+    switch (item) {
+      case &#x27;usuarios&#x27;:
+        return url &#x3D;&#x3D;&#x3D; &#x27;/admin/usuario/lista&#x27; || url.startsWith(&#x27;/admin/usuario/&#x27;);
+
+      case &#x27;horario&#x27;:
+        return this.firstSegmentIs(&#x27;horario&#x27;, url);
+    }
+  }
+
+  isPerfilActive(): boolean {
+    const url &#x3D; this.cleanUrl();
+    return url &#x3D;&#x3D;&#x3D; &#x27;/cuenta/perfil&#x27; || url.startsWith(&#x27;/cuenta/perfil/&#x27;);
+  }
+
+  private openCurrentRouteGroupOnce(): void {
+    if (this.initializedByRoute) return;
+    if (!this.loggedIn || this.userLevel &#x3D;&#x3D; null) return;
+
+    const url &#x3D; this.cleanUrl();
+
+    if (!url || url &#x3D;&#x3D;&#x3D; &#x27;/&#x27;) return;
+
+    if (this.canSee(3) &amp;&amp; this.belongsToAsesoria(url)) {
+      this.openGroups.asesoria &#x3D; true;
+      this.initializedByRoute &#x3D; true;
+      return;
+    }
+
+    if (this.canSee(3) &amp;&amp; this.belongsToDocumentos(url)) {
+      this.openGroups.documentos &#x3D; true;
+      this.initializedByRoute &#x3D; true;
+      return;
+    }
+
+    if (this.canSee(3) &amp;&amp; this.belongsToSupervision(url)) {
+      this.openGroups.supervision &#x3D; true;
+      this.initializedByRoute &#x3D; true;
+      return;
+    }
+
+    if (this.canSee(2) &amp;&amp; this.belongsToAdmin(url)) {
+      this.openGroups.admin &#x3D; true;
+      this.initializedByRoute &#x3D; true;
+      return;
+    }
+
+    if (this.isPerfilActive()) {
+      this.initializedByRoute &#x3D; true;
+    }
+  }
+
+  private belongsToAsesoria(url: string): boolean {
+    return (
+      this.firstSegmentIs(&#x27;asistencia&#x27;, url) ||
+      this.firstSegmentIs(&#x27;ciudadano&#x27;, url) ||
+      this.firstSegmentIs(&#x27;consulta&#x27;, url) ||
+      this.firstSegmentIs(&#x27;proceso&#x27;, url) ||
+      this.firstSegmentIs(&#x27;tramite&#x27;, url) ||
+      this.firstSegmentIs(&#x27;audiencia&#x27;, url)
+    );
+  }
+
+  private belongsToDocumentos(url: string): boolean {
+    return this.firstSegmentIs(&#x27;documentos&#x27;, url);
+  }
+
+  private belongsToSupervision(url: string): boolean {
+    return (
+      this.firstSegmentIs(&#x27;analiticas&#x27;, url) ||
+      this.firstSegmentIs(&#x27;controlusuario&#x27;, url) ||
+      this.firstSegmentIs(&#x27;justificacion&#x27;, url)
+    );
+  }
+
+  private belongsToAdmin(url: string): boolean {
+    return (
+      url &#x3D;&#x3D;&#x3D; &#x27;/admin/usuario/lista&#x27; ||
+      url.startsWith(&#x27;/admin/usuario/&#x27;) ||
+      this.firstSegmentIs(&#x27;horario&#x27;, url)
+    );
+  }
+
+  private firstSegmentIs(segment: string, url: string): boolean {
+    return url &#x3D;&#x3D;&#x3D; &#x60;/${segment}&#x60; || url.startsWith(&#x60;/${segment}/&#x60;);
+  }
+
+  private cleanUrl(): string {
+    return (this.currentUrl || &#x27;&#x27;).split(&#x27;?&#x27;)[0].split(&#x27;#&#x27;)[0];
+  }
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;d-flex flex-column flex-shrink-0 p-3 text-white color_azul min-vh-100&quot; style&#x3D;&quot;width: 280px; user-select: none;&quot;&gt;
+  &lt;a class&#x3D;&quot;d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none&quot;&gt;
+    &lt;span class&#x3D;&quot;fs-4&quot;&gt;CERJUS&lt;/span&gt;
+  &lt;/a&gt;
+
+  &lt;hr&gt;
+
+  &lt;ul class&#x3D;&quot;nav flex-column mb-auto sidebar-nav&quot;&gt;
+
+    &lt;!-- GRUPO ASESORÍA --&gt;
+    @if (canSee(3)) {
+      &lt;li class&#x3D;&quot;sidebar-group&quot;&gt;
+        &lt;button
+          class&#x3D;&quot;w-100 d-flex justify-content-between align-items-center sidebar-group-toggle&quot;
+          type&#x3D;&quot;button&quot;
+          (click)&#x3D;&quot;toggleGroup(&#x27;asesoria&#x27;)&quot;&gt;
+          &lt;span class&#x3D;&quot;sidebar-group-title&quot;&gt;Asesoría&lt;/span&gt;
+          &lt;span
+            class&#x3D;&quot;sidebar-chevron&quot;
+            [class.sidebar-chevron-open]&#x3D;&quot;openGroups.asesoria&quot;&gt;
+            &amp;#9662;
+          &lt;/span&gt;
+        &lt;/button&gt;
+
+        &lt;div
+          class&#x3D;&quot;sidebar-submenu&quot;
+          [class.show]&#x3D;&quot;openGroups.asesoria&quot;
+          [class.collapse]&#x3D;&quot;true&quot;&gt;
+
+          &lt;a
+            class&#x3D;&quot;nav-link sidebar-item-link&quot;
+            [class.active]&#x3D;&quot;isAsesoriaActive(&#x27;asistencia&#x27;)&quot;
+            [routerLink]&#x3D;&quot;[&#x27;/asistencia&#x27;]&quot;&gt;
+            Asistencia
+          &lt;/a&gt;
+
+          &lt;a
+            class&#x3D;&quot;nav-link sidebar-item-link&quot;
+            [class.active]&#x3D;&quot;isAsesoriaActive(&#x27;ciudadano&#x27;)&quot;
+            [routerLink]&#x3D;&quot;[&#x27;/ciudadano&#x27;]&quot;&gt;
+            Ciudadano
+          &lt;/a&gt;
+
+          &lt;a
+            class&#x3D;&quot;nav-link sidebar-item-link&quot;
+            [class.active]&#x3D;&quot;isAsesoriaActive(&#x27;consulta&#x27;)&quot;
+            [routerLink]&#x3D;&quot;[&#x27;/consulta&#x27;]&quot;&gt;
+            Consulta
+          &lt;/a&gt;
+
+          &lt;a
+            class&#x3D;&quot;nav-link sidebar-item-link&quot;
+            [class.active]&#x3D;&quot;isAsesoriaActive(&#x27;proceso&#x27;)&quot;
+            [routerLink]&#x3D;&quot;[&#x27;/proceso&#x27;]&quot;&gt;
+            Proceso
+          &lt;/a&gt;
+
+          &lt;a
+            class&#x3D;&quot;nav-link sidebar-item-link&quot;
+            [class.active]&#x3D;&quot;isAsesoriaActive(&#x27;tramite&#x27;)&quot;
+            [routerLink]&#x3D;&quot;[&#x27;/tramite&#x27;]&quot;&gt;
+            Trámite
+          &lt;/a&gt;
+
+          &lt;a
+            class&#x3D;&quot;nav-link sidebar-item-link&quot;
+            [class.active]&#x3D;&quot;isAsesoriaActive(&#x27;audiencia&#x27;)&quot;
+            [routerLink]&#x3D;&quot;[&#x27;/audiencia&#x27;]&quot;&gt;
+            Audiencia
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/li&gt;
+    }
+
+    &lt;!-- GRUPO DOCUMENTOS --&gt;
+    @if (canSee(3)) {
+      &lt;li class&#x3D;&quot;sidebar-group&quot;&gt;
+        &lt;button
+          class&#x3D;&quot;w-100 d-flex justify-content-between align-items-center sidebar-group-toggle&quot;
+          type&#x3D;&quot;button&quot;
+          (click)&#x3D;&quot;toggleGroup(&#x27;documentos&#x27;)&quot;&gt;
+          &lt;span class&#x3D;&quot;sidebar-group-title&quot;&gt;Documentos&lt;/span&gt;
+          &lt;span
+            class&#x3D;&quot;sidebar-chevron&quot;
+            [class.sidebar-chevron-open]&#x3D;&quot;openGroups.documentos&quot;&gt;
+            &amp;#9662;
+          &lt;/span&gt;
+        &lt;/button&gt;
+
+        &lt;div
+          class&#x3D;&quot;sidebar-submenu&quot;
+          [class.show]&#x3D;&quot;openGroups.documentos&quot;
+          [class.collapse]&#x3D;&quot;true&quot;&gt;
+
+          &lt;a
+            class&#x3D;&quot;nav-link sidebar-item-link&quot;
+            [class.active]&#x3D;&quot;isDocumentosActive(&#x27;documentos&#x27;)&quot;
+            [routerLink]&#x3D;&quot;[&#x27;/documentos&#x27;]&quot;&gt;
+            Documentos
+          &lt;/a&gt;
+
+          &lt;a
+            class&#x3D;&quot;nav-link sidebar-item-link&quot;
+            [class.active]&#x3D;&quot;isDocumentosActive(&#x27;rutasBase&#x27;)&quot;
+            [routerLink]&#x3D;&quot;[&#x27;/documentos/rutas-base&#x27;]&quot;&gt;
+            Rutas base
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/li&gt;
+    }
+
+    &lt;!-- GRUPO SUPERVISIÓN --&gt;
+    @if (canSee(3)) {
+      &lt;li class&#x3D;&quot;sidebar-group&quot;&gt;
+        &lt;button
+          class&#x3D;&quot;w-100 d-flex justify-content-between align-items-center sidebar-group-toggle&quot;
+          type&#x3D;&quot;button&quot;
+          (click)&#x3D;&quot;toggleGroup(&#x27;supervision&#x27;)&quot;&gt;
+          &lt;span class&#x3D;&quot;sidebar-group-title&quot;&gt;Supervisión&lt;/span&gt;
+          &lt;span
+            class&#x3D;&quot;sidebar-chevron&quot;
+            [class.sidebar-chevron-open]&#x3D;&quot;openGroups.supervision&quot;&gt;
+            &amp;#9662;
+          &lt;/span&gt;
+        &lt;/button&gt;
+
+        &lt;div
+          class&#x3D;&quot;sidebar-submenu&quot;
+          [class.show]&#x3D;&quot;openGroups.supervision&quot;
+          [class.collapse]&#x3D;&quot;true&quot;&gt;
+
+          &lt;a
+            class&#x3D;&quot;nav-link sidebar-item-link&quot;
+            [class.active]&#x3D;&quot;isSupervisionActive(&#x27;analiticas&#x27;)&quot;
+            [routerLink]&#x3D;&quot;[&#x27;/analiticas&#x27;]&quot;&gt;
+            Analíticas
+          &lt;/a&gt;
+
+          @if (canSee(2)) {
+            &lt;a
+              class&#x3D;&quot;nav-link sidebar-item-link&quot;
+              [class.active]&#x3D;&quot;isSupervisionActive(&#x27;controlusuario&#x27;)&quot;
+              [routerLink]&#x3D;&quot;[&#x27;/controlusuario&#x27;]&quot;&gt;
+              Asistencia
+            &lt;/a&gt;
+
+            &lt;a
+              class&#x3D;&quot;nav-link sidebar-item-link&quot;
+              [class.active]&#x3D;&quot;isSupervisionActive(&#x27;justificacion&#x27;)&quot;
+              [routerLink]&#x3D;&quot;[&#x27;/justificacion/lista&#x27;]&quot;&gt;
+              Justificación
+            &lt;/a&gt;
+          }
+        &lt;/div&gt;
+      &lt;/li&gt;
+    }
+
+    &lt;!-- GRUPO ADMINISTRACIÓN --&gt;
+    @if (canSee(2)) {
+      &lt;li class&#x3D;&quot;sidebar-group&quot;&gt;
+        &lt;button
+          class&#x3D;&quot;w-100 d-flex justify-content-between align-items-center sidebar-group-toggle&quot;
+          type&#x3D;&quot;button&quot;
+          (click)&#x3D;&quot;toggleGroup(&#x27;admin&#x27;)&quot;&gt;
+          &lt;span class&#x3D;&quot;sidebar-group-title&quot;&gt;Administración&lt;/span&gt;
+          &lt;span
+            class&#x3D;&quot;sidebar-chevron&quot;
+            [class.sidebar-chevron-open]&#x3D;&quot;openGroups.admin&quot;&gt;
+            &amp;#9662;
+          &lt;/span&gt;
+        &lt;/button&gt;
+
+        &lt;div
+          class&#x3D;&quot;sidebar-submenu&quot;
+          [class.show]&#x3D;&quot;openGroups.admin&quot;
+          [class.collapse]&#x3D;&quot;true&quot;&gt;
+
+          &lt;a
+            class&#x3D;&quot;nav-link sidebar-item-link&quot;
+            [class.active]&#x3D;&quot;isAdminActive(&#x27;usuarios&#x27;)&quot;
+            [routerLink]&#x3D;&quot;[&#x27;/admin/usuario/lista&#x27;]&quot;&gt;
+            Usuarios
+          &lt;/a&gt;
+
+          &lt;a
+            class&#x3D;&quot;nav-link sidebar-item-link&quot;
+            [class.active]&#x3D;&quot;isAdminActive(&#x27;horario&#x27;)&quot;
+            [routerLink]&#x3D;&quot;[&#x27;/horario&#x27;]&quot;&gt;
+            Horario
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/li&gt;
+    }
+
+  &lt;/ul&gt;
+
+  &lt;hr&gt;
+
+  &lt;a
+    class&#x3D;&quot;nav-link sidebar-item-link&quot;
+    [class.active]&#x3D;&quot;isPerfilActive()&quot;
+    [routerLink]&#x3D;&quot;[&#x27;/cuenta/perfil&#x27;]&quot;&gt;
+    Perfil
+  &lt;/a&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./sidebar.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">/* Fondo general del sidebar */
+.color_azul {
+  background-color: #015675;
+}
+
+/* Opcional: color resaltado si lo necesita en algún otro sitio */
+.color_resaltado {
+  background-color: #01BAFE;
+}
+
+/* Fondo general del sidebar */
+.color_azul {
+  background-color: #015675;
+}
+
+/* Opcional: color resaltado si lo necesita en algún otro sitio */
+.color_resaltado {
+  background-color: #01BAFE;
+}
+
+/* Lista principal del sidebar */
+.sidebar-nav {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+/* Cada grupo (Asesoría, Supervisión, Admin) con espacio claro entre ellos */
+.sidebar-group {
+  margin-bottom: 1.25rem; /* mayor separación entre grupos */
+}
+
+/* Cabecera del grupo (botón que abre/cierra) */
+.sidebar-group-toggle {
+  background: transparent;
+  border: none;
+  padding: 0.25rem 0;
+  cursor: pointer;
+}
+
+/* Texto del título del grupo: estilo &quot;sección&quot; */
+.sidebar-group-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 1);
+}
+
+/* Chevron de los grupos */
+.sidebar-chevron {
+  font-size: 0.75rem;
+  transition: transform 0.2s ease;
+  color: rgba(255, 255, 255,1);
+}
+
+.sidebar-chevron-open {
+  transform: rotate(180deg);
+}
+
+/* Contenedor del submenú: un poco de sangría y línea guía */
+.sidebar-submenu {
+  padding-left: 0.75rem;
+  margin-top: 0.4rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Comportamiento tipo collapse, pero controlado por Angular */
+.sidebar-submenu.collapse {
+  display: none;
+}
+
+.sidebar-submenu.collapse.show {
+  display: block;
+}
+
+/* Estilo base de los links del submenú */
+.sidebar-item-link {
+  display: block;
+  margin-bottom: 0.35rem;           /* separación entre opciones */
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;             /* forma de &quot;pastilla&quot; */
+  font-size: 0.9rem;
+  text-decoration: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.85); /* texto claro pero no completamente blanco */
+  transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Hover sobre items no activos: muy sutil */
+.sidebar-item-link:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* ESTADO ACTIVO (ruta actual): aquí se marca claramente */
+.sidebar-item-link.active {
+  background-color: #ffffff;   /* fondo blanco */
+  color: #015675;              /* texto azul oscuro, coherente con el fondo principal */
+  font-weight: 600;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8);
+}
+
+/* Si quiere mantener el estilo de .nav-link activa en otros lugares,
+   limítelo al contexto del sidebar */
+.sidebar-item-link.active {
+  background-color: #ffffff;
+  color: #015675;
+  font-weight: 600;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8);
+}
+
+/* Eliminamos el hover general agresivo que tenía antes para todo nav-link */
+.nav-link.text-white:hover {
+  background-color: transparent;
+}
+
+/* Ajustes de tipografía y forma para que todo se vea más &quot;texto&quot; */
+.nav-link {
+  border-radius: 0; /* anulamos el borde por defecto de Bootstrap para los nav-link */
+}
+
+/* Si quiere un poco más de respiración dentro del sidebar completo */
+.d-flex.flex-column.flex-shrink-0.p-3.text-white.color_azul.min-vh-100 {
+  padding-top: 1.5rem !important;
+  padding-bottom: 1.5rem !important;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="d-flex flex-column flex-shrink-0 p-3 text-white color_azul min-vh-100" style="width: 280px; user-select: none;">  <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">    <span class="fs-4">CERJUS</span>  </a>  <hr>  <ul class="nav flex-column mb-auto sidebar-nav">    <!-- GRUPO ASESORÍA -->    @if (canSee(3)) {      <li class="sidebar-group">        <button          class="w-100 d-flex justify-content-between align-items-center sidebar-group-toggle"          type="button"          (click)="toggleGroup(\'asesoria\')">          <span class="sidebar-group-title">Asesoría</span>          <span            class="sidebar-chevron"            [class.sidebar-chevron-open]="openGroups.asesoria">            &#9662;          </span>        </button>        <div          class="sidebar-submenu"          [class.show]="openGroups.asesoria"          [class.collapse]="true">          <a            class="nav-link sidebar-item-link"            [class.active]="isAsesoriaActive(\'asistencia\')"            [routerLink]="[\'/asistencia\']">            Asistencia          </a>          <a            class="nav-link sidebar-item-link"            [class.active]="isAsesoriaActive(\'ciudadano\')"            [routerLink]="[\'/ciudadano\']">            Ciudadano          </a>          <a            class="nav-link sidebar-item-link"            [class.active]="isAsesoriaActive(\'consulta\')"            [routerLink]="[\'/consulta\']">            Consulta          </a>          <a            class="nav-link sidebar-item-link"            [class.active]="isAsesoriaActive(\'proceso\')"            [routerLink]="[\'/proceso\']">            Proceso          </a>          <a            class="nav-link sidebar-item-link"            [class.active]="isAsesoriaActive(\'tramite\')"            [routerLink]="[\'/tramite\']">            Trámite          </a>          <a            class="nav-link sidebar-item-link"            [class.active]="isAsesoriaActive(\'audiencia\')"            [routerLink]="[\'/audiencia\']">            Audiencia          </a>        </div>      </li>    }    <!-- GRUPO DOCUMENTOS -->    @if (canSee(3)) {      <li class="sidebar-group">        <button          class="w-100 d-flex justify-content-between align-items-center sidebar-group-toggle"          type="button"          (click)="toggleGroup(\'documentos\')">          <span class="sidebar-group-title">Documentos</span>          <span            class="sidebar-chevron"            [class.sidebar-chevron-open]="openGroups.documentos">            &#9662;          </span>        </button>        <div          class="sidebar-submenu"          [class.show]="openGroups.documentos"          [class.collapse]="true">          <a            class="nav-link sidebar-item-link"            [class.active]="isDocumentosActive(\'documentos\')"            [routerLink]="[\'/documentos\']">            Documentos          </a>          <a            class="nav-link sidebar-item-link"            [class.active]="isDocumentosActive(\'rutasBase\')"            [routerLink]="[\'/documentos/rutas-base\']">            Rutas base          </a>        </div>      </li>    }    <!-- GRUPO SUPERVISIÓN -->    @if (canSee(3)) {      <li class="sidebar-group">        <button          class="w-100 d-flex justify-content-between align-items-center sidebar-group-toggle"          type="button"          (click)="toggleGroup(\'supervision\')">          <span class="sidebar-group-title">Supervisión</span>          <span            class="sidebar-chevron"            [class.sidebar-chevron-open]="openGroups.supervision">            &#9662;          </span>        </button>        <div          class="sidebar-submenu"          [class.show]="openGroups.supervision"          [class.collapse]="true">          <a            class="nav-link sidebar-item-link"            [class.active]="isSupervisionActive(\'analiticas\')"            [routerLink]="[\'/analiticas\']">            Analíticas          </a>          @if (canSee(2)) {            <a              class="nav-link sidebar-item-link"              [class.active]="isSupervisionActive(\'controlusuario\')"              [routerLink]="[\'/controlusuario\']">              Asistencia            </a>            <a              class="nav-link sidebar-item-link"              [class.active]="isSupervisionActive(\'justificacion\')"              [routerLink]="[\'/justificacion/lista\']">              Justificación            </a>          }        </div>      </li>    }    <!-- GRUPO ADMINISTRACIÓN -->    @if (canSee(2)) {      <li class="sidebar-group">        <button          class="w-100 d-flex justify-content-between align-items-center sidebar-group-toggle"          type="button"          (click)="toggleGroup(\'admin\')">          <span class="sidebar-group-title">Administración</span>          <span            class="sidebar-chevron"            [class.sidebar-chevron-open]="openGroups.admin">            &#9662;          </span>        </button>        <div          class="sidebar-submenu"          [class.show]="openGroups.admin"          [class.collapse]="true">          <a            class="nav-link sidebar-item-link"            [class.active]="isAdminActive(\'usuarios\')"            [routerLink]="[\'/admin/usuario/lista\']">            Usuarios          </a>          <a            class="nav-link sidebar-item-link"            [class.active]="isAdminActive(\'horario\')"            [routerLink]="[\'/horario\']">            Horario          </a>        </div>      </li>    }  </ul>  <hr>  <a    class="nav-link sidebar-item-link"    [class.active]="isPerfilActive()"    [routerLink]="[\'/cuenta/perfil\']">    Perfil  </a></div></div>'
+    var COMPONENTS = [{'name': 'AnaliticasDashboard', 'selector': 'app-analiticas-dashboard'},{'name': 'App', 'selector': 'app-root'},{'name': 'AsistenciaLista', 'selector': 'app-asistencia-lista'},{'name': 'AsistenciasDashboard', 'selector': 'app-asistencias-dashboard'},{'name': 'AudienciaCalendario', 'selector': 'app-audiencia-calendario'},{'name': 'AudienciaDetalle', 'selector': 'app-audiencia-detalle'},{'name': 'AudienciaRegistrar', 'selector': 'app-audiencia-registrar'},{'name': 'CiudadanoDetalle', 'selector': 'app-ciudadano-detalle'},{'name': 'CiudadanoLista', 'selector': 'app-ciudadano-lista'},{'name': 'CiudadanoRegistrar', 'selector': 'app-ciudadano-registrar'},{'name': 'ConfirmarCorreo', 'selector': 'app-cuenta-confirmar-correo'},{'name': 'ConsultaDetalle', 'selector': 'app-consulta-detalle'},{'name': 'ConsultaLista', 'selector': 'app-consulta-lista'},{'name': 'ConsultaListaCiudadano', 'selector': 'app-consulta-lista-ciudadano'},{'name': 'ConsultaRegistar', 'selector': 'app-consulta-registrar'},{'name': 'DocumentosListaEntidad', 'selector': 'app-documentos-lista-entidad'},{'name': 'DocumentosListaGeneral', 'selector': 'app-documentos-lista-general'},{'name': 'DocumentosRegistrar', 'selector': 'app-documentos-registrar'},{'name': 'DocumentosRutaBaseLista', 'selector': 'app-documentos-ruta-base-lista'},{'name': 'DocumentosRutaBaseRegistrar', 'selector': 'app-documentos-ruta-base-registrar'},{'name': 'ExportarConDriveComponent', 'selector': 'app-exportar-con-drive'},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'Header', 'selector': 'app-header'},{'name': 'HorarioDetalle', 'selector': 'app-horario-detalle'},{'name': 'HorarioLista', 'selector': 'app-horario-lista'},{'name': 'HorarioRegistrar', 'selector': 'app-horario-registrar'},{'name': 'Ingresar', 'selector': 'app-cuenta-ingresar'},{'name': 'JustificacionListaMis', 'selector': 'app-justificacion-lista-mis'},{'name': 'JustificacionListaPendientes', 'selector': 'app-justificacion-lista-pendientes'},{'name': 'JustificacionRegistrar', 'selector': 'app-justificacion-registrar'},{'name': 'Main_layout', 'selector': 'app-main-layout'},{'name': 'NotificacionestVer', 'selector': 'app-notificaciones-ver'},{'name': 'PaginaNoEncontradaComponent', 'selector': 'app-pagina-no-encontrada'},{'name': 'Perfil', 'selector': 'app-cuenta-perfil'},{'name': 'ProcesoDetalle', 'selector': 'app-proceso-detalle'},{'name': 'ProcesoLista', 'selector': 'app-proceso-lista'},{'name': 'ProcesoRegistrar', 'selector': 'app-proceso-registrar'},{'name': 'Registar', 'selector': 'app-cuenta-registrar'},{'name': 'SeguimientoListaConsulta', 'selector': 'app-seguimiento-lista-consulta'},{'name': 'SeguimientoRegistar', 'selector': 'app-seguimiento-registrar'},{'name': 'Sidebar', 'selector': 'app-sidebar'},{'name': 'Simple_layout', 'selector': 'app-simple_layout'},{'name': 'TramiteDetalle', 'selector': 'app-tramite-detalle'},{'name': 'TramiteLista', 'selector': 'app-tramite-lista'},{'name': 'TramiteRegistrar', 'selector': 'app-tramite-registrar'},{'name': 'UsuarioDetalle', 'selector': 'app-usuario-detalle'},{'name': 'UsuarioHorarioListaUsuario', 'selector': 'app-usuario-horario-lista-usuario'},{'name': 'UsuarioLista', 'selector': 'app-usuario-lista'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'Sidebar'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'Sidebar.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

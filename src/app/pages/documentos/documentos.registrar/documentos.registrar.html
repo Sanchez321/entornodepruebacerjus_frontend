@@ -1,0 +1,163 @@
+<!-- src/app/pages/documentos/documentos.registrar/documentos.registrar.html -->
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+
+      <div class="card shadow-sm">
+        <div class="card-body">
+
+          <h5 class="mb-4">Registrar documento</h5>
+
+          <form [formGroup]="form" novalidate [class.was-validated]="submitting">
+
+            <div class="row g-3">
+              <div class="col-12">
+                <label class="form-label fw-semibold">Archivo</label>
+
+                <input
+                  type="file"
+                  class="form-control"
+                  (change)="onFileSelected($event)"
+                  [disabled]="submitting">
+
+                @if (selectedFile) {
+                  <div class="form-text">
+                    Seleccionado: {{ selectedFile.name }}
+                  </div>
+                }
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label class="form-label fw-semibold">Tipo de documento</label>
+
+                <select
+                  class="form-select"
+                  formControlName="entidadTipo">
+                  <option value="">Seleccione</option>
+
+                  @for (opt of tipoOpciones; track opt.value) {
+                    <option [value]="opt.value">{{ opt.label }}</option>
+                  }
+                </select>
+              </div>
+
+              @if (requiereEntidadId) {
+                <div class="col-12 col-md-6">
+                  <label class="form-label fw-semibold">{{ entidadIdLabel }}</label>
+
+                  <input
+                    type="number"
+                    min="1"
+                    class="form-control"
+                    formControlName="entidadId"
+                    [placeholder]="entidadIdPlaceholder">
+
+                  <div class="form-text">
+                    Debe existir en el sistema. El backend validará que no esté eliminado.
+                  </div>
+                </div>
+              }
+
+              <div class="col-12 col-md-6">
+                <label class="form-label fw-semibold">Ruta base</label>
+
+                <select
+                  class="form-select"
+                  formControlName="rutaBaseId">
+                  @for (r of rutasBase; track r.id) {
+                    <option [ngValue]="r.id">
+                      {{ r.nombre }} — {{ r.codigo }}
+                    </option>
+                  }
+                </select>
+
+                @if (rutasBase.length === 0) {
+                  <div class="form-text text-danger">
+                    No hay rutas base activas registradas.
+                  </div>
+                }
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label class="form-label fw-semibold">Categoría</label>
+
+                <select
+                  class="form-select"
+                  formControlName="categoria">
+                  <option value="">Seleccione</option>
+
+                  @for (opt of categoriaOpciones; track opt.value) {
+                    <option [value]="opt.value">{{ opt.label }}</option>
+                  }
+                </select>
+              </div>
+
+              @if (isCategoriaOtros) {
+                <div class="col-12">
+                  <label class="form-label fw-semibold">Otra categoría</label>
+
+                  <input
+                    type="text"
+                    maxlength="80"
+                    class="form-control"
+                    formControlName="categoriaOtros">
+                </div>
+              }
+
+              <div class="col-12 col-md-6">
+                <label class="form-label fw-semibold">Fecha del documento</label>
+
+                <input
+                  type="date"
+                  class="form-control"
+                  formControlName="fechaDocumento">
+
+                <div class="form-text">
+                  Para reportes y backups se usará para organizar por año y mes.
+                </div>
+              </div>
+
+              <div class="col-12">
+                <label class="form-label fw-semibold">Descripción</label>
+
+                <textarea
+                  rows="3"
+                  maxlength="255"
+                  class="form-control"
+                  formControlName="descripcion"
+                  placeholder="Descripción opcional">
+                </textarea>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+              <button
+                type="button"
+                class="btn btn-warning"
+                (click)="onBack()"
+                [disabled]="submitting">
+                Regresar
+              </button>
+
+              <button
+                type="button"
+                class="btn btn-success"
+                (click)="onSubmit()"
+                [disabled]="submitting || rutasBase.length === 0">
+                @if (submitting) {
+                  Registrando…
+                } @else {
+                  Registrar documento
+                }
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,29 +1,47 @@
-// justificacion.api.ts
-
 export interface ApiAsistenciaJustificacionItem {
   aj_ID: number;
   aj_us_ID: number;
+  usuario_nombre: string;
+  usuario_dni: string | null;
 
-  aj_fecha_ymd: string; // YYYY-MM-DD (ya viene así en su service backend)
+  aj_fecha_ymd: string;
   aj_tz: string;
-
   aj_tipo: 'TARDANZA' | 'SIN_MARCA' | 'NO_PROGRAMADO';
-  aj_resultado: 'JUSTIFICADO_LLEGO_A_TIEMPO' | 'JUSTIFICADO_ASISTIO' | 'JUSTIFICADO_NO_PROGRAMADO';
+  aj_resultado:
+    | 'JUSTIFICADO_LLEGO_A_TIEMPO'
+    | 'JUSTIFICADO_ASISTIO'
+    | 'JUSTIFICADO_NO_PROGRAMADO';
   aj_estado: 'PENDIENTE' | 'APROBADA' | 'RECHAZADA';
-  aj_incidencia?: 'TARDE' | 'AUSENTE' | 'INCOMPLETO' | null;
-
+  aj_incidencia: 'TARDE' | 'AUSENTE' | 'INCOMPLETO' | null;
   aj_motivo: string;
-  aj_detalle?: string | null;
+  aj_detalle: string | null;
 
-  aj_as_ID?: number | null;
-  aj_uh_ID?: number | null;
+  aj_as_ID: number | null;
+  aj_uh_ID: number | null;
+  horario_nombre: string | null;
+  hora_inicio_programada: string | null;
+  hora_fin_programada: string | null;
+  hora_entrada: string | null;
+  hora_salida: string | null;
+  asistencia_estado: number | null;
 
-  aj_aprobado_por?: number | null;
-  aj_aprobado_en?: string | null;
-  aj_decision_motivo?: string | null;
+  aj_aprobado_por: number | null;
+  aprobado_por_nombre: string | null;
+  aj_aprobado_en: string | null;
+  aj_decision_motivo: string | null;
 
   aj_creado_por: number;
   aj_creado_en: string;
+}
+
+export interface ApiAsistenciaJustificacionResumen {
+  total: number;
+  pendientes: number;
+  aprobadas: number;
+  rechazadas: number;
+  tardanzas: number;
+  sin_marca: number;
+  no_programado: number;
 }
 
 export interface ApiPage<T> {

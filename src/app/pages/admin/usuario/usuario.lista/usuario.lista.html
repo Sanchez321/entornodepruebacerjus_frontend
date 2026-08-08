@@ -1,6 +1,6 @@
 <!-- src/app/pages/usuario/usuario.lista/usuario.lista.html -->
 <div class="d-flex align-items-center justify-content-between mb-3">
-  <a class="btn btn-primary" routerLink="/admin/usuario/registrar">Registrar ususario</a>
+  <a class="btn btn-primary" routerLink="/admin/usuario/registrar">Registrar usuario</a>
 </div>
 <div [formGroup]="form" class="card card--flat">
   <div
@@ -20,6 +20,7 @@
           <th>Apellido materno</th>
           <th>Nombres</th>
           <th style="width: 9rem;">Creado el</th>
+          <th style="width: 12rem;">Estado</th>
           <th style="width: 10rem;">Opciones</th>
         </tr>
 
@@ -62,6 +63,14 @@
           </th>
           <th></th>
           <th>
+            <select class="form-select form-select-sm" formControlName="estado">
+              <option value="">Todos</option>
+              @for (e of estadoOpciones; track e.value) {
+                <option [value]="e.value">{{ e.label }}</option>
+              }
+            </select>
+          </th>
+          <th>
             <button
               type="button"
               class="btn btn-sm btn-outline-secondary"
@@ -96,6 +105,9 @@
               <td style="width: 9rem;">
                 <div class="sk-wrap"><div class="sk-cell sk-date"></div></div>
               </td>
+              <td style="width: 12rem;">
+                <div class="sk-wrap"><div class="sk-cell sk-text"></div></div>
+              </td>
               <td style="width: 10rem;">
                 <div class="sk-wrap"><div class="sk-cell sk-btn"></div></div>
               </td>
@@ -105,7 +117,7 @@
           <!-- FILAS REALES -->
           @if (items.length > 0) {
             @for (c of items; track c.id) {
-              <tr>
+              <tr [class.table-secondary]="c.estado === 0">
                 <td style="width: 8rem;">{{ c.id }}</td>
                 <td style="width: 10rem;">{{ c.dni }}</td>
                 <td>{{ c.apellidoPaterno }}</td>
@@ -113,6 +125,11 @@
                 <td>{{ c.nombres }}</td>
                 <td style="width: 9rem;">
                   {{ c.fechaCreadoPor | date: 'dd/MM/yyyy' }}
+                </td>
+                <td style="width: 12rem;">
+                  <span [class]="badgeClass(c.estado)">
+                    {{ c.estadoTexto }}
+                  </span>
                 </td>
                 <td style="width: 10rem;">
                   <a

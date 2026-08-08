@@ -1,5 +1,15 @@
 <div class="d-flex align-items-center justify-content-between mb-3">
-  <a class="btn btn-primary" routerLink="/ciudadano/registrar">Registrar ciudadano</a>
+  <a class="btn btn-primary" routerLink="/ciudadano/registrar">
+    Registrar ciudadano
+  </a>
+
+  <button
+    type="button"
+    class="btn btn-outline-success"
+    (click)="abrirModalExportacion()"
+    [disabled]="downloading">
+    Descargar
+  </button>
 </div>
 
 <div [formGroup]="form" class="card card--flat">
@@ -116,3 +126,137 @@
     </li>
   </ul>
 </div>
+@if (showExportModal) {
+  <div class="modal-backdrop fade show"></div>
+
+  <div
+    class="modal fade show d-block"
+    tabindex="-1"
+    role="dialog"
+    aria-modal="true"
+    style="user-select: none;">
+
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" [formGroup]="exportForm">
+
+        <div class="modal-header">
+          <h5 class="modal-title">Descargar ciudadanos</h5>
+
+          <button
+            type="button"
+            class="btn-close"
+            aria-label="Cerrar"
+            (click)="cerrarModalExportacion()"
+            [disabled]="downloading">
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <div class="row g-3">
+
+            <div class="col-12 col-md-6">
+              <label class="form-label">Formato</label>
+              <select class="form-select" formControlName="formato">
+                @for (o of formatoReporteOpciones; track o.value) {
+                  <option [value]="o.value">{{ o.label }}</option>
+                }
+              </select>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label class="form-label">Modo</label>
+              <select class="form-select" formControlName="modo">
+                @for (o of modoReporteOpciones; track o.value) {
+                  <option [value]="o.value">{{ o.label }}</option>
+                }
+              </select>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label class="form-label">Año</label>
+              <input
+                type="number"
+                class="form-control no-spinner"
+                formControlName="anio"
+                min="2000"
+                max="2100"
+                step="1"
+                (wheel)="$event.preventDefault()">
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label class="form-label">Mes</label>
+              <select class="form-select" formControlName="mes">
+                @for (m of mesReporteOpciones; track m.value) {
+                  <option [value]="m.value">{{ m.label }}</option>
+                }
+              </select>
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">Estado</label>
+              <select class="form-select" formControlName="estado">
+                @for (o of estadoReporteOpciones; track o.value) {
+                  <option [value]="o.value">{{ o.label }}</option>
+                }
+              </select>
+
+              @if (estadoForzadoActivo) {
+                <div class="form-text">
+                  En este modo se exportan solo registros activos.
+                </div>
+              }
+            </div>
+
+            <div class="col-12">
+              <div class="form-check">
+                <input
+                  #guardarDriveCheck
+                  id="guardarDriveCiudadanos"
+                  class="form-check-input"
+                  type="checkbox"
+                  [checked]="guardarDrive"
+                  [disabled]="downloading"
+                  (change)="guardarDrive = guardarDriveCheck.checked">
+
+                <label
+                  class="form-check-label"
+                  for="guardarDriveCiudadanos">
+                  Guardar también en Drive
+                </label>
+              </div>
+
+              <div class="form-text">
+                La descarga local se realizará aunque falle el guardado en Drive.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-outline-secondary"
+            (click)="cerrarModalExportacion()"
+            [disabled]="downloading">
+            Cancelar
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-success"
+            (click)="descargarCiudadanosTabla()"
+            [disabled]="downloading || exportForm.invalid">
+            @if (downloading) {
+              Descargando…
+            } @else {
+              Descargar
+            }
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+}

@@ -11,11 +11,12 @@ import { VMProcesoDetalleSimple, VMProcesoUpdate } from '../models/proceso.vm';
 
 import { NotificacionesService } from '@/app/components/notificaciones/services/notificaciones.service';
 import { PageMetaService } from '@/app/services/page_meta.service';
+import { DocumentosListaEntidad } from '../../documentos/documentos.lista.entidad/documentos.lista.entidad';
 
 @Component({
   selector: 'app-proceso-detalle',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, DocumentosListaEntidad],
   templateUrl: './proceso.detalle.html',
   styleUrl: './proceso.detalle.css',
 })
@@ -30,6 +31,7 @@ export class ProcesoDetalle implements OnInit, OnDestroy {
   data: VMProcesoDetalleSimple | null = null;
 
   open = true;
+  openDocumentos = true;
   isEditing = false;
   submittedEdit = false;
   submitting = false;
@@ -45,6 +47,7 @@ export class ProcesoDetalle implements OnInit, OnDestroy {
   modificadoPorDni: string | null = null;
   fechaModificadoPor: Date | string | null = null;
 
+  fecharegistrada: Date | string | null = null;
   estadoPorNombre: string | null = null;
   estadoPorDni: string | null = null;
   fechaEstadoPor: Date | string | null = null;
@@ -57,7 +60,6 @@ export class ProcesoDetalle implements OnInit, OnDestroy {
     fechaRegistrada: new FormControl('', { nonNullable: true }),
     numeroExpediente: new FormControl('', { nonNullable: true, validators: [Validators.required,Validators.maxLength(50)] }),
     sede: new FormControl('', { nonNullable: true, validators: [Validators.required,Validators.maxLength(100)] }),
-    parte: new FormControl('', { nonNullable: true, validators: [Validators.required,Validators.maxLength(150)] }),
     materia: new FormControl('', { nonNullable: true, validators: [Validators.required,Validators.maxLength(150)] }),
     demandante: new FormControl('', { nonNullable: true }),
     demandado: new FormControl('', { nonNullable: true, validators: [Validators.required,Validators.maxLength(150)] }),
@@ -108,19 +110,15 @@ export class ProcesoDetalle implements OnInit, OnDestroy {
   }
 
   private aplicarDetalle(data: VMProcesoDetalleSimple): void {
-    const detalle = data as VMProcesoDetalleSimple & {
-      fechaRegistrada?: string | null;
-    };
-
     const formData: ProcesoDetalleForm = {
       dni: data.dni ?? '—',
       asesorInicialNombre: data.asesorInicialNombre ?? '—',
       asesorActualNombre: data.asesorActualNombre ?? '—',
 
-      fechaRegistrada: detalle.fechaRegistrada ?? '',
+      fechaRegistrada: data.fechaRegistrada ?? '',
+
       numeroExpediente: data.numeroExpediente ?? '',
       sede: data.sede ?? '',
-      parte: data.parte ?? '',
       materia: data.materia ?? '',
       demandante: data.demandante ?? '',
       demandado: data.demandado ?? '',
@@ -303,7 +301,6 @@ export class ProcesoDetalle implements OnInit, OnDestroy {
       fechaRegistrada: raw.fechaRegistrada,
       numeroExpediente: raw.numeroExpediente,
       sede: raw.sede,
-      parte: raw.parte,
       materia: raw.materia,
       demandante: raw.demandante,
       demandado: raw.demandado,
@@ -325,10 +322,6 @@ export class ProcesoDetalle implements OnInit, OnDestroy {
 
     if (currentForm.sede !== this.originalFormData.sede) {
       changes.sede = currentForm.sede;
-    }
-
-    if (currentForm.parte !== this.originalFormData.parte) {
-      changes.parte = currentForm.parte;
     }
 
     if (currentForm.materia !== this.originalFormData.materia) {
@@ -419,7 +412,6 @@ export class ProcesoDetalle implements OnInit, OnDestroy {
       'fechaRegistrada',
       'numeroExpediente',
       'sede',
-      'parte',
       'materia',
       'demandado',
       'estadoProcesal',
@@ -439,7 +431,6 @@ export class ProcesoDetalle implements OnInit, OnDestroy {
     this.form.patchValue({
       numeroExpediente: this.clean(v.numeroExpediente),
       sede: this.clean(v.sede),
-      parte: this.clean(v.parte),
       materia: this.clean(v.materia),
       demandado: this.clean(v.demandado),
       estadoProcesal: this.clean(v.estadoProcesal),
@@ -460,7 +451,6 @@ type ProcesoDetalleForm = {
   fechaRegistrada: string;
   numeroExpediente: string;
   sede: string;
-  parte: string;
   materia: string;
   demandante: string;
   demandado: string;

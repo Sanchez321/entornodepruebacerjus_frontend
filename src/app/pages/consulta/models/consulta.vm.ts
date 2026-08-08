@@ -1,5 +1,6 @@
 //como el frontend lo trata la UI
 import { LlevaCasoConNosotros, Materia } from './consulta.dominio';
+import type {ReporteEstado,ReporteFormato,ReporteModo,} from './consulta.dominio';
 
 export interface VMConsulta {
   id: number;
@@ -166,6 +167,13 @@ export interface VMConsultaCiudadanoResumen {
   apellidoMaterno: string;
 }
 
+export interface VMConsultaReporteTablaOptions {
+  formato: ReporteFormato;
+  modo: ReporteModo;
+  estado: ReporteEstado;
+  anio: number;
+  mes: number;
+}
 
 
 

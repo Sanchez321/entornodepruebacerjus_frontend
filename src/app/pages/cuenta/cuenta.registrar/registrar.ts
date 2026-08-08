@@ -100,7 +100,7 @@ export class Registar implements OnInit, OnDestroy {
         await this.notify.ok({
           variant: 'success',
           title: 'Registro completado',
-          message: 'Se creó el usuario correctamente.',
+          message: 'Se creó tu cuenta. Revisa tu correo electrónico para confirmar el registro. Luego quedará pendiente de autorización.',
           primaryText: 'Ir al login',
         });
         this.router.navigate(['/login']);
@@ -109,7 +109,7 @@ export class Registar implements OnInit, OnDestroy {
         await this.notify.ok({
           variant: 'success',
           title: 'Usuario creado',
-          message: 'El usuario se creó correctamente.',
+          message: 'El usuario fue creado. Debe confirmar su correo y luego podrá ser autorizado.',
           primaryText: 'Ver ficha',
         });
         // Redirige al detalle de usuario (ajusta ruta si es distinta)

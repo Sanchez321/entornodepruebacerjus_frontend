@@ -14,6 +14,14 @@ export interface VMUsuario {
   estado: EstadoUsuario;
   estadoTexto: string;
 
+  correoVerificado: boolean;
+  fechaCorreoVerificado: Date | null;
+  correoPendiente: string | null;
+  fechaCorreoPendiente: Date | null;
+
+  autorizadoPor: number | null;
+  fechaAutorizadoPor: Date | null;
+
   rolId: number | null;
   rolNombre: string | null;
   rolNivel: number | null;
@@ -33,6 +41,8 @@ export type VMUsuarioListaSimple = Pick<VMUsuario,
   | 'apellidoMaterno'
   | 'nombres'
   | 'fechaCreadoPor'
+  | 'estado'
+  | 'estadoTexto'
 >;
 
 export type VMUsuarioDetalle = VMUsuario;
@@ -53,9 +63,17 @@ export interface VMPage<T> {
   pageSize: number;
 }
 
-export type VMUsuarioListaOptions = Partial<VMUsuarioListaSimple> & {
+export type VMUsuarioListaOptions = Partial<
+  Omit<VMUsuarioListaSimple, 'estado' | 'estadoTexto'>
+> & {
   estado?: EstadoUsuario | '';
   page?: number;
   pageSize?: number;
   sort?: string;
 };
+
+export interface VMUsuarioCorregirIdentidadForm {
+  dni?: string;
+  correoE?: string;
+  motivo: string;
+}

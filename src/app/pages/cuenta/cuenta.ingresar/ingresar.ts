@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy, inject } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -56,26 +56,55 @@ export class Ingresar implements AfterViewInit {
   onLogoError() { this.logoLoaded = false; this.logoMissing = true; }
 
   onLogin() {
-    if (!this.email || !this.password) {
+    const email = this.email.trim().toLowerCase();
+
+    if (!email || !this.password) {
       this.error = 'Debe ingresar email y contraseña.';
       return;
     }
+
     this.loading = true;
     this.error = '';
 
-    this.authService.login({ email: this.email, password: this.password }).subscribe({
+    this.authService.login({ email, password: this.password }).subscribe({
       next: () => {
         this.loading = false;
         this.router.navigateByUrl('/ciudadano');
       },
       error: (err) => {
         this.loading = false;
-
-        if (err?.status === 401 || err?.status === 400) {
-          this.error = err?.error?.message || 'Credenciales inválidas.';
-          return;
-        }
+        this.error = this.getLoginErrorMessage(err);
       }
     });
+  }
+  private getLoginErrorMessage(err: any): string {
+    const code =
+      err?.error?.code ??
+      err?.error?.response?.code ??
+      err?.error?.error?.code ??
+      null;
+
+    switch (code) {
+      case 'AUTH_EMAIL_NOT_CONFIRMED':
+        return 'Debes confirmar tu correo electrónico antes de ingresar. Revisa tu bandeja de entrada.';
+
+      case 'AUTH_USER_NOT_AUTHORIZED':
+        return 'Tu cuenta ya confirmó el correo, pero aún está pendiente de autorización.';
+
+      case 'AUTH_USER_SUSPENDED':
+        return 'Tu cuenta está suspendida. Comunícate con el responsable del sistema.';
+
+      case 'AUTH_USER_DELETED':
+        return 'Tu cuenta ha sido eliminada o ya no está disponible.';
+
+      case 'AUTH_INVALID_CREDENTIALS':
+        return 'Credenciales inválidas. Verifica tu correo y contraseña.';
+
+      case 'AUTH_USER_NOT_ACTIVE':
+        return 'Tu cuenta no está activa.';
+
+      default:
+        return err?.error?.message || 'No se pudo iniciar sesión. Inténtalo nuevamente.';
+    }
   }
 }

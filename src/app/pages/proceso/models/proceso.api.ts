@@ -14,12 +14,14 @@ export interface ApiProceso {
 
   pr_numero_expediente: string;
   pr_sede: string;
-  pr_parte: string;
   pr_materia: string;
   pr_demandado: string;
   pr_demandante: string;
   pr_estado_procesal: string;
+  
   pr_observacion?: string | null;
+
+  pr_fecha_registrada?: Date | string | null;
 
   pr_creado_por?: number;
   pr_fecha_creado_por?: Date | string;
@@ -41,7 +43,6 @@ export type ApiProcesoListaSimple = Pick<
   | 'pr_asesor_actual_nombre'
   | 'pr_numero_expediente'
   | 'pr_sede'
-  | 'pr_parte'
   | 'pr_materia'
   | 'pr_demandado'
   | 'pr_demandante'

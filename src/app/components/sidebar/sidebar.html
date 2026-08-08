@@ -54,6 +54,57 @@
             [routerLink]="['/proceso']">
             Proceso
           </a>
+
+          <a
+            class="nav-link sidebar-item-link"
+            [class.active]="isAsesoriaActive('tramite')"
+            [routerLink]="['/tramite']">
+            Trámite
+          </a>
+
+          <a
+            class="nav-link sidebar-item-link"
+            [class.active]="isAsesoriaActive('audiencia')"
+            [routerLink]="['/audiencia']">
+            Audiencia
+          </a>
+        </div>
+      </li>
+    }
+
+    <!-- GRUPO DOCUMENTOS -->
+    @if (canSee(3)) {
+      <li class="sidebar-group">
+        <button
+          class="w-100 d-flex justify-content-between align-items-center sidebar-group-toggle"
+          type="button"
+          (click)="toggleGroup('documentos')">
+          <span class="sidebar-group-title">Documentos</span>
+          <span
+            class="sidebar-chevron"
+            [class.sidebar-chevron-open]="openGroups.documentos">
+            &#9662;
+          </span>
+        </button>
+
+        <div
+          class="sidebar-submenu"
+          [class.show]="openGroups.documentos"
+          [class.collapse]="true">
+
+          <a
+            class="nav-link sidebar-item-link"
+            [class.active]="isDocumentosActive('documentos')"
+            [routerLink]="['/documentos']">
+            Documentos
+          </a>
+
+          <a
+            class="nav-link sidebar-item-link"
+            [class.active]="isDocumentosActive('rutasBase')"
+            [routerLink]="['/documentos/rutas-base']">
+            Rutas base
+          </a>
         </div>
       </li>
     }

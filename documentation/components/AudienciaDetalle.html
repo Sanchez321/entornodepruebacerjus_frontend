@@ -1,0 +1,3680 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">frontend documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  AudienciaDetalle</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" class="nav-link"
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.dev/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.dev/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-audiencia-detalle</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                        <div>        <code><a href="https://angular.dev/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+</div>
+                        <div>        <code><a href="https://angular.dev/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./audiencia.detalle.css</code></td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./audiencia.detalle.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./audiencia.detalle.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+        <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <p class="comment"><i>No results matching.</i></p>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="https://angular.dev/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/core/OnInit" target="_blank" >OnInit</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+</div>
+
+    <div class="tab-pane fade " id="api">    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#asesorBuscado" >asesorBuscado</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#asesorEncontrado" >asesorEncontrado</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#asesorReqSeq" >asesorReqSeq</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#buscandoAsesor" >buscandoAsesor</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#creadoPorDni" >creadoPorDni</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#creadoPorNombre" >creadoPorNombre</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#data" >data</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#estadoPorDni" >estadoPorDni</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#estadoPorNombre" >estadoPorNombre</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#fb" >fb</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#fechaCreadoPor" >fechaCreadoPor</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#fechaEstadoPor" >fechaEstadoPor</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#fechaModificadoPor" >fechaModificadoPor</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#form" >form</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#idaudiencia" >idaudiencia</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#isEditing" >isEditing</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#modificadoPorDni" >modificadoPorDni</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#modificadoPorNombre" >modificadoPorNombre</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#notify" >notify</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#open" >open</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#originalFormData" >originalFormData</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#pageMeta" >pageMeta</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#route" >route</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#service" >service</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#subForm" >subForm</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#submittedEdit" >submittedEdit</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#submitting" >submitting</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#aplicarControl" >aplicarControl</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#aplicarDetalle" >aplicarDetalle</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#buscarAsesor" >buscarAsesor</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#clean" >clean</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#hasUnsavedChanges" >hasUnsavedChanges</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#isCancelada" >isCancelada</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#limpiarAsesor" >limpiarAsesor</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#load" >load</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#normalizarFormulario" >normalizarFormulario</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#onCancel" >onCancel</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#onEdit" >onEdit</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#onSave" >onSave</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#toDateTimeLocalInput" >toDateTimeLocalInput</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#validaAsesor" >validaAsesor</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#validaCruceHorarioFrontend" >validaCruceHorarioFrontend</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#validaFechas" >validaFechas</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="aplicarControl"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>aplicarControl</b></span>
+                        <a href="#aplicarControl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>aplicarControl(control: <a href="../miscellaneous/typealiases.html#AudienciaControlData" target="_self">AudienciaControlData</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="225"
+                                    class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:225</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>control</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#AudienciaControlData" target="_self" >AudienciaControlData</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="aplicarDetalle"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>aplicarDetalle</b></span>
+                        <a href="#aplicarDetalle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>aplicarDetalle(data: <a href="../miscellaneous/typealiases.html#VMAudienciaDetalleSimple" target="_self">VMAudienciaDetalleSimple</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="178"
+                                    class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:178</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#VMAudienciaDetalleSimple" target="_self" >VMAudienciaDetalleSimple</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="buscarAsesor"></a>
+                    <span class="name">
+                        <span ><b>buscarAsesor</b></span>
+                        <a href="#buscarAsesor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>buscarAsesor()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="266"
+                                    class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:266</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clean"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>clean</b></span>
+                        <a href="#clean"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>clean(value: unknown)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="677"
+                                    class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:677</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                        <code>unknown</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hasUnsavedChanges"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>hasUnsavedChanges</b></span>
+                        <a href="#hasUnsavedChanges"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>hasUnsavedChanges()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="640"
+                                    class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:640</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isCancelada"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>isCancelada</b></span>
+                        <a href="#isCancelada"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>isCancelada(value: string | null | undefined)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="681"
+                                    class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:681</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                        <code>string | null | undefined</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="limpiarAsesor"></a>
+                    <span class="name">
+                        <span ><b>limpiarAsesor</b></span>
+                        <a href="#limpiarAsesor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>limpiarAsesor()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="319"
+                                    class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:319</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="load"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>load</b></span>
+                        <a href="#load"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>load()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="160"
+                                    class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:160</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="154"
+                                    class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:154</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="121"
+                                    class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:121</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="normalizarFormulario"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>normalizarFormulario</b></span>
+                        <a href="#normalizarFormulario"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>normalizarFormulario()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="665"
+                                    class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:665</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onCancel"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>onCancel</b></span>
+                        <a href="#onCancel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onCancel()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="332"
+                                    class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:332</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onEdit"></a>
+                    <span class="name">
+                        <span ><b>onEdit</b></span>
+                        <a href="#onEdit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onEdit(event: <a href="https://angular.dev/api/router/Event" target="_blank">Event</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="239"
+                                    class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:239</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="https://angular.dev/api/router/Event" target="_blank" >Event</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSave"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>onSave</b></span>
+                        <a href="#onSave"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onSave()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="360"
+                                    class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:360</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toDateTimeLocalInput"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>toDateTimeLocalInput</b></span>
+                        <a href="#toDateTimeLocalInput"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>toDateTimeLocalInput(value: unknown)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="686"
+                                    class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:686</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                        <code>unknown</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validaAsesor"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>validaAsesor</b></span>
+                        <a href="#validaAsesor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>validaAsesor()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="543"
+                                    class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:543</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>string | null</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validaCruceHorarioFrontend"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>validaCruceHorarioFrontend</b></span>
+                        <a href="#validaCruceHorarioFrontend"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>validaCruceHorarioFrontend()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="594"
+                                    class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:594</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;string | null&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validaFechas"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>validaFechas</b></span>
+                        <a href="#validaFechas"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>validaFechas()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="558"
+                                    class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:558</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>string | null</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="asesorBuscado"></a>
+                    <span class="name">
+                        <span ><b>asesorBuscado</b></span>
+                        <a href="#asesorBuscado"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="asesorEncontrado"></a>
+                    <span class="name">
+                        <span ><b>asesorEncontrado</b></span>
+                        <a href="#asesorEncontrado"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>VMAudienciaAsesorResumen | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="asesorReqSeq"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>asesorReqSeq</b></span>
+                        <a href="#asesorReqSeq"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="buscandoAsesor"></a>
+                    <span class="name">
+                        <span ><b>buscandoAsesor</b></span>
+                        <a href="#buscandoAsesor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="creadoPorDni"></a>
+                    <span class="name">
+                        <span ><b>creadoPorDni</b></span>
+                        <a href="#creadoPorDni"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:56</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="creadoPorNombre"></a>
+                    <span class="name">
+                        <span ><b>creadoPorNombre</b></span>
+                        <a href="#creadoPorNombre"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="data"></a>
+                    <span class="name">
+                        <span ><b>data</b></span>
+                        <a href="#data"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/VMAudiencia.html" target="_self" >VMAudienciaDetalleSimple | null</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="estadoPorDni"></a>
+                    <span class="name">
+                        <span ><b>estadoPorDni</b></span>
+                        <a href="#estadoPorDni"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:64</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="estadoPorNombre"></a>
+                    <span class="name">
+                        <span ><b>estadoPorNombre</b></span>
+                        <a href="#estadoPorNombre"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:63</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fb"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>fb</b></span>
+                        <a href="#fb"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(FormBuilder)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fechaCreadoPor"></a>
+                    <span class="name">
+                        <span ><b>fechaCreadoPor</b></span>
+                        <a href="#fechaCreadoPor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Date | string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:57</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fechaEstadoPor"></a>
+                    <span class="name">
+                        <span ><b>fechaEstadoPor</b></span>
+                        <a href="#fechaEstadoPor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Date | string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:65</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fechaModificadoPor"></a>
+                    <span class="name">
+                        <span ><b>fechaModificadoPor</b></span>
+                        <a href="#fechaModificadoPor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Date | string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="form"></a>
+                    <span class="name">
+                        <span ><b>form</b></span>
+                        <a href="#form"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.fb.group&lt;ControlsOf&lt;AudienciaDetalleForm&gt;&gt;({
+        idproceso: new FormControl(0, { nonNullable: true }),
+        idconsulta: new FormControl(0, { nonNullable: true }),
+        dni: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+
+        numeroExpediente: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+        demandante: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+
+        asesorId: new FormControl(0, {
+            nonNullable: true,
+            validators: [Validators.required, Validators.min(1)],
+        }),
+
+        asesorNombre: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+
+        asesorDniBusqueda: new FormControl(&#x27;&#x27;, {
+            nonNullable: true,
+            validators: [Validators.pattern(/^\d{0,11}$/)],
+        }),
+
+        titulo: new FormControl(&#x27;&#x27;, {
+            nonNullable: true,
+            validators: [Validators.maxLength(150)],
+        }),
+
+        abogado: new FormControl(&#x27;&#x27;, {
+            nonNullable: true,
+            validators: [noBlank, Validators.maxLength(150)],
+        }),
+
+        fechaHoraInicio: new FormControl(&#x27;&#x27;, {
+            nonNullable: true,
+            validators: [Validators.required],
+        }),
+
+        fechaHoraFin: new FormControl(&#x27;&#x27;, {
+            nonNullable: true,
+        }),
+
+        enlaceMeet: new FormControl(&#x27;&#x27;, {
+            nonNullable: true,
+            validators: [Validators.maxLength(500)],
+        }),
+
+        estadoAudiencia: new FormControl&lt;EstadoAudienciaManual&gt;(&#x27;&#x27;, {
+            nonNullable: true,
+        }),
+
+        observacion: new FormControl(&#x27;&#x27;, {
+            nonNullable: true,
+            validators: [Validators.maxLength(600)],
+        }),
+    })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:67</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="idaudiencia"></a>
+                    <span class="name">
+                        <span ><b>idaudiencia</b></span>
+                        <a href="#idaudiencia"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isEditing"></a>
+                    <span class="name">
+                        <span ><b>isEditing</b></span>
+                        <a href="#isEditing"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="modificadoPorDni"></a>
+                    <span class="name">
+                        <span ><b>modificadoPorDni</b></span>
+                        <a href="#modificadoPorDni"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:60</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="modificadoPorNombre"></a>
+                    <span class="name">
+                        <span ><b>modificadoPorNombre</b></span>
+                        <a href="#modificadoPorNombre"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:59</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="notify"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>notify</b></span>
+                        <a href="#notify"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(NotificacionesService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="open"></a>
+                    <span class="name">
+                        <span ><b>open</b></span>
+                        <a href="#open"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:42</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="originalFormData"></a>
+                    <span class="name">
+                        <span ><b>originalFormData</b></span>
+                        <a href="#originalFormData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#AudienciaDetalleForm" target="_self" >AudienciaDetalleForm</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pageMeta"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>pageMeta</b></span>
+                        <a href="#pageMeta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(PageMetaService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:35</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="route"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>route</b></span>
+                        <a href="#route"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ActivatedRoute)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="service"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>service</b></span>
+                        <a href="#service"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(AudienciaService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:33</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subForm"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>subForm</b></span>
+                        <a href="#subForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Subscription()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="submittedEdit"></a>
+                    <span class="name">
+                        <span ><b>submittedEdit</b></span>
+                        <a href="#submittedEdit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:44</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="submitting"></a>
+                    <span class="name">
+                        <span ><b>submitting</b></span>
+                        <a href="#submitting"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts:45</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, OnDestroy, inject } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import {ReactiveFormsModule,FormBuilder,FormControl,Validators,AbstractControl,ValidationErrors,ValidatorFn,} from &#x27;@angular/forms&#x27;;
+import { ActivatedRoute } from &#x27;@angular/router&#x27;;
+import { debounceTime, distinctUntilChanged } from &#x27;rxjs/operators&#x27;;
+import { firstValueFrom, Subscription } from &#x27;rxjs&#x27;;
+
+import { AudienciaService } from &#x27;../services/audiencia.service&#x27;;
+import {VMAudienciaDetalleSimple,VMAudienciaUpdate,VMAudienciaAsesorResumen,} from &#x27;../models/audiencia.vm&#x27;;
+
+import { NotificacionesService } from &#x27;@/app/components/notificaciones/services/notificaciones.service&#x27;;
+import { PageMetaService } from &#x27;@/app/services/page_meta.service&#x27;;
+
+const noBlank: ValidatorFn &#x3D; (c: AbstractControl): ValidationErrors | null &#x3D;&gt; {
+    const v &#x3D; String(c.value ?? &#x27;&#x27;).trim();
+    return v.length &#x3D;&#x3D;&#x3D; 0 ? { required: true } : null;
+};
+
+type EstadoAudienciaManual &#x3D; &#x27;&#x27; | &#x27;CANCELADA&#x27;;
+
+@Component({
+    selector: &#x27;app-audiencia-detalle&#x27;,
+    standalone: true,
+    imports: [CommonModule, ReactiveFormsModule],
+    templateUrl: &#x27;./audiencia.detalle.html&#x27;,
+    styleUrl: &#x27;./audiencia.detalle.css&#x27;,
+})
+export class AudienciaDetalle implements OnInit, OnDestroy {
+    private fb &#x3D; inject(FormBuilder);
+    private route &#x3D; inject(ActivatedRoute);
+    private service &#x3D; inject(AudienciaService);
+    private notify &#x3D; inject(NotificacionesService);
+    private pageMeta &#x3D; inject(PageMetaService);
+
+    private subForm &#x3D; new Subscription();
+
+    idaudiencia &#x3D; 0;
+    data: VMAudienciaDetalleSimple | null &#x3D; null;
+
+    open &#x3D; true;
+    isEditing &#x3D; false;
+    submittedEdit &#x3D; false;
+    submitting &#x3D; false;
+
+    asesorEncontrado: VMAudienciaAsesorResumen | null &#x3D; null;
+    asesorBuscado &#x3D; false;
+    buscandoAsesor &#x3D; false;
+
+    private asesorReqSeq &#x3D; 0;
+
+    originalFormData!: AudienciaDetalleForm;
+
+    creadoPorNombre: string | null &#x3D; null;
+    creadoPorDni: string | null &#x3D; null;
+    fechaCreadoPor: Date | string | null &#x3D; null;
+
+    modificadoPorNombre: string | null &#x3D; null;
+    modificadoPorDni: string | null &#x3D; null;
+    fechaModificadoPor: Date | string | null &#x3D; null;
+
+    estadoPorNombre: string | null &#x3D; null;
+    estadoPorDni: string | null &#x3D; null;
+    fechaEstadoPor: Date | string | null &#x3D; null;
+
+    form &#x3D; this.fb.group&lt;ControlsOf&lt;AudienciaDetalleForm&gt;&gt;({
+        idproceso: new FormControl(0, { nonNullable: true }),
+        idconsulta: new FormControl(0, { nonNullable: true }),
+        dni: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+
+        numeroExpediente: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+        demandante: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+
+        asesorId: new FormControl(0, {
+            nonNullable: true,
+            validators: [Validators.required, Validators.min(1)],
+        }),
+
+        asesorNombre: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+
+        asesorDniBusqueda: new FormControl(&#x27;&#x27;, {
+            nonNullable: true,
+            validators: [Validators.pattern(/^\d{0,11}$/)],
+        }),
+
+        titulo: new FormControl(&#x27;&#x27;, {
+            nonNullable: true,
+            validators: [Validators.maxLength(150)],
+        }),
+
+        abogado: new FormControl(&#x27;&#x27;, {
+            nonNullable: true,
+            validators: [noBlank, Validators.maxLength(150)],
+        }),
+
+        fechaHoraInicio: new FormControl(&#x27;&#x27;, {
+            nonNullable: true,
+            validators: [Validators.required],
+        }),
+
+        fechaHoraFin: new FormControl(&#x27;&#x27;, {
+            nonNullable: true,
+        }),
+
+        enlaceMeet: new FormControl(&#x27;&#x27;, {
+            nonNullable: true,
+            validators: [Validators.maxLength(500)],
+        }),
+
+        estadoAudiencia: new FormControl&lt;EstadoAudienciaManual&gt;(&#x27;&#x27;, {
+            nonNullable: true,
+        }),
+
+        observacion: new FormControl(&#x27;&#x27;, {
+            nonNullable: true,
+            validators: [Validators.maxLength(600)],
+        }),
+    });
+
+    ngOnInit(): void {
+        this.form.disable();
+
+        const id &#x3D; Number(
+            this.route.snapshot.paramMap.get(&#x27;idaudiencia&#x27;) ??
+            this.route.snapshot.paramMap.get(&#x27;id&#x27;)
+        );
+
+        if (!id || isNaN(id)) return;
+
+        this.idaudiencia &#x3D; id;
+
+        this.pageMeta.replace({
+            titulo: &#x27;Audiencia:&#x27;,
+            ruta: [&#x27;/audiencia&#x27;],
+        });
+
+        this.subForm.add(
+            this.form.get(&#x27;asesorDniBusqueda&#x27;)!.valueChanges
+                .pipe(
+                    debounceTime(300),
+                    distinctUntilChanged(),
+                )
+                .subscribe(() &#x3D;&gt; {
+                    if (this.isEditing) {
+                        this.buscarAsesor();
+                    }
+                }),
+        );
+
+        this.load();
+    }
+
+    ngOnDestroy(): void {
+        this.subForm.unsubscribe();
+        this.asesorReqSeq++;
+        this.pageMeta.clear();
+    }
+
+    private load(): void {
+        this.service.getById(this.idaudiencia).subscribe({
+            next: (data) &#x3D;&gt; {
+                this.aplicarDetalle(data);
+
+                this.service.getControlById(this.idaudiencia).subscribe({
+                    next: (control) &#x3D;&gt; this.aplicarControl(control),
+                    error: () &#x3D;&gt; {
+                        // Si no carga auditoría, no bloquea el detalle.
+                    },
+                });
+            },
+            error: () &#x3D;&gt; {
+                // El interceptor ya mostró el diálogo.
+            },
+        });
+    }
+
+    private aplicarDetalle(data: VMAudienciaDetalleSimple): void {
+        const formData: AudienciaDetalleForm &#x3D; {
+            idproceso: data.idproceso,
+            idconsulta: data.idconsulta,
+            dni: data.dni ?? &#x27;—&#x27;,
+
+            numeroExpediente: data.numeroExpediente ?? &#x27;&#x27;,
+            demandante: data.demandante ?? &#x27;&#x27;,
+
+            asesorId: data.asesorId ?? 0,
+            asesorNombre: data.asesorNombre ?? &#x27;—&#x27;,
+            asesorDniBusqueda: &#x27;&#x27;,
+
+            titulo: data.titulo ?? &#x27;&#x27;,
+            abogado: data.abogado ?? &#x27;&#x27;,
+
+            fechaHoraInicio: this.toDateTimeLocalInput(data.fechaHoraInicio),
+            fechaHoraFin: this.toDateTimeLocalInput(data.fechaHoraFin),
+
+            enlaceMeet: data.enlaceMeet ?? &#x27;&#x27;,
+
+            estadoAudiencia: this.isCancelada(data.estadoAudiencia) ? &#x27;CANCELADA&#x27; : &#x27;&#x27;,
+
+            observacion: data.observacion ?? &#x27;&#x27;,
+        };
+
+        this.data &#x3D; data;
+        this.originalFormData &#x3D; { ...formData };
+
+        this.asesorEncontrado &#x3D; null;
+        this.asesorBuscado &#x3D; false;
+        this.buscandoAsesor &#x3D; false;
+
+        this.form.reset(formData);
+        this.form.disable();
+
+        this.isEditing &#x3D; false;
+        this.submittedEdit &#x3D; false;
+
+        this.form.markAsPristine();
+        this.form.markAsUntouched();
+
+        this.pageMeta.set({
+            titulo: &#x60;Audiencia Nº${data.id} - Expediente: ${data.numeroExpediente || &#x27;-&#x27;}&#x60;,
+        });
+    }
+
+    private aplicarControl(control: AudienciaControlData): void {
+        this.creadoPorNombre &#x3D; control.creadoPorNombre ?? null;
+        this.creadoPorDni &#x3D; control.creadoPorDni ?? null;
+        this.fechaCreadoPor &#x3D; control.fechaCreadoPor ?? null;
+
+        this.modificadoPorNombre &#x3D; control.modificadoPorNombre ?? null;
+        this.modificadoPorDni &#x3D; control.modificadoPorDni ?? null;
+        this.fechaModificadoPor &#x3D; control.fechaModificadoPor ?? null;
+
+        this.estadoPorNombre &#x3D; control.estadoPorNombre ?? null;
+        this.estadoPorDni &#x3D; control.estadoPorDni ?? null;
+        this.fechaEstadoPor &#x3D; control.fechaEstadoPor ?? null;
+    }
+
+    onEdit(event: Event): void {
+        event.stopPropagation();
+
+        if (this.isEditing) return;
+
+        this.submittedEdit &#x3D; false;
+        this.isEditing &#x3D; true;
+        this.open &#x3D; true;
+
+        this.asesorEncontrado &#x3D; null;
+        this.asesorBuscado &#x3D; false;
+        this.buscandoAsesor &#x3D; false;
+
+        this.form.enable();
+
+        this.form.controls.idproceso.disable({ emitEvent: false });
+        this.form.controls.idconsulta.disable({ emitEvent: false });
+        this.form.controls.dni.disable({ emitEvent: false });
+        this.form.controls.numeroExpediente.disable({ emitEvent: false });
+        this.form.controls.demandante.disable({ emitEvent: false });
+        this.form.controls.asesorNombre.disable({ emitEvent: false });
+
+        this.form.updateValueAndValidity({ emitEvent: false });
+        this.form.markAsPristine();
+        this.form.markAsUntouched();
+    }
+
+    buscarAsesor(): void {
+        const dni &#x3D; this.form.get(&#x27;asesorDniBusqueda&#x27;)!.value.trim();
+
+        if (!dni) {
+            this.asesorEncontrado &#x3D; null;
+            this.asesorBuscado &#x3D; false;
+            this.buscandoAsesor &#x3D; false;
+
+            this.form.patchValue({
+                asesorId: this.originalFormData?.asesorId ?? 0,
+                asesorNombre: this.originalFormData?.asesorNombre ?? &#x27;—&#x27;,
+            }, { emitEvent: false });
+
+            return;
+        }
+
+        if (dni.length &lt; 8) {
+            this.asesorEncontrado &#x3D; null;
+            this.asesorBuscado &#x3D; false;
+            this.buscandoAsesor &#x3D; false;
+            return;
+        }
+
+        this.buscandoAsesor &#x3D; true;
+        this.asesorEncontrado &#x3D; null;
+
+        const myReq &#x3D; ++this.asesorReqSeq;
+
+        this.service.getAsesorResumenByDni(dni).subscribe({
+            next: (asesor) &#x3D;&gt; {
+                if (myReq !&#x3D;&#x3D; this.asesorReqSeq) return;
+
+                this.asesorEncontrado &#x3D; asesor;
+                this.asesorBuscado &#x3D; true;
+                this.buscandoAsesor &#x3D; false;
+
+                if (asesor) {
+                    this.form.patchValue({
+                        asesorId: asesor.id,
+                        asesorNombre: asesor.nombreCompleto,
+                    }, { emitEvent: false });
+                }
+            },
+            error: () &#x3D;&gt; {
+                if (myReq !&#x3D;&#x3D; this.asesorReqSeq) return;
+
+                this.asesorEncontrado &#x3D; null;
+                this.asesorBuscado &#x3D; true;
+                this.buscandoAsesor &#x3D; false;
+            },
+        });
+    }
+
+    limpiarAsesor(): void {
+        this.asesorEncontrado &#x3D; null;
+        this.asesorBuscado &#x3D; false;
+        this.buscandoAsesor &#x3D; false;
+        this.asesorReqSeq++;
+
+        this.form.patchValue({
+            asesorDniBusqueda: &#x27;&#x27;,
+            asesorId: this.originalFormData?.asesorId ?? 0,
+            asesorNombre: this.originalFormData?.asesorNombre ?? &#x27;—&#x27;,
+        }, { emitEvent: false });
+    }
+
+    async onCancel(): Promise&lt;void&gt; {
+        if (this.hasUnsavedChanges()) {
+            const ok &#x3D; await this.notify.confirm({
+                variant: &#x27;warning&#x27;,
+                title: &#x27;Descartar cambios&#x27;,
+                message: &#x27;Tienes cambios sin guardar. ¿Deseas descartarlos?&#x27;,
+                confirmText: &#x27;Descartar&#x27;,
+                cancelText: &#x27;Seguir editando&#x27;,
+            });
+
+            if (!ok) return;
+        }
+
+        this.asesorEncontrado &#x3D; null;
+        this.asesorBuscado &#x3D; false;
+        this.buscandoAsesor &#x3D; false;
+        this.asesorReqSeq++;
+
+        this.form.reset(this.originalFormData);
+
+        this.isEditing &#x3D; false;
+        this.submittedEdit &#x3D; false;
+
+        this.form.disable();
+        this.form.markAsPristine();
+        this.form.markAsUntouched();
+    }
+
+    async onSave(): Promise&lt;void&gt; {
+        if (!this.isEditing) return;
+
+        this.submittedEdit &#x3D; true;
+        this.normalizarFormulario();
+
+        this.form.updateValueAndValidity({ emitEvent: false });
+
+        const msgAsesor &#x3D; this.validaAsesor();
+
+        if (msgAsesor) {
+            await this.notify.ok({
+                variant: &#x27;warning&#x27;,
+                title: &#x27;Asesor inválido&#x27;,
+                message: msgAsesor,
+                primaryText: &#x27;Aceptar&#x27;,
+            });
+
+            return;
+        }
+
+        const msgFechas &#x3D; this.validaFechas();
+
+        if (msgFechas) {
+            await this.notify.ok({
+                variant: &#x27;warning&#x27;,
+                title: &#x27;Horario inválido&#x27;,
+                message: msgFechas,
+                primaryText: &#x27;Aceptar&#x27;,
+            });
+
+            return;
+        }
+
+        if (this.form.invalid) {
+            this.form.markAllAsTouched();
+
+            await this.notify.ok({
+                variant: &#x27;warning&#x27;,
+                title: &#x27;Datos incompletos&#x27;,
+                message: &#x27;Revisa los campos obligatorios e inténtalo nuevamente.&#x27;,
+                primaryText: &#x27;Aceptar&#x27;,
+            });
+
+            return;
+        }
+
+        const msgCruce &#x3D; await this.validaCruceHorarioFrontend();
+
+        if (msgCruce) {
+            await this.notify.ok({
+                variant: &#x27;warning&#x27;,
+                title: &#x27;Cruce de horario&#x27;,
+                message: msgCruce,
+                primaryText: &#x27;Aceptar&#x27;,
+            });
+
+            return;
+        }
+
+        const raw &#x3D; this.form.getRawValue();
+
+        const currentForm: AudienciaDetalleForm &#x3D; {
+            idproceso: raw.idproceso,
+            idconsulta: raw.idconsulta,
+            dni: raw.dni,
+
+            numeroExpediente: raw.numeroExpediente,
+            demandante: raw.demandante,
+
+            asesorId: raw.asesorId,
+            asesorNombre: raw.asesorNombre,
+            asesorDniBusqueda: raw.asesorDniBusqueda,
+
+            titulo: raw.titulo,
+            abogado: raw.abogado,
+
+            fechaHoraInicio: raw.fechaHoraInicio,
+            fechaHoraFin: raw.fechaHoraFin,
+
+            enlaceMeet: raw.enlaceMeet,
+
+            estadoAudiencia: raw.estadoAudiencia,
+
+            observacion: raw.observacion,
+        };
+
+        const changes: Partial&lt;VMAudienciaUpdate&gt; &#x3D; {};
+
+        if (currentForm.asesorId !&#x3D;&#x3D; this.originalFormData.asesorId) {
+            changes.asesorId &#x3D; currentForm.asesorId;
+        }
+
+        if (currentForm.titulo !&#x3D;&#x3D; this.originalFormData.titulo) {
+            changes.titulo &#x3D; currentForm.titulo;
+        }
+
+        if (currentForm.abogado !&#x3D;&#x3D; this.originalFormData.abogado) {
+            changes.abogado &#x3D; currentForm.abogado;
+        }
+
+        if (currentForm.fechaHoraInicio !&#x3D;&#x3D; this.originalFormData.fechaHoraInicio) {
+            changes.fechaHoraInicio &#x3D; currentForm.fechaHoraInicio;
+        }
+
+        if (currentForm.fechaHoraFin !&#x3D;&#x3D; this.originalFormData.fechaHoraFin) {
+            changes.fechaHoraFin &#x3D; currentForm.fechaHoraFin || null;
+        }
+
+        if (currentForm.enlaceMeet !&#x3D;&#x3D; this.originalFormData.enlaceMeet) {
+            changes.enlaceMeet &#x3D; currentForm.enlaceMeet;
+        }
+
+        if (currentForm.estadoAudiencia !&#x3D;&#x3D; this.originalFormData.estadoAudiencia) {
+            changes.estadoAudiencia &#x3D; currentForm.estadoAudiencia || &#x27;&#x27;;
+        }
+
+        if (currentForm.observacion !&#x3D;&#x3D; this.originalFormData.observacion) {
+            changes.observacion &#x3D; currentForm.observacion;
+        }
+
+        if (Object.keys(changes).length &#x3D;&#x3D;&#x3D; 0) {
+            await this.notify.ok({
+                variant: &#x27;info&#x27;,
+                title: &#x27;Sin cambios&#x27;,
+                message: &#x27;No hay cambios para guardar.&#x27;,
+                primaryText: &#x27;Aceptar&#x27;,
+            });
+
+            return;
+        }
+
+        const confirm &#x3D; await this.notify.confirm({
+            variant: &#x27;info&#x27;,
+            title: &#x27;Guardar cambios&#x27;,
+            message: &#x27;¿Deseas guardar los cambios realizados?&#x27;,
+            confirmText: &#x27;Guardar&#x27;,
+            cancelText: &#x27;Cancelar&#x27;,
+        });
+
+        if (!confirm) return;
+
+        if (!this.idaudiencia || isNaN(this.idaudiencia)) {
+            await this.notify.ok({
+                variant: &#x27;error&#x27;,
+                title: &#x27;Operación inválida&#x27;,
+                message: &#x27;No se encontró el ID de la audiencia.&#x27;,
+                primaryText: &#x27;Aceptar&#x27;,
+            });
+
+            return;
+        }
+
+        this.submitting &#x3D; true;
+
+        try {
+            await this.service.update(this.idaudiencia, changes);
+
+            const detalle &#x3D; await firstValueFrom(this.service.getById(this.idaudiencia));
+            this.aplicarDetalle(detalle);
+
+            this.service.getControlById(this.idaudiencia).subscribe({
+                next: (control) &#x3D;&gt; this.aplicarControl(control),
+                error: () &#x3D;&gt; {},
+            });
+
+            await this.notify.ok({
+                variant: &#x27;success&#x27;,
+                title: &#x27;Cambios guardados&#x27;,
+                message: &#x27;La información de la audiencia se actualizó correctamente.&#x27;,
+                primaryText: &#x27;Aceptar&#x27;,
+            });
+
+            this.isEditing &#x3D; false;
+            this.submittedEdit &#x3D; false;
+            this.form.disable();
+        } catch {
+            // El interceptor ya mostró el error.
+        } finally {
+            this.submitting &#x3D; false;
+        }
+    }
+
+    private validaAsesor(): string | null {
+        const v &#x3D; this.form.getRawValue();
+        const dniNuevo &#x3D; (v.asesorDniBusqueda ?? &#x27;&#x27;).trim();
+
+        if (!v.asesorId || v.asesorId &lt;&#x3D; 0) {
+            return &#x27;Debe existir un asesor válido asignado a la audiencia.&#x27;;
+        }
+
+        if (dniNuevo &amp;&amp; !this.asesorEncontrado &amp;&amp; v.asesorId &#x3D;&#x3D;&#x3D; this.originalFormData.asesorId) {
+            return &#x27;Si deseas cambiar el asesor, ingresa un DNI válido. Si no deseas cambiarlo, limpia el campo de búsqueda.&#x27;;
+        }
+
+        return null;
+    }
+
+    private validaFechas(): string | null {
+        const v &#x3D; this.form.getRawValue();
+
+        if (!v.fechaHoraInicio) {
+            return &#x27;Debe indicar la fecha y hora de inicio de la audiencia.&#x27;;
+        }
+
+        const inicio &#x3D; new Date(v.fechaHoraInicio).getTime();
+
+        if (!Number.isFinite(inicio)) {
+            return &#x27;La fecha y hora de inicio no es válida.&#x27;;
+        }
+
+        if (!v.fechaHoraFin) {
+            return null;
+        }
+
+        const fin &#x3D; new Date(v.fechaHoraFin).getTime();
+
+        if (!Number.isFinite(fin)) {
+            return &#x27;La fecha y hora de fin no es válida.&#x27;;
+        }
+
+        if (fin &lt;&#x3D; inicio) {
+            return &#x27;La fecha y hora de fin debe ser posterior al inicio.&#x27;;
+        }
+
+        const duracionMinutos &#x3D; Math.round((fin - inicio) / 60000);
+
+        if (duracionMinutos &gt; 360) {
+            return &#x27;La audiencia no puede durar más de 6 horas.&#x27;;
+        }
+
+        return null;
+    }
+
+    private async validaCruceHorarioFrontend(): Promise&lt;string | null&gt; {
+        const v &#x3D; this.form.getRawValue();
+
+        if (v.estadoAudiencia &#x3D;&#x3D;&#x3D; &#x27;CANCELADA&#x27;) {
+            return null;
+        }
+
+        const asesorId &#x3D; Number(v.asesorId);
+        const inicio &#x3D; new Date(v.fechaHoraInicio);
+        const fin &#x3D; v.fechaHoraFin
+            ? new Date(v.fechaHoraFin)
+            : new Date(inicio.getTime() + 45 * 60 * 1000);
+
+        if (!asesorId || isNaN(inicio.getTime()) || isNaN(fin.getTime())) {
+            return null;
+        }
+
+        const semana &#x3D; await firstValueFrom(
+            this.service.calendarioSemana({
+                fecha: v.fechaHoraInicio,
+            }),
+        );
+
+        const cruce &#x3D; (semana.items ?? []).find((a) &#x3D;&gt; {
+            if (a.id &#x3D;&#x3D;&#x3D; this.idaudiencia) return false;
+            if (a.asesorId !&#x3D;&#x3D; asesorId) return false;
+
+            const estado &#x3D; String(a.estadoAudiencia ?? &#x27;&#x27;).trim().toUpperCase();
+
+            if (estado &#x3D;&#x3D;&#x3D; &#x27;CANCELADO&#x27; || estado &#x3D;&#x3D;&#x3D; &#x27;CANCELADA&#x27;) {
+                return false;
+            }
+
+            const aInicio &#x3D; new Date(a.fechaHoraInicio);
+            const aFin &#x3D; a.fechaHoraFin
+                ? new Date(a.fechaHoraFin)
+                : new Date(aInicio.getTime() + 45 * 60 * 1000);
+
+            return aInicio &lt; fin &amp;&amp; aFin &gt; inicio;
+        });
+
+        if (!cruce) return null;
+
+        return &#x60;El asesor ya tiene una audiencia registrada en ese horario. Audiencia Nº ${cruce.id}.&#x60;;
+    }
+
+    private hasUnsavedChanges(): boolean {
+        if (!this.originalFormData) return false;
+
+        const v &#x3D; this.form.getRawValue() as Record&lt;string, unknown&gt;;
+        const o &#x3D; this.originalFormData as Record&lt;string, unknown&gt;;
+
+        const editableFields: Array&lt;keyof AudienciaDetalleForm&gt; &#x3D; [
+            &#x27;asesorId&#x27;,
+            &#x27;asesorDniBusqueda&#x27;,
+            &#x27;titulo&#x27;,
+            &#x27;abogado&#x27;,
+            &#x27;fechaHoraInicio&#x27;,
+            &#x27;fechaHoraFin&#x27;,
+            &#x27;enlaceMeet&#x27;,
+            &#x27;estadoAudiencia&#x27;,
+            &#x27;observacion&#x27;,
+        ];
+
+        for (const k of editableFields) {
+            if (v[k] !&#x3D;&#x3D; o[k]) return true;
+        }
+
+        return false;
+    }
+
+    private normalizarFormulario(): void {
+        const v &#x3D; this.form.getRawValue();
+
+        this.form.patchValue({
+            titulo: this.clean(v.titulo),
+            abogado: this.clean(v.abogado),
+            asesorDniBusqueda: this.clean(v.asesorDniBusqueda),
+            enlaceMeet: this.clean(v.enlaceMeet),
+            observacion: this.clean(v.observacion),
+        }, { emitEvent: false });
+    }
+
+    private clean(value: unknown): string {
+        return String(value ?? &#x27;&#x27;).trim();
+    }
+
+    private isCancelada(value: string | null | undefined): boolean {
+        const v &#x3D; (value ?? &#x27;&#x27;).trim().toUpperCase();
+        return v &#x3D;&#x3D;&#x3D; &#x27;CANCELADO&#x27; || v &#x3D;&#x3D;&#x3D; &#x27;CANCELADA&#x27;;
+    }
+
+    private toDateTimeLocalInput(value: unknown): string {
+        if (!value) return &#x27;&#x27;;
+
+        const d &#x3D; value instanceof Date ? value : new Date(String(value));
+
+        if (isNaN(d.getTime())) return &#x27;&#x27;;
+
+        const pad &#x3D; (n: number) &#x3D;&gt; String(n).padStart(2, &#x27;0&#x27;);
+
+        return [
+            d.getFullYear(),
+            pad(d.getMonth() + 1),
+            pad(d.getDate()),
+        ].join(&#x27;-&#x27;) + &#x27;T&#x27; + [
+            pad(d.getHours()),
+            pad(d.getMinutes()),
+        ].join(&#x27;:&#x27;);
+    }
+}
+
+type AudienciaDetalleForm &#x3D; {
+    idproceso: number;
+    idconsulta: number;
+    dni: string;
+
+    numeroExpediente: string;
+    demandante: string;
+
+    asesorId: number;
+    asesorNombre: string;
+    asesorDniBusqueda: string;
+
+    titulo: string;
+    abogado: string;
+
+    fechaHoraInicio: string;
+    fechaHoraFin: string;
+
+    enlaceMeet: string;
+
+    estadoAudiencia: EstadoAudienciaManual;
+
+    observacion: string;
+};
+
+type AudienciaControlData &#x3D; {
+    creadoPorNombre?: string | null;
+    creadoPorDni?: string | null;
+    fechaCreadoPor?: Date | string | null;
+
+    modificadoPorNombre?: string | null;
+    modificadoPorDni?: string | null;
+    fechaModificadoPor?: Date | string | null;
+
+    estadoPorNombre?: string | null;
+    estadoPorDni?: string | null;
+    fechaEstadoPor?: Date | string | null;
+};
+
+type ControlsOf&lt;T&gt; &#x3D; {
+    [K in keyof T]: FormControl&lt;T[K]&gt;;
+};</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!-- src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.html --&gt;
+
+&lt;div class&#x3D;&quot;container&quot;&gt;
+    &lt;div class&#x3D;&quot;row justify-content-center&quot;&gt;
+
+        &lt;div class&#x3D;&quot;col-12 col-lg-8 mb-4&quot;&gt;
+            &lt;div class&#x3D;&quot;card shadow-sm&quot;&gt;
+
+                &lt;div
+                    class&#x3D;&quot;card-header d-flex justify-content-between align-items-center selectable-fix&quot;
+                    (click)&#x3D;&quot;open &#x3D; !open&quot;
+                    role&#x3D;&quot;button&quot;
+                    [attr.aria-expanded]&#x3D;&quot;open&quot;&gt;
+
+                    &lt;div class&#x3D;&quot;d-flex align-items-center gap-2&quot;&gt;
+                        &lt;span class&#x3D;&quot;fw-semibold&quot; style&#x3D;&quot;min-width: 220px; display: inline-block;&quot;&gt;
+                            Información de la audiencia
+                        &lt;/span&gt;
+
+                        &lt;button
+                            type&#x3D;&quot;button&quot;
+                            class&#x3D;&quot;btn btn-secondary&quot;
+                            (click)&#x3D;&quot;onEdit($event)&quot;
+                            [disabled]&#x3D;&quot;isEditing || submitting&quot;&gt;
+                            Editar
+                        &lt;/button&gt;
+                    &lt;/div&gt;
+
+                    &lt;span class&#x3D;&quot;caret&quot;&gt;{{ open ? &quot;▴&quot; : &quot;▾&quot; }}&lt;/span&gt;
+                &lt;/div&gt;
+
+                &lt;form
+                    class&#x3D;&quot;card-body selectable-fix&quot;
+                    [hidden]&#x3D;&quot;!open&quot;
+                    [formGroup]&#x3D;&quot;form&quot;
+                    [class.was-validated]&#x3D;&quot;submitting || submittedEdit&quot;&gt;
+
+                    &lt;div class&#x3D;&quot;section-title&quot;&gt;Proceso vinculado&lt;/div&gt;
+
+                    &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+                        &lt;div class&#x3D;&quot;col-12 col-md-3&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;Proceso Nº&lt;/label&gt;
+                            &lt;input
+                                type&#x3D;&quot;text&quot;
+                                formControlName&#x3D;&quot;idproceso&quot;
+                                class&#x3D;&quot;value-box-noedit&quot;&gt;
+                        &lt;/div&gt;
+
+                        &lt;div class&#x3D;&quot;col-12 col-md-3&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;Consulta Nº&lt;/label&gt;
+                            &lt;input
+                                type&#x3D;&quot;text&quot;
+                                formControlName&#x3D;&quot;idconsulta&quot;
+                                class&#x3D;&quot;value-box-noedit&quot;&gt;
+                        &lt;/div&gt;
+
+                        &lt;div class&#x3D;&quot;col-12 col-md-3&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;DNI ciudadano&lt;/label&gt;
+                            &lt;input
+                                type&#x3D;&quot;text&quot;
+                                formControlName&#x3D;&quot;dni&quot;
+                                class&#x3D;&quot;value-box-noedit&quot;&gt;
+                        &lt;/div&gt;
+
+                        &lt;div class&#x3D;&quot;col-12 col-md-3&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;Estado actual&lt;/label&gt;
+                            &lt;input
+                                type&#x3D;&quot;text&quot;
+                                [value]&#x3D;&quot;data?.estadoAudienciaTexto || &#x27;—&#x27;&quot;
+                                class&#x3D;&quot;value-box-noedit&quot;
+                                readonly&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;div style&#x3D;&quot;height: 1rem;&quot;&gt;&lt;/div&gt;
+
+                    &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+                        &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;Número de expediente&lt;/label&gt;
+                            &lt;input
+                                type&#x3D;&quot;text&quot;
+                                formControlName&#x3D;&quot;numeroExpediente&quot;
+                                class&#x3D;&quot;value-box-noedit&quot;&gt;
+                        &lt;/div&gt;
+
+                        &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;Demandante&lt;/label&gt;
+                            &lt;input
+                                type&#x3D;&quot;text&quot;
+                                formControlName&#x3D;&quot;demandante&quot;
+                                class&#x3D;&quot;value-box-noedit&quot;&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;div style&#x3D;&quot;height: 1rem;&quot;&gt;&lt;/div&gt;
+
+                    &lt;hr class&#x3D;&quot;my-3&quot;&gt;
+
+                    &lt;div class&#x3D;&quot;section-title&quot;&gt;Datos de audiencia&lt;/div&gt;
+
+                    &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+                        &lt;div class&#x3D;&quot;col-12&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;Título&lt;/label&gt;
+                            &lt;input
+                                type&#x3D;&quot;text&quot;
+                                maxlength&#x3D;&quot;150&quot;
+                                formControlName&#x3D;&quot;titulo&quot;
+                                [class.value-box-edit]&#x3D;&quot;isEditing&quot;
+                                [class.value-box-noedit]&#x3D;&quot;!isEditing&quot;&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;div style&#x3D;&quot;height: 1rem;&quot;&gt;&lt;/div&gt;
+
+                    &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+                        &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;Fecha y hora de inicio&lt;/label&gt;
+                            &lt;input
+                                type&#x3D;&quot;datetime-local&quot;
+                                formControlName&#x3D;&quot;fechaHoraInicio&quot;
+                                [class.value-box-edit]&#x3D;&quot;isEditing&quot;
+                                [class.value-box-noedit]&#x3D;&quot;!isEditing&quot;&gt;
+                        &lt;/div&gt;
+
+                        &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;Fecha y hora de fin&lt;/label&gt;
+                            &lt;input
+                                type&#x3D;&quot;datetime-local&quot;
+                                formControlName&#x3D;&quot;fechaHoraFin&quot;
+                                [class.value-box-edit]&#x3D;&quot;isEditing&quot;
+                                [class.value-box-noedit]&#x3D;&quot;!isEditing&quot;&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;div style&#x3D;&quot;height: 1rem;&quot;&gt;&lt;/div&gt;
+
+                    &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+                        &lt;div class&#x3D;&quot;col-12&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;Enlace Meet&lt;/label&gt;
+                            &lt;input
+                                type&#x3D;&quot;text&quot;
+                                maxlength&#x3D;&quot;500&quot;
+                                formControlName&#x3D;&quot;enlaceMeet&quot;
+                                [class.value-box-edit]&#x3D;&quot;isEditing&quot;
+                                [class.value-box-noedit]&#x3D;&quot;!isEditing&quot;&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;div style&#x3D;&quot;height: 1rem;&quot;&gt;&lt;/div&gt;
+
+                    &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+                        &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;Abogado asignado&lt;/label&gt;
+                            &lt;input
+                                type&#x3D;&quot;text&quot;
+                                maxlength&#x3D;&quot;150&quot;
+                                formControlName&#x3D;&quot;abogado&quot;
+                                [class.value-box-edit]&#x3D;&quot;isEditing&quot;
+                                [class.value-box-noedit]&#x3D;&quot;!isEditing&quot;&gt;
+                        &lt;/div&gt;
+
+                        &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;Estado manual&lt;/label&gt;
+                            &lt;select
+                                formControlName&#x3D;&quot;estadoAudiencia&quot;
+                                [class.value-box-edit]&#x3D;&quot;isEditing&quot;
+                                [class.value-box-noedit]&#x3D;&quot;!isEditing&quot;&gt;
+                                &lt;option value&#x3D;&quot;&quot;&gt;Automático&lt;/option&gt;
+                                &lt;option value&#x3D;&quot;CANCELADA&quot;&gt;Cancelada&lt;/option&gt;
+                            &lt;/select&gt;
+
+                            &lt;div class&#x3D;&quot;form-text&quot;&gt;
+                                Programada, en curso y finalizada se calculan por fecha/hora. Solo cancelada es manual.
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;div style&#x3D;&quot;height: 1rem;&quot;&gt;&lt;/div&gt;
+
+                    &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+                        &lt;div class&#x3D;&quot;col-12&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;Observación&lt;/label&gt;
+                            &lt;textarea
+                                rows&#x3D;&quot;3&quot;
+                                maxlength&#x3D;&quot;600&quot;
+                                formControlName&#x3D;&quot;observacion&quot;
+                                [class.value-box-edit]&#x3D;&quot;isEditing&quot;
+                                [class.value-box-noedit]&#x3D;&quot;!isEditing&quot;&gt;
+                            &lt;/textarea&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;div style&#x3D;&quot;height: 1rem;&quot;&gt;&lt;/div&gt;
+
+                    &lt;hr class&#x3D;&quot;my-3&quot;&gt;
+
+                    &lt;div class&#x3D;&quot;section-title&quot;&gt;Asesor asignado&lt;/div&gt;
+
+                    &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+                        &lt;div class&#x3D;&quot;col-12&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;Asesor actual&lt;/label&gt;
+                            &lt;input
+                                type&#x3D;&quot;text&quot;
+                                formControlName&#x3D;&quot;asesorNombre&quot;
+                                class&#x3D;&quot;value-box-noedit&quot;&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+
+                    @if (isEditing) {
+                        &lt;div style&#x3D;&quot;height: 1rem;&quot;&gt;&lt;/div&gt;
+
+                        &lt;div class&#x3D;&quot;card border&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                                &lt;div class&#x3D;&quot;form-label fw-semibold mb-2&quot;&gt;Cambiar asesor por DNI&lt;/div&gt;
+
+                                &lt;div class&#x3D;&quot;row g-3 align-items-end&quot;&gt;
+                                    &lt;div class&#x3D;&quot;col-12 col-md-8&quot;&gt;
+                                        &lt;label class&#x3D;&quot;form-label&quot;&gt;DNI del nuevo asesor&lt;/label&gt;
+                                        &lt;input
+                                            type&#x3D;&quot;text&quot;
+                                            maxlength&#x3D;&quot;11&quot;
+                                            class&#x3D;&quot;form-control&quot;
+                                            formControlName&#x3D;&quot;asesorDniBusqueda&quot;
+                                            placeholder&#x3D;&quot;Ingrese DNI&quot;&gt;
+                                    &lt;/div&gt;
+
+                                    &lt;div class&#x3D;&quot;col-12 col-md-4&quot;&gt;
+                                        &lt;button
+                                            type&#x3D;&quot;button&quot;
+                                            class&#x3D;&quot;btn btn-outline-secondary w-100&quot;
+                                            (click)&#x3D;&quot;limpiarAsesor()&quot;
+                                            [disabled]&#x3D;&quot;submitting&quot;&gt;
+                                            Limpiar
+                                        &lt;/button&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+
+                                &lt;div class&#x3D;&quot;mt-2&quot;&gt;
+                                    @if (buscandoAsesor) {
+                                        &lt;div class&#x3D;&quot;text-muted small&quot;&gt;Buscando asesor…&lt;/div&gt;
+                                    } @else if (asesorBuscado &amp;&amp; !asesorEncontrado) {
+                                        &lt;div class&#x3D;&quot;text-muted small&quot;&gt;No se encontró asesor con ese DNI.&lt;/div&gt;
+                                    } @else if (asesorEncontrado) {
+                                        &lt;div class&#x3D;&quot;text-success small&quot;&gt;Asesor encontrado.&lt;/div&gt;
+                                    } @else {
+                                        &lt;div class&#x3D;&quot;text-muted small&quot;&gt;Ingrese al menos 8 dígitos para buscar.&lt;/div&gt;
+                                    }
+                                &lt;/div&gt;
+
+                                &lt;div class&#x3D;&quot;row g-3 mt-1&quot;&gt;
+                                    &lt;div class&#x3D;&quot;col-12 col-md-4&quot;&gt;
+                                        &lt;label class&#x3D;&quot;form-label&quot;&gt;Nombres&lt;/label&gt;
+                                        &lt;input
+                                            type&#x3D;&quot;text&quot;
+                                            class&#x3D;&quot;value-box-noedit&quot;
+                                            [value]&#x3D;&quot;asesorEncontrado?.nombres || &#x27;&#x27;&quot;
+                                            readonly&gt;
+                                    &lt;/div&gt;
+
+                                    &lt;div class&#x3D;&quot;col-12 col-md-4&quot;&gt;
+                                        &lt;label class&#x3D;&quot;form-label&quot;&gt;Apellido paterno&lt;/label&gt;
+                                        &lt;input
+                                            type&#x3D;&quot;text&quot;
+                                            class&#x3D;&quot;value-box-noedit&quot;
+                                            [value]&#x3D;&quot;asesorEncontrado?.apellidoPaterno || &#x27;&#x27;&quot;
+                                            readonly&gt;
+                                    &lt;/div&gt;
+
+                                    &lt;div class&#x3D;&quot;col-12 col-md-4&quot;&gt;
+                                        &lt;label class&#x3D;&quot;form-label&quot;&gt;Apellido materno&lt;/label&gt;
+                                        &lt;input
+                                            type&#x3D;&quot;text&quot;
+                                            class&#x3D;&quot;value-box-noedit&quot;
+                                            [value]&#x3D;&quot;asesorEncontrado?.apellidoMaterno || &#x27;&#x27;&quot;
+                                            readonly&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    }
+
+                    &lt;div style&#x3D;&quot;height: 1rem;&quot;&gt;&lt;/div&gt;
+
+                    &lt;hr class&#x3D;&quot;my-3&quot;&gt;
+
+                    &lt;div class&#x3D;&quot;section-title&quot;&gt;Información de registro&lt;/div&gt;
+
+                    &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+                        &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;Registrado por&lt;/label&gt;
+                            &lt;input
+                                type&#x3D;&quot;text&quot;
+                                [value]&#x3D;&quot;creadoPorNombre || &#x27;—&#x27;&quot;
+                                class&#x3D;&quot;value-box-noedit&quot;
+                                readonly&gt;
+                        &lt;/div&gt;
+
+                        &lt;div class&#x3D;&quot;col-12 col-md-3&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;DNI&lt;/label&gt;
+                            &lt;input
+                                type&#x3D;&quot;text&quot;
+                                [value]&#x3D;&quot;creadoPorDni || &#x27;—&#x27;&quot;
+                                class&#x3D;&quot;value-box-noedit&quot;
+                                readonly&gt;
+                        &lt;/div&gt;
+
+                        &lt;div class&#x3D;&quot;col-12 col-md-3&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;Fecha sistema&lt;/label&gt;
+                            &lt;input
+                                type&#x3D;&quot;text&quot;
+                                [value]&#x3D;&quot;fechaCreadoPor ? (fechaCreadoPor | date:&#x27;yyyy-MM-dd HH:mm&#x27;:&#x27;-0500&#x27;) : &#x27;—&#x27;&quot;
+                                class&#x3D;&quot;value-box-noedit&quot;
+                                readonly&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;div style&#x3D;&quot;height: 1rem;&quot;&gt;&lt;/div&gt;
+
+                    &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+                        &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;Última actualización por&lt;/label&gt;
+                            &lt;input
+                                type&#x3D;&quot;text&quot;
+                                [value]&#x3D;&quot;modificadoPorNombre || &#x27;—&#x27;&quot;
+                                class&#x3D;&quot;value-box-noedit&quot;
+                                readonly&gt;
+                        &lt;/div&gt;
+
+                        &lt;div class&#x3D;&quot;col-12 col-md-3&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;DNI&lt;/label&gt;
+                            &lt;input
+                                type&#x3D;&quot;text&quot;
+                                [value]&#x3D;&quot;modificadoPorDni || &#x27;—&#x27;&quot;
+                                class&#x3D;&quot;value-box-noedit&quot;
+                                readonly&gt;
+                        &lt;/div&gt;
+
+                        &lt;div class&#x3D;&quot;col-12 col-md-3&quot;&gt;
+                            &lt;label class&#x3D;&quot;form-label&quot;&gt;Fecha sistema&lt;/label&gt;
+                            &lt;input
+                                type&#x3D;&quot;text&quot;
+                                [value]&#x3D;&quot;fechaModificadoPor ? (fechaModificadoPor | date:&#x27;yyyy-MM-dd HH:mm&#x27;:&#x27;-0500&#x27;) : &#x27;—&#x27;&quot;
+                                class&#x3D;&quot;value-box-noedit&quot;
+                                readonly&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;div style&#x3D;&quot;height: 1rem;&quot;&gt;&lt;/div&gt;
+
+                    @if (estadoPorNombre || estadoPorDni || fechaEstadoPor) {
+                        &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+                            &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;
+                                &lt;label class&#x3D;&quot;form-label&quot;&gt;Estado modificado por&lt;/label&gt;
+                                &lt;input
+                                    type&#x3D;&quot;text&quot;
+                                    [value]&#x3D;&quot;estadoPorNombre || &#x27;—&#x27;&quot;
+                                    class&#x3D;&quot;value-box-noedit&quot;
+                                    readonly&gt;
+                            &lt;/div&gt;
+
+                            &lt;div class&#x3D;&quot;col-12 col-md-3&quot;&gt;
+                                &lt;label class&#x3D;&quot;form-label&quot;&gt;DNI&lt;/label&gt;
+                                &lt;input
+                                    type&#x3D;&quot;text&quot;
+                                    [value]&#x3D;&quot;estadoPorDni || &#x27;—&#x27;&quot;
+                                    class&#x3D;&quot;value-box-noedit&quot;
+                                    readonly&gt;
+                            &lt;/div&gt;
+
+                            &lt;div class&#x3D;&quot;col-12 col-md-3&quot;&gt;
+                                &lt;label class&#x3D;&quot;form-label&quot;&gt;Fecha sistema&lt;/label&gt;
+                                &lt;input
+                                    type&#x3D;&quot;text&quot;
+                                    [value]&#x3D;&quot;fechaEstadoPor ? (fechaEstadoPor | date:&#x27;yyyy-MM-dd HH:mm&#x27;:&#x27;-0500&#x27;) : &#x27;—&#x27;&quot;
+                                    class&#x3D;&quot;value-box-noedit&quot;
+                                    readonly&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+
+                        &lt;div style&#x3D;&quot;height: 1rem;&quot;&gt;&lt;/div&gt;
+                    }
+
+                    @if (isEditing) {
+                        &lt;div class&#x3D;&quot;d-flex justify-content-between mt-4&quot;&gt;
+                            &lt;button
+                                type&#x3D;&quot;button&quot;
+                                class&#x3D;&quot;btn btn-warning&quot;
+                                (click)&#x3D;&quot;onCancel()&quot;
+                                [disabled]&#x3D;&quot;submitting&quot;&gt;
+                                Cancelar
+                            &lt;/button&gt;
+
+                            &lt;button
+                                type&#x3D;&quot;button&quot;
+                                class&#x3D;&quot;btn btn-success&quot;
+                                (click)&#x3D;&quot;onSave()&quot;
+                                [disabled]&#x3D;&quot;submitting || buscandoAsesor&quot;&gt;
+                                @if (submitting) {
+                                    Guardando…
+                                } @else {
+                                    Guardar
+                                }
+                            &lt;/button&gt;
+                        &lt;/div&gt;
+                    }
+
+                &lt;/form&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./audiencia.detalle.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.value-box-noedit {
+  display: block;
+  width: 100%;
+  padding: .475rem .75rem;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: .375rem;
+  min-height: calc(1.5em + .95rem + 2px);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  cursor: default;
+  pointer-events: none;
+  user-select: none;
+}
+
+.value-box-edit {
+  display: block;
+  width: 100%;
+  padding: .475rem .75rem;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: .375rem;
+  min-height: calc(1.5em + .95rem + 2px);
+  line-height: 1.5;
+}
+
+textarea.value-box-edit,
+textarea.value-box-noedit {
+  width: 100%;
+  min-height: 6rem;
+  resize: vertical;
+}
+
+textarea.value-box-noedit {
+  pointer-events: none;
+}
+
+.card-header {
+  cursor: pointer;
+  user-select: none;
+}
+
+.section-title {
+  font-weight: 600;
+  color: #6c757d;
+  margin-bottom: .25rem;
+}
+
+.caret {
+  font-size: 1rem;
+}
+
+.selectable-fix {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.form-control.ng-invalid.ng-touched,
+.value-box-edit.ng-invalid.ng-touched {
+  border-color: #dc3545;
+  box-shadow: none;
+}
+
+.was-validated .form-control.ng-invalid,
+.was-validated .value-box-edit.ng-invalid {
+  border-color: #dc3545;
+  box-shadow: none;
+}
+.asesor-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 9.5rem;
+  gap: .5rem;
+  width: 100%;
+}
+
+.asesor-input {
+  min-width: 0;
+}
+
+.asesor-btn {
+  width: 9.5rem;
+}
+
+@media (max-width: 576px) {
+  .asesor-row {
+    grid-template-columns: 1fr;
+  }
+
+  .asesor-btn {
+    width: 100%;
+  }
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!-- src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.html --><div class="container">    <div class="row justify-content-center">        <div class="col-12 col-lg-8 mb-4">            <div class="card shadow-sm">                <div                    class="card-header d-flex justify-content-between align-items-center selectable-fix"                    (click)="open = !open"                    role="button"                    [attr.aria-expanded]="open">                    <div class="d-flex align-items-center gap-2">                        <span class="fw-semibold" style="min-width: 220px; display: inline-block;">                            Información de la audiencia                        </span>                        <button                            type="button"                            class="btn btn-secondary"                            (click)="onEdit($event)"                            [disabled]="isEditing || submitting">                            Editar                        </button>                    </div>                    <span class="caret">{{ open ? "▴" : "▾" }}</span>                </div>                <form                    class="card-body selectable-fix"                    [hidden]="!open"                    [formGroup]="form"                    [class.was-validated]="submitting || submittedEdit">                    <div class="section-title">Proceso vinculado</div>                    <div class="row g-3">                        <div class="col-12 col-md-3">                            <label class="form-label">Proceso Nº</label>                            <input                                type="text"                                formControlName="idproceso"                                class="value-box-noedit">                        </div>                        <div class="col-12 col-md-3">                            <label class="form-label">Consulta Nº</label>                            <input                                type="text"                                formControlName="idconsulta"                                class="value-box-noedit">                        </div>                        <div class="col-12 col-md-3">                            <label class="form-label">DNI ciudadano</label>                            <input                                type="text"                                formControlName="dni"                                class="value-box-noedit">                        </div>                        <div class="col-12 col-md-3">                            <label class="form-label">Estado actual</label>                            <input                                type="text"                                [value]="data?.estadoAudienciaTexto || \'—\'"                                class="value-box-noedit"                                readonly>                        </div>                    </div>                    <div style="height: 1rem;"></div>                    <div class="row g-3">                        <div class="col-12 col-md-6">                            <label class="form-label">Número de expediente</label>                            <input                                type="text"                                formControlName="numeroExpediente"                                class="value-box-noedit">                        </div>                        <div class="col-12 col-md-6">                            <label class="form-label">Demandante</label>                            <input                                type="text"                                formControlName="demandante"                                class="value-box-noedit">                        </div>                    </div>                    <div style="height: 1rem;"></div>                    <hr class="my-3">                    <div class="section-title">Datos de audiencia</div>                    <div class="row g-3">                        <div class="col-12">                            <label class="form-label">Título</label>                            <input                                type="text"                                maxlength="150"                                formControlName="titulo"                                [class.value-box-edit]="isEditing"                                [class.value-box-noedit]="!isEditing">                        </div>                    </div>                    <div style="height: 1rem;"></div>                    <div class="row g-3">                        <div class="col-12 col-md-6">                            <label class="form-label">Fecha y hora de inicio</label>                            <input                                type="datetime-local"                                formControlName="fechaHoraInicio"                                [class.value-box-edit]="isEditing"                                [class.value-box-noedit]="!isEditing">                        </div>                        <div class="col-12 col-md-6">                            <label class="form-label">Fecha y hora de fin</label>                            <input                                type="datetime-local"                                formControlName="fechaHoraFin"                                [class.value-box-edit]="isEditing"                                [class.value-box-noedit]="!isEditing">                        </div>                    </div>                    <div style="height: 1rem;"></div>                    <div class="row g-3">                        <div class="col-12">                            <label class="form-label">Enlace Meet</label>                            <input                                type="text"                                maxlength="500"                                formControlName="enlaceMeet"                                [class.value-box-edit]="isEditing"                                [class.value-box-noedit]="!isEditing">                        </div>                    </div>                    <div style="height: 1rem;"></div>                    <div class="row g-3">                        <div class="col-12 col-md-6">                            <label class="form-label">Abogado asignado</label>                            <input                                type="text"                                maxlength="150"                                formControlName="abogado"                                [class.value-box-edit]="isEditing"                                [class.value-box-noedit]="!isEditing">                        </div>                        <div class="col-12 col-md-6">                            <label class="form-label">Estado manual</label>                            <select                                formControlName="estadoAudiencia"                                [class.value-box-edit]="isEditing"                                [class.value-box-noedit]="!isEditing">                                <option value="">Automático</option>                                <option value="CANCELADA">Cancelada</option>                            </select>                            <div class="form-text">                                Programada, en curso y finalizada se calculan por fecha/hora. Solo cancelada es manual.                            </div>                        </div>                    </div>                    <div style="height: 1rem;"></div>                    <div class="row g-3">                        <div class="col-12">                            <label class="form-label">Observación</label>                            <textarea                                rows="3"                                maxlength="600"                                formControlName="observacion"                                [class.value-box-edit]="isEditing"                                [class.value-box-noedit]="!isEditing">                            </textarea>                        </div>                    </div>                    <div style="height: 1rem;"></div>                    <hr class="my-3">                    <div class="section-title">Asesor asignado</div>                    <div class="row g-3">                        <div class="col-12">                            <label class="form-label">Asesor actual</label>                            <input                                type="text"                                formControlName="asesorNombre"                                class="value-box-noedit">                        </div>                    </div>                    @if (isEditing) {                        <div style="height: 1rem;"></div>                        <div class="card border">                            <div class="card-body">                                <div class="form-label fw-semibold mb-2">Cambiar asesor por DNI</div>                                <div class="row g-3 align-items-end">                                    <div class="col-12 col-md-8">                                        <label class="form-label">DNI del nuevo asesor</label>                                        <input                                            type="text"                                            maxlength="11"                                            class="form-control"                                            formControlName="asesorDniBusqueda"                                            placeholder="Ingrese DNI">                                    </div>                                    <div class="col-12 col-md-4">                                        <button                                            type="button"                                            class="btn btn-outline-secondary w-100"                                            (click)="limpiarAsesor()"                                            [disabled]="submitting">                                            Limpiar                                        </button>                                    </div>                                </div>                                <div class="mt-2">                                    @if (buscandoAsesor) {                                        <div class="text-muted small">Buscando asesor…</div>                                    } @else if (asesorBuscado && !asesorEncontrado) {                                        <div class="text-muted small">No se encontró asesor con ese DNI.</div>                                    } @else if (asesorEncontrado) {                                        <div class="text-success small">Asesor encontrado.</div>                                    } @else {                                        <div class="text-muted small">Ingrese al menos 8 dígitos para buscar.</div>                                    }                                </div>                                <div class="row g-3 mt-1">                                    <div class="col-12 col-md-4">                                        <label class="form-label">Nombres</label>                                        <input                                            type="text"                                            class="value-box-noedit"                                            [value]="asesorEncontrado?.nombres || \'\'"                                            readonly>                                    </div>                                    <div class="col-12 col-md-4">                                        <label class="form-label">Apellido paterno</label>                                        <input                                            type="text"                                            class="value-box-noedit"                                            [value]="asesorEncontrado?.apellidoPaterno || \'\'"                                            readonly>                                    </div>                                    <div class="col-12 col-md-4">                                        <label class="form-label">Apellido materno</label>                                        <input                                            type="text"                                            class="value-box-noedit"                                            [value]="asesorEncontrado?.apellidoMaterno || \'\'"                                            readonly>                                    </div>                                </div>                            </div>                        </div>                    }                    <div style="height: 1rem;"></div>                    <hr class="my-3">                    <div class="section-title">Información de registro</div>                    <div class="row g-3">                        <div class="col-12 col-md-6">                            <label class="form-label">Registrado por</label>                            <input                                type="text"                                [value]="creadoPorNombre || \'—\'"                                class="value-box-noedit"                                readonly>                        </div>                        <div class="col-12 col-md-3">                            <label class="form-label">DNI</label>                            <input                                type="text"                                [value]="creadoPorDni || \'—\'"                                class="value-box-noedit"                                readonly>                        </div>                        <div class="col-12 col-md-3">                            <label class="form-label">Fecha sistema</label>                            <input                                type="text"                                [value]="fechaCreadoPor ? (fechaCreadoPor | date:\'yyyy-MM-dd HH:mm\':\'-0500\') : \'—\'"                                class="value-box-noedit"                                readonly>                        </div>                    </div>                    <div style="height: 1rem;"></div>                    <div class="row g-3">                        <div class="col-12 col-md-6">                            <label class="form-label">Última actualización por</label>                            <input                                type="text"                                [value]="modificadoPorNombre || \'—\'"                                class="value-box-noedit"                                readonly>                        </div>                        <div class="col-12 col-md-3">                            <label class="form-label">DNI</label>                            <input                                type="text"                                [value]="modificadoPorDni || \'—\'"                                class="value-box-noedit"                                readonly>                        </div>                        <div class="col-12 col-md-3">                            <label class="form-label">Fecha sistema</label>                            <input                                type="text"                                [value]="fechaModificadoPor ? (fechaModificadoPor | date:\'yyyy-MM-dd HH:mm\':\'-0500\') : \'—\'"                                class="value-box-noedit"                                readonly>                        </div>                    </div>                    <div style="height: 1rem;"></div>                    @if (estadoPorNombre || estadoPorDni || fechaEstadoPor) {                        <div class="row g-3">                            <div class="col-12 col-md-6">                                <label class="form-label">Estado modificado por</label>                                <input                                    type="text"                                    [value]="estadoPorNombre || \'—\'"                                    class="value-box-noedit"                                    readonly>                            </div>                            <div class="col-12 col-md-3">                                <label class="form-label">DNI</label>                                <input                                    type="text"                                    [value]="estadoPorDni || \'—\'"                                    class="value-box-noedit"                                    readonly>                            </div>                            <div class="col-12 col-md-3">                                <label class="form-label">Fecha sistema</label>                                <input                                    type="text"                                    [value]="fechaEstadoPor ? (fechaEstadoPor | date:\'yyyy-MM-dd HH:mm\':\'-0500\') : \'—\'"                                    class="value-box-noedit"                                    readonly>                            </div>                        </div>                        <div style="height: 1rem;"></div>                    }                    @if (isEditing) {                        <div class="d-flex justify-content-between mt-4">                            <button                                type="button"                                class="btn btn-warning"                                (click)="onCancel()"                                [disabled]="submitting">                                Cancelar                            </button>                            <button                                type="button"                                class="btn btn-success"                                (click)="onSave()"                                [disabled]="submitting || buscandoAsesor">                                @if (submitting) {                                    Guardando…                                } @else {                                    Guardar                                }                            </button>                        </div>                    }                </form>            </div>        </div>    </div></div></div>'
+    var COMPONENTS = [{'name': 'AnaliticasDashboard', 'selector': 'app-analiticas-dashboard'},{'name': 'App', 'selector': 'app-root'},{'name': 'AsistenciaLista', 'selector': 'app-asistencia-lista'},{'name': 'AsistenciasDashboard', 'selector': 'app-asistencias-dashboard'},{'name': 'AudienciaCalendario', 'selector': 'app-audiencia-calendario'},{'name': 'AudienciaDetalle', 'selector': 'app-audiencia-detalle'},{'name': 'AudienciaRegistrar', 'selector': 'app-audiencia-registrar'},{'name': 'CiudadanoDetalle', 'selector': 'app-ciudadano-detalle'},{'name': 'CiudadanoLista', 'selector': 'app-ciudadano-lista'},{'name': 'CiudadanoRegistrar', 'selector': 'app-ciudadano-registrar'},{'name': 'ConfirmarCorreo', 'selector': 'app-cuenta-confirmar-correo'},{'name': 'ConsultaDetalle', 'selector': 'app-consulta-detalle'},{'name': 'ConsultaLista', 'selector': 'app-consulta-lista'},{'name': 'ConsultaListaCiudadano', 'selector': 'app-consulta-lista-ciudadano'},{'name': 'ConsultaRegistar', 'selector': 'app-consulta-registrar'},{'name': 'DocumentosListaEntidad', 'selector': 'app-documentos-lista-entidad'},{'name': 'DocumentosListaGeneral', 'selector': 'app-documentos-lista-general'},{'name': 'DocumentosRegistrar', 'selector': 'app-documentos-registrar'},{'name': 'DocumentosRutaBaseLista', 'selector': 'app-documentos-ruta-base-lista'},{'name': 'DocumentosRutaBaseRegistrar', 'selector': 'app-documentos-ruta-base-registrar'},{'name': 'ExportarConDriveComponent', 'selector': 'app-exportar-con-drive'},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'Header', 'selector': 'app-header'},{'name': 'HorarioDetalle', 'selector': 'app-horario-detalle'},{'name': 'HorarioLista', 'selector': 'app-horario-lista'},{'name': 'HorarioRegistrar', 'selector': 'app-horario-registrar'},{'name': 'Ingresar', 'selector': 'app-cuenta-ingresar'},{'name': 'JustificacionListaMis', 'selector': 'app-justificacion-lista-mis'},{'name': 'JustificacionListaPendientes', 'selector': 'app-justificacion-lista-pendientes'},{'name': 'JustificacionRegistrar', 'selector': 'app-justificacion-registrar'},{'name': 'Main_layout', 'selector': 'app-main-layout'},{'name': 'NotificacionestVer', 'selector': 'app-notificaciones-ver'},{'name': 'PaginaNoEncontradaComponent', 'selector': 'app-pagina-no-encontrada'},{'name': 'Perfil', 'selector': 'app-cuenta-perfil'},{'name': 'ProcesoDetalle', 'selector': 'app-proceso-detalle'},{'name': 'ProcesoLista', 'selector': 'app-proceso-lista'},{'name': 'ProcesoRegistrar', 'selector': 'app-proceso-registrar'},{'name': 'Registar', 'selector': 'app-cuenta-registrar'},{'name': 'SeguimientoListaConsulta', 'selector': 'app-seguimiento-lista-consulta'},{'name': 'SeguimientoRegistar', 'selector': 'app-seguimiento-registrar'},{'name': 'Sidebar', 'selector': 'app-sidebar'},{'name': 'Simple_layout', 'selector': 'app-simple_layout'},{'name': 'TramiteDetalle', 'selector': 'app-tramite-detalle'},{'name': 'TramiteLista', 'selector': 'app-tramite-lista'},{'name': 'TramiteRegistrar', 'selector': 'app-tramite-registrar'},{'name': 'UsuarioDetalle', 'selector': 'app-usuario-detalle'},{'name': 'UsuarioHorarioListaUsuario', 'selector': 'app-usuario-horario-lista-usuario'},{'name': 'UsuarioLista', 'selector': 'app-usuario-lista'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'AudienciaDetalle'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'AudienciaDetalle.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

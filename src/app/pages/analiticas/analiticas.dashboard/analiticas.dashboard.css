@@ -1,11 +1,26 @@
 /* src/app/pages/analiticas/analiticas.dashboard/analiticas.dashboard.css */
+
 :host {
   display: block;
+  min-height: 0;
 }
 
 .analytics-shell {
+  height: calc(100vh - 96px);
+  min-height: 680px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
   padding: 0.75rem 0.25rem 1.5rem;
   position: relative;
+  overflow: hidden;
+}
+
+.analytics-top {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 /* ===== Encabezado principal ===== */
@@ -13,17 +28,17 @@
   border-radius: 0.9rem;
   border: none;
   background: linear-gradient(135deg, #0b7285, #134a73);
-  height: 200px;
   color: #f8f9fa;
+  min-height: 132px;
 }
 
-/* cuerpo del encabezado para mejor distribución */
 .analytics-header-body {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem 1.5rem;
   align-items: flex-start;
   padding: 0.9rem 1.5rem;
+  min-height: 132px;
 }
 
 .analytics-header-main {
@@ -31,11 +46,27 @@
   min-width: 0;
 }
 
+.analytics-title {
+  font-size: 1.45rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.analytics-subtitle {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  max-width: 52rem;
+  min-height: 2.9rem;
+  white-space: normal;
+  word-break: break-word;
+}
+
 .analytics-header-meta {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
   align-items: flex-start;
+  min-width: 18rem;
 }
 
 @media (min-width: 768px) {
@@ -45,55 +76,56 @@
   }
 }
 
-.analytics-title {
-  font-size: 1.45rem;
-  font-weight: 600;
-  margin-bottom: 0.25rem;
-}
-
-/* Subtítulo: rango + filtros (más grande) */
-.analytics-subtitle {
-  font-size: 0.95rem;
-  line-height: 1.5;
-  max-width: 52rem;
-  white-space: normal;
-  word-break: break-word;
-}
-
-/* Periodo: badge estable */
 .period-badge {
   background: rgba(255, 255, 255, 0.16);
   border-radius: 999px;
   padding: 0.3rem 0.95rem;
   font-size: 0.88rem;
   font-weight: 600;
-  min-width: 14ch;          /* reserva de ancho para evitar saltos grandes */
+  min-width: 14ch;
   text-align: center;
 }
 
-/* Texto de ETL: "Última ETL: ..." (espacio propio) */
 .analytics-etl-label {
   font-size: 0.9rem;
   font-weight: 500;
   opacity: 0.98;
-  min-height: 1.1rem;       /* altura estable aunque tarde en llegar el texto */
+  min-height: 1.35rem;
   max-width: 32rem;
 }
 
-/* Botón de exportación del panel: estilo más integrado */
-.analytics-export-btn {
-  border-radius: 999px;
-  font-size: 0.82rem;
-  font-weight: 500;
-  padding: 0.3rem 1rem;
-  border-width: 1px;
+/* ===== Cards base ===== */
+.analytics-card {
+  border-radius: 0.9rem;
+  border: 1px solid #dde5f0;
   box-shadow: none;
-  text-shadow: none;
 }
 
-/* ===== Toolbar filtros ===== */
+.analytics-card-title {
+  font-weight: 600;
+  color: #12344d;
+  font-size: 0.95rem;
+}
+
+/* ===== Filtros ===== */
 .analytics-toolbar {
+  display: flex;
+  flex-direction: column;
   gap: 0.75rem;
+}
+
+.toolbar-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.period-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
 }
 
 .btn-filter {
@@ -112,18 +144,42 @@
   box-shadow: 0 0 0 0.08rem rgba(11, 114, 133, 0.35);
 }
 
-.filters-selects .filter-select {
-  min-width: 160px;
-  max-width: 220px;
+.filter-select {
+  width: 210px;
+  min-width: 180px;
 }
 
-/* ===== ETL box ===== */
+.filter-select-small {
+  width: 110px;
+}
+
+.filter-select-medium {
+  width: 150px;
+}
+
+.filter-input-small {
+  width: 100px;
+}
+
+.filter-date {
+  width: 145px;
+}
+
+/* ===== ETL ===== */
+.analytics-etl-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
 .etl-label {
   font-size: 0.8rem;
   font-weight: 600;
   color: #0b7285;
   text-transform: uppercase;
   letter-spacing: 0.06em;
+  margin-right: 0.25rem;
 }
 
 .btn-ghost {
@@ -156,48 +212,243 @@
   background: #fac1cf;
 }
 
-/* ===== Cards de gráficos ===== */
-.analytics-card {
-  border-radius: 0.9rem;
-  border: 1px solid #dde5f0;
+/* ===== CONTENIDO: ÚNICO SCROLL VERTICAL ===== */
+.analytics-content-scroll {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 0.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.analytics-card-title {
+.analytics-content-scroll::-webkit-scrollbar,
+.age-table-wrap::-webkit-scrollbar,
+.small-table::-webkit-scrollbar {
+  width: 10px;
+}
+
+.export-strip::-webkit-scrollbar {
+  height: 8px;
+}
+
+.analytics-content-scroll::-webkit-scrollbar-thumb,
+.age-table-wrap::-webkit-scrollbar-thumb,
+.small-table::-webkit-scrollbar-thumb,
+.export-strip::-webkit-scrollbar-thumb {
+  background: #c6d3df;
+  border-radius: 999px;
+}
+
+.analytics-content-scroll::-webkit-scrollbar-track,
+.age-table-wrap::-webkit-scrollbar-track,
+.small-table::-webkit-scrollbar-track,
+.export-strip::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ===== Secciones ===== */
+.analytics-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.analytics-section-title {
+  font-size: 1rem;
   font-weight: 600;
   color: #12344d;
-  font-size: 0.95rem;
 }
 
-.analytics-layout .card-body {
+/* ===== Resumen en dos filas ===== */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(180px, 1fr));
+  gap: 0.75rem;
+}
+
+.summary-card {
+  height: 92px;
+  border: 1px solid #dde5f0;
+  border-radius: 0.9rem;
+  background: #ffffff;
+  padding: 0.9rem 1rem;
+  overflow: hidden;
+}
+
+.summary-card-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #6c757d;
+  margin-bottom: 0.3rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.summary-card-value {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #12344d;
+  line-height: 1.3;
+}
+
+/* ===== Exportar horizontal ===== */
+.export-strip {
+  min-height: 42px;
+  display: flex;
+  gap: 0.65rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 0.2rem;
+}
+
+.export-strip .btn {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.export-strip-main {
+  align-items: center;
+}
+
+.export-all-btn {
+  border-radius: 999px;
+  padding-inline: 1.4rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  background: #0b7285;
+  border-color: #0b7285;
+}
+
+.export-all-btn:hover {
+  background: #095d6d;
+  border-color: #095d6d;
+}
+
+.export-help {
+  white-space: normal;
+}
+
+.drive-save-check {
+  align-items: center;
+  background: #f6f9fc;
+  border: 1px solid #d8e3ec;
+  border-radius: 999px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 0.45rem;
+  min-height: 42px;
+  padding: 0 0.9rem;
+  white-space: nowrap;
+}
+
+.drive-save-check input {
+  margin: 0;
+}
+
+.drive-save-check:has(input:disabled) {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+/* ===== Grid principal ===== */
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.span-4 {
+  grid-column: span 4;
+}
+
+.span-6 {
+  grid-column: span 6;
+}
+
+.span-12 {
+  grid-column: span 12;
+}
+
+.chart-card {
+  height: 380px;
+  min-height: 380px;
+  max-height: 380px;
+  overflow: hidden;
+}
+
+.chart-card .card-header {
+  flex: 0 0 auto;
+}
+
+.chart-card .card-body {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  height: calc(100% - 42px);
+  overflow: hidden;
   padding-top: 0.75rem;
 }
 
-/* ===== Zona de gráficos y overlay de carga ===== */
-.analytics-grid-wrap {
-  position: relative;
+/* ===== Tablas ===== */
+.age-table-wrap,
+.small-table {
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: auto;
 }
 
-/* anulamos márgenes negativos de .row para que el overlay no se "salga" a la izquierda */
-.analytics-layout {
-  margin-left: 0 !important;
-  margin-right: 0 !important;
+.age-table thead th,
+.small-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #ffffff;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #6c757d;
 }
 
-/* Overlay suave mientras hay datos previos (sin parpadeo, dentro de la zona) */
+.age-table tbody td,
+.small-table tbody td {
+  font-size: 0.88rem;
+}
+
+.age-table tfoot th {
+  position: sticky;
+  bottom: 0;
+  background: #ffffff;
+  border-top: 2px solid #dee2e6;
+  font-size: 0.88rem;
+}
+
+/* ===== Apex ===== */
+.apexcharts-legend-text {
+  color: #12344d !important;
+}
+
+/* ===== Loading / skeleton ===== */
 .analytics-loading-overlay {
   position: absolute;
-  inset: 0.25rem 0 0 0; /* un poco de margen arriba para no pegar al borde del header ETL */
-  background: rgba(255, 255, 255, 0.7);
+  inset: 0;
+  background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(1px);
+  z-index: 10;
   font-weight: 600;
-  z-index: 5;
+  color: #495057;
   border-radius: 0.9rem;
 }
 
-/* ===== Skeletons para gráficos (primera carga) ===== */
 .chart-skeleton {
   width: 100%;
-  height: 260px;
+  height: 300px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -209,7 +460,6 @@
   justify-content: center;
 }
 
-/* Barras skeleton (línea y barras) */
 .sk-bar {
   animation: shimmer 1.4s ease-in-out infinite;
   background: linear-gradient(90deg, #e7ebee 25%, #dfe4e8 37%, #e7ebee 63%);
@@ -221,14 +471,15 @@
 .sk-bar-1 {
   width: 80%;
 }
+
 .sk-bar-2 {
   width: 65%;
 }
+
 .sk-bar-3 {
   width: 50%;
 }
 
-/* Donut skeleton */
 .sk-donut {
   animation: shimmer 1.4s ease-in-out infinite;
   background: linear-gradient(90deg, #e7ebee 25%, #dfe4e8 37%, #e7ebee 63%);
@@ -238,35 +489,82 @@
   height: 160px;
 }
 
-/* Animación shimmer */
 @keyframes shimmer {
   0% {
     background-position: 100% 0;
   }
+
   100% {
     background-position: 0% 0;
   }
 }
 
-/* ===== Ajustes para exportación (html2canvas) ===== */
-/* Durante la exportación, ocultamos el botón de exportar y la toolbar de Apex
-   para que la imagen del panel quede "limpia". */
-.analytics-shell.exporting .analytics-export-btn,
-.analytics-shell.exporting .apexcharts-toolbar {
-  display: none !important;
+/* ===== Responsive ===== */
+@media (max-width: 1199.98px) {
+  .summary-grid {
+    grid-template-columns: repeat(3, minmax(180px, 1fr));
+  }
+
+  .span-4 {
+    grid-column: span 6;
+  }
 }
 
-/* Pequeños ajustes responsivos */
 @media (max-width: 767.98px) {
+  .analytics-shell {
+    height: auto;
+    min-height: calc(100vh - 96px);
+    overflow: visible;
+    padding-inline: 0;
+  }
+
   .analytics-header {
     border-radius: 0;
   }
 
-  .filters-selects .filter-select {
-    flex: 1 1 100%;
+  .analytics-header-body {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .analytics-header-meta {
+    margin-left: 0;
     align-items: flex-start;
+    min-width: 0;
+  }
+
+  .analytics-content-scroll {
+    overflow: visible;
+    padding-right: 0;
+  }
+
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .span-4,
+  .span-6,
+  .span-12 {
+    grid-column: span 12;
+  }
+
+  .filter-select,
+  .filter-select-small,
+  .filter-select-medium,
+  .filter-input-small,
+  .filter-date {
+    width: 100%;
+  }
+
+  .toolbar-row,
+  .period-controls {
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .chart-card {
+    height: auto;
+    min-height: 380px;
+    max-height: none;
   }
 }

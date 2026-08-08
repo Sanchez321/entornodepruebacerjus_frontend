@@ -1,4 +1,5 @@
 // src/app/pages/proceso/models/proceso.vm.ts
+import type {ReporteEstado,ReporteFormato,ReporteModo,} from './proceso.dominio';
 
 export interface VMProceso {
   id: number;
@@ -14,13 +15,13 @@ export interface VMProceso {
 
   numeroExpediente: string;
   sede: string ;
-  parte: string ;
   materia: string ;
   demandado: string ;
   demandante: string;
   estadoProcesal: string ;
   observacion?: string | null;
 
+  fechaRegistrada?: string | null;
 
   creadoPor?: number;
   fechaCreadoPor?: Date | string;
@@ -42,7 +43,6 @@ export type VMProcesoListaSimple = Pick<
   | 'asesorActualNombre'
   | 'numeroExpediente'
   | 'sede'
-  | 'parte'
   | 'materia'
   | 'demandado'
   | 'demandante'
@@ -59,7 +59,6 @@ export type VMProcesoCreate = Pick<
   | 'asesorActualId'
   | 'numeroExpediente'
   | 'sede'
-  | 'parte'
   | 'materia'
   | 'demandado'
   | 'estadoProcesal'
@@ -73,7 +72,6 @@ export type VMProcesoUpdate = Partial<Pick<
   | 'asesorActualId'
   | 'numeroExpediente'
   | 'sede'
-  | 'parte'
   | 'materia'
   | 'demandado'
   | 'estadoProcesal'
@@ -117,4 +115,12 @@ export interface VMProcesoAsesorActual {
   id: number;
   asesorActualId: number;
   asesorActualNombre?: string | null;
+}
+
+export interface VMProcesoReporteTablaOptions {
+  formato: ReporteFormato;
+  modo: ReporteModo;
+  estado: ReporteEstado;
+  anio: number;
+  mes: number;
 }

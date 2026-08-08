@@ -2,15 +2,18 @@
 
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder,  Validators, FormControl} from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 import { ProcesoService } from '../services/proceso.service';
-import { VMProcesoListaSimple } from '../models/proceso.vm';
-import { procesoEstadoBadgeClass } from '../models/proceso.dominio';
+import { VMProcesoListaSimple, VMProcesoReporteTablaOptions, } from '../models/proceso.vm';
+import { procesoEstadoBadgeClass,REPORTE_ESTADO_OPCIONES,REPORTE_FORMATO_OPCIONES,REPORTE_MES_OPCIONES,REPORTE_MODO_OPCIONES,
+  ReporteEstado,ReporteFormato,ReporteModo,canSeeReporteOption,reporteModoFuerzaActivos, } from '../models/proceso.dominio';
 import { PageMetaService } from '@/app/services/page_meta.service';
 import { RouterLink } from '@angular/router';
+import { NotificacionesService } from '@/app/components/notificaciones/services/notificaciones.service';
+import { AuthStore } from '@/app/auth/auth.store';
 
 @Component({
   selector: 'app-proceso-lista',
@@ -23,9 +26,21 @@ export class ProcesoLista implements OnInit, OnDestroy {
     private fb = inject(FormBuilder);
     private service = inject(ProcesoService);
     private pageMeta = inject(PageMetaService);
+    private notify = inject(NotificacionesService);
+    private auth = inject(AuthStore);
 
     private subForm = new Subscription();
     private syncingScroll = false;
+
+    downloading = false;
+    guardarDrive = false;
+    showExportModal = false;
+    userLevel: number | null = null;
+
+    private subExportForm = new Subscription();
+
+    readonly formatoReporteOpciones = REPORTE_FORMATO_OPCIONES;
+    readonly mesReporteOpciones = REPORTE_MES_OPCIONES;
 
     form = this.fb.group({
         id: [null as number | null],
@@ -72,11 +87,11 @@ export class ProcesoLista implements OnInit, OnDestroy {
     private readonly firstSkeletonMinMs = 200;
 
     headerBlockPx = 96;
+    tableExtraPx = 32;
 
     get listMinHeight(): number {
-        return this.headerBlockPx + this.pageSize * 48;
+        return this.headerBlockPx + this.pageSize * 48 + this.tableExtraPx;
     }
-
     get skeletonRows(): number[] {
         return Array.from({ length: this.pageSize }, (_, i) => i);
     }
@@ -94,6 +109,17 @@ export class ProcesoLista implements OnInit, OnDestroy {
         });
 
         this.load();
+
+        this.userLevel = this.auth.getLevel();
+
+        this.subExportForm.add(
+        this.exportForm.get('modo')!.valueChanges.subscribe(() => {
+            this.syncEstadoReporte();
+        }),
+        );
+
+        this.syncModoReporteInicial();
+        this.syncEstadoReporte();
 
         this.subForm.add(
         this.form.valueChanges
@@ -268,4 +294,172 @@ export class ProcesoLista implements OnInit, OnDestroy {
         this.syncingScroll = false;
     });
     }
+
+    exportForm = this.fb.group({
+        formato: new FormControl<ReporteFormato>('xlsx', {
+            nonNullable: true,
+            validators: [Validators.required],
+        }),
+
+        modo: new FormControl<ReporteModo>('ASESOR', {
+            nonNullable: true,
+            validators: [Validators.required],
+        }),
+
+        estado: new FormControl<ReporteEstado>('ACTIVOS', {
+            nonNullable: true,
+            validators: [Validators.required],
+        }),
+
+        anio: new FormControl(new Date().getFullYear(), {
+            nonNullable: true,
+            validators: [Validators.required, Validators.min(2000), Validators.max(2100)],
+        }),
+
+        mes: new FormControl(new Date().getMonth() + 1, {
+            nonNullable: true,
+            validators: [Validators.required, Validators.min(1), Validators.max(12)],
+        }),
+    });
+
+    get modoReporteOpciones() {
+        return REPORTE_MODO_OPCIONES.filter(o =>
+            canSeeReporteOption(this.userLevel, o.minLevel),
+        );
+    }
+
+    get estadoReporteOpciones() {
+        return REPORTE_ESTADO_OPCIONES.filter(o =>
+            canSeeReporteOption(this.userLevel, o.minLevel),
+        );
+    }
+
+    get estadoForzadoActivo(): boolean {
+        return reporteModoFuerzaActivos(this.exportForm.get('modo')!.value);
+    }
+
+    abrirModalExportacion(): void {
+        this.showExportModal = true;
+        this.syncModoReporteInicial();
+        this.syncEstadoReporte();
+    }
+
+    cerrarModalExportacion(): void {
+        if (this.downloading) return;
+        this.showExportModal = false;
+    }
+
+    private syncModoReporteInicial(): void {
+        const modoCtrl = this.exportForm.get('modo')!;
+        const current = modoCtrl.value;
+
+        const permitido = this.modoReporteOpciones.some(o => o.value === current);
+
+        if (!permitido) {
+            modoCtrl.setValue('ASESOR', { emitEvent: false });
+        }
+    }
+
+    private syncEstadoReporte(): void {
+        const estadoCtrl = this.exportForm.get('estado')!;
+
+        if (this.estadoForzadoActivo) {
+            estadoCtrl.setValue('ACTIVOS', { emitEvent: false });
+            estadoCtrl.disable({ emitEvent: false });
+            return;
+        }
+
+        estadoCtrl.enable({ emitEvent: false });
+
+        const current = estadoCtrl.value;
+        const permitido = this.estadoReporteOpciones.some(o => o.value === current);
+
+        if (!permitido) {
+            estadoCtrl.setValue('ACTIVOS', { emitEvent: false });
+        }
+    }
+
+    async descargarProcesosTabla(): Promise<void> {
+      if (this.downloading) return;
+
+      if (this.exportForm.invalid) {
+        this.exportForm.markAllAsTouched();
+
+        await this.notify.ok({
+          variant: 'warning',
+          title: 'Datos incompletos',
+          message: 'Seleccione correctamente las opciones de exportación.',
+          primaryText: 'Aceptar',
+        });
+
+        return;
+      }
+
+      const v = this.exportForm.getRawValue();
+
+      const opts: VMProcesoReporteTablaOptions = {
+        formato: v.formato,
+        modo: v.modo,
+        estado: v.estado,
+        anio: v.anio,
+        mes: v.mes,
+      };
+
+      this.downloading = true;
+
+      try {
+        const result = await this.service.descargarProcesosTabla(
+          opts,
+          this.guardarDrive,
+        );
+
+        this.showExportModal = false;
+        await this.mostrarResultadoExportacion(result);
+      } catch {
+        await this.notify.ok({
+          variant: 'warning',
+          title: 'No se pudo descargar',
+          message: 'No se pudo generar el archivo de procesos.',
+          primaryText: 'Aceptar',
+        });
+      } finally {
+        this.downloading = false;
+      }
+    }
+
+    private async mostrarResultadoExportacion(result: {
+      driveStatus: string | null;
+      driveMessage: string | null;
+    }): Promise<void> {
+      if (!this.guardarDrive) {
+        await this.notify.ok({
+          variant: 'success',
+          title: 'Descarga iniciada',
+          message: 'El archivo de procesos se generó correctamente.',
+          primaryText: 'Aceptar',
+        });
+        return;
+      }
+
+      if (result.driveStatus === 'SAVED') {
+        await this.notify.ok({
+          variant: 'success',
+          title: 'Reporte generado',
+          message: 'El reporte se descargó y también se guardó en Drive.',
+          primaryText: 'Aceptar',
+        });
+        return;
+      }
+
+      await this.notify.ok({
+        variant: 'warning',
+        title: 'Descarga completada',
+        message:
+          result.driveStatus === 'FAILED'
+            ? `El reporte se descargó, pero falló el guardado en Drive.${result.driveMessage ? ` ${result.driveMessage}` : ''}`
+            : 'El reporte se descargó, pero el servidor no confirmó el guardado en Drive.',
+        primaryText: 'Aceptar',
+      });
+    }
+
 }

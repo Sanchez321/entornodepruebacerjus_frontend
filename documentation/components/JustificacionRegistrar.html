@@ -1,0 +1,1321 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">frontend documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  JustificacionRegistrar</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/pages/justificacion/justificacion.registrar/justificacion.registrar.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" class="nav-link"
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.dev/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.dev/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-justificacion-registrar</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                        <div>        <code><a href="https://angular.dev/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+</div>
+                        <div>        <code><a href="https://angular.dev/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./justificacion.registrar.css</code></td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./justificacion.registrar.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./justificacion.registrar.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+        <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <p class="comment"><i>No results matching.</i></p>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="https://angular.dev/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/core/OnInit" target="_blank" >OnInit</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+</div>
+
+    <div class="tab-pane fade " id="api">    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#fb" >fb</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#form" >form</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#notify" >notify</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#pageMeta" >pageMeta</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#router" >router</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#service" >service</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#submitting" >submitting</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#tipoOpciones" >tipoOpciones</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#isFuture" >isFuture</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#onBack" >onBack</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#onSubmit" >onSubmit</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#todayYmdPeru" >todayYmdPeru</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Accessors</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--accessor" aria-hidden="true">A</span>
+                                <a href="#tipoHelp" >tipoHelp</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isFuture"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>isFuture</b></span>
+                        <a href="#isFuture"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>isFuture(ymd: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="71"
+                                    class="link-to-prism">src/app/pages/justificacion/justificacion.registrar/justificacion.registrar.ts:71</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>ymd</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="56"
+                                    class="link-to-prism">src/app/pages/justificacion/justificacion.registrar/justificacion.registrar.ts:56</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="50"
+                                    class="link-to-prism">src/app/pages/justificacion/justificacion.registrar/justificacion.registrar.ts:50</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onBack"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>onBack</b></span>
+                        <a href="#onBack"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onBack()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="122"
+                                    class="link-to-prism">src/app/pages/justificacion/justificacion.registrar/justificacion.registrar.ts:122</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSubmit"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>onSubmit</b></span>
+                        <a href="#onSubmit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onSubmit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="76"
+                                    class="link-to-prism">src/app/pages/justificacion/justificacion.registrar/justificacion.registrar.ts:76</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="todayYmdPeru"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>todayYmdPeru</b></span>
+                        <a href="#todayYmdPeru"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>todayYmdPeru()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="59"
+                                    class="link-to-prism">src/app/pages/justificacion/justificacion.registrar/justificacion.registrar.ts:59</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fb"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>fb</b></span>
+                        <a href="#fb"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(FormBuilder)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/pages/justificacion/justificacion.registrar/justificacion.registrar.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="form"></a>
+                    <span class="name">
+                        <span ><b>form</b></span>
+                        <a href="#form"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.fb.group&lt;ControlsOf&lt;VMAsistenciaJustificacionCreate&gt;&gt;({
+    fecha_ymd: new FormControl(this.todayYmdPeru(), { nonNullable: true, validators: [Validators.required] }),
+    tipo: new FormControl&lt;AsistenciaJustificacionTipo&gt;(&#x27;&#x27;, { nonNullable: true, validators: [Validators.required, noInicialTipo] }),
+    motivo: new FormControl(&#x27;&#x27;, { nonNullable: true, validators: [Validators.required, Validators.maxLength(120)] }),
+    detalle: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/pages/justificacion/justificacion.registrar/justificacion.registrar.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="notify"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>notify</b></span>
+                        <a href="#notify"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(NotificacionesService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/pages/justificacion/justificacion.registrar/justificacion.registrar.ts:33</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pageMeta"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>pageMeta</b></span>
+                        <a href="#pageMeta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(PageMetaService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/pages/justificacion/justificacion.registrar/justificacion.registrar.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="router"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>router</b></span>
+                        <a href="#router"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(Router)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/pages/justificacion/justificacion.registrar/justificacion.registrar.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="service"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>service</b></span>
+                        <a href="#service"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(JustificacionService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/pages/justificacion/justificacion.registrar/justificacion.registrar.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="submitting"></a>
+                    <span class="name">
+                        <span ><b>submitting</b></span>
+                        <a href="#submitting"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/pages/justificacion/justificacion.registrar/justificacion.registrar.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tipoOpciones"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>tipoOpciones</b></span>
+                        <a href="#tipoOpciones"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ASISTENCIA_JUSTIFICACION_TIPO_OPCIONES</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/pages/justificacion/justificacion.registrar/justificacion.registrar.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tipoHelp"></a>
+                        <span class="name"><b>tipoHelp</b><a href="#tipoHelp"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>tipoHelp()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/pages/justificacion/justificacion.registrar/justificacion.registrar.ts:47</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, inject, OnInit, OnDestroy } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  Validators,
+  FormControl,
+  ValidatorFn,
+  AbstractControl,
+} from &#x27;@angular/forms&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+
+import { NotificacionesService } from &#x27;@/app/components/notificaciones/services/notificaciones.service&#x27;;
+import { JustificacionService } from &#x27;../services/justificacion.service&#x27;;
+
+import { VMAsistenciaJustificacionCreate } from &#x27;../models/justificacion.vm&#x27;;
+import { ASISTENCIA_JUSTIFICACION_TIPO_OPCIONES, AsistenciaJustificacionTipo, tipoHelpText } from &#x27;../models/justificacion.dominio&#x27;;
+import { PageMetaService } from &#x27;@/app/services/page_meta.service&#x27;;
+
+const noInicialTipo: ValidatorFn &#x3D; (c: AbstractControl) &#x3D;&gt; (c.value &#x3D;&#x3D;&#x3D; &#x27;&#x27; ? { placeholder: true } : null);
+
+@Component({
+  selector: &#x27;app-justificacion-registrar&#x27;,
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: &#x27;./justificacion.registrar.html&#x27;,
+  styleUrl: &#x27;./justificacion.registrar.css&#x27;,
+})
+export class JustificacionRegistrar implements OnInit, OnDestroy {
+  private fb &#x3D; inject(FormBuilder);
+  private router &#x3D; inject(Router);
+  private service &#x3D; inject(JustificacionService);
+  private notify &#x3D; inject(NotificacionesService);
+  private pageMeta &#x3D; inject(PageMetaService);
+
+  readonly tipoOpciones &#x3D; ASISTENCIA_JUSTIFICACION_TIPO_OPCIONES;
+
+  submitting &#x3D; false;
+
+  form &#x3D; this.fb.group&lt;ControlsOf&lt;VMAsistenciaJustificacionCreate&gt;&gt;({
+    fecha_ymd: new FormControl(this.todayYmdPeru(), { nonNullable: true, validators: [Validators.required] }),
+    tipo: new FormControl&lt;AsistenciaJustificacionTipo&gt;(&#x27;&#x27;, { nonNullable: true, validators: [Validators.required, noInicialTipo] }),
+    motivo: new FormControl(&#x27;&#x27;, { nonNullable: true, validators: [Validators.required, Validators.maxLength(120)] }),
+    detalle: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+  });
+
+  get tipoHelp(): string {
+    return tipoHelpText(this.form.get(&#x27;tipo&#x27;)!.value);
+  }
+  ngOnInit(): void {
+    this.pageMeta.replace({
+      titulo: &#x27;Registrar Justificación&#x27;,
+      ruta: [&#x27;/asistencia/justificacion/mis&#x27;],
+    });
+  }
+  ngOnDestroy(): void {
+    this.pageMeta.clear();
+  }
+  private todayYmdPeru(): string {
+    const dt &#x3D; new Date();
+    const fmt &#x3D; new Intl.DateTimeFormat(&#x27;en-CA&#x27;, {
+      timeZone: &#x27;America/Lima&#x27;,
+      year: &#x27;numeric&#x27;,
+      month: &#x27;2-digit&#x27;,
+      day: &#x27;2-digit&#x27;,
+    });
+    // en-CA &#x3D;&gt; YYYY-MM-DD
+    return fmt.format(dt);
+  }
+
+  private isFuture(ymd: string): boolean {
+    const today &#x3D; this.todayYmdPeru();
+    return (ymd ?? &#x27;&#x27;) &gt; today; // compare lexicográfico funciona en YYYY-MM-DD
+  }
+
+  async onSubmit() {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      await this.notify.ok({
+        variant: &#x27;warning&#x27;,
+        title: &#x27;Datos incompletos&#x27;,
+        message: &#x27;Revisa los campos obligatorios e inténtalo nuevamente.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    const vm &#x3D; this.form.getRawValue();
+
+    // Regla local mínima: no permitir futuro (backend también valida)
+    if (this.isFuture(vm.fecha_ymd)) {
+      await this.notify.ok({
+        variant: &#x27;warning&#x27;,
+        title: &#x27;Fecha inválida&#x27;,
+        message: &#x27;No se puede justificar una fecha futura.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    this.submitting &#x3D; true;
+
+    try {
+      const id &#x3D; await this.service.create(vm);
+
+      await this.notify.ok({
+        variant: &#x27;success&#x27;,
+        title: &#x27;Solicitud registrada&#x27;,
+        message: &#x60;La justificación fue enviada correctamente (ID: ${id}). Queda pendiente de revisión.&#x60;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+
+      // Navegación sugerida: a “Mis justificaciones” (si aún no existe, cambie al destino que prefiera)
+      this.router.navigate([&#x27;/asistencia/justificacion/mis&#x27;]);
+    } catch {
+      // Interceptor ya muestra el error del backend (title/message)
+    } finally {
+      this.submitting &#x3D; false;
+    }
+  }
+
+  async onBack() {
+    if (this.form.dirty) {
+      const ok &#x3D; await this.notify.confirm({
+        variant: &#x27;warning&#x27;,
+        title: &#x27;Descartar cambios&#x27;,
+        message: &#x27;Hay datos sin guardar. ¿Deseas descartarlos?&#x27;,
+        confirmText: &#x27;Descartar&#x27;,
+        cancelText: &#x27;Seguir aquí&#x27;,
+      });
+      if (!ok) return;
+    }
+    // Si prefiere, reemplazar por una ruta fija
+    this.router.navigate([&#x27;/asistencia/justificacion/mis&#x27;]);
+  }
+}
+
+type ControlsOf&lt;T&gt; &#x3D; {
+  [K in keyof T]: FormControl&lt;T[K]&gt;;
+};
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container&quot;&gt;
+  &lt;div class&#x3D;&quot;row justify-content-center&quot;&gt;
+    &lt;div class&#x3D;&quot;col-12 col-lg-8&quot;&gt;
+      &lt;div class&#x3D;&quot;card shadow-sm&quot;&gt;
+        &lt;div class&#x3D;&quot;card-body&quot;&gt;
+
+          &lt;h5 class&#x3D;&quot;mb-4&quot;&gt;Registrar justificación&lt;/h5&gt;
+
+          &lt;form [formGroup]&#x3D;&quot;form&quot; novalidate [class.was-validated]&#x3D;&quot;submitting&quot;&gt;
+
+            &lt;!-- Fecha --&gt;
+            &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label fw-semibold&quot;&gt;Fecha&lt;/label&gt;
+              &lt;input type&#x3D;&quot;date&quot; class&#x3D;&quot;form-control&quot; formControlName&#x3D;&quot;fecha_ymd&quot; required /&gt;
+              &lt;div class&#x3D;&quot;form-text&quot;&gt;
+                Solo se permite justificar fechas pasadas o el día de hoy.
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;!-- Tipo --&gt;
+            &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label fw-semibold&quot;&gt;Tipo de justificación&lt;/label&gt;
+              &lt;select class&#x3D;&quot;form-select&quot; formControlName&#x3D;&quot;tipo&quot; required&gt;
+                &lt;option value&#x3D;&quot;&quot; disabled&gt;Seleccione un tipo&lt;/option&gt;
+                @for (opt of tipoOpciones; track opt.value) {
+                  &lt;option [value]&#x3D;&quot;opt.value&quot;&gt;{{ opt.label }}&lt;/option&gt;
+                }
+              &lt;/select&gt;
+
+              @if (tipoHelp) {
+                &lt;div class&#x3D;&quot;alert alert-info mt-3 mb-0&quot;&gt;
+                  {{ tipoHelp }}
+                &lt;/div&gt;
+              }
+            &lt;/div&gt;
+
+            &lt;!-- Motivo --&gt;
+            &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label fw-semibold&quot;&gt;Motivo (obligatorio)&lt;/label&gt;
+              &lt;input
+                type&#x3D;&quot;text&quot;
+                maxlength&#x3D;&quot;120&quot;
+                class&#x3D;&quot;form-control&quot;
+                formControlName&#x3D;&quot;motivo&quot;
+                placeholder&#x3D;&quot;Ej.: Cita médica / comisión / error de marca&quot;
+                required
+              /&gt;
+            &lt;/div&gt;
+
+            &lt;!-- Detalle --&gt;
+            &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot;&gt;Detalle (opcional)&lt;/label&gt;
+              &lt;textarea
+                class&#x3D;&quot;form-control&quot;
+                formControlName&#x3D;&quot;detalle&quot;
+                rows&#x3D;&quot;3&quot;
+                placeholder&#x3D;&quot;Explique brevemente el contexto y cualquier evidencia relevante.&quot;
+              &gt;&lt;/textarea&gt;
+            &lt;/div&gt;
+
+            &lt;!-- Botones --&gt;
+            &lt;div class&#x3D;&quot;d-flex justify-content-between mt-4&quot;&gt;
+              &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-warning&quot; (click)&#x3D;&quot;onBack()&quot;&gt;
+                Regresar
+              &lt;/button&gt;
+
+              &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-success&quot; (click)&#x3D;&quot;onSubmit()&quot;&gt;
+                Registrar
+              &lt;/button&gt;
+            &lt;/div&gt;
+
+          &lt;/form&gt;
+
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./justificacion.registrar.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">/* justificacion.registrar.css */
+.card {
+  border-radius: 12px;
+}
+.alert {
+  border-radius: 10px;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="container">  <div class="row justify-content-center">    <div class="col-12 col-lg-8">      <div class="card shadow-sm">        <div class="card-body">          <h5 class="mb-4">Registrar justificación</h5>          <form [formGroup]="form" novalidate [class.was-validated]="submitting">            <!-- Fecha -->            <div class="mb-3">              <label class="form-label fw-semibold">Fecha</label>              <input type="date" class="form-control" formControlName="fecha_ymd" required />              <div class="form-text">                Solo se permite justificar fechas pasadas o el día de hoy.              </div>            </div>            <!-- Tipo -->            <div class="mb-3">              <label class="form-label fw-semibold">Tipo de justificación</label>              <select class="form-select" formControlName="tipo" required>                <option value="" disabled>Seleccione un tipo</option>                @for (opt of tipoOpciones; track opt.value) {                  <option [value]="opt.value">{{ opt.label }}</option>                }              </select>              @if (tipoHelp) {                <div class="alert alert-info mt-3 mb-0">                  {{ tipoHelp }}                </div>              }            </div>            <!-- Motivo -->            <div class="mb-3">              <label class="form-label fw-semibold">Motivo (obligatorio)</label>              <input                type="text"                maxlength="120"                class="form-control"                formControlName="motivo"                placeholder="Ej.: Cita médica / comisión / error de marca"                required              />            </div>            <!-- Detalle -->            <div class="mb-3">              <label class="form-label">Detalle (opcional)</label>              <textarea                class="form-control"                formControlName="detalle"                rows="3"                placeholder="Explique brevemente el contexto y cualquier evidencia relevante."              ></textarea>            </div>            <!-- Botones -->            <div class="d-flex justify-content-between mt-4">              <button type="button" class="btn btn-warning" (click)="onBack()">                Regresar              </button>              <button type="button" class="btn btn-success" (click)="onSubmit()">                Registrar              </button>            </div>          </form>        </div>      </div>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AnaliticasDashboard', 'selector': 'app-analiticas-dashboard'},{'name': 'App', 'selector': 'app-root'},{'name': 'AsistenciaLista', 'selector': 'app-asistencia-lista'},{'name': 'AsistenciasDashboard', 'selector': 'app-asistencias-dashboard'},{'name': 'AudienciaCalendario', 'selector': 'app-audiencia-calendario'},{'name': 'AudienciaDetalle', 'selector': 'app-audiencia-detalle'},{'name': 'AudienciaRegistrar', 'selector': 'app-audiencia-registrar'},{'name': 'CiudadanoDetalle', 'selector': 'app-ciudadano-detalle'},{'name': 'CiudadanoLista', 'selector': 'app-ciudadano-lista'},{'name': 'CiudadanoRegistrar', 'selector': 'app-ciudadano-registrar'},{'name': 'ConfirmarCorreo', 'selector': 'app-cuenta-confirmar-correo'},{'name': 'ConsultaDetalle', 'selector': 'app-consulta-detalle'},{'name': 'ConsultaLista', 'selector': 'app-consulta-lista'},{'name': 'ConsultaListaCiudadano', 'selector': 'app-consulta-lista-ciudadano'},{'name': 'ConsultaRegistar', 'selector': 'app-consulta-registrar'},{'name': 'DocumentosListaEntidad', 'selector': 'app-documentos-lista-entidad'},{'name': 'DocumentosListaGeneral', 'selector': 'app-documentos-lista-general'},{'name': 'DocumentosRegistrar', 'selector': 'app-documentos-registrar'},{'name': 'DocumentosRutaBaseLista', 'selector': 'app-documentos-ruta-base-lista'},{'name': 'DocumentosRutaBaseRegistrar', 'selector': 'app-documentos-ruta-base-registrar'},{'name': 'ExportarConDriveComponent', 'selector': 'app-exportar-con-drive'},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'Header', 'selector': 'app-header'},{'name': 'HorarioDetalle', 'selector': 'app-horario-detalle'},{'name': 'HorarioLista', 'selector': 'app-horario-lista'},{'name': 'HorarioRegistrar', 'selector': 'app-horario-registrar'},{'name': 'Ingresar', 'selector': 'app-cuenta-ingresar'},{'name': 'JustificacionListaMis', 'selector': 'app-justificacion-lista-mis'},{'name': 'JustificacionListaPendientes', 'selector': 'app-justificacion-lista-pendientes'},{'name': 'JustificacionRegistrar', 'selector': 'app-justificacion-registrar'},{'name': 'Main_layout', 'selector': 'app-main-layout'},{'name': 'NotificacionestVer', 'selector': 'app-notificaciones-ver'},{'name': 'PaginaNoEncontradaComponent', 'selector': 'app-pagina-no-encontrada'},{'name': 'Perfil', 'selector': 'app-cuenta-perfil'},{'name': 'ProcesoDetalle', 'selector': 'app-proceso-detalle'},{'name': 'ProcesoLista', 'selector': 'app-proceso-lista'},{'name': 'ProcesoRegistrar', 'selector': 'app-proceso-registrar'},{'name': 'Registar', 'selector': 'app-cuenta-registrar'},{'name': 'SeguimientoListaConsulta', 'selector': 'app-seguimiento-lista-consulta'},{'name': 'SeguimientoRegistar', 'selector': 'app-seguimiento-registrar'},{'name': 'Sidebar', 'selector': 'app-sidebar'},{'name': 'Simple_layout', 'selector': 'app-simple_layout'},{'name': 'TramiteDetalle', 'selector': 'app-tramite-detalle'},{'name': 'TramiteLista', 'selector': 'app-tramite-lista'},{'name': 'TramiteRegistrar', 'selector': 'app-tramite-registrar'},{'name': 'UsuarioDetalle', 'selector': 'app-usuario-detalle'},{'name': 'UsuarioHorarioListaUsuario', 'selector': 'app-usuario-horario-lista-usuario'},{'name': 'UsuarioLista', 'selector': 'app-usuario-lista'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'JustificacionRegistrar'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'JustificacionRegistrar.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

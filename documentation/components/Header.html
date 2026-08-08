@@ -1,0 +1,2158 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">frontend documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  Header</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/components/header/header.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" class="nav-link"
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.dev/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.dev/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-header</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                        <div>        <code><a href="https://angular.dev/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./header.css</code></td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./header.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./header.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+        <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="../components/Main_layout.html" target="_self" >Main_layout</a></code>
+                                </li>
+                        </ul>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="https://angular.dev/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/core/OnInit" target="_blank" >OnInit</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+</div>
+
+    <div class="tab-pane fade " id="api">    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#auth" >auth</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#backLink" >backLink</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#lastNotificationFetch" >lastNotificationFetch</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#metaSvc" >metaSvc</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#notificationItems" >notificationItems</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#notificationLoading" >notificationLoading</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#notificationOpen" >notificationOpen</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#notifications" >notifications</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#router" >router</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#subscriptions" >subscriptions</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#title" >title</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#unreadCount" >unreadCount</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#applyMeta" >applyMeta</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier"></span>
+                                <a href="#closeNotificationMenu" >closeNotificationMenu</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#descartarNotification" >descartarNotification</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#fechaNotificacion" >fechaNotificacion</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#goBack" >goBack</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#keepNotificationMenuOpen" >keepNotificationMenuOpen</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#onLogout" >onLogout</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#refreshNotifications" >refreshNotifications</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#toggleNotifications" >toggleNotifications</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#trackNotification" >trackNotification</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>HostListeners</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">HL</span><a href="#document:click" >document:click</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/components/header/header.ts:39</a></div>
+                            </td>
+                        </tr>
+
+            </tbody>
+        </table>
+</section>
+
+
+
+
+    <section data-compodoc="block-methods">
+    <h3>HostListeners</h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="document:click"></a>
+                    <span class="name">
+                        <span ><b>document:click</b></span>
+                        <a href="#document:click"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>document:click()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="89"
+                                    class="link-to-prism">src/app/components/header/header.ts:89</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="applyMeta"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>applyMeta</b></span>
+                        <a href="#applyMeta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>applyMeta(meta: <a href="../interfaces/PageMeta.html" target="_self">PageMeta | undefined | null</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="176"
+                                    class="link-to-prism">src/app/components/header/header.ts:176</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>meta</td>
+                                            <td>
+                                                            <code><a href="../interfaces/PageMeta.html" target="_self" >PageMeta | undefined | null</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closeNotificationMenu"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>closeNotificationMenu</b></span>
+                        <a href="#closeNotificationMenu"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>closeNotificationMenu()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@HostListener(&#x27;document:click&#x27;)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="89"
+                                    class="link-to-prism">src/app/components/header/header.ts:89</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="descartarNotification"></a>
+                    <span class="name">
+                        <span ><b>descartarNotification</b></span>
+                        <a href="#descartarNotification"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>descartarNotification(event: MouseEvent, item: <a href="../interfaces/ApiNotificacionSistemaItem.html" target="_self">ApiNotificacionSistemaItem</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="128"
+                                    class="link-to-prism">src/app/components/header/header.ts:128</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>MouseEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ApiNotificacionSistemaItem.html" target="_self" >ApiNotificacionSistemaItem</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fechaNotificacion"></a>
+                    <span class="name">
+                        <span ><b>fechaNotificacion</b></span>
+                        <a href="#fechaNotificacion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>fechaNotificacion(item: <a href="../interfaces/ApiNotificacionSistemaItem.html" target="_self">ApiNotificacionSistemaItem</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="146"
+                                    class="link-to-prism">src/app/components/header/header.ts:146</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ApiNotificacionSistemaItem.html" target="_self" >ApiNotificacionSistemaItem</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goBack"></a>
+                    <span class="name">
+                        <span ><b>goBack</b></span>
+                        <a href="#goBack"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goBack()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="98"
+                                    class="link-to-prism">src/app/components/header/header.ts:98</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="keepNotificationMenuOpen"></a>
+                    <span class="name">
+                        <span ><b>keepNotificationMenuOpen</b></span>
+                        <a href="#keepNotificationMenuOpen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>keepNotificationMenuOpen(event: MouseEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="124"
+                                    class="link-to-prism">src/app/components/header/header.ts:124</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>MouseEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="84"
+                                    class="link-to-prism">src/app/components/header/header.ts:84</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="47"
+                                    class="link-to-prism">src/app/components/header/header.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onLogout"></a>
+                    <span class="name">
+                        <span ><b>onLogout</b></span>
+                        <a href="#onLogout"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onLogout()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="93"
+                                    class="link-to-prism">src/app/components/header/header.ts:93</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="refreshNotifications"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>refreshNotifications</b></span>
+                        <a href="#refreshNotifications"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>refreshNotifications(showLoading: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="158"
+                                    class="link-to-prism">src/app/components/header/header.ts:158</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>showLoading</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleNotifications"></a>
+                    <span class="name">
+                        <span ><b>toggleNotifications</b></span>
+                        <a href="#toggleNotifications"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleNotifications(event: MouseEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="108"
+                                    class="link-to-prism">src/app/components/header/header.ts:108</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>MouseEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="trackNotification"></a>
+                    <span class="name">
+                        <span ><b>trackNotification</b></span>
+                        <a href="#trackNotification"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>trackNotification(_index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, item: <a href="../interfaces/ApiNotificacionSistemaItem.html" target="_self">ApiNotificacionSistemaItem</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="142"
+                                    class="link-to-prism">src/app/components/header/header.ts:142</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>_index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ApiNotificacionSistemaItem.html" target="_self" >ApiNotificacionSistemaItem</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="auth"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>auth</b></span>
+                        <a href="#auth"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(AuthService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/header/header.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="backLink"></a>
+                    <span class="name">
+                        <span ><b>backLink</b></span>
+                        <a href="#backLink"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | any[] | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/components/header/header.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="lastNotificationFetch"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>lastNotificationFetch</b></span>
+                        <a href="#lastNotificationFetch"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/components/header/header.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="metaSvc"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>metaSvc</b></span>
+                        <a href="#metaSvc"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(PageMetaService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/components/header/header.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="notificationItems"></a>
+                    <span class="name">
+                        <span ><b>notificationItems</b></span>
+                        <a href="#notificationItems"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ApiNotificacionSistemaItem.html" target="_self" >ApiNotificacionSistemaItem[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/components/header/header.ts:33</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="notificationLoading"></a>
+                    <span class="name">
+                        <span ><b>notificationLoading</b></span>
+                        <a href="#notificationLoading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/components/header/header.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="notificationOpen"></a>
+                    <span class="name">
+                        <span ><b>notificationOpen</b></span>
+                        <a href="#notificationOpen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/components/header/header.ts:35</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="notifications"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>notifications</b></span>
+                        <a href="#notifications"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(NotificacionSistemaService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/components/header/header.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="router"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>router</b></span>
+                        <a href="#router"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(Router)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/components/header/header.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subscriptions"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>subscriptions</b></span>
+                        <a href="#subscriptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Subscription()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/components/header/header.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="title"></a>
+                    <span class="name">
+                        <span ><b>title</b></span>
+                        <a href="#title"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/components/header/header.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="unreadCount"></a>
+                    <span class="name">
+                        <span ><b>unreadCount</b></span>
+                        <a href="#unreadCount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/components/header/header.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule } from &#x27;@angular/common&#x27;;
+import {
+  Component,
+  HostListener,
+  OnDestroy,
+  OnInit,
+  inject,
+} from &#x27;@angular/core&#x27;;
+import { NavigationEnd, Router } from &#x27;@angular/router&#x27;;
+import { Subscription, filter, fromEvent, interval } from &#x27;rxjs&#x27;;
+
+import { AuthService } from &#x27;@/app/auth/auth.service&#x27;;
+import { ApiNotificacionSistemaItem } from &#x27;@/app/components/notificaciones-sistema/models/notificacion-sistema.api&#x27;;
+import { NotificacionSistemaService } from &#x27;@/app/components/notificaciones-sistema/services/notificacion-sistema.service&#x27;;
+import { PageMeta, PageMetaService } from &#x27;@/app/services/page_meta.service&#x27;;
+
+@Component({
+  selector: &#x27;app-header&#x27;,
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: &#x27;./header.html&#x27;,
+  styleUrl: &#x27;./header.css&#x27;,
+})
+export class Header implements OnInit, OnDestroy {
+  private readonly auth &#x3D; inject(AuthService);
+  private readonly router &#x3D; inject(Router);
+  private readonly metaSvc &#x3D; inject(PageMetaService);
+  private readonly notifications &#x3D; inject(NotificacionSistemaService);
+
+  title &#x3D; &#x27;&#x27;;
+  backLink: string | any[] | null &#x3D; null;
+
+  notificationItems: ApiNotificacionSistemaItem[] &#x3D; [];
+  unreadCount &#x3D; 0;
+  notificationOpen &#x3D; false;
+  notificationLoading &#x3D; false;
+
+  private readonly subscriptions &#x3D; new Subscription();
+  private lastNotificationFetch &#x3D; 0;
+
+  constructor() {
+    this.subscriptions.add(
+      this.metaSvc.meta$.subscribe((meta) &#x3D;&gt; this.applyMeta(meta)),
+    );
+  }
+
+  ngOnInit(): void {
+    this.refreshNotifications(true);
+
+    this.subscriptions.add(
+      interval(10 * 60_000).subscribe(() &#x3D;&gt; this.refreshNotifications(true)),
+    );
+
+    this.subscriptions.add(
+      this.router.events
+        .pipe(filter((event) &#x3D;&gt; event instanceof NavigationEnd))
+        .subscribe(() &#x3D;&gt; {
+          if (Date.now() - this.lastNotificationFetch &gt;&#x3D; 2 * 60_000) {
+            this.refreshNotifications(false);
+          }
+        }),
+    );
+
+    this.subscriptions.add(
+      fromEvent(document, &#x27;visibilitychange&#x27;).subscribe(() &#x3D;&gt; {
+        if (
+          document.visibilityState &#x3D;&#x3D;&#x3D; &#x27;visible&#x27; &amp;&amp;
+          Date.now() - this.lastNotificationFetch &gt;&#x3D; 30_000
+        ) {
+          this.refreshNotifications(false);
+        }
+      }),
+    );
+
+    this.subscriptions.add(
+      fromEvent(window, &#x27;focus&#x27;).subscribe(() &#x3D;&gt; {
+        if (Date.now() - this.lastNotificationFetch &gt;&#x3D; 30_000) {
+          this.refreshNotifications(false);
+        }
+      }),
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+  }
+
+  @HostListener(&#x27;document:click&#x27;)
+  closeNotificationMenu(): void {
+    this.notificationOpen &#x3D; false;
+  }
+
+  onLogout(): void {
+    this.auth.logout();
+    this.router.navigateByUrl(&#x27;/login&#x27;);
+  }
+
+  goBack(): void {
+    if (Array.isArray(this.backLink)) {
+      this.router.navigate(this.backLink);
+    } else if (typeof this.backLink &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) {
+      this.router.navigateByUrl(this.backLink);
+    } else {
+      window.history.back();
+    }
+  }
+
+  toggleNotifications(event: MouseEvent): void {
+    event.stopPropagation();
+    this.notificationOpen &#x3D; !this.notificationOpen;
+
+    if (this.notificationOpen &amp;&amp; this.unreadCount &gt; 0) {
+      this.notificationItems &#x3D; this.notificationItems.map((item) &#x3D;&gt; ({
+        ...item,
+        leida: true,
+      }));
+      this.unreadCount &#x3D; 0;
+      this.notifications.marcarTodasLeidas().subscribe({
+        error: () &#x3D;&gt; this.refreshNotifications(true),
+      });
+    }
+  }
+
+  keepNotificationMenuOpen(event: MouseEvent): void {
+    event.stopPropagation();
+  }
+
+  descartarNotification(
+    event: MouseEvent,
+    item: ApiNotificacionSistemaItem,
+  ): void {
+    event.stopPropagation();
+    this.notificationItems &#x3D; this.notificationItems.filter(
+      (current) &#x3D;&gt; current.id !&#x3D;&#x3D; item.id,
+    );
+
+    this.notifications.descartar(item.id).subscribe({
+      error: () &#x3D;&gt; this.refreshNotifications(true),
+    });
+  }
+
+  trackNotification(_index: number, item: ApiNotificacionSistemaItem): number {
+    return item.id;
+  }
+
+  fechaNotificacion(item: ApiNotificacionSistemaItem): string {
+    const value &#x3D; item.fecha_evento ?? item.creado_en;
+    const date &#x3D; new Date(value);
+    if (Number.isNaN(date.getTime())) return &#x27;—&#x27;;
+
+    return new Intl.DateTimeFormat(&#x27;es-PE&#x27;, {
+      dateStyle: &#x27;short&#x27;,
+      timeStyle: &#x27;short&#x27;,
+      timeZone: &#x27;America/Lima&#x27;,
+    }).format(date);
+  }
+
+  private refreshNotifications(showLoading: boolean): void {
+    if (this.notificationLoading) return;
+    this.notificationLoading &#x3D; showLoading;
+
+    this.notifications.getMias(20).subscribe({
+      next: (response) &#x3D;&gt; {
+        this.notificationItems &#x3D; response.items ?? [];
+        this.unreadCount &#x3D; Number(response.no_leidas ?? 0);
+        this.lastNotificationFetch &#x3D; Date.now();
+        this.notificationLoading &#x3D; false;
+      },
+      error: () &#x3D;&gt; {
+        this.lastNotificationFetch &#x3D; Date.now();
+        this.notificationLoading &#x3D; false;
+      },
+    });
+  }
+
+  private applyMeta(meta: PageMeta | undefined | null): void {
+    this.title &#x3D; meta?.titulo?.trim() ?? &#x27;&#x27;;
+    this.backLink &#x3D; meta?.ruta ?? null;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;nav class&#x3D;&quot;navbar navbar-dark color_azul header-navbar&quot; style&#x3D;&quot;user-select: none;&quot;&gt;
+  &lt;div class&#x3D;&quot;container-fluid header-bar&quot;&gt;
+    &lt;div class&#x3D;&quot;back-slot&quot;&gt;
+      @if (backLink) {
+        &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-back&quot; (click)&#x3D;&quot;goBack()&quot; aria-label&#x3D;&quot;Volver&quot;&gt;
+          ⬅️
+        &lt;/button&gt;
+      } @else {
+        &lt;span class&#x3D;&quot;btn-back placeholder&quot; aria-hidden&#x3D;&quot;true&quot;&gt;⬅️&lt;/span&gt;
+      }
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;navbar-brand title-slot&quot;&gt;
+      &lt;span class&#x3D;&quot;title-text&quot;&gt;{{ title || &#x27; &#x27; }}&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;header-actions&quot;&gt;
+      &lt;div class&#x3D;&quot;notification-area&quot; (click)&#x3D;&quot;keepNotificationMenuOpen($event)&quot;&gt;
+        &lt;button
+          type&#x3D;&quot;button&quot;
+          class&#x3D;&quot;notification-button&quot;
+          [class.has-unread]&#x3D;&quot;unreadCount &gt; 0&quot;
+          (click)&#x3D;&quot;toggleNotifications($event)&quot;
+          aria-label&#x3D;&quot;Notificaciones&quot;
+          [attr.aria-expanded]&#x3D;&quot;notificationOpen&quot;&gt;
+          &lt;span class&#x3D;&quot;notification-bell&quot; aria-hidden&#x3D;&quot;true&quot;&gt;🔔&lt;/span&gt;
+          @if (unreadCount &gt; 0) {
+            &lt;span class&#x3D;&quot;notification-counter&quot;&gt;
+              {{ unreadCount &gt; 99 ? &#x27;99+&#x27; : unreadCount }}
+            &lt;/span&gt;
+          }
+        &lt;/button&gt;
+
+        @if (notificationOpen) {
+          &lt;div class&#x3D;&quot;notification-menu shadow-lg&quot; (click)&#x3D;&quot;keepNotificationMenuOpen($event)&quot;&gt;
+            &lt;div class&#x3D;&quot;notification-menu-header&quot;&gt;
+              &lt;strong&gt;Notificaciones&lt;/strong&gt;
+              &lt;button
+                type&#x3D;&quot;button&quot;
+                class&#x3D;&quot;btn-close btn-close-sm&quot;
+                aria-label&#x3D;&quot;Cerrar&quot;
+                (click)&#x3D;&quot;notificationOpen &#x3D; false&quot;&gt;
+              &lt;/button&gt;
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;notification-menu-body&quot;&gt;
+              @if (notificationLoading &amp;&amp; notificationItems.length &#x3D;&#x3D;&#x3D; 0) {
+                &lt;div class&#x3D;&quot;notification-empty&quot;&gt;Cargando…&lt;/div&gt;
+              } @else if (notificationItems.length &#x3D;&#x3D;&#x3D; 0) {
+                &lt;div class&#x3D;&quot;notification-empty&quot;&gt;No hay notificaciones pendientes.&lt;/div&gt;
+              } @else {
+                @for (item of notificationItems; track trackNotification($index, item)) {
+                  &lt;article class&#x3D;&quot;notification-item&quot; [class.unread]&#x3D;&quot;!item.leida&quot;&gt;
+                    &lt;div class&#x3D;&quot;notification-item-main&quot;&gt;
+                      &lt;div class&#x3D;&quot;notification-title&quot;&gt;{{ item.titulo }}&lt;/div&gt;
+                      &lt;div class&#x3D;&quot;notification-message&quot;&gt;{{ item.mensaje }}&lt;/div&gt;
+                      &lt;div class&#x3D;&quot;notification-date&quot;&gt;{{ fechaNotificacion(item) }}&lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;button
+                      type&#x3D;&quot;button&quot;
+                      class&#x3D;&quot;notification-dismiss&quot;
+                      aria-label&#x3D;&quot;Descartar notificación&quot;
+                      title&#x3D;&quot;No volver a mostrar&quot;
+                      (click)&#x3D;&quot;descartarNotification($event, item)&quot;&gt;
+                      ×
+                    &lt;/button&gt;
+                  &lt;/article&gt;
+                }
+              }
+            &lt;/div&gt;
+          &lt;/div&gt;
+        }
+      &lt;/div&gt;
+
+      &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;logout-button&quot; (click)&#x3D;&quot;onLogout()&quot;&gt;
+        Cerrar sesión
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./header.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">:host {
+  display: block;
+  position: relative;
+  z-index: 1030;
+}
+
+.color_azul { background: #0199d0; }
+
+.header-navbar { min-height: 56px; }
+
+.header-bar {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: .5rem;
+  min-height: 40px;
+}
+
+.back-slot {
+  width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-back {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  color: #fff;
+  display: inline-flex;
+  font-size: 1.25rem;
+  height: 36px;
+  justify-content: center;
+  line-height: 1;
+  width: 36px;
+  transition: opacity .15s ease;
+}
+
+.btn-back:hover { opacity: .9; }
+.btn-back.placeholder { opacity: 0; pointer-events: none; }
+
+.title-slot {
+  min-height: 1.75rem;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  margin: 0;
+}
+
+.title-text {
+  display: inline-block;
+  font-weight: 600;
+  min-width: 8ch;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.header-actions {
+  align-items: center;
+  display: flex;
+  gap: .5rem;
+}
+
+.logout-button,
+.notification-button {
+  border: 0;
+  background: transparent;
+  color: #fff;
+}
+
+.logout-button {
+  border-radius: .45rem;
+  font-size: .9rem;
+  padding: .45rem .6rem;
+}
+
+.logout-button:hover { background: rgba(255, 255, 255, .12); }
+
+.notification-area { position: relative; }
+
+.notification-button {
+  align-items: center;
+  border-radius: 50%;
+  display: inline-flex;
+  height: 40px;
+  justify-content: center;
+  position: relative;
+  width: 40px;
+}
+
+.notification-button:hover,
+.notification-button.has-unread {
+  background: rgba(255, 255, 255, .14);
+}
+
+.notification-bell { font-size: 1.25rem; line-height: 1; }
+
+.notification-counter {
+  align-items: center;
+  background: #dc3545;
+  border: 2px solid #0199d0;
+  border-radius: 999px;
+  color: #fff;
+  display: flex;
+  font-size: .62rem;
+  font-weight: 700;
+  height: 18px;
+  justify-content: center;
+  min-width: 18px;
+  padding: 0 .2rem;
+  position: absolute;
+  right: -1px;
+  top: -2px;
+}
+
+.notification-menu {
+  background: #fff;
+  border: 1px solid #d9e2ec;
+  border-radius: .8rem;
+  color: #1f2937;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: calc(100% + .55rem);
+  width: min(390px, calc(100vw - 1rem));
+  z-index: 1100;
+}
+
+.notification-menu-header {
+  align-items: center;
+  border-bottom: 1px solid #e6edf3;
+  display: flex;
+  justify-content: space-between;
+  min-height: 48px;
+  padding: .7rem .9rem;
+}
+
+.notification-menu-body {
+  max-height: min(480px, calc(100vh - 100px));
+  overflow-y: auto;
+}
+
+.notification-item {
+  align-items: flex-start;
+  border-bottom: 1px solid #edf1f5;
+  display: flex;
+  gap: .65rem;
+  padding: .8rem .85rem;
+}
+
+.notification-item:last-child { border-bottom: 0; }
+.notification-item.unread { background: #f0f8ff; }
+.notification-item-main { flex: 1 1 auto; min-width: 0; }
+.notification-title { color: #12344d; font-size: .9rem; font-weight: 700; }
+.notification-message { color: #425466; font-size: .82rem; line-height: 1.35; margin-top: .2rem; }
+.notification-date { color: #7b8794; font-size: .72rem; margin-top: .35rem; }
+
+.notification-dismiss {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  color: #6c757d;
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-size: 1.25rem;
+  height: 28px;
+  justify-content: center;
+  line-height: 1;
+  width: 28px;
+}
+
+.notification-dismiss:hover { background: #f1f3f5; color: #212529; }
+.notification-empty { color: #6c757d; padding: 1.4rem 1rem; text-align: center; }
+
+@media (max-width: 575.98px) {
+  .logout-button { font-size: 0; width: 40px; height: 40px; }
+  .logout-button::after { content: &#x27;↪&#x27;; font-size: 1.25rem; }
+  .notification-menu { position: fixed; right: .5rem; top: 60px; }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><nav class="navbar navbar-dark color_azul header-navbar" style="user-select: none;">  <div class="container-fluid header-bar">    <div class="back-slot">      @if (backLink) {        <button type="button" class="btn btn-back" (click)="goBack()" aria-label="Volver">          ⬅️        </button>      } @else {        <span class="btn-back placeholder" aria-hidden="true">⬅️</span>      }    </div>    <div class="navbar-brand title-slot">      <span class="title-text">{{ title || \' \' }}</span>    </div>    <div class="header-actions">      <div class="notification-area" (click)="keepNotificationMenuOpen($event)">        <button          type="button"          class="notification-button"          [class.has-unread]="unreadCount > 0"          (click)="toggleNotifications($event)"          aria-label="Notificaciones"          [attr.aria-expanded]="notificationOpen">          <span class="notification-bell" aria-hidden="true">🔔</span>          @if (unreadCount > 0) {            <span class="notification-counter">              {{ unreadCount > 99 ? \'99+\' : unreadCount }}            </span>          }        </button>        @if (notificationOpen) {          <div class="notification-menu shadow-lg" (click)="keepNotificationMenuOpen($event)">            <div class="notification-menu-header">              <strong>Notificaciones</strong>              <button                type="button"                class="btn-close btn-close-sm"                aria-label="Cerrar"                (click)="notificationOpen = false">              </button>            </div>            <div class="notification-menu-body">              @if (notificationLoading && notificationItems.length === 0) {                <div class="notification-empty">Cargando…</div>              } @else if (notificationItems.length === 0) {                <div class="notification-empty">No hay notificaciones pendientes.</div>              } @else {                @for (item of notificationItems; track trackNotification($index, item)) {                  <article class="notification-item" [class.unread]="!item.leida">                    <div class="notification-item-main">                      <div class="notification-title">{{ item.titulo }}</div>                      <div class="notification-message">{{ item.mensaje }}</div>                      <div class="notification-date">{{ fechaNotificacion(item) }}</div>                    </div>                    <button                      type="button"                      class="notification-dismiss"                      aria-label="Descartar notificación"                      title="No volver a mostrar"                      (click)="descartarNotification($event, item)">                      ×                    </button>                  </article>                }              }            </div>          </div>        }      </div>      <button type="button" class="logout-button" (click)="onLogout()">        Cerrar sesión      </button>    </div>  </div></nav></div>'
+    var COMPONENTS = [{'name': 'AnaliticasDashboard', 'selector': 'app-analiticas-dashboard'},{'name': 'App', 'selector': 'app-root'},{'name': 'AsistenciaLista', 'selector': 'app-asistencia-lista'},{'name': 'AsistenciasDashboard', 'selector': 'app-asistencias-dashboard'},{'name': 'AudienciaCalendario', 'selector': 'app-audiencia-calendario'},{'name': 'AudienciaDetalle', 'selector': 'app-audiencia-detalle'},{'name': 'AudienciaRegistrar', 'selector': 'app-audiencia-registrar'},{'name': 'CiudadanoDetalle', 'selector': 'app-ciudadano-detalle'},{'name': 'CiudadanoLista', 'selector': 'app-ciudadano-lista'},{'name': 'CiudadanoRegistrar', 'selector': 'app-ciudadano-registrar'},{'name': 'ConfirmarCorreo', 'selector': 'app-cuenta-confirmar-correo'},{'name': 'ConsultaDetalle', 'selector': 'app-consulta-detalle'},{'name': 'ConsultaLista', 'selector': 'app-consulta-lista'},{'name': 'ConsultaListaCiudadano', 'selector': 'app-consulta-lista-ciudadano'},{'name': 'ConsultaRegistar', 'selector': 'app-consulta-registrar'},{'name': 'DocumentosListaEntidad', 'selector': 'app-documentos-lista-entidad'},{'name': 'DocumentosListaGeneral', 'selector': 'app-documentos-lista-general'},{'name': 'DocumentosRegistrar', 'selector': 'app-documentos-registrar'},{'name': 'DocumentosRutaBaseLista', 'selector': 'app-documentos-ruta-base-lista'},{'name': 'DocumentosRutaBaseRegistrar', 'selector': 'app-documentos-ruta-base-registrar'},{'name': 'ExportarConDriveComponent', 'selector': 'app-exportar-con-drive'},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'Header', 'selector': 'app-header'},{'name': 'HorarioDetalle', 'selector': 'app-horario-detalle'},{'name': 'HorarioLista', 'selector': 'app-horario-lista'},{'name': 'HorarioRegistrar', 'selector': 'app-horario-registrar'},{'name': 'Ingresar', 'selector': 'app-cuenta-ingresar'},{'name': 'JustificacionListaMis', 'selector': 'app-justificacion-lista-mis'},{'name': 'JustificacionListaPendientes', 'selector': 'app-justificacion-lista-pendientes'},{'name': 'JustificacionRegistrar', 'selector': 'app-justificacion-registrar'},{'name': 'Main_layout', 'selector': 'app-main-layout'},{'name': 'NotificacionestVer', 'selector': 'app-notificaciones-ver'},{'name': 'PaginaNoEncontradaComponent', 'selector': 'app-pagina-no-encontrada'},{'name': 'Perfil', 'selector': 'app-cuenta-perfil'},{'name': 'ProcesoDetalle', 'selector': 'app-proceso-detalle'},{'name': 'ProcesoLista', 'selector': 'app-proceso-lista'},{'name': 'ProcesoRegistrar', 'selector': 'app-proceso-registrar'},{'name': 'Registar', 'selector': 'app-cuenta-registrar'},{'name': 'SeguimientoListaConsulta', 'selector': 'app-seguimiento-lista-consulta'},{'name': 'SeguimientoRegistar', 'selector': 'app-seguimiento-registrar'},{'name': 'Sidebar', 'selector': 'app-sidebar'},{'name': 'Simple_layout', 'selector': 'app-simple_layout'},{'name': 'TramiteDetalle', 'selector': 'app-tramite-detalle'},{'name': 'TramiteLista', 'selector': 'app-tramite-lista'},{'name': 'TramiteRegistrar', 'selector': 'app-tramite-registrar'},{'name': 'UsuarioDetalle', 'selector': 'app-usuario-detalle'},{'name': 'UsuarioHorarioListaUsuario', 'selector': 'app-usuario-horario-lista-usuario'},{'name': 'UsuarioLista', 'selector': 'app-usuario-lista'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'Header'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'Header.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

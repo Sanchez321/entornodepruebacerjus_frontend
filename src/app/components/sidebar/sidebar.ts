@@ -19,6 +19,7 @@ export class Sidebar implements OnInit, OnDestroy, OnChanges {
 
   openGroups = {
     asesoria: false,
+    documentos: false,
     supervision: false,
     admin: false,
   };
@@ -33,15 +34,15 @@ export class Sidebar implements OnInit, OnDestroy, OnChanges {
     this.openCurrentRouteGroupOnce();
 
     this.subRouter = this.router.events
-    .pipe(filter(e => e instanceof NavigationEnd))
-    .subscribe((e) => {
-      const nav = e as NavigationEnd;
-      this.currentUrl = nav.urlAfterRedirects;
+      .pipe(filter(e => e instanceof NavigationEnd))
+      .subscribe((e) => {
+        const nav = e as NavigationEnd;
+        this.currentUrl = nav.urlAfterRedirects;
 
-      if (!this.initializedByRoute) {
-        this.openCurrentRouteGroupOnce();
-      }
-    });
+        if (!this.initializedByRoute) {
+          this.openCurrentRouteGroupOnce();
+        }
+      });
   }
 
   ngOnChanges(_changes: SimpleChanges): void {
@@ -65,7 +66,9 @@ export class Sidebar implements OnInit, OnDestroy, OnChanges {
     this.openGroups[group] = !this.openGroups[group];
   }
 
-  isAsesoriaActive(item: 'asistencia' | 'ciudadano' | 'consulta' | 'proceso'): boolean {
+  isAsesoriaActive(
+    item: 'asistencia' | 'ciudadano' | 'consulta' | 'proceso' | 'tramite' | 'audiencia'
+  ): boolean {
     const url = this.cleanUrl();
 
     switch (item) {
@@ -80,6 +83,25 @@ export class Sidebar implements OnInit, OnDestroy, OnChanges {
 
       case 'proceso':
         return this.firstSegmentIs('proceso', url);
+
+      case 'tramite':
+        return this.firstSegmentIs('tramite', url);
+
+      case 'audiencia':
+        return this.firstSegmentIs('audiencia', url);
+    }
+  }
+
+  isDocumentosActive(item: 'documentos' | 'rutasBase'): boolean {
+    const url = this.cleanUrl();
+
+    switch (item) {
+      case 'documentos':
+        return url === '/documentos';
+
+      case 'rutasBase':
+        return url === '/documentos/rutas-base' ||
+          url.startsWith('/documentos/rutas-base/');
     }
   }
 
@@ -129,6 +151,12 @@ export class Sidebar implements OnInit, OnDestroy, OnChanges {
       return;
     }
 
+    if (this.canSee(3) && this.belongsToDocumentos(url)) {
+      this.openGroups.documentos = true;
+      this.initializedByRoute = true;
+      return;
+    }
+
     if (this.canSee(3) && this.belongsToSupervision(url)) {
       this.openGroups.supervision = true;
       this.initializedByRoute = true;
@@ -151,8 +179,14 @@ export class Sidebar implements OnInit, OnDestroy, OnChanges {
       this.firstSegmentIs('asistencia', url) ||
       this.firstSegmentIs('ciudadano', url) ||
       this.firstSegmentIs('consulta', url) ||
-      this.firstSegmentIs('proceso', url)
+      this.firstSegmentIs('proceso', url) ||
+      this.firstSegmentIs('tramite', url) ||
+      this.firstSegmentIs('audiencia', url)
     );
+  }
+
+  private belongsToDocumentos(url: string): boolean {
+    return this.firstSegmentIs('documentos', url);
   }
 
   private belongsToSupervision(url: string): boolean {

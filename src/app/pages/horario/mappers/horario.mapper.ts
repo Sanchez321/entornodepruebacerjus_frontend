@@ -1,22 +1,7 @@
-import {
-  ApiHorarioListaSimple,
-  ApiHorarioDetalle,
-  ApiHorarioBloque,
-} from '../models/horario.api';
-import {
-  VMHorarioListaSimple,
-  VMHorarioDetalle,
-  VMHorarioBloque,
-  VMHorarioCreate,
-  VMHorarioBloqueForm,
-  VMHorarioListaOptions,
-  VMPage,
-} from '../models/horario.vm';
-import {
-  DTOHorarioCreate,
-  DTOHorarioListaOptions,
-  DTOHorarioBloqueCreate,
-} from '../models/horario.dto';
+import {ApiHorarioListaSimple,ApiHorarioDetalle,ApiHorarioBloque,} from '../models/horario.api';
+import {VMHorarioListaSimple,VMHorarioDetalle,VMHorarioBloque,VMHorarioCreate,VMHorarioBloqueForm,VMHorarioListaOptions,
+  VMPage,} from '../models/horario.vm';
+import {DTOHorarioCreate,DTOHorarioListaOptions,DTOHorarioBloqueCreate,} from '../models/horario.dto';
 
 function toUpperSafe(s?: string | null): string {
   return (s ?? '').trim().toUpperCase();

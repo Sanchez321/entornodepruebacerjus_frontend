@@ -1,0 +1,1965 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">frontend documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  Perfil</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/pages/cuenta/cuenta.perfil/perfil.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" class="nav-link"
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.dev/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.dev/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-cuenta-perfil</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                        <div>        <code><a href="https://angular.dev/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+</div>
+                        <div>        <code><a href="https://angular.dev/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./perfil.css</code></td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./perfil.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./perfil.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+        <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <p class="comment"><i>No results matching.</i></p>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="https://angular.dev/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/core/OnInit" target="_blank" >OnInit</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+</div>
+
+    <div class="tab-pane fade " id="api">    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#cuentaService" >cuentaService</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#fb" >fb</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#formPassword" >formPassword</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#formPerfil" >formPerfil</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#isEditingPerfil" >isEditingPerfil</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#notify" >notify</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#openPassword" >openPassword</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#openPerfil" >openPerfil</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#originalPerfil" >originalPerfil</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#pageMeta" >pageMeta</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#perfil" >perfil</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#submittedPerfil" >submittedPerfil</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#hasUnsavedPerfilChanges" >hasUnsavedPerfilChanges</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#onCancelPerfil" >onCancelPerfil</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#onChangePassword" >onChangePassword</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#onEditPerfil" >onEditPerfil</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#onSavePerfil" >onSavePerfil</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#resetPerfilForm" >resetPerfilForm</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Accessors</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--accessor" aria-hidden="true">A</span>
+                                <a href="#passwordMismatch" >passwordMismatch</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/pages/cuenta/cuenta.perfil/perfil.ts:61</a></div>
+                            </td>
+                        </tr>
+
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hasUnsavedPerfilChanges"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>hasUnsavedPerfilChanges</b></span>
+                        <a href="#hasUnsavedPerfilChanges"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>hasUnsavedPerfilChanges()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="211"
+                                    class="link-to-prism">src/app/pages/cuenta/cuenta.perfil/perfil.ts:211</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="95"
+                                    class="link-to-prism">src/app/pages/cuenta/cuenta.perfil/perfil.ts:95</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="65"
+                                    class="link-to-prism">src/app/pages/cuenta/cuenta.perfil/perfil.ts:65</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onCancelPerfil"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>onCancelPerfil</b></span>
+                        <a href="#onCancelPerfil"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onCancelPerfil()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="110"
+                                    class="link-to-prism">src/app/pages/cuenta/cuenta.perfil/perfil.ts:110</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onChangePassword"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>onChangePassword</b></span>
+                        <a href="#onChangePassword"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onChangePassword()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="233"
+                                    class="link-to-prism">src/app/pages/cuenta/cuenta.perfil/perfil.ts:233</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onEditPerfil"></a>
+                    <span class="name">
+                        <span ><b>onEditPerfil</b></span>
+                        <a href="#onEditPerfil"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onEditPerfil(ev: <a href="https://angular.dev/api/router/Event" target="_blank">Event</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="100"
+                                    class="link-to-prism">src/app/pages/cuenta/cuenta.perfil/perfil.ts:100</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>ev</td>
+                                            <td>
+                                                            <code><a href="https://angular.dev/api/router/Event" target="_blank" >Event</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSavePerfil"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>onSavePerfil</b></span>
+                        <a href="#onSavePerfil"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onSavePerfil()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="144"
+                                    class="link-to-prism">src/app/pages/cuenta/cuenta.perfil/perfil.ts:144</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resetPerfilForm"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>resetPerfilForm</b></span>
+                        <a href="#resetPerfilForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>resetPerfilForm(p: <a href="../interfaces/VMCuentaPerfil.html" target="_self">VMCuentaPerfil</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="130"
+                                    class="link-to-prism">src/app/pages/cuenta/cuenta.perfil/perfil.ts:130</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>p</td>
+                                            <td>
+                                                            <code><a href="../interfaces/VMCuentaPerfil.html" target="_self" >VMCuentaPerfil</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cuentaService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>cuentaService</b></span>
+                        <a href="#cuentaService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(CuentaService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/pages/cuenta/cuenta.perfil/perfil.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fb"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>fb</b></span>
+                        <a href="#fb"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(FormBuilder)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/pages/cuenta/cuenta.perfil/perfil.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formPassword"></a>
+                    <span class="name">
+                        <span ><b>formPassword</b></span>
+                        <a href="#formPassword"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.fb.group(
+    {
+      actual: [&#x27;&#x27;, [Validators.required]],
+      nueva: [&#x27;&#x27;, [Validators.required, Validators.minLength(6)]],
+      nuevaConfirm: [&#x27;&#x27;, [Validators.required]],
+    },
+    { validators: passwordMatchValidator }
+  )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/pages/cuenta/cuenta.perfil/perfil.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formPerfil"></a>
+                    <span class="name">
+                        <span ><b>formPerfil</b></span>
+                        <a href="#formPerfil"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.fb.group&lt;ControlsOf&lt;CuentaPerfilForm&gt;&gt;({
+    nombres: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+    apellidoPaterno: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+    apellidoMaterno: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+    dni: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+    correoE: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+    telefono: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+    tz: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+    fechaCreadoPorTexto: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/pages/cuenta/cuenta.perfil/perfil.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isEditingPerfil"></a>
+                    <span class="name">
+                        <span ><b>isEditingPerfil</b></span>
+                        <a href="#isEditingPerfil"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/pages/cuenta/cuenta.perfil/perfil.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="notify"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>notify</b></span>
+                        <a href="#notify"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(NotificacionesService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/pages/cuenta/cuenta.perfil/perfil.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openPassword"></a>
+                    <span class="name">
+                        <span ><b>openPassword</b></span>
+                        <a href="#openPassword"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/pages/cuenta/cuenta.perfil/perfil.ts:35</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openPerfil"></a>
+                    <span class="name">
+                        <span ><b>openPerfil</b></span>
+                        <a href="#openPerfil"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/pages/cuenta/cuenta.perfil/perfil.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="originalPerfil"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>originalPerfil</b></span>
+                        <a href="#originalPerfil"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/VMCuentaPerfil.html" target="_self" >VMCuentaPerfil</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/pages/cuenta/cuenta.perfil/perfil.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pageMeta"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>pageMeta</b></span>
+                        <a href="#pageMeta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(PageMetaService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/pages/cuenta/cuenta.perfil/perfil.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="perfil"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>perfil</b></span>
+                        <a href="#perfil"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/VMCuentaPerfil.html" target="_self" >VMCuentaPerfil</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/pages/cuenta/cuenta.perfil/perfil.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="submittedPerfil"></a>
+                    <span class="name">
+                        <span ><b>submittedPerfil</b></span>
+                        <a href="#submittedPerfil"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/pages/cuenta/cuenta.perfil/perfil.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="passwordMismatch"></a>
+                        <span class="name"><b>passwordMismatch</b><a href="#passwordMismatch"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>passwordMismatch()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="225" class="link-to-prism">src/app/pages/cuenta/cuenta.perfil/perfil.ts:225</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, OnDestroy, inject } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  FormControl,
+  Validators,
+  AbstractControl,
+  ValidationErrors,
+  FormGroup,
+} from &#x27;@angular/forms&#x27;;
+
+import { CuentaService } from &#x27;../services/cuenta.service&#x27;;
+import { VMCuentaPerfil, VMCuentaPerfilUpdateForm } from &#x27;../models/cuenta.vm&#x27;;
+import { NotificacionesService } from &#x27;@/app/components/notificaciones/services/notificaciones.service&#x27;;
+import { PageMetaService } from &#x27;@/app/services/page_meta.service&#x27;;
+
+@Component({
+  selector: &#x27;app-cuenta-perfil&#x27;,
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: &#x27;./perfil.html&#x27;,
+  styleUrl: &#x27;./perfil.css&#x27;,
+})
+export class Perfil implements OnInit, OnDestroy {
+
+  private fb &#x3D; inject(FormBuilder);
+  private cuentaService &#x3D; inject(CuentaService);
+  private notify &#x3D; inject(NotificacionesService);
+  private pageMeta &#x3D; inject(PageMetaService);
+
+  perfil?: VMCuentaPerfil;
+
+  openPerfil &#x3D; true;
+  openPassword &#x3D; true;
+
+  isEditingPerfil &#x3D; false;
+  submittedPerfil &#x3D; false;
+
+  // Para restaurar valores originales
+  originalPerfil?: VMCuentaPerfil;
+
+  formPerfil &#x3D; this.fb.group&lt;ControlsOf&lt;CuentaPerfilForm&gt;&gt;({
+    nombres: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+    apellidoPaterno: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+    apellidoMaterno: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+    dni: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+    correoE: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+    telefono: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+    tz: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+    fechaCreadoPorTexto: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+  });
+
+  formPassword: FormGroup &#x3D; this.fb.group(
+    {
+      actual: [&#x27;&#x27;, [Validators.required]],
+      nueva: [&#x27;&#x27;, [Validators.required, Validators.minLength(6)]],
+      nuevaConfirm: [&#x27;&#x27;, [Validators.required]],
+    },
+    { validators: passwordMatchValidator }
+  );
+
+  constructor() {}
+
+  ngOnInit(): void {
+    // Título de la página
+    this.pageMeta.replace({
+      titulo: &#x27;Mi perfil&#x27;,
+    });
+
+    this.cuentaService.getMiPerfil().subscribe({
+      next: (p) &#x3D;&gt; {
+        this.perfil &#x3D; p;
+        this.originalPerfil &#x3D; { ...p };
+
+        const fechaTxt &#x3D; formatDateTime(p.fechaCreadoPor);
+
+        this.formPerfil.patchValue({
+          nombres: p.nombres,
+          apellidoPaterno: p.apellidoPaterno,
+          apellidoMaterno: p.apellidoMaterno,
+          dni: p.dni,
+          correoE: p.correoE,
+          telefono: p.telefono,
+          tz: p.tz,
+          fechaCreadoPorTexto: fechaTxt,
+        });
+      },
+      error: () &#x3D;&gt; {
+        // El interceptor global debería manejar el error (401, 404, etc.)
+      },
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.pageMeta.clear();
+  }
+
+  // &#x3D;&#x3D;&#x3D;&#x3D;&#x3D; PERFIL &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+  onEditPerfil(ev: Event): void {
+    ev.stopPropagation();
+    this.isEditingPerfil &#x3D; !this.isEditingPerfil;
+    this.submittedPerfil &#x3D; false;
+
+    if (!this.isEditingPerfil &amp;&amp; this.originalPerfil) {
+      this.resetPerfilForm(this.originalPerfil);
+    }
+  }
+
+  async onCancelPerfil(): Promise&lt;void&gt; {
+    if (this.hasUnsavedPerfilChanges()) {
+      const ok &#x3D; await this.notify.confirm({
+        variant: &#x27;warning&#x27;,
+        title: &#x27;Descartar cambios&#x27;,
+        message: &#x27;Tienes cambios sin guardar. ¿Deseas descartarlos?&#x27;,
+        confirmText: &#x27;Descartar&#x27;,
+        cancelText: &#x27;Seguir editando&#x27;,
+      });
+      if (!ok) return;
+    }
+
+    if (this.originalPerfil) {
+      this.resetPerfilForm(this.originalPerfil);
+    }
+
+    this.isEditingPerfil &#x3D; false;
+    this.submittedPerfil &#x3D; false;
+  }
+
+  private resetPerfilForm(p: VMCuentaPerfil): void {
+    const fechaTxt &#x3D; formatDateTime(p.fechaCreadoPor);
+    this.formPerfil.patchValue({
+      nombres: p.nombres,
+      apellidoPaterno: p.apellidoPaterno,
+      apellidoMaterno: p.apellidoMaterno,
+      dni: p.dni,
+      correoE: p.correoE,
+      telefono: p.telefono,
+      tz: p.tz,
+      fechaCreadoPorTexto: fechaTxt,
+    });
+  }
+
+  async onSavePerfil(): Promise&lt;void&gt; {
+    this.submittedPerfil &#x3D; true;
+
+    if (!this.perfil) return;
+
+    const v &#x3D; this.formPerfil.value;
+
+    const changes: VMCuentaPerfilUpdateForm &#x3D; {};
+
+    if (v.nombres !&#x3D;&#x3D; this.originalPerfil?.nombres) {
+      changes.nombres &#x3D; v.nombres ?? &#x27;&#x27;;
+    }
+    if (v.apellidoPaterno !&#x3D;&#x3D; this.originalPerfil?.apellidoPaterno) {
+      changes.apellidoPaterno &#x3D; v.apellidoPaterno ?? &#x27;&#x27;;
+    }
+    if (v.apellidoMaterno !&#x3D;&#x3D; this.originalPerfil?.apellidoMaterno) {
+      changes.apellidoMaterno &#x3D; v.apellidoMaterno ?? &#x27;&#x27;;
+    }
+
+    if (v.telefono !&#x3D;&#x3D; this.originalPerfil?.telefono) {
+      changes.telefono &#x3D; v.telefono ?? &#x27;&#x27;;
+    }
+  
+
+    if (Object.keys(changes).length &#x3D;&#x3D;&#x3D; 0) {
+      await this.notify.ok({
+        variant: &#x27;info&#x27;,
+        title: &#x27;Sin cambios&#x27;,
+        message: &#x27;No hay cambios para guardar.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    const confirm &#x3D; await this.notify.confirm({
+      variant: &#x27;info&#x27;,
+      title: &#x27;Guardar cambios&#x27;,
+      message: &#x27;¿Deseas guardar los cambios de tu perfil?&#x27;,
+      confirmText: &#x27;Guardar&#x27;,
+      cancelText: &#x27;Cancelar&#x27;,
+    });
+    if (!confirm) return;
+
+    try {
+      await this.cuentaService.updateMiPerfil(changes);
+
+      // Actualizar modelo local
+      if (this.perfil) {
+        this.perfil &#x3D; { ...this.perfil, ...changes };
+        this.originalPerfil &#x3D; { ...this.perfil };
+        this.resetPerfilForm(this.perfil);
+      }
+
+      await this.notify.ok({
+        variant: &#x27;success&#x27;,
+        title: &#x27;Perfil actualizado&#x27;,
+        message: &#x27;Tu perfil se actualizó correctamente.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+
+      this.isEditingPerfil &#x3D; false;
+      this.submittedPerfil &#x3D; false;
+    } catch {
+      // El interceptor global mostrará los errores HTTP.
+    }
+  }
+
+  private hasUnsavedPerfilChanges(): boolean {
+    if (!this.originalPerfil) return false;
+    const v &#x3D; this.formPerfil.value;
+
+    if (v.nombres !&#x3D;&#x3D; this.originalPerfil.nombres) return true;
+    if (v.apellidoPaterno !&#x3D;&#x3D; this.originalPerfil.apellidoPaterno) return true;
+    if (v.apellidoMaterno !&#x3D;&#x3D; this.originalPerfil.apellidoMaterno) return true;
+    if (v.telefono !&#x3D;&#x3D; this.originalPerfil.telefono) return true;
+
+
+    return false;
+  }
+
+  // &#x3D;&#x3D;&#x3D;&#x3D;&#x3D; CONTRASEÑA &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+  get passwordMismatch(): boolean {
+    return !!(
+        this.formPassword.hasError(&#x27;passwordMismatch&#x27;) &amp;&amp;
+        (this.formPassword.get(&#x27;nuevaConfirm&#x27;)?.touched ||
+        this.formPassword.get(&#x27;nuevaConfirm&#x27;)?.dirty)
+    );
+    }
+
+  async onChangePassword(): Promise&lt;void&gt; {
+    if (this.formPassword.invalid) {
+      this.formPassword.markAllAsTouched();
+      if (this.formPassword.hasError(&#x27;passwordMismatch&#x27;)) {
+        await this.notify.ok({
+          variant: &#x27;error&#x27;,
+          title: &#x27;Contraseña no válida&#x27;,
+          message: &#x27;Las nuevas contraseñas no coinciden.&#x27;,
+          primaryText: &#x27;Aceptar&#x27;,
+        });
+      }
+      return;
+    }
+
+    const actual &#x3D; this.formPassword.value.actual ?? &#x27;&#x27;;
+    const nueva &#x3D; this.formPassword.value.nueva ?? &#x27;&#x27;;
+    const nuevaConfirm &#x3D; this.formPassword.value.nuevaConfirm ?? &#x27;&#x27;;
+
+    if (nueva !&#x3D;&#x3D; nuevaConfirm) {
+      await this.notify.ok({
+        variant: &#x27;error&#x27;,
+        title: &#x27;Contraseña no válida&#x27;,
+        message: &#x27;Las nuevas contraseñas no coinciden.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    const confirm &#x3D; await this.notify.confirm({
+      variant: &#x27;info&#x27;,
+      title: &#x27;Actualizar contraseña&#x27;,
+      message: &#x27;¿Deseas actualizar tu contraseña?&#x27;,
+      confirmText: &#x27;Actualizar&#x27;,
+      cancelText: &#x27;Cancelar&#x27;,
+    });
+    if (!confirm) return;
+
+    try {
+      await this.cuentaService.changePassword(actual, nueva);
+
+      this.formPassword.reset();
+      await this.notify.ok({
+        variant: &#x27;success&#x27;,
+        title: &#x27;Contraseña actualizada&#x27;,
+        message: &#x27;Tu contraseña se actualizó correctamente.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+    } catch {
+      // El interceptor global mostrará mensajes: contraseña actual incorrecta, etc.
+    }
+  }
+}
+
+// &#x3D;&#x3D;&#x3D;&#x3D; Tipos de formulario &#x3D;&#x3D;&#x3D;&#x3D;
+
+interface CuentaPerfilForm {
+  nombres: string;
+  apellidoPaterno: string;
+  apellidoMaterno: string;
+  dni: string;
+  correoE: string;
+  telefono: string;
+  tz: string;
+  fechaCreadoPorTexto: string;
+}
+
+type ControlsOf&lt;T&gt; &#x3D; {
+  [K in keyof T]: FormControl&lt;T[K]&gt;;
+};
+
+// &#x3D;&#x3D;&#x3D;&#x3D; Helpers &#x3D;&#x3D;&#x3D;&#x3D;
+
+function formatDateTime(dt: Date | string | null | undefined): string {
+  if (!dt) return &#x27;&#x27;;
+  const d &#x3D; dt instanceof Date ? dt : new Date(dt);
+  if (Number.isNaN(d.getTime())) return &#x27;&#x27;;
+  const dd &#x3D; String(d.getDate()).padStart(2, &#x27;0&#x27;);
+  const mm &#x3D; String(d.getMonth() + 1).padStart(2, &#x27;0&#x27;);
+  const yyyy &#x3D; d.getFullYear();
+  const hh &#x3D; String(d.getHours()).padStart(2, &#x27;0&#x27;);
+  const mi &#x3D; String(d.getMinutes()).padStart(2, &#x27;0&#x27;);
+  return &#x60;${dd}/${mm}/${yyyy} ${hh}:${mi}&#x60;;
+}
+
+// Validador de coincidencia de nueva contraseña
+function passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
+  const nueva &#x3D; control.get(&#x27;nueva&#x27;)?.value;
+  const confirm &#x3D; control.get(&#x27;nuevaConfirm&#x27;)?.value;
+  if (nueva &amp;&amp; confirm &amp;&amp; nueva !&#x3D;&#x3D; confirm) {
+    return { passwordMismatch: true };
+  }
+  return null;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container&quot;&gt;
+  &lt;div class&#x3D;&quot;row justify-content-center&quot;&gt;
+
+    &lt;!-- &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; PERFIL &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; --&gt;
+    &lt;div class&#x3D;&quot;col-12 col-lg-8 mb-4&quot;&gt;
+      &lt;div class&#x3D;&quot;card shadow-sm&quot;&gt;
+
+        &lt;!-- Encabezado colapsable --&gt;
+        &lt;div
+          class&#x3D;&quot;card-header d-flex justify-content-between align-items-center selectable-fix&quot;
+          (click)&#x3D;&quot;openPerfil &#x3D; !openPerfil&quot;
+          role&#x3D;&quot;button&quot;
+          [attr.aria-expanded]&#x3D;&quot;openPerfil&quot;&gt;
+          &lt;div class&#x3D;&quot;d-flex align-items-center gap-2&quot;&gt;
+            &lt;span class&#x3D;&quot;fw-semibold&quot; style&#x3D;&quot;min-width: 220px; display: inline-block;&quot;&gt;
+              Mi perfil
+            &lt;/span&gt;
+            &lt;button
+              type&#x3D;&quot;button&quot;
+              class&#x3D;&quot;btn btn-secondary&quot;
+              (click)&#x3D;&quot;onEditPerfil($event)&quot;&gt;
+              {{ isEditingPerfil ? &#x27;Dejar de editar&#x27; : &#x27;Editar perfil&#x27; }}
+            &lt;/button&gt;
+          &lt;/div&gt;
+          &lt;span class&#x3D;&quot;caret&quot;&gt;{{ openPerfil ? &quot;▴&quot; : &quot;▾&quot; }}&lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Cuerpo --&gt;
+        &lt;form
+          class&#x3D;&quot;card-body selectable-fix&quot;
+          [hidden]&#x3D;&quot;!openPerfil&quot;
+          [formGroup]&#x3D;&quot;formPerfil&quot;
+          id&#x3D;&quot;formPerfil&quot;
+          name&#x3D;&quot;formPerfil&quot;&gt;
+
+          &lt;!-- Identificación básica --&gt;
+          &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+            &lt;div class&#x3D;&quot;col-12 col-md-3&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;pf_nombres&quot;&gt;Nombres&lt;/label&gt;
+              &lt;input
+                id&#x3D;&quot;pf_nombres&quot;
+                type&#x3D;&quot;text&quot;
+                formControlName&#x3D;&quot;nombres&quot;
+                [readonly]&#x3D;&quot;!isEditingPerfil&quot;
+                [class.value-box-noedit]&#x3D;&quot;!isEditingPerfil&quot;
+                [class.value-box-edit]&#x3D;&quot;isEditingPerfil&quot; /&gt;
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;col-12 col-md-3&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;pf_apellidoPaterno&quot;&gt;Apellido paterno&lt;/label&gt;
+              &lt;input
+                id&#x3D;&quot;pf_apellidoPaterno&quot;
+                type&#x3D;&quot;text&quot;
+                formControlName&#x3D;&quot;apellidoPaterno&quot;
+                [readonly]&#x3D;&quot;!isEditingPerfil&quot;
+                [class.value-box-noedit]&#x3D;&quot;!isEditingPerfil&quot;
+                [class.value-box-edit]&#x3D;&quot;isEditingPerfil&quot; /&gt;
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;col-12 col-md-3&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;pf_apellidoMaterno&quot;&gt;Apellido materno&lt;/label&gt;
+              &lt;input
+                id&#x3D;&quot;pf_apellidoMaterno&quot;
+                type&#x3D;&quot;text&quot;
+                formControlName&#x3D;&quot;apellidoMaterno&quot;
+                [readonly]&#x3D;&quot;!isEditingPerfil&quot;
+                [class.value-box-noedit]&#x3D;&quot;!isEditingPerfil&quot;
+                [class.value-box-edit]&#x3D;&quot;isEditingPerfil&quot; /&gt;
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;col-12 col-md-3&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;pf_dni&quot;&gt;DNI&lt;/label&gt;
+              &lt;input
+                id&#x3D;&quot;pf_dni&quot;
+                type&#x3D;&quot;text&quot;
+                formControlName&#x3D;&quot;dni&quot;
+                class&#x3D;&quot;value-box-noedit&quot;
+                readonly /&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div style&#x3D;&quot;height: 1rem;&quot;&gt;&lt;/div&gt;
+
+          &lt;!-- Contacto --&gt;
+          &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+            &lt;div class&#x3D;&quot;col-12 col-md-4&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;pf_correoE&quot;&gt;Correo electrónico&lt;/label&gt;
+              &lt;input
+                id&#x3D;&quot;pf_correoE&quot;
+                type&#x3D;&quot;email&quot;
+                formControlName&#x3D;&quot;correoE&quot;
+                class&#x3D;&quot;value-box-noedit&quot;
+                readonly /&gt;
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;col-12 col-md-4&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;pf_telefono&quot;&gt;Teléfono&lt;/label&gt;
+              &lt;input
+                id&#x3D;&quot;pf_telefono&quot;
+                type&#x3D;&quot;tel&quot;
+                formControlName&#x3D;&quot;telefono&quot;
+                [readonly]&#x3D;&quot;!isEditingPerfil&quot;
+                [class.value-box-noedit]&#x3D;&quot;!isEditingPerfil&quot;
+                [class.value-box-edit]&#x3D;&quot;isEditingPerfil&quot; /&gt;
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;col-12 col-md-4&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;pf_tz&quot;&gt;Zona horaria&lt;/label&gt;
+              &lt;input
+                id&#x3D;&quot;pf_tz&quot;
+                type&#x3D;&quot;text&quot;
+                formControlName&#x3D;&quot;tz&quot;
+                class&#x3D;&quot;value-box-noedit&quot;
+                readonly /&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div style&#x3D;&quot;height: 1rem;&quot;&gt;&lt;/div&gt;
+
+          &lt;!-- Metadatos --&gt;
+          &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+            &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;pf_fechaCreadoPorTexto&quot;&gt;Cuenta creada el&lt;/label&gt;
+              &lt;input
+                id&#x3D;&quot;pf_fechaCreadoPorTexto&quot;
+                type&#x3D;&quot;text&quot;
+                formControlName&#x3D;&quot;fechaCreadoPorTexto&quot;
+                class&#x3D;&quot;value-box-noedit&quot;
+                readonly /&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;!-- Botones --&gt;
+          @if (isEditingPerfil) {
+            &lt;div class&#x3D;&quot;d-flex justify-content-between mt-4&quot;&gt;
+              &lt;button
+                type&#x3D;&quot;button&quot;
+                class&#x3D;&quot;btn btn-warning&quot;
+                (click)&#x3D;&quot;onCancelPerfil()&quot;&gt;
+                Cancelar
+              &lt;/button&gt;
+              &lt;button
+                type&#x3D;&quot;button&quot;
+                class&#x3D;&quot;btn btn-success&quot;
+                (click)&#x3D;&quot;onSavePerfil()&quot;&gt;
+                Guardar cambios
+              &lt;/button&gt;
+            &lt;/div&gt;
+          }
+        &lt;/form&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; CAMBIAR CONTRASEÑA &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; --&gt;
+    &lt;div class&#x3D;&quot;col-12 col-lg-8 mb-4&quot;&gt;
+      &lt;div class&#x3D;&quot;card shadow-sm&quot;&gt;
+        &lt;div
+          class&#x3D;&quot;card-header d-flex justify-content-between align-items-center selectable-fix&quot;
+          (click)&#x3D;&quot;openPassword &#x3D; !openPassword&quot;
+          role&#x3D;&quot;button&quot;
+          [attr.aria-expanded]&#x3D;&quot;openPassword&quot;&gt;
+          &lt;span class&#x3D;&quot;fw-semibold&quot; style&#x3D;&quot;min-width: 220px; display: inline-block;&quot;&gt;
+            Cambiar contraseña
+          &lt;/span&gt;
+          &lt;span class&#x3D;&quot;caret&quot;&gt;{{ openPassword ? &quot;▴&quot; : &quot;▾&quot; }}&lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;form
+          class&#x3D;&quot;card-body selectable-fix&quot;
+          [hidden]&#x3D;&quot;!openPassword&quot;
+          [formGroup]&#x3D;&quot;formPassword&quot;
+          id&#x3D;&quot;formPassword&quot;
+          name&#x3D;&quot;formPassword&quot;&gt;
+
+          &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+            &lt;div class&#x3D;&quot;col-12 col-md-4&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;pw_actual&quot;&gt;Contraseña actual&lt;/label&gt;
+              &lt;input
+                id&#x3D;&quot;pw_actual&quot;
+                type&#x3D;&quot;password&quot;
+                formControlName&#x3D;&quot;actual&quot;
+                class&#x3D;&quot;value-box-edit&quot; /&gt;
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;col-12 col-md-4&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;pw_nueva&quot;&gt;Nueva contraseña&lt;/label&gt;
+              &lt;input
+                id&#x3D;&quot;pw_nueva&quot;
+                type&#x3D;&quot;password&quot;
+                formControlName&#x3D;&quot;nueva&quot;
+                class&#x3D;&quot;value-box-edit&quot; /&gt;
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;col-12 col-md-4&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;pw_nuevaConfirm&quot;&gt;Confirmar nueva contraseña&lt;/label&gt;
+              &lt;input
+                id&#x3D;&quot;pw_nuevaConfirm&quot;
+                type&#x3D;&quot;password&quot;
+                formControlName&#x3D;&quot;nuevaConfirm&quot;
+                class&#x3D;&quot;value-box-edit&quot; /&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div class&#x3D;&quot;mt-3 text-danger&quot; *ngIf&#x3D;&quot;passwordMismatch&quot;&gt;
+            Las nuevas contraseñas no coinciden.
+          &lt;/div&gt;
+
+          &lt;div class&#x3D;&quot;d-flex justify-content-end mt-4&quot;&gt;
+            &lt;button
+              type&#x3D;&quot;button&quot;
+              class&#x3D;&quot;btn btn-primary&quot;
+              (click)&#x3D;&quot;onChangePassword()&quot;&gt;
+              Actualizar contraseña
+            &lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/form&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./perfil.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">/* Reutiliza estilos del admin */
+
+.value-box-noedit {
+  display: block;
+  width: 100%;
+  padding: .475rem .75rem;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: .375rem;
+  min-height: calc(1.5em + .95rem + 2px);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  cursor: default;
+  pointer-events: none;
+  user-select: none;
+}
+
+.value-box-edit {
+  display: block;
+  width: 100%;
+  padding: .475rem .75rem;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: .375rem;
+  min-height: calc(1.5em + .95rem + 2px);
+  line-height: 1.5;
+}
+
+.card-header {
+  cursor: pointer;
+  user-select: none;
+}
+
+.section-title {
+  font-weight: 600;
+  color: #6c757d;
+  margin-bottom: .25rem;
+}
+
+.caret {
+  font-size: 1rem;
+}
+
+.selectable-fix {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="container">  <div class="row justify-content-center">    <!-- ====== PERFIL ====== -->    <div class="col-12 col-lg-8 mb-4">      <div class="card shadow-sm">        <!-- Encabezado colapsable -->        <div          class="card-header d-flex justify-content-between align-items-center selectable-fix"          (click)="openPerfil = !openPerfil"          role="button"          [attr.aria-expanded]="openPerfil">          <div class="d-flex align-items-center gap-2">            <span class="fw-semibold" style="min-width: 220px; display: inline-block;">              Mi perfil            </span>            <button              type="button"              class="btn btn-secondary"              (click)="onEditPerfil($event)">              {{ isEditingPerfil ? \'Dejar de editar\' : \'Editar perfil\' }}            </button>          </div>          <span class="caret">{{ openPerfil ? "▴" : "▾" }}</span>        </div>        <!-- Cuerpo -->        <form          class="card-body selectable-fix"          [hidden]="!openPerfil"          [formGroup]="formPerfil"          id="formPerfil"          name="formPerfil">          <!-- Identificación básica -->          <div class="row g-3">            <div class="col-12 col-md-3">              <label class="form-label" for="pf_nombres">Nombres</label>              <input                id="pf_nombres"                type="text"                formControlName="nombres"                [readonly]="!isEditingPerfil"                [class.value-box-noedit]="!isEditingPerfil"                [class.value-box-edit]="isEditingPerfil" />            </div>            <div class="col-12 col-md-3">              <label class="form-label" for="pf_apellidoPaterno">Apellido paterno</label>              <input                id="pf_apellidoPaterno"                type="text"                formControlName="apellidoPaterno"                [readonly]="!isEditingPerfil"                [class.value-box-noedit]="!isEditingPerfil"                [class.value-box-edit]="isEditingPerfil" />            </div>            <div class="col-12 col-md-3">              <label class="form-label" for="pf_apellidoMaterno">Apellido materno</label>              <input                id="pf_apellidoMaterno"                type="text"                formControlName="apellidoMaterno"                [readonly]="!isEditingPerfil"                [class.value-box-noedit]="!isEditingPerfil"                [class.value-box-edit]="isEditingPerfil" />            </div>            <div class="col-12 col-md-3">              <label class="form-label" for="pf_dni">DNI</label>              <input                id="pf_dni"                type="text"                formControlName="dni"                class="value-box-noedit"                readonly />            </div>          </div>          <div style="height: 1rem;"></div>          <!-- Contacto -->          <div class="row g-3">            <div class="col-12 col-md-4">              <label class="form-label" for="pf_correoE">Correo electrónico</label>              <input                id="pf_correoE"                type="email"                formControlName="correoE"                class="value-box-noedit"                readonly />            </div>            <div class="col-12 col-md-4">              <label class="form-label" for="pf_telefono">Teléfono</label>              <input                id="pf_telefono"                type="tel"                formControlName="telefono"                [readonly]="!isEditingPerfil"                [class.value-box-noedit]="!isEditingPerfil"                [class.value-box-edit]="isEditingPerfil" />            </div>            <div class="col-12 col-md-4">              <label class="form-label" for="pf_tz">Zona horaria</label>              <input                id="pf_tz"                type="text"                formControlName="tz"                class="value-box-noedit"                readonly />            </div>          </div>          <div style="height: 1rem;"></div>          <!-- Metadatos -->          <div class="row g-3">            <div class="col-12 col-md-6">              <label class="form-label" for="pf_fechaCreadoPorTexto">Cuenta creada el</label>              <input                id="pf_fechaCreadoPorTexto"                type="text"                formControlName="fechaCreadoPorTexto"                class="value-box-noedit"                readonly />            </div>          </div>          <!-- Botones -->          @if (isEditingPerfil) {            <div class="d-flex justify-content-between mt-4">              <button                type="button"                class="btn btn-warning"                (click)="onCancelPerfil()">                Cancelar              </button>              <button                type="button"                class="btn btn-success"                (click)="onSavePerfil()">                Guardar cambios              </button>            </div>          }        </form>      </div>    </div>    <!-- ====== CAMBIAR CONTRASEÑA ====== -->    <div class="col-12 col-lg-8 mb-4">      <div class="card shadow-sm">        <div          class="card-header d-flex justify-content-between align-items-center selectable-fix"          (click)="openPassword = !openPassword"          role="button"          [attr.aria-expanded]="openPassword">          <span class="fw-semibold" style="min-width: 220px; display: inline-block;">            Cambiar contraseña          </span>          <span class="caret">{{ openPassword ? "▴" : "▾" }}</span>        </div>        <form          class="card-body selectable-fix"          [hidden]="!openPassword"          [formGroup]="formPassword"          id="formPassword"          name="formPassword">          <div class="row g-3">            <div class="col-12 col-md-4">              <label class="form-label" for="pw_actual">Contraseña actual</label>              <input                id="pw_actual"                type="password"                formControlName="actual"                class="value-box-edit" />            </div>            <div class="col-12 col-md-4">              <label class="form-label" for="pw_nueva">Nueva contraseña</label>              <input                id="pw_nueva"                type="password"                formControlName="nueva"                class="value-box-edit" />            </div>            <div class="col-12 col-md-4">              <label class="form-label" for="pw_nuevaConfirm">Confirmar nueva contraseña</label>              <input                id="pw_nuevaConfirm"                type="password"                formControlName="nuevaConfirm"                class="value-box-edit" />            </div>          </div>          <div class="mt-3 text-danger" *ngIf="passwordMismatch">            Las nuevas contraseñas no coinciden.          </div>          <div class="d-flex justify-content-end mt-4">            <button              type="button"              class="btn btn-primary"              (click)="onChangePassword()">              Actualizar contraseña            </button>          </div>        </form>      </div>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AnaliticasDashboard', 'selector': 'app-analiticas-dashboard'},{'name': 'App', 'selector': 'app-root'},{'name': 'AsistenciaLista', 'selector': 'app-asistencia-lista'},{'name': 'AsistenciasDashboard', 'selector': 'app-asistencias-dashboard'},{'name': 'AudienciaCalendario', 'selector': 'app-audiencia-calendario'},{'name': 'AudienciaDetalle', 'selector': 'app-audiencia-detalle'},{'name': 'AudienciaRegistrar', 'selector': 'app-audiencia-registrar'},{'name': 'CiudadanoDetalle', 'selector': 'app-ciudadano-detalle'},{'name': 'CiudadanoLista', 'selector': 'app-ciudadano-lista'},{'name': 'CiudadanoRegistrar', 'selector': 'app-ciudadano-registrar'},{'name': 'ConfirmarCorreo', 'selector': 'app-cuenta-confirmar-correo'},{'name': 'ConsultaDetalle', 'selector': 'app-consulta-detalle'},{'name': 'ConsultaLista', 'selector': 'app-consulta-lista'},{'name': 'ConsultaListaCiudadano', 'selector': 'app-consulta-lista-ciudadano'},{'name': 'ConsultaRegistar', 'selector': 'app-consulta-registrar'},{'name': 'DocumentosListaEntidad', 'selector': 'app-documentos-lista-entidad'},{'name': 'DocumentosListaGeneral', 'selector': 'app-documentos-lista-general'},{'name': 'DocumentosRegistrar', 'selector': 'app-documentos-registrar'},{'name': 'DocumentosRutaBaseLista', 'selector': 'app-documentos-ruta-base-lista'},{'name': 'DocumentosRutaBaseRegistrar', 'selector': 'app-documentos-ruta-base-registrar'},{'name': 'ExportarConDriveComponent', 'selector': 'app-exportar-con-drive'},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'Header', 'selector': 'app-header'},{'name': 'HorarioDetalle', 'selector': 'app-horario-detalle'},{'name': 'HorarioLista', 'selector': 'app-horario-lista'},{'name': 'HorarioRegistrar', 'selector': 'app-horario-registrar'},{'name': 'Ingresar', 'selector': 'app-cuenta-ingresar'},{'name': 'JustificacionListaMis', 'selector': 'app-justificacion-lista-mis'},{'name': 'JustificacionListaPendientes', 'selector': 'app-justificacion-lista-pendientes'},{'name': 'JustificacionRegistrar', 'selector': 'app-justificacion-registrar'},{'name': 'Main_layout', 'selector': 'app-main-layout'},{'name': 'NotificacionestVer', 'selector': 'app-notificaciones-ver'},{'name': 'PaginaNoEncontradaComponent', 'selector': 'app-pagina-no-encontrada'},{'name': 'Perfil', 'selector': 'app-cuenta-perfil'},{'name': 'ProcesoDetalle', 'selector': 'app-proceso-detalle'},{'name': 'ProcesoLista', 'selector': 'app-proceso-lista'},{'name': 'ProcesoRegistrar', 'selector': 'app-proceso-registrar'},{'name': 'Registar', 'selector': 'app-cuenta-registrar'},{'name': 'SeguimientoListaConsulta', 'selector': 'app-seguimiento-lista-consulta'},{'name': 'SeguimientoRegistar', 'selector': 'app-seguimiento-registrar'},{'name': 'Sidebar', 'selector': 'app-sidebar'},{'name': 'Simple_layout', 'selector': 'app-simple_layout'},{'name': 'TramiteDetalle', 'selector': 'app-tramite-detalle'},{'name': 'TramiteLista', 'selector': 'app-tramite-lista'},{'name': 'TramiteRegistrar', 'selector': 'app-tramite-registrar'},{'name': 'UsuarioDetalle', 'selector': 'app-usuario-detalle'},{'name': 'UsuarioHorarioListaUsuario', 'selector': 'app-usuario-horario-lista-usuario'},{'name': 'UsuarioLista', 'selector': 'app-usuario-lista'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'Perfil'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'Perfil.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

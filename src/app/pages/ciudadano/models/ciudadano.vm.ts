@@ -1,5 +1,6 @@
 // como el frontend lo trata la UI
 import { Conocio } from './ciudadano.dominio';
+import type {ReporteEstado,ReporteFormato,ReporteModo,} from './ciudadano.dominio';
 
 export interface VMCiudadano {
   id: number;
@@ -165,7 +166,12 @@ export type VMCiudadanoListaOptions = Partial<VMCiudadanoListaSimple> & {
   sort?: string;
 };
 
-
-
+export interface VMCiudadanoReporteTablaOptions {
+  formato: ReporteFormato;
+  modo: ReporteModo;
+  estado: ReporteEstado;
+  anio: number;
+  mes: number;
+}
 
 

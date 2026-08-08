@@ -180,7 +180,7 @@ export class ConsultaListaCiudadano implements OnInit {
       pageSize: this.pageSize,
       id: v.id || undefined,
       resumen: v.resumen || undefined,
-      fecha: v.fecha ? new Date(v.fecha) : undefined,
+      fecha: v.fecha || undefined,
       llevaCaso: v.llevaCaso || undefined,
     })
     .subscribe({

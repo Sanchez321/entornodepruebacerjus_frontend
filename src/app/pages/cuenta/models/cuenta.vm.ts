@@ -41,3 +41,8 @@ export type VMCuentaCreate = Pick<VMCuenta,
   'dni'|'nombres'|'apellidoPaterno'|'apellidoMaterno'|'telefono'|
   'correoE'|'contrasena'
 >;
+export interface VMCuentaConfirmarCorreoResponse {
+  id: number;
+  estado: number;
+  message: string;
+}

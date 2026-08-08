@@ -37,3 +37,9 @@ export type DTOUsuarioUpdate =
   { us_ID: DTOUsuario['us_ID'] } & Partial<Pick<DTOUsuario,
     'us_estado' | 'us_tu_ID'
   >>;
+  
+export interface DTOUsuarioCorregirIdentidad {
+  us_DNI?: string;
+  us_correo_e?: string;
+  motivo: string;
+}

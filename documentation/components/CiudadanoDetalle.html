@@ -1,0 +1,2608 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">frontend documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  CiudadanoDetalle</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" class="nav-link"
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.dev/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.dev/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-ciudadano-detalle</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                        <div>        <code><a href="https://angular.dev/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+</div>
+                        <div>        <code><a href="https://angular.dev/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+</div>
+                        <div>        <code><a href="../components/ConsultaListaCiudadano.html" target="_self" >ConsultaListaCiudadano</a></code>
+</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./ciudadano.detalle.css</code></td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./ciudadano.detalle.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./ciudadano.detalle.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+        <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <p class="comment"><i>No results matching.</i></p>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="https://angular.dev/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../components/ConsultaListaCiudadano.html" target="_self" >ConsultaListaCiudadano</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/core/OnInit" target="_blank" >OnInit</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+</div>
+
+    <div class="tab-pane fade " id="api">    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#auth" >auth</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#canSeeControl" >canSeeControl</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#creadoPorDni" >creadoPorDni</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#creadoPorNombre" >creadoPorNombre</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#fb" >fb</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#fechaCreadoPor" >fechaCreadoPor</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#fechaModificadoPor" >fechaModificadoPor</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#form" >form</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#idciudadano" >idciudadano</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#isEditing" >isEditing</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#isOtros" >isOtros</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#modificadoPorDni" >modificadoPorDni</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#modificadoPorNombre" >modificadoPorNombre</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#notify" >notify</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#open" >open</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#open2" >open2</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#originalData" >originalData</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#pageMeta" >pageMeta</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#route" >route</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#router" >router</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#service" >service</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#subConocio" >subConocio</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#submittedEdit" >submittedEdit</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#supoOpciones" >supoOpciones</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#aplicarControl" >aplicarControl</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#aplicarDetalle" >aplicarDetalle</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#gotoConsulta" >gotoConsulta</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#hasUnsavedChanges" >hasUnsavedChanges</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#onCancel" >onCancel</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#onEdit" >onEdit</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#onSave" >onSave</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#syncConocioOtros" >syncConocioOtros</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#validaConocioOtros" >validaConocioOtros</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="aplicarControl"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>aplicarControl</b></span>
+                        <a href="#aplicarControl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>aplicarControl(control: <a href="../interfaces/VMCiudadanoControl.html" target="_self">VMCiudadanoControl</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="135"
+                                    class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:135</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>control</td>
+                                            <td>
+                                                            <code><a href="../interfaces/VMCiudadanoControl.html" target="_self" >VMCiudadanoControl</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="aplicarDetalle"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>aplicarDetalle</b></span>
+                        <a href="#aplicarDetalle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>aplicarDetalle(data: <a href="../miscellaneous/typealiases.html#VMCiudadanoDetalleSimple" target="_self">VMCiudadanoDetalleSimple</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="123"
+                                    class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:123</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#VMCiudadanoDetalleSimple" target="_self" >VMCiudadanoDetalleSimple</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="gotoConsulta"></a>
+                    <span class="name">
+                        <span ><b>gotoConsulta</b></span>
+                        <a href="#gotoConsulta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>gotoConsulta()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="337"
+                                    class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:337</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hasUnsavedChanges"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>hasUnsavedChanges</b></span>
+                        <a href="#hasUnsavedChanges"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>hasUnsavedChanges()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="343"
+                                    class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:343</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="118"
+                                    class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:118</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="77"
+                                    class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:77</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onCancel"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>onCancel</b></span>
+                        <a href="#onCancel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onCancel()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="189"
+                                    class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:189</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onEdit"></a>
+                    <span class="name">
+                        <span ><b>onEdit</b></span>
+                        <a href="#onEdit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onEdit(ev: <a href="https://angular.dev/api/router/Event" target="_blank">Event</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="178"
+                                    class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:178</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>ev</td>
+                                            <td>
+                                                            <code><a href="https://angular.dev/api/router/Event" target="_blank" >Event</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSave"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>onSave</b></span>
+                        <a href="#onSave"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onSave()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="210"
+                                    class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:210</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="syncConocioOtros"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>syncConocioOtros</b></span>
+                        <a href="#syncConocioOtros"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>syncConocioOtros()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="145"
+                                    class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:145</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validaConocioOtros"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>validaConocioOtros</b></span>
+                        <a href="#validaConocioOtros"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>validaConocioOtros()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="167"
+                                    class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:167</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>string | null</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="auth"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>auth</b></span>
+                        <a href="#auth"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(AuthStore)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="canSeeControl"></a>
+                    <span class="name">
+                        <span ><b>canSeeControl</b></span>
+                        <a href="#canSeeControl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="creadoPorDni"></a>
+                    <span class="name">
+                        <span ><b>creadoPorDni</b></span>
+                        <a href="#creadoPorDni"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="creadoPorNombre"></a>
+                    <span class="name">
+                        <span ><b>creadoPorNombre</b></span>
+                        <a href="#creadoPorNombre"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fb"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>fb</b></span>
+                        <a href="#fb"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(FormBuilder)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fechaCreadoPor"></a>
+                    <span class="name">
+                        <span ><b>fechaCreadoPor</b></span>
+                        <a href="#fechaCreadoPor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Date | string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fechaModificadoPor"></a>
+                    <span class="name">
+                        <span ><b>fechaModificadoPor</b></span>
+                        <a href="#fechaModificadoPor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Date | string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="form"></a>
+                    <span class="name">
+                        <span ><b>form</b></span>
+                        <a href="#form"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.fb.group&lt;ControlsOf&lt;VMCiudadanoUpdateForm&gt;&gt;({
+    nombres: new FormControl(&#x27;&#x27;, {nonNullable: true,validators: [Validators.required, Validators.maxLength(50)]}),
+    apellidoPaterno: new FormControl(&#x27;&#x27;, {nonNullable: true,validators: [Validators.required, Validators.maxLength(25)]}),
+    apellidoMaterno: new FormControl(&#x27;&#x27;, {nonNullable: true,validators: [Validators.required, Validators.maxLength(25)]}),
+    dni: new FormControl(&#x27;&#x27;, {nonNullable: true,validators: [Validators.required, Validators.pattern(/^\d{8,11}$/)]}),
+    domicilio: new FormControl(&#x27;&#x27;, {nonNullable: true,validators: [Validators.required, Validators.maxLength(100)]}),
+    nacionalidad: new FormControl(&#x27;&#x27;, {nonNullable: true, validators: [Validators.required, Validators.maxLength(50)]}),
+    direccionActual: new FormControl(&#x27;&#x27;, {nonNullable: true,validators: [Validators.maxLength(150)]}),
+    detalleDiscapacidad: new FormControl(&#x27;&#x27;, {nonNullable: true,validators: [Validators.maxLength(255)]}),
+    ocupacion: new FormControl(&#x27;&#x27;, {nonNullable: true,validators: [Validators.required, Validators.maxLength(20)]}),
+    fechaNacimiento: new FormControl(&#x27;&#x27;, {nonNullable: true,validators: [Validators.required]}),
+    hijos: new FormControl(0, {nonNullable: true,validators: [Validators.required, Validators.min(0)]}),
+    telefono: new FormControl(&#x27;&#x27;, {nonNullable: true,validators: [Validators.required, Validators.pattern(/^\d{7,11}$/)]}),
+    correoE: new FormControl(&#x27;&#x27;, {nonNullable: true,validators: [Validators.email, Validators.maxLength(255)]}),
+    fechaRegistrada: new FormControl(&#x27;&#x27;, {nonNullable: true}),
+    conocios: new FormControl&lt;Conocio&gt;(&#x27;&#x27;, {nonNullable: true,validators: [Validators.required]}),
+    conocioOtros: new FormControl(&#x27;&#x27;, {nonNullable: true,validators: [Validators.maxLength(30)]}),
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:58</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="idciudadano"></a>
+                    <span class="name">
+                        <span ><b>idciudadano</b></span>
+                        <a href="#idciudadano"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:35</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isEditing"></a>
+                    <span class="name">
+                        <span ><b>isEditing</b></span>
+                        <a href="#isEditing"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isOtros"></a>
+                    <span class="name">
+                        <span ><b>isOtros</b></span>
+                        <a href="#isOtros"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="modificadoPorDni"></a>
+                    <span class="name">
+                        <span ><b>modificadoPorDni</b></span>
+                        <a href="#modificadoPorDni"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="modificadoPorNombre"></a>
+                    <span class="name">
+                        <span ><b>modificadoPorNombre</b></span>
+                        <a href="#modificadoPorNombre"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:50</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="notify"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>notify</b></span>
+                        <a href="#notify"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(NotificacionesService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="open"></a>
+                    <span class="name">
+                        <span ><b>open</b></span>
+                        <a href="#open"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="open2"></a>
+                    <span class="name">
+                        <span ><b>open2</b></span>
+                        <a href="#open2"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="originalData"></a>
+                    <span class="name">
+                        <span ><b>originalData</b></span>
+                        <a href="#originalData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#VMCiudadanoUpdate" target="_self" >VMCiudadanoUpdate</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pageMeta"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>pageMeta</b></span>
+                        <a href="#pageMeta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(PageMetaService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="route"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>route</b></span>
+                        <a href="#route"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ActivatedRoute)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="router"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>router</b></span>
+                        <a href="#router"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(Router)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="service"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>service</b></span>
+                        <a href="#service"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(CiudadanoService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subConocio"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>subConocio</b></span>
+                        <a href="#subConocio"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:33</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="submittedEdit"></a>
+                    <span class="name">
+                        <span ><b>submittedEdit</b></span>
+                        <a href="#submittedEdit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="supoOpciones"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>supoOpciones</b></span>
+                        <a href="#supoOpciones"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>CONOCIO_CIUDADANO_OPCIONES</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/pages/ciudadano/ciudadano.detalle/ciudadano.detalle.ts:56</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, OnDestroy, inject } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { ReactiveFormsModule, FormBuilder, Validators } from &#x27;@angular/forms&#x27;;
+import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;;
+import { FormControl } from &#x27;@angular/forms&#x27;;
+import { firstValueFrom, Subscription } from &#x27;rxjs&#x27;;
+import { VMCiudadanoDetalleSimple, VMCiudadanoUpdate, VMCiudadanoUpdateForm, VMCiudadanoControl } from &#x27;../models/ciudadano.vm&#x27;;
+import { CiudadanoService } from &#x27;../services/ciudadano.service&#x27;;
+import { MapDetalleToUpdate } from &#x27;../mappers/ciudadano.mapper&#x27;;
+import { ConsultaListaCiudadano } from &#x27;../../consulta/consulta.lista.ciudadano/consulta.lista.ciudadano&#x27;;
+import { Conocio, CONOCIO_CIUDADANO_OPCIONES } from &#x27;../models/ciudadano.dominio&#x27;;
+
+import { NotificacionesService } from &#x27;@/app/components/notificaciones/services/notificaciones.service&#x27;;
+import { PageMetaService } from &#x27;@/app/services/page_meta.service&#x27;;
+import { AuthStore } from &#x27;@/app/auth/auth.store&#x27;;
+
+@Component({
+  selector: &#x27;app-ciudadano-detalle&#x27;,
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, ConsultaListaCiudadano],
+  templateUrl: &#x27;./ciudadano.detalle.html&#x27;,
+  styleUrl: &#x27;./ciudadano.detalle.css&#x27;
+})
+export class CiudadanoDetalle implements OnInit , OnDestroy{
+
+  private route &#x3D; inject(ActivatedRoute);
+  private router &#x3D; inject(Router);
+  private service &#x3D; inject(CiudadanoService);
+  private fb &#x3D; inject(FormBuilder);
+  private notify &#x3D; inject(NotificacionesService);
+  private auth &#x3D; inject(AuthStore);
+  private pageMeta &#x3D; inject(PageMetaService);
+  private subConocio?: Subscription;
+
+  idciudadano!: number;
+  isEditing &#x3D; false;
+  submittedEdit &#x3D; false;
+  isOtros &#x3D; false;
+
+  open &#x3D; false;
+  open2 &#x3D; true;
+
+  originalData!: VMCiudadanoUpdate;
+
+  // Datos solo visuales de auditoría. No se editan.
+  creadoPorNombre: string | null &#x3D; null;
+  creadoPorDni: string | null &#x3D; null;
+  fechaCreadoPor: Date | string | null &#x3D; null;
+
+  modificadoPorNombre: string | null &#x3D; null;
+  modificadoPorDni: string | null &#x3D; null;
+  fechaModificadoPor: Date | string | null &#x3D; null;
+
+  canSeeControl &#x3D; false;
+
+  readonly supoOpciones &#x3D; CONOCIO_CIUDADANO_OPCIONES;
+
+  form &#x3D; this.fb.group&lt;ControlsOf&lt;VMCiudadanoUpdateForm&gt;&gt;({
+    nombres: new FormControl(&#x27;&#x27;, {nonNullable: true,validators: [Validators.required, Validators.maxLength(50)]}),
+    apellidoPaterno: new FormControl(&#x27;&#x27;, {nonNullable: true,validators: [Validators.required, Validators.maxLength(25)]}),
+    apellidoMaterno: new FormControl(&#x27;&#x27;, {nonNullable: true,validators: [Validators.required, Validators.maxLength(25)]}),
+    dni: new FormControl(&#x27;&#x27;, {nonNullable: true,validators: [Validators.required, Validators.pattern(/^\d{8,11}$/)]}),
+    domicilio: new FormControl(&#x27;&#x27;, {nonNullable: true,validators: [Validators.required, Validators.maxLength(100)]}),
+    nacionalidad: new FormControl(&#x27;&#x27;, {nonNullable: true, validators: [Validators.required, Validators.maxLength(50)]}),
+    direccionActual: new FormControl(&#x27;&#x27;, {nonNullable: true,validators: [Validators.maxLength(150)]}),
+    detalleDiscapacidad: new FormControl(&#x27;&#x27;, {nonNullable: true,validators: [Validators.maxLength(255)]}),
+    ocupacion: new FormControl(&#x27;&#x27;, {nonNullable: true,validators: [Validators.required, Validators.maxLength(20)]}),
+    fechaNacimiento: new FormControl(&#x27;&#x27;, {nonNullable: true,validators: [Validators.required]}),
+    hijos: new FormControl(0, {nonNullable: true,validators: [Validators.required, Validators.min(0)]}),
+    telefono: new FormControl(&#x27;&#x27;, {nonNullable: true,validators: [Validators.required, Validators.pattern(/^\d{7,11}$/)]}),
+    correoE: new FormControl(&#x27;&#x27;, {nonNullable: true,validators: [Validators.email, Validators.maxLength(255)]}),
+    fechaRegistrada: new FormControl(&#x27;&#x27;, {nonNullable: true}),
+    conocios: new FormControl&lt;Conocio&gt;(&#x27;&#x27;, {nonNullable: true,validators: [Validators.required]}),
+    conocioOtros: new FormControl(&#x27;&#x27;, {nonNullable: true,validators: [Validators.maxLength(30)]}),
+  });
+
+  ngOnInit(): void {
+    this.form.disable();
+
+    const level &#x3D; this.auth.getLevel();
+    this.canSeeControl &#x3D; level !&#x3D; null &amp;&amp; level &lt;&#x3D; 3;
+
+    const id &#x3D; Number(this.route.snapshot.paramMap.get(&#x27;id&#x27;));
+    if (!id) return;
+
+    this.idciudadano &#x3D; id;
+
+    this.pageMeta.replace({
+      titulo: &#x27;Ciudadano:&#x27;,
+      ruta: [&#x27;/ciudadano&#x27;],
+    });
+
+    this.subConocio &#x3D; this.form.get(&#x27;conocios&#x27;)!.valueChanges.subscribe(() &#x3D;&gt; {
+      this.syncConocioOtros();
+    });
+
+    this.service.getById(id).subscribe({
+      next: (data: VMCiudadanoDetalleSimple) &#x3D;&gt; {
+        this.aplicarDetalle(data, id);
+      },
+      error: () &#x3D;&gt; {
+        // El interceptor ya mostró el diálogo.
+      }
+    });
+
+    if (this.canSeeControl) {
+      this.service.getControlById(id).subscribe({
+        next: (control: VMCiudadanoControl) &#x3D;&gt; {
+          this.aplicarControl(control);
+        },
+        error: () &#x3D;&gt; {
+          // El backend sigue protegiendo esta información.
+        }
+      });
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.subConocio?.unsubscribe();
+    this.pageMeta.clear();
+  }
+
+  private aplicarDetalle(data: VMCiudadanoDetalleSimple, id: number): void {
+    this.form.patchValue(data);
+    this.syncConocioOtros();
+
+    this.originalData &#x3D; MapDetalleToUpdate(data);
+
+    this.pageMeta.replace({
+      titulo: &#x60;Ciudadano: ${data.apellidoPaterno ?? &#x27;&#x27;} ${data.apellidoMaterno ?? &#x27;&#x27;}, ${data.nombres ?? &#x27;&#x27;} - DNI: ${data.dni ?? &#x27;&#x27;}&#x60;,
+      ruta: [&#x27;/ciudadano&#x27;]
+    });
+  }
+
+  private aplicarControl(control: VMCiudadanoControl): void {
+    this.creadoPorNombre &#x3D; control.creadoPorNombre ?? null;
+    this.creadoPorDni &#x3D; control.creadoPorDni ?? null;
+    this.fechaCreadoPor &#x3D; control.fechaCreadoPor ?? null;
+
+    this.modificadoPorNombre &#x3D; control.modificadoPorNombre ?? null;
+    this.modificadoPorDni &#x3D; control.modificadoPorDni ?? null;
+    this.fechaModificadoPor &#x3D; control.fechaModificadoPor ?? null;
+  }
+
+  private syncConocioOtros() {
+    const value &#x3D; this.form.get(&#x27;conocios&#x27;)!.value as Conocio;
+    const otrosCtrl &#x3D; this.form.get(&#x27;conocioOtros&#x27;)!;
+
+    this.isOtros &#x3D; value &#x3D;&#x3D;&#x3D; &#x27;OTROS&#x27;;
+
+    if (this.isOtros) {
+      otrosCtrl.setValidators([Validators.required, Validators.maxLength(30)]);
+    } else {
+      otrosCtrl.clearValidators();
+
+      if (otrosCtrl.value) {
+        otrosCtrl.setValue(&#x27;&#x27;, { emitEvent: false });
+      }
+
+      otrosCtrl.markAsPristine();
+      otrosCtrl.markAsUntouched();
+    }
+
+    otrosCtrl.updateValueAndValidity({ emitEvent: false });
+  }
+
+  private validaConocioOtros(): string | null {
+    const v &#x3D; this.form.value;
+
+    if (v.conocios &#x3D;&#x3D;&#x3D; &#x27;OTROS&#x27; &amp;&amp; !v.conocioOtros?.toString().trim()) {
+      return &#x27;Indique cómo conoció el servicio en “Otros”.&#x27;;
+    }
+
+    return null;
+  }
+
+  // &#x3D;&#x3D;&#x3D; Edición &#x3D;&#x3D;&#x3D;
+  onEdit(ev: Event): void {
+    ev.stopPropagation();
+
+    this.submittedEdit &#x3D; false;
+    this.isEditing &#x3D; true;
+    this.open &#x3D; true;
+
+    this.form.enable();
+    this.syncConocioOtros();
+  }
+
+  async onCancel(): Promise&lt;void&gt; {
+    if (this.hasUnsavedChanges()) {
+      const ok &#x3D; await this.notify.confirm({
+        variant: &#x27;warning&#x27;,
+        title: &#x27;Descartar cambios&#x27;,
+        message: &#x27;Tienes cambios sin guardar. ¿Deseas descartarlos?&#x27;,
+        confirmText: &#x27;Descartar&#x27;,
+        cancelText: &#x27;Seguir editando&#x27;
+      });
+
+      if (!ok) return;
+    }
+
+    this.form.reset(this.originalData);
+    this.isEditing &#x3D; false;
+    this.form.disable();
+    this.submittedEdit &#x3D; false;
+    this.syncConocioOtros();
+  }
+
+  // &#x3D;&#x3D;&#x3D; Guardado &#x3D;&#x3D;&#x3D;
+  async onSave(): Promise&lt;void&gt; {
+    this.submittedEdit &#x3D; true;
+
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+
+      await this.notify.ok({
+        variant: &#x27;warning&#x27;,
+        title: &#x27;Datos incompletos&#x27;,
+        message: &#x27;Revisa los campos obligatorios e inténtalo nuevamente.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;
+      });
+
+      return;
+    }
+
+    const msgOtros &#x3D; this.validaConocioOtros();
+    if (msgOtros) {
+      await this.notify.ok({
+        variant: &#x27;warning&#x27;,
+        title: &#x27;Falta información&#x27;,
+        message: msgOtros,
+        primaryText: &#x27;Aceptar&#x27;
+      });
+
+      return;
+    }
+
+    // Cambios respecto a originalData
+    const current &#x3D; this.form.value;
+    const changes: Partial&lt;typeof current&gt; &#x3D; {};
+
+    for (const key of Object.keys(current) as (keyof typeof current)[]) {
+      if (current[key] !&#x3D;&#x3D; this.originalData[key]) {
+        changes[key] &#x3D; current[key] as any;
+      }
+    }
+
+    if (Object.keys(changes).length &#x3D;&#x3D;&#x3D; 0) {
+      await this.notify.ok({
+        variant: &#x27;info&#x27;,
+        title: &#x27;Sin cambios&#x27;,
+        message: &#x27;No hay cambios para guardar.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;
+      });
+
+      return;
+    }
+
+    const confirm &#x3D; await this.notify.confirm({
+      variant: &#x27;info&#x27;,
+      title: &#x27;Guardar cambios&#x27;,
+      message: &#x27;¿Deseas guardar los cambios realizados?&#x27;,
+      confirmText: &#x27;Guardar&#x27;,
+      cancelText: &#x27;Cancelar&#x27;
+    });
+
+    if (!confirm) return;
+
+    const id &#x3D; this.originalData.id;
+
+    if (id &#x3D;&#x3D; null) {
+      await this.notify.ok({
+        variant: &#x27;error&#x27;,
+        title: &#x27;Operación inválida&#x27;,
+        message: &#x27;No se encontró el ID del ciudadano.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;
+      });
+
+      return;
+    }
+
+    try {
+      await this.service.update(id, changes as any);
+
+      const UPPER_KEYS &#x3D; new Set([
+        &#x27;nombres&#x27;,
+        &#x27;apellidoPaterno&#x27;,
+        &#x27;apellidoMaterno&#x27;,
+        &#x27;domicilio&#x27;,
+        &#x27;nacionalidad&#x27;,
+        &#x27;direccionActual&#x27;,
+        &#x27;detalleDiscapacidad&#x27;,
+        &#x27;ocupacion&#x27;,
+        &#x27;conocioOtros&#x27;
+      ]);
+
+      const normalizedChanges &#x3D; Object.fromEntries(
+        Object.entries(changes).map(([k, v]) &#x3D;&gt;
+          typeof v &#x3D;&#x3D;&#x3D; &#x27;string&#x27; &amp;&amp; UPPER_KEYS.has(k)
+            ? [k, v.toUpperCase()]
+            : [k, v]
+        )
+      );
+
+      this.originalData &#x3D; {
+        ...this.originalData,
+        ...(normalizedChanges as any)
+      };
+
+      this.form.patchValue(this.originalData);
+
+      if (this.canSeeControl) {
+        try {
+          const control &#x3D; await firstValueFrom(this.service.getControlById(id));
+          this.aplicarControl(control);
+        } catch {
+          // El guardado ya fue exitoso; solo falló la carga de control.
+        }
+      }
+
+      await this.notify.ok({
+        variant: &#x27;success&#x27;,
+        title: &#x27;Cambios guardados&#x27;,
+        message: &#x27;La información del ciudadano se actualizó correctamente.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;
+      });
+
+      this.isEditing &#x3D; false;
+      this.form.disable();
+      this.submittedEdit &#x3D; false;
+      this.syncConocioOtros();
+    } catch {
+      // El interceptor ya mostró el diálogo de error.
+    }
+  }
+
+  gotoConsulta(): void {
+    if (!this.idciudadano || Number.isNaN(this.idciudadano)) return;
+    this.router.navigate([&#x27;/ciudadano&#x27;,this.idciudadano,&#x27;consulta&#x27;,&#x27;registrar&#x27;,]);
+  }
+
+  // &#x3D;&#x3D;&#x3D; Utilidades &#x3D;&#x3D;&#x3D;
+  private hasUnsavedChanges(): boolean {
+    const v &#x3D; this.form.value as Record&lt;string, unknown&gt;;
+    const o &#x3D; this.originalData as Record&lt;string, unknown&gt;;
+
+    for (const k of Object.keys(v)) {
+      if (v[k] !&#x3D;&#x3D; o[k]) return true;
+    }
+
+    return false;
+  }
+}
+
+type ControlsOf&lt;T&gt; &#x3D; {
+  [K in keyof T]: FormControl&lt;T[K]&gt;;
+};</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container&quot;&gt;
+  &lt;div class&#x3D;&quot;row justify-content-center&quot;&gt;
+    &lt;div class&#x3D;&quot;col-12 col-lg-8 mb-4&quot;&gt;
+      &lt;div class&#x3D;&quot;card shadow-sm&quot;&gt;
+
+        &lt;!-- Encabezado colapsable --&gt;
+        &lt;div
+          class&#x3D;&quot;card-header d-flex justify-content-between align-items-center selectable-fix&quot;
+          (click)&#x3D;&quot;open &#x3D; !open&quot;
+          role&#x3D;&quot;button&quot;
+          [attr.aria-expanded]&#x3D;&quot;open&quot;&gt;
+          &lt;!-- Grupo izquierda: texto + botón --&gt;
+          &lt;div class&#x3D;&quot;d-flex align-items-center gap-2&quot;&gt;
+            &lt;span class&#x3D;&quot;fw-semibold&quot; style&#x3D;&quot;min-width: 220px; display: inline-block;&quot;&gt;Información del ciudadano&lt;/span&gt;
+            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-secondary&quot; (click)&#x3D;&quot;onEdit($event)&quot;&gt;
+              Editar
+            &lt;/button&gt;
+          &lt;/div&gt;
+          &lt;span class&#x3D;&quot;caret&quot;&gt;{{ open ? &quot;▴&quot; : &quot;▾&quot; }}&lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Cuerpo (colapsable) --&gt;
+        &lt;form class&#x3D;&quot;card-body selectable-fix&quot; [hidden]&#x3D;&quot;!open&quot; [formGroup]&#x3D;&quot;form&quot; id&#x3D;&quot;form1&quot; name&#x3D;&quot;form1&quot;&gt;
+
+          &lt;!-- Sección: Identificación --&gt;
+          &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+            &lt;div class&#x3D;&quot;col-12 col-md-3&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;cdf1campo1&quot;&gt;Nombres&lt;/label&gt;
+              &lt;input type&#x3D;&quot;text&quot;
+                name&#x3D;&quot;cdf1campo1&quot; id&#x3D;&quot;cdf1campo1&quot;
+                formControlName&#x3D;&quot;nombres&quot;
+                [class.value-box-edit]&#x3D;&quot;isEditing&quot;
+                [class.value-box-noedit]&#x3D;&quot;!isEditing&quot;/&gt;
+              
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;col-12 col-md-3&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;cdf1campo2&quot;&gt;Apellido Paterno&lt;/label&gt;
+              &lt;input type&#x3D;&quot;text&quot;
+                name&#x3D;&quot;cdf1campo2&quot; id&#x3D;&quot;cdf1campo2&quot;
+                formControlName&#x3D;&quot;apellidoPaterno&quot;
+                [class.value-box-edit]&#x3D;&quot;isEditing&quot;
+                [class.value-box-noedit]&#x3D;&quot;!isEditing&quot;/&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;col-12 col-md-3&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;cdf1campo3&quot;&gt;Apellido Materno&lt;/label&gt;
+              &lt;input type&#x3D;&quot;text&quot;
+                name&#x3D;&quot;cdf1campo3&quot; id&#x3D;&quot;cdf1campo3&quot;
+                formControlName&#x3D;&quot;apellidoMaterno&quot;
+                [class.value-box-edit]&#x3D;&quot;isEditing&quot;
+                [class.value-box-noedit]&#x3D;&quot;!isEditing&quot;/&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;col-12 col-md-3&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;cdf1campo4&quot;&gt;DNI&lt;/label&gt;
+              &lt;input type&#x3D;&quot;text&quot;
+                name&#x3D;&quot;cdf1campo4&quot; id&#x3D;&quot;cdf1campo4&quot;
+                formControlName&#x3D;&quot;dni&quot;
+                [class.value-box-edit]&#x3D;&quot;isEditing&quot;
+                [class.value-box-noedit]&#x3D;&quot;!isEditing&quot;/&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div style&#x3D;&quot;height: 1rem; &quot;&gt;&lt;/div&gt;
+
+          &lt;!-- Sección: Domicilio --&gt;
+          &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+            &lt;div class&#x3D;&quot;col-12&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;cdf1campo5&quot;&gt;Domicilio&lt;/label&gt;
+              &lt;input type&#x3D;&quot;text&quot;
+                name&#x3D;&quot;cdf1campo5&quot; id&#x3D;&quot;cdf1campo5&quot;
+                formControlName&#x3D;&quot;domicilio&quot;
+                [class.value-box-edit]&#x3D;&quot;isEditing&quot;
+                [class.value-box-noedit]&#x3D;&quot;!isEditing&quot;/&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div style&#x3D;&quot;height: 1rem;&quot;&gt;&lt;/div&gt;
+
+          &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+            &lt;div class&#x3D;&quot;col-12&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;cdf1campo5b&quot;&gt;Dirección actual&lt;/label&gt;
+              &lt;input type&#x3D;&quot;text&quot;
+                name&#x3D;&quot;cdf1campo5b&quot; id&#x3D;&quot;cdf1campo5b&quot;
+                formControlName&#x3D;&quot;direccionActual&quot;
+                [class.value-box-edit]&#x3D;&quot;isEditing&quot;
+                [class.value-box-noedit]&#x3D;&quot;!isEditing&quot;/&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div style&#x3D;&quot;height: 1rem;&quot;&gt;&lt;/div&gt;
+
+          &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+            &lt;div class&#x3D;&quot;col-12 col-md-5&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;cdf1campo5c&quot;&gt;Nacionalidad&lt;/label&gt;
+              &lt;input type&#x3D;&quot;text&quot;
+                name&#x3D;&quot;cdf1campo5c&quot; id&#x3D;&quot;cdf1campo5c&quot;
+                formControlName&#x3D;&quot;nacionalidad&quot;
+                [class.value-box-edit]&#x3D;&quot;isEditing&quot;
+                [class.value-box-noedit]&#x3D;&quot;!isEditing&quot;/&gt;
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;col-12 col-md-7&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;cdf1campo5d&quot;&gt;Detalle de discapacidad&lt;/label&gt;
+              &lt;input type&#x3D;&quot;text&quot;
+                name&#x3D;&quot;cdf1campo5d&quot; id&#x3D;&quot;cdf1campo5d&quot;
+                formControlName&#x3D;&quot;detalleDiscapacidad&quot;
+                [class.value-box-edit]&#x3D;&quot;isEditing&quot;
+                [class.value-box-noedit]&#x3D;&quot;!isEditing&quot;/&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;!-- Sección: Datos complementarios --&gt;
+           &lt;div style&#x3D;&quot;height: 1rem;&quot;&gt;&lt;/div&gt;
+          &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+            &lt;div class&#x3D;&quot;col-12 col-md-5&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;cdf1campo6&quot;&gt;Ocupación&lt;/label&gt;
+              &lt;input type&#x3D;&quot;text&quot;
+                name&#x3D;&quot;cdf1campo6&quot; id&#x3D;&quot;cdf1campo6&quot;
+                formControlName&#x3D;&quot;ocupacion&quot;
+                [class.value-box-edit]&#x3D;&quot;isEditing&quot;
+                [class.value-box-noedit]&#x3D;&quot;!isEditing&quot;/&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;col-12 col-md-4&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;cdf1campo7&quot;&gt;Fecha de nacimiento&lt;/label&gt;
+              &lt;input type&#x3D;&quot;date&quot;
+                name&#x3D;&quot;cdf1campo7&quot; id&#x3D;&quot;cdf1campo7&quot;
+                formControlName&#x3D;&quot;fechaNacimiento&quot;
+                [class.value-box-edit]&#x3D;&quot;isEditing&quot;
+                [class.value-box-noedit]&#x3D;&quot;!isEditing&quot;/&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;col-12 col-md-3&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;cdf1campo8&quot;&gt;Hijos&lt;/label&gt;
+              &lt;input type&#x3D;&quot;number&quot;
+                name&#x3D;&quot;cdf1campo8&quot; id&#x3D;&quot;cdf1campo8&quot;
+                formControlName&#x3D;&quot;hijos&quot;
+                [class.value-box-edit]&#x3D;&quot;isEditing&quot;
+                [class.value-box-noedit]&#x3D;&quot;!isEditing&quot;/&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;row g-3 mt-0 mt-md-3&quot;&gt;
+            &lt;div class&#x3D;&quot;col-12 col-md-4&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;cdf1campoFechaReg&quot;&gt;Fecha registrada&lt;/label&gt;
+              &lt;input type&#x3D;&quot;date&quot;
+                name&#x3D;&quot;cdf1campoFechaReg&quot; id&#x3D;&quot;cdf1campoFechaReg&quot;
+                formControlName&#x3D;&quot;fechaRegistrada&quot;
+                [class.value-box-edit]&#x3D;&quot;isEditing&quot;
+                [class.value-box-noedit]&#x3D;&quot;!isEditing&quot;/&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;row g-3 mt-0 mt-md-3&quot;&gt;
+            &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;cdf1campo9&quot;&gt;Número de contacto&lt;/label&gt;
+              &lt;input type&#x3D;&quot;tel&quot;
+                name&#x3D;&quot;cdf1campo9&quot; id&#x3D;&quot;cdf1campo9&quot;
+                formControlName&#x3D;&quot;telefono&quot;
+                [class.value-box-edit]&#x3D;&quot;isEditing&quot;
+                [class.value-box-noedit]&#x3D;&quot;!isEditing&quot;/&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;cdf1campo10&quot;&gt;Correo electrónico&lt;/label&gt;
+              &lt;input type&#x3D;&quot;email&quot;
+                name&#x3D;&quot;cdf1campo10&quot; id&#x3D;&quot;cdf1campo10&quot;
+                formControlName&#x3D;&quot;correoE&quot;
+                [class.value-box-edit]&#x3D;&quot;isEditing&quot;
+                [class.value-box-noedit]&#x3D;&quot;!isEditing&quot;/&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div style&#x3D;&quot;height: 1rem; &quot;&gt;&lt;/div&gt;
+
+          &lt;!-- Sección: ¿Cómo supo del consultorio? --&gt;
+          &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+            &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot;&gt;¿Cómo nos conoció?&lt;/label&gt;
+              &lt;select class&#x3D;&quot;form-select&quot;
+                      formControlName&#x3D;&quot;conocios&quot;
+                      [class.value-box-edit]&#x3D;&quot;isEditing&quot;
+                      [class.value-box-noedit]&#x3D;&quot;!isEditing&quot;&gt;
+                &lt;option value&#x3D;&quot;&quot; disabled&gt;Seleccione una opción&lt;/option&gt;
+                @for (opt of supoOpciones; track opt.value) {
+                  &lt;option [value]&#x3D;&quot;opt.value&quot;&gt;{{ opt.label }}&lt;/option&gt;
+                }
+              &lt;/select&gt;
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot;&gt;Especifique otros&lt;/label&gt;
+              &lt;input
+                type&#x3D;&quot;text&quot;
+                maxlength&#x3D;&quot;30&quot;
+                formControlName&#x3D;&quot;conocioOtros&quot;
+                placeholder&#x3D;&quot;Describe brevemente&quot;
+                class&#x3D;&quot;form-control w-100&quot;
+                [readonly]&#x3D;&quot;!isOtros || !isEditing&quot;
+                [attr.tabindex]&#x3D;&quot;(!isOtros || !isEditing) ? -1 : 0&quot;
+                [class.value-box-edit]&#x3D;&quot;isOtros &amp;&amp; isEditing&quot;
+                [class.value-box-noedit]&#x3D;&quot;!(isOtros &amp;&amp; isEditing)&quot;
+              /&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          @if (canSeeControl) {
+          &lt;div style&#x3D;&quot;height: 1rem;&quot;&gt;&lt;/div&gt;
+
+          &lt;hr class&#x3D;&quot;my-3&quot;&gt;
+
+          &lt;div class&#x3D;&quot;section-title&quot;&gt;Información de registro&lt;/div&gt;
+
+          &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+            &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot;&gt;Registrado por&lt;/label&gt;
+              &lt;input type&#x3D;&quot;text&quot;
+                [value]&#x3D;&quot;creadoPorNombre || &#x27;—&#x27;&quot;
+                class&#x3D;&quot;value-box-noedit&quot;
+                readonly&gt;
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;col-12 col-md-3&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot;&gt;DNI&lt;/label&gt;
+              &lt;input type&#x3D;&quot;text&quot;
+                [value]&#x3D;&quot;creadoPorDni || &#x27;—&#x27;&quot;
+                class&#x3D;&quot;value-box-noedit&quot;
+                readonly&gt;
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;col-12 col-md-3&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot;&gt;Fecha sistema&lt;/label&gt;
+              &lt;input type&#x3D;&quot;text&quot;
+                [value]&#x3D;&quot;fechaCreadoPor ? (fechaCreadoPor | date:&#x27;yyyy-MM-dd HH:mm&#x27;) : &#x27;—&#x27;&quot;
+                class&#x3D;&quot;value-box-noedit&quot;
+                readonly&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          
+          &lt;div style&#x3D;&quot;height: 1rem;&quot;&gt;&lt;/div&gt;
+
+          &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+            &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot;&gt;Última actualización por&lt;/label&gt;
+              &lt;input type&#x3D;&quot;text&quot;
+                [value]&#x3D;&quot;modificadoPorNombre || &#x27;—&#x27;&quot;
+                class&#x3D;&quot;value-box-noedit&quot;
+                readonly&gt;
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;col-12 col-md-3&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot;&gt;DNI&lt;/label&gt;
+              &lt;input type&#x3D;&quot;text&quot;
+                [value]&#x3D;&quot;modificadoPorDni || &#x27;—&#x27;&quot;
+                class&#x3D;&quot;value-box-noedit&quot;
+                readonly&gt;
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;col-12 col-md-3&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot;&gt;Fecha sistema&lt;/label&gt;
+              &lt;input type&#x3D;&quot;text&quot;
+                [value]&#x3D;&quot;fechaModificadoPor ? (fechaModificadoPor | date:&#x27;yyyy-MM-dd HH:mm&#x27;) : &#x27;—&#x27;&quot;
+                class&#x3D;&quot;value-box-noedit&quot;
+                readonly&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          }
+          &lt;div style&#x3D;&quot;height: 1rem; &quot;&gt;&lt;/div&gt;
+            &lt;!-- Botones --&gt;
+          @if (isEditing) {
+            &lt;div class&#x3D;&quot;d-flex justify-content-between mt-4&quot;&gt;
+              &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-warning&quot; (click)&#x3D;&quot;onCancel()&quot;&gt;
+                Cancelar
+              &lt;/button&gt;
+              &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-success&quot; (click)&#x3D;&quot;onSave()&quot;&gt;
+                Guardar
+              &lt;/button&gt;
+            &lt;/div&gt;
+          }
+        &lt;/form&gt;   
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;col-12 col-lg-8&quot;&gt;
+      &lt;div class&#x3D;&quot;card shadow-sm&quot;&gt;
+        &lt;!-- Encabezado colapsable --&gt;
+        &lt;div
+          class&#x3D;&quot;card-header d-flex justify-content-between align-items-center selectable-fix&quot;
+          (click)&#x3D;&quot;open2 &#x3D; !open2&quot;
+          role&#x3D;&quot;button&quot;
+          [attr.aria-expanded]&#x3D;&quot;open2&quot;&gt;
+          &lt;div class&#x3D;&quot;d-flex align-items-center gap-2&quot;&gt;
+            &lt;span class&#x3D;&quot;fw-semibold&quot; style&#x3D;&quot;min-width: 220px; display: inline-block;&quot;&gt;Consultas&lt;/span&gt;
+            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-secondary&quot;(click)&#x3D;&quot;gotoConsulta();$event.stopPropagation()&quot;&gt;Nueva Consulta&lt;/button&gt;
+          &lt;/div&gt;
+          &lt;span class&#x3D;&quot;caret&quot;&gt;{{ open2 ? &quot;▴&quot; : &quot;▾&quot; }}&lt;/span&gt;
+        &lt;/div&gt;
+        
+        &lt;app-consulta-lista-ciudadano  [idciudadano]&#x3D;&quot;idciudadano&quot; [hidden]&#x3D;&quot;!open2&quot;/&gt;
+          
+      &lt;/div&gt; 
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./ciudadano.detalle.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">/* Mantiene coherencia visual con inputs, pero en modo lectura */
+.value-box-noedit {
+  display: block;
+  width: 100%;
+  padding: .475rem .75rem;
+  background-color: #f8f9fa;   /* gris claro tipo form-control readonly */
+  border: 1px solid #dee2e6;
+  border-radius: .375rem;
+  min-height: calc(1.5em + .95rem + 2px);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  cursor: default;
+  pointer-events: none;
+  user-select: none; 
+} 
+.value-box-edit {
+  display: block;
+  width: 100%;
+  padding: .475rem .75rem;
+  background-color: #fff;     /* blanco como input normal */
+  border: 1px solid #ced4da;  /* borde típico de bootstrap */
+  border-radius: .375rem;
+  min-height: calc(1.5em + .95rem + 2px);
+  line-height: 1.5;
+}
+
+/* Encabezado clicable; evita selección accidental de texto */
+.card-header {
+  cursor: pointer;
+  user-select: none;
+}
+
+.section-title {
+  font-weight: 600;
+  color: #6c757d;
+  margin-bottom: .25rem;
+}
+
+/* Flecha simple (si no usa Bootstrap Icons) */
+.caret {
+  font-size: 1rem;
+}
+
+/* Opcional: si desea impedir selección en todo el panel */
+.selectable-fix {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="container">  <div class="row justify-content-center">    <div class="col-12 col-lg-8 mb-4">      <div class="card shadow-sm">        <!-- Encabezado colapsable -->        <div          class="card-header d-flex justify-content-between align-items-center selectable-fix"          (click)="open = !open"          role="button"          [attr.aria-expanded]="open">          <!-- Grupo izquierda: texto + botón -->          <div class="d-flex align-items-center gap-2">            <span class="fw-semibold" style="min-width: 220px; display: inline-block;">Información del ciudadano</span>            <button type="button" class="btn btn-secondary" (click)="onEdit($event)">              Editar            </button>          </div>          <span class="caret">{{ open ? "▴" : "▾" }}</span>        </div>        <!-- Cuerpo (colapsable) -->        <form class="card-body selectable-fix" [hidden]="!open" [formGroup]="form" id="form1" name="form1">          <!-- Sección: Identificación -->          <div class="row g-3">            <div class="col-12 col-md-3">              <label class="form-label" for="cdf1campo1">Nombres</label>              <input type="text"                name="cdf1campo1" id="cdf1campo1"                formControlName="nombres"                [class.value-box-edit]="isEditing"                [class.value-box-noedit]="!isEditing"/>                          </div>            <div class="col-12 col-md-3">              <label class="form-label" for="cdf1campo2">Apellido Paterno</label>              <input type="text"                name="cdf1campo2" id="cdf1campo2"                formControlName="apellidoPaterno"                [class.value-box-edit]="isEditing"                [class.value-box-noedit]="!isEditing"/>            </div>            <div class="col-12 col-md-3">              <label class="form-label" for="cdf1campo3">Apellido Materno</label>              <input type="text"                name="cdf1campo3" id="cdf1campo3"                formControlName="apellidoMaterno"                [class.value-box-edit]="isEditing"                [class.value-box-noedit]="!isEditing"/>            </div>            <div class="col-12 col-md-3">              <label class="form-label" for="cdf1campo4">DNI</label>              <input type="text"                name="cdf1campo4" id="cdf1campo4"                formControlName="dni"                [class.value-box-edit]="isEditing"                [class.value-box-noedit]="!isEditing"/>            </div>          </div>          <div style="height: 1rem; "></div>          <!-- Sección: Domicilio -->          <div class="row g-3">            <div class="col-12">              <label class="form-label" for="cdf1campo5">Domicilio</label>              <input type="text"                name="cdf1campo5" id="cdf1campo5"                formControlName="domicilio"                [class.value-box-edit]="isEditing"                [class.value-box-noedit]="!isEditing"/>            </div>          </div>          <div style="height: 1rem;"></div>          <div class="row g-3">            <div class="col-12">              <label class="form-label" for="cdf1campo5b">Dirección actual</label>              <input type="text"                name="cdf1campo5b" id="cdf1campo5b"                formControlName="direccionActual"                [class.value-box-edit]="isEditing"                [class.value-box-noedit]="!isEditing"/>            </div>          </div>          <div style="height: 1rem;"></div>          <div class="row g-3">            <div class="col-12 col-md-5">              <label class="form-label" for="cdf1campo5c">Nacionalidad</label>              <input type="text"                name="cdf1campo5c" id="cdf1campo5c"                formControlName="nacionalidad"                [class.value-box-edit]="isEditing"                [class.value-box-noedit]="!isEditing"/>            </div>            <div class="col-12 col-md-7">              <label class="form-label" for="cdf1campo5d">Detalle de discapacidad</label>              <input type="text"                name="cdf1campo5d" id="cdf1campo5d"                formControlName="detalleDiscapacidad"                [class.value-box-edit]="isEditing"                [class.value-box-noedit]="!isEditing"/>            </div>          </div>          <!-- Sección: Datos complementarios -->           <div style="height: 1rem;"></div>          <div class="row g-3">            <div class="col-12 col-md-5">              <label class="form-label" for="cdf1campo6">Ocupación</label>              <input type="text"                name="cdf1campo6" id="cdf1campo6"                formControlName="ocupacion"                [class.value-box-edit]="isEditing"                [class.value-box-noedit]="!isEditing"/>            </div>            <div class="col-12 col-md-4">              <label class="form-label" for="cdf1campo7">Fecha de nacimiento</label>              <input type="date"                name="cdf1campo7" id="cdf1campo7"                formControlName="fechaNacimiento"                [class.value-box-edit]="isEditing"                [class.value-box-noedit]="!isEditing"/>            </div>            <div class="col-12 col-md-3">              <label class="form-label" for="cdf1campo8">Hijos</label>              <input type="number"                name="cdf1campo8" id="cdf1campo8"                formControlName="hijos"                [class.value-box-edit]="isEditing"                [class.value-box-noedit]="!isEditing"/>            </div>          </div>          <div class="row g-3 mt-0 mt-md-3">            <div class="col-12 col-md-4">              <label class="form-label" for="cdf1campoFechaReg">Fecha registrada</label>              <input type="date"                name="cdf1campoFechaReg" id="cdf1campoFechaReg"                formControlName="fechaRegistrada"                [class.value-box-edit]="isEditing"                [class.value-box-noedit]="!isEditing"/>            </div>          </div>          <div class="row g-3 mt-0 mt-md-3">            <div class="col-12 col-md-6">              <label class="form-label" for="cdf1campo9">Número de contacto</label>              <input type="tel"                name="cdf1campo9" id="cdf1campo9"                formControlName="telefono"                [class.value-box-edit]="isEditing"                [class.value-box-noedit]="!isEditing"/>            </div>            <div class="col-12 col-md-6">              <label class="form-label" for="cdf1campo10">Correo electrónico</label>              <input type="email"                name="cdf1campo10" id="cdf1campo10"                formControlName="correoE"                [class.value-box-edit]="isEditing"                [class.value-box-noedit]="!isEditing"/>            </div>          </div>          <div style="height: 1rem; "></div>          <!-- Sección: ¿Cómo supo del consultorio? -->          <div class="row g-3">            <div class="col-12 col-md-6">              <label class="form-label">¿Cómo nos conoció?</label>              <select class="form-select"                      formControlName="conocios"                      [class.value-box-edit]="isEditing"                      [class.value-box-noedit]="!isEditing">                <option value="" disabled>Seleccione una opción</option>                @for (opt of supoOpciones; track opt.value) {                  <option [value]="opt.value">{{ opt.label }}</option>                }              </select>            </div>            <div class="col-12 col-md-6">              <label class="form-label">Especifique otros</label>              <input                type="text"                maxlength="30"                formControlName="conocioOtros"                placeholder="Describe brevemente"                class="form-control w-100"                [readonly]="!isOtros || !isEditing"                [attr.tabindex]="(!isOtros || !isEditing) ? -1 : 0"                [class.value-box-edit]="isOtros && isEditing"                [class.value-box-noedit]="!(isOtros && isEditing)"              />            </div>          </div>          @if (canSeeControl) {          <div style="height: 1rem;"></div>          <hr class="my-3">          <div class="section-title">Información de registro</div>          <div class="row g-3">            <div class="col-12 col-md-6">              <label class="form-label">Registrado por</label>              <input type="text"                [value]="creadoPorNombre || \'—\'"                class="value-box-noedit"                readonly>            </div>            <div class="col-12 col-md-3">              <label class="form-label">DNI</label>              <input type="text"                [value]="creadoPorDni || \'—\'"                class="value-box-noedit"                readonly>            </div>            <div class="col-12 col-md-3">              <label class="form-label">Fecha sistema</label>              <input type="text"                [value]="fechaCreadoPor ? (fechaCreadoPor | date:\'yyyy-MM-dd HH:mm\') : \'—\'"                class="value-box-noedit"                readonly>            </div>          </div>                    <div style="height: 1rem;"></div>          <div class="row g-3">            <div class="col-12 col-md-6">              <label class="form-label">Última actualización por</label>              <input type="text"                [value]="modificadoPorNombre || \'—\'"                class="value-box-noedit"                readonly>            </div>            <div class="col-12 col-md-3">              <label class="form-label">DNI</label>              <input type="text"                [value]="modificadoPorDni || \'—\'"                class="value-box-noedit"                readonly>            </div>            <div class="col-12 col-md-3">              <label class="form-label">Fecha sistema</label>              <input type="text"                [value]="fechaModificadoPor ? (fechaModificadoPor | date:\'yyyy-MM-dd HH:mm\') : \'—\'"                class="value-box-noedit"                readonly>            </div>          </div>          }          <div style="height: 1rem; "></div>            <!-- Botones -->          @if (isEditing) {            <div class="d-flex justify-content-between mt-4">              <button type="button" class="btn btn-warning" (click)="onCancel()">                Cancelar              </button>              <button type="button" class="btn btn-success" (click)="onSave()">                Guardar              </button>            </div>          }        </form>         </div>    </div>    <div class="col-12 col-lg-8">      <div class="card shadow-sm">        <!-- Encabezado colapsable -->        <div          class="card-header d-flex justify-content-between align-items-center selectable-fix"          (click)="open2 = !open2"          role="button"          [attr.aria-expanded]="open2">          <div class="d-flex align-items-center gap-2">            <span class="fw-semibold" style="min-width: 220px; display: inline-block;">Consultas</span>            <button type="button" class="btn btn-secondary"(click)="gotoConsulta();$event.stopPropagation()">Nueva Consulta</button>          </div>          <span class="caret">{{ open2 ? "▴" : "▾" }}</span>        </div>                <app-consulta-lista-ciudadano  [idciudadano]="idciudadano" [hidden]="!open2"/>                </div>     </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AnaliticasDashboard', 'selector': 'app-analiticas-dashboard'},{'name': 'App', 'selector': 'app-root'},{'name': 'AsistenciaLista', 'selector': 'app-asistencia-lista'},{'name': 'AsistenciasDashboard', 'selector': 'app-asistencias-dashboard'},{'name': 'AudienciaCalendario', 'selector': 'app-audiencia-calendario'},{'name': 'AudienciaDetalle', 'selector': 'app-audiencia-detalle'},{'name': 'AudienciaRegistrar', 'selector': 'app-audiencia-registrar'},{'name': 'CiudadanoDetalle', 'selector': 'app-ciudadano-detalle'},{'name': 'CiudadanoLista', 'selector': 'app-ciudadano-lista'},{'name': 'CiudadanoRegistrar', 'selector': 'app-ciudadano-registrar'},{'name': 'ConfirmarCorreo', 'selector': 'app-cuenta-confirmar-correo'},{'name': 'ConsultaDetalle', 'selector': 'app-consulta-detalle'},{'name': 'ConsultaLista', 'selector': 'app-consulta-lista'},{'name': 'ConsultaListaCiudadano', 'selector': 'app-consulta-lista-ciudadano'},{'name': 'ConsultaRegistar', 'selector': 'app-consulta-registrar'},{'name': 'DocumentosListaEntidad', 'selector': 'app-documentos-lista-entidad'},{'name': 'DocumentosListaGeneral', 'selector': 'app-documentos-lista-general'},{'name': 'DocumentosRegistrar', 'selector': 'app-documentos-registrar'},{'name': 'DocumentosRutaBaseLista', 'selector': 'app-documentos-ruta-base-lista'},{'name': 'DocumentosRutaBaseRegistrar', 'selector': 'app-documentos-ruta-base-registrar'},{'name': 'ExportarConDriveComponent', 'selector': 'app-exportar-con-drive'},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'Header', 'selector': 'app-header'},{'name': 'HorarioDetalle', 'selector': 'app-horario-detalle'},{'name': 'HorarioLista', 'selector': 'app-horario-lista'},{'name': 'HorarioRegistrar', 'selector': 'app-horario-registrar'},{'name': 'Ingresar', 'selector': 'app-cuenta-ingresar'},{'name': 'JustificacionListaMis', 'selector': 'app-justificacion-lista-mis'},{'name': 'JustificacionListaPendientes', 'selector': 'app-justificacion-lista-pendientes'},{'name': 'JustificacionRegistrar', 'selector': 'app-justificacion-registrar'},{'name': 'Main_layout', 'selector': 'app-main-layout'},{'name': 'NotificacionestVer', 'selector': 'app-notificaciones-ver'},{'name': 'PaginaNoEncontradaComponent', 'selector': 'app-pagina-no-encontrada'},{'name': 'Perfil', 'selector': 'app-cuenta-perfil'},{'name': 'ProcesoDetalle', 'selector': 'app-proceso-detalle'},{'name': 'ProcesoLista', 'selector': 'app-proceso-lista'},{'name': 'ProcesoRegistrar', 'selector': 'app-proceso-registrar'},{'name': 'Registar', 'selector': 'app-cuenta-registrar'},{'name': 'SeguimientoListaConsulta', 'selector': 'app-seguimiento-lista-consulta'},{'name': 'SeguimientoRegistar', 'selector': 'app-seguimiento-registrar'},{'name': 'Sidebar', 'selector': 'app-sidebar'},{'name': 'Simple_layout', 'selector': 'app-simple_layout'},{'name': 'TramiteDetalle', 'selector': 'app-tramite-detalle'},{'name': 'TramiteLista', 'selector': 'app-tramite-lista'},{'name': 'TramiteRegistrar', 'selector': 'app-tramite-registrar'},{'name': 'UsuarioDetalle', 'selector': 'app-usuario-detalle'},{'name': 'UsuarioHorarioListaUsuario', 'selector': 'app-usuario-horario-lista-usuario'},{'name': 'UsuarioLista', 'selector': 'app-usuario-lista'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'CiudadanoDetalle'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'CiudadanoDetalle.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,49 +1,106 @@
-// src/app/analiticas/models/analiticas.vm.ts
-export type PeriodKind  = 'week' | 'month' | 'year';
-export type PeriodRange = 'this' | 'last';
-export type PeriodView  = 'day' | 'week' | 'month' | 'year';
+// src/app/pages/analiticas/models/analiticas.vm.ts
+
+export type PeriodoTipo = 'week' | 'month' | 'year' | 'range';
+export type PeriodView = 'day' | 'week' | 'month' | 'year';
+
+export type AnalyticsExportDataset = 'todo';
+export type AnalyticsExportFormato = 'xlsx';
 
 export interface VMPeriodQuery {
-  start?: string;
-  end?: string;
+  periodoTipo: PeriodoTipo;
+
   year?: number;
   month?: number;
+  week?: number;
 
-  kind?: PeriodKind;
-  range?: PeriodRange;
+  start?: string;
+  end?: string;
+
   view?: PeriodView;
 
-  // Filtros por dimensiones (ya pensados en el backend)
   ci_id?: number;
   ci_ids?: number[];
+
   materia_id?: number;
   materia_ids?: number[];
+
   canal_id?: number;
   canal_ids?: number[];
-  us_id?: number;
-  us_ids?: number[];
+
+  registrado_por_id?: number;
+  registrado_por_ids?: number[];
+
+  asesor_id?: number;
+  asesor_ids?: number[];
+
+  asesor_inicial_id?: number;
+  asesor_inicial_ids?: number[];
+
+  asesor_actual_id?: number;
+  asesor_actual_ids?: number[];
 }
 
-/** Línea de ciudadanos (nuevos y acumulado) */
+export interface VMChartSerie {
+  name: string;
+  data: number[];
+}
+
 export interface VMLineaCiudadanos {
-  categories: string[];     // etiquetas X
-  nuevos: number[];         // serie 1
-  acumulado: number[];      // serie 2
+  categories: string[];
+  nuevos: number[];
+  acumulado: number[];
 }
 
-/** Barras apiladas (consultas + seguimientos) */
 export interface VMBarrasApiladas {
   categories: string[];
-  series: { name: 'Consultas' | 'Seguimientos'; data: number[] }[];
+  series: VMChartSerie[];
 }
 
-/** Pastel de materias */
 export interface VMPastelMaterias {
   labels: string[];
   series: number[];
 }
 
-/** ETL: /etl/run o /etl (respuesta de ejecución) */
+export interface VMSerieSimple {
+  categories: string[];
+  series: VMChartSerie[];
+}
+
+export interface VMKpis {
+  nuevos_ciudadanos: number;
+  consultas: number;
+  seguimientos: number;
+  atenciones: number;
+  procesos: number;
+  tramites: number;
+  audiencias: number;
+  promedio_consultas_por_ciudadano: number;
+  seguimientos_por_consulta: number;
+}
+
+export interface VMMateriaOtrosItem {
+  materia: string;
+  cantidad: number;
+}
+
+export interface VMCanalOtrosItem {
+  canal: string;
+  cantidad: number;
+}
+
+export interface VMCiudadanoEdad {
+  fecha_alta: string | null;
+  ci_id: number;
+  ci_dni: string | null;
+  ciudadano: string | null;
+  fecha_nacimiento: string | null;
+  edad: number | null;
+  rango_edad: string | null;
+  canal: string | null;
+  registrado_por_id: number | null;
+  registrado_por: string | null;
+}
+
 export interface VMEtlRunResponse {
   ok: boolean;
   runId?: number;
@@ -53,17 +110,14 @@ export interface VMEtlRunResponse {
   end: string;
 }
 
-/** ETL: status (última actualización y si hay job en curso) */
 export interface VMEtlStatus {
   running: boolean;
   runId?: number | null;
 
-  // última finalizada
-  lastRunAt?: string | null;   // ISO datetime
-  lastStart?: string | null;   // ISO date (inicio del rango)
-  lastEnd?: string | null;     // ISO date (fin del rango)
+  lastRunAt?: string | null;
+  lastStart?: string | null;
+  lastEnd?: string | null;
 
-  // si está corriendo ahora
   runningSince?: string | null;
   runningPreset?: string | null;
 }

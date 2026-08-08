@@ -49,3 +49,29 @@
   -moz-user-select: none;
   -ms-user-select: none;
 }
+
+.identity-panel {
+  border: 1px solid #dee2e6;
+  border-radius: .375rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+}
+.usuario-action-panel {
+  border: 1px solid #dee2e6;
+  border-radius: .375rem;
+  padding: .85rem 1rem;
+  background-color: #f8f9fa;
+}
+
+.usuario-actions-body {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+}
+
+.usuario-actions-body > button {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+

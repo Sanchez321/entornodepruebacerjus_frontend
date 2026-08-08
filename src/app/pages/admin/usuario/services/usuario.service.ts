@@ -4,9 +4,12 @@ import { HttpClient } from '@angular/common/http';
 import { map, Observable,firstValueFrom} from 'rxjs';
 import { API_URL } from '@app/app.token';
 
-import {VMUsuarioListaSimple,VMUsuarioListaOptions,VMUsuarioDetalle,VMPage,VMUsuarioUpdateForm,} from '../models/usuario.vm';
-import {ApiUsuarioListaSimple,ApiUsuarioPageSimple,ApiUsuarioDetalle,ApiTipoUsuario,ApiResetContrasenaProvisionalResponse} from '../models/usuario.api';
-import {MapUsuarioListaItemVM,MapPageToVM,MapUsuarioListaOpciones,MapUsuarioDetalleVM,MapUsuarioUpdateParcial,} from '../mappers/usuario.mapper';
+import {VMUsuarioListaSimple,VMUsuarioListaOptions,VMUsuarioDetalle,VMPage,VMUsuarioUpdateForm, VMUsuarioCorregirIdentidadForm,
+  } from '../models/usuario.vm';
+import {ApiUsuarioListaSimple,ApiUsuarioPageSimple,ApiUsuarioDetalle,ApiTipoUsuario,ApiResetContrasenaProvisionalResponse,
+   ApiUsuarioDeleteDefinitivoResponse,ApiUsuarioCorregirIdentidadResponse} from '../models/usuario.api';
+import {MapUsuarioListaItemVM,MapPageToVM,MapUsuarioListaOpciones,MapUsuarioDetalleVM,MapUsuarioUpdateParcial, MapUsuarioCorregirIdentidad,
+  } from '../mappers/usuario.mapper';
 import { DTOUsuarioListaOptions, DTOUsuarioUpdate } from '../models/usuario.dtos';
 import { toHttpParams } from '@app/components/utils/http.utils';
 
@@ -63,6 +66,45 @@ export class UsuarioService {
 
     return { us_ID: resp.us_ID, provisional: resp.provisional };
   }
+  async autorizar(id: number): Promise<void> {
+    await firstValueFrom(
+      this.http.patch(`${this.base}/${id}/autorizar`, {}),
+    );
+  }
+  async reenviarConfirmacionCorreo(id: number): Promise<void> {
+    await firstValueFrom(
+      this.http.patch(`${this.base}/${id}/reenviar-confirmacion-correo`, {}),
+    );
+  }
   
+  async corregirIdentidad(id: number,vm: VMUsuarioCorregirIdentidadForm,): Promise<ApiUsuarioCorregirIdentidadResponse> {
+    const dto = MapUsuarioCorregirIdentidad(vm);
+
+    return await firstValueFrom(
+      this.http.patch<ApiUsuarioCorregirIdentidadResponse>(
+        `${this.base}/${id}/corregir-identidad`,
+        dto,
+      ),
+    );
+  }
+
+  async eliminar(id: number): Promise<void> {
+    await firstValueFrom(
+      this.http.patch(`${this.base}/eliminar/${id}`, {}),
+    );
+  }
+
+  async eliminarDefinitivo(id: number): Promise<ApiUsuarioDeleteDefinitivoResponse> {
+    return await firstValueFrom(
+      this.http.delete<ApiUsuarioDeleteDefinitivoResponse>(
+        `${this.base}/${id}/definitivo`,
+      ),
+    );
+  }
+  async reactivar(id: number): Promise<void> {
+    await firstValueFrom(
+      this.http.patch(`${this.base}/${id}/reactivar`, {}),
+    );
+  }
 }
 

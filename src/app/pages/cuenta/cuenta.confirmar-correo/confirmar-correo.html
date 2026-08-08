@@ -1,0 +1,60 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+      <div class="card shadow-sm confirmar-card">
+        <div class="card-body text-center p-4">
+
+          @if (loading) {
+            <h4 class="mb-3">Confirmando correo...</h4>
+            <p class="text-muted mb-0">
+              Por favor, espera un momento.
+            </p>
+          }
+
+          @if (!loading && ok) {
+            <h4 class="text-success mb-3">Correo confirmado</h4>
+
+            <p class="mb-3">
+              {{ message }}
+            </p>
+
+            @if (estado === 4) {
+              <p class="text-muted">
+                Tu cuenta queda pendiente de autorización por un responsable del sistema.
+              </p>
+            }
+
+            @if (estado === 1) {
+              <p class="text-muted">
+                Tu cuenta permanece activa. Ya puedes ingresar al sistema.
+              </p>
+            }
+
+            @if (estado === 2) {
+              <p class="text-muted">
+                Tu correo fue confirmado, pero la cuenta continúa suspendida.
+              </p>
+            }
+
+            <a routerLink="/login" class="btn btn-primary">
+              Ir al login
+            </a>
+          }
+
+          @if (!loading && !ok) {
+            <h4 class="text-danger mb-3">No se pudo confirmar</h4>
+
+            <p class="mb-3">
+              {{ message }}
+            </p>
+
+            <a routerLink="/login" class="btn btn-outline-secondary">
+              Volver al login
+            </a>
+          }
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

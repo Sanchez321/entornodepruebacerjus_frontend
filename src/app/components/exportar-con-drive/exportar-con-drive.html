@@ -1,0 +1,23 @@
+<div class="export-drive-wrap">
+  <label class="export-drive-check">
+    <input
+      #saveCheck
+      type="checkbox"
+      [checked]="guardarDrive"
+      [disabled]="disabled || loading"
+      (change)="guardarDrive = saveCheck.checked">
+    <span>Guardar también en Drive</span>
+  </label>
+
+  <button
+    type="button"
+    class="btn btn-primary"
+    [disabled]="disabled || loading"
+    (click)="emitir()">
+    {{ loading ? loadingLabel : label }}
+  </button>
+
+  @if (helperText) {
+    <span class="text-muted small">{{ helperText }}</span>
+  }
+</div>

@@ -84,58 +84,16 @@ export class ProcesoRegistrar implements OnInit, OnDestroy {
   }
 
   form = this.fb.group<ControlsOf<ProcesoRegistrarForm>>({
-    idconsulta: new FormControl(0, {
-      nonNullable: true,
-      validators: [Validators.required, Validators.min(1)],
-    }),
-
-    dniBusqueda: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.pattern(/^\d{0,11}$/)],
-    }),
-
-    numeroExpediente: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required, Validators.maxLength(50)],
-    }),
-
-    sede: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required,Validators.maxLength(100)],
-    }),
-
-    parte: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required,Validators.maxLength(150)],
-    }),
-
-    materia: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required,Validators.maxLength(150)],
-    }),
-
-    demandado: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required,Validators.maxLength(150)],
-    }),
-
-    estadoProcesal: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required,Validators.maxLength(80)],
-    }),
-
-    observacion: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.maxLength(600)],
-    }),
-
-    usarFechaRegistrada: new FormControl(false, {
-      nonNullable: true,
-    }),
-
-    fechaRegistrada: new FormControl({ value: '', disabled: true }, {
-      nonNullable: true,
-    }),
+    idconsulta: new FormControl(0, {nonNullable: true,validators: [Validators.required, Validators.min(1)],}),
+    dniBusqueda: new FormControl('', {nonNullable: true,validators: [Validators.pattern(/^\d{0,11}$/)],}),
+    numeroExpediente: new FormControl('', {nonNullable: true,validators: [Validators.required, Validators.maxLength(50)],}),
+    sede: new FormControl('', { nonNullable: true,validators: [Validators.required,Validators.maxLength(100)],}),
+    materia: new FormControl('', {nonNullable: true,validators: [Validators.required,Validators.maxLength(150)],}),
+    demandado: new FormControl('', {nonNullable: true,validators: [Validators.required,Validators.maxLength(150)],}),
+    estadoProcesal: new FormControl('', {nonNullable: true,validators: [Validators.required,Validators.maxLength(80)],}),
+    observacion: new FormControl('', {nonNullable: true,validators: [Validators.maxLength(600)],}),
+    usarFechaRegistrada: new FormControl(false, {nonNullable: true,}),
+    fechaRegistrada: new FormControl({ value: '', disabled: true }, {nonNullable: true,}),
   });
 
   ngOnInit(): void {
@@ -429,7 +387,6 @@ export class ProcesoRegistrar implements OnInit, OnDestroy {
         idconsulta: v.idconsulta,
         numeroExpediente: v.numeroExpediente,
         sede: v.sede,
-        parte: v.parte,
         materia: v.materia,
         demandado: v.demandado,
         estadoProcesal: v.estadoProcesal,
@@ -514,7 +471,6 @@ interface ProcesoRegistrarForm {
 
   numeroExpediente: string;
   sede: string;
-  parte: string;
   materia: string;
   demandado: string;
   estadoProcesal: string;

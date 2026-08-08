@@ -1,0 +1,3564 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">frontend documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content miscellaneous-variables">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Miscellaneous</li>
+  <li class="breadcrumb-item">Variables</li>
+</ol>
+
+<section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <ul class="index-list">
+                        <li>
+                            <a href="#adminRoutes" title="src/app/pages/admin/admin.router.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>adminRoutes</b>&nbsp;&nbsp;&nbsp;(src/.../admin.router.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#AJ_ESTADO_OPCIONES" title="src/app/pages/justificacion/models/justificacion.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>AJ_ESTADO_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../justificacion.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#AJ_TIPO_OPCIONES" title="src/app/pages/justificacion/models/justificacion.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>AJ_TIPO_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../justificacion.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#analiticasRoutes" title="src/app/pages/analiticas/analiticas.routes.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>analiticasRoutes</b>&nbsp;&nbsp;&nbsp;(src/.../analiticas.routes.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#ANALYTICS_TZ" title="src/app/pages/analiticas/mappers/analiticas.mapper.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>ANALYTICS_TZ</b>&nbsp;&nbsp;&nbsp;(src/.../analiticas.mapper.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#API_URL" title="src/app/app.token.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>API_URL</b>&nbsp;&nbsp;&nbsp;(src/.../app.token.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#appConfig" title="src/app/app.config.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>appConfig</b>&nbsp;&nbsp;&nbsp;(src/.../app.config.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#ASISTENCIA_JUSTIFICACION_ESTADO_OPCIONES" title="src/app/pages/justificacion/models/justificacion.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>ASISTENCIA_JUSTIFICACION_ESTADO_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../justificacion.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#ASISTENCIA_JUSTIFICACION_TIPO_OPCIONES" title="src/app/pages/justificacion/models/justificacion.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>ASISTENCIA_JUSTIFICACION_TIPO_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../justificacion.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#asistenciaanaliticasRoutes" title="src/app/pages/asistencia.analiticas/asistencia.analiticas.routes.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>asistenciaanaliticasRoutes</b>&nbsp;&nbsp;&nbsp;(src/.../asistencia.analiticas.routes.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#asistenciaRoutes" title="src/app/pages/asistencia/asistencia.routes.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>asistenciaRoutes</b>&nbsp;&nbsp;&nbsp;(src/.../asistencia.routes.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#AUDIENCIA_ESTADO_OPCIONES" title="src/app/pages/audiencia/models/audiencia.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>AUDIENCIA_ESTADO_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../audiencia.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#audienciaRoutes" title="src/app/pages/audiencia/audiencia.routes.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>audienciaRoutes</b>&nbsp;&nbsp;&nbsp;(src/.../audiencia.routes.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#ciudadanoRoutes" title="src/app/pages/ciudadano/ciudadano.routes.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>ciudadanoRoutes</b>&nbsp;&nbsp;&nbsp;(src/.../ciudadano.routes.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#confirmarCorreoRoutes" title="src/app/pages/cuenta/cuenta.routes.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>confirmarCorreoRoutes</b>&nbsp;&nbsp;&nbsp;(src/.../cuenta.routes.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#CONOCIO_CIUDADANO_OPCIONES" title="src/app/pages/ciudadano/models/ciudadano.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>CONOCIO_CIUDADANO_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../ciudadano.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#consultaRoutes" title="src/app/pages/consulta/consulta.routes.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>consultaRoutes</b>&nbsp;&nbsp;&nbsp;(src/.../consulta.routes.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#cuentaregistrarSuper" title="src/app/pages/cuenta/cuenta.routes.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>cuentaregistrarSuper</b>&nbsp;&nbsp;&nbsp;(src/.../cuenta.routes.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#cuentaRoutes" title="src/app/pages/cuenta/cuenta.routes.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>cuentaRoutes</b>&nbsp;&nbsp;&nbsp;(src/.../cuenta.routes.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#DIAS_SEMANA" title="src/app/pages/horario/models/horario.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>DIAS_SEMANA</b>&nbsp;&nbsp;&nbsp;(src/.../horario.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#DOCUMENTO_CATEGORIA_BACKUP_OPCIONES" title="src/app/pages/documentos/models/documentos.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>DOCUMENTO_CATEGORIA_BACKUP_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../documentos.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#DOCUMENTO_CATEGORIA_MANUAL_OPCIONES" title="src/app/pages/documentos/models/documentos.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>DOCUMENTO_CATEGORIA_MANUAL_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../documentos.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#DOCUMENTO_CATEGORIA_MATERIAL_APOYO_OPCIONES" title="src/app/pages/documentos/models/documentos.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>DOCUMENTO_CATEGORIA_MATERIAL_APOYO_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../documentos.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#DOCUMENTO_CATEGORIA_PROCESO_OPCIONES" title="src/app/pages/documentos/models/documentos.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>DOCUMENTO_CATEGORIA_PROCESO_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../documentos.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#DOCUMENTO_CATEGORIA_REPORTE_OPCIONES" title="src/app/pages/documentos/models/documentos.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>DOCUMENTO_CATEGORIA_REPORTE_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../documentos.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#DOCUMENTO_CATEGORIA_TRAMITE_OPCIONES" title="src/app/pages/documentos/models/documentos.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>DOCUMENTO_CATEGORIA_TRAMITE_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../documentos.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#DOCUMENTO_RUTA_BASE_CODIGO_OPCIONES" title="src/app/pages/documentos/models/documentos.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>DOCUMENTO_RUTA_BASE_CODIGO_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../documentos.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#DOCUMENTO_RUTA_BASE_ESTADO_OPCIONES" title="src/app/pages/documentos/models/documentos.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>DOCUMENTO_RUTA_BASE_ESTADO_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../documentos.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#DOCUMENTO_TIPO_OPCIONES" title="src/app/pages/documentos/models/documentos.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>DOCUMENTO_TIPO_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../documentos.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#documentosRoutes" title="src/app/pages/documentos/documentos.routes.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>documentosRoutes</b>&nbsp;&nbsp;&nbsp;(src/.../documentos.routes.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#environment" title="src/environments/environment.prod.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.prod.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#environment" title="src/environments/environment.staging.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.staging.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#environment" title="src/environments/environment.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#ESTADO_TRAMITE_OPCIONES" title="src/app/pages/tramite/models/tramite.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>ESTADO_TRAMITE_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../tramite.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#ESTADO_USUARIO_HORARIO_OPCIONES" title="src/app/pages/admin/usuario_horario/models/usuario_horario.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>ESTADO_USUARIO_HORARIO_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../usuario_horario.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#ESTADO_USUARIO_OPCIONES" title="src/app/pages/admin/usuario/models/usuario.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>ESTADO_USUARIO_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../usuario.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#horarioRoutes" title="src/app/pages/horario/horario.routes.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>horarioRoutes</b>&nbsp;&nbsp;&nbsp;(src/.../horario.routes.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#justificacionRoutes" title="src/app/pages/justificacion/justificacion.routes.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>justificacionRoutes</b>&nbsp;&nbsp;&nbsp;(src/.../justificacion.routes.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#jwtInterceptor" title="src/app/interceptor/interceptor.auth.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>jwtInterceptor</b>&nbsp;&nbsp;&nbsp;(src/.../interceptor.auth.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#KNOWN_PREFIXES" title="src/app/components/paginanoencontrada/services/paginanoencontrada.service.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>KNOWN_PREFIXES</b>&nbsp;&nbsp;&nbsp;(src/.../paginanoencontrada.service.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#LLEVA_CASO_OPCIONES" title="src/app/pages/consulta/models/consulta.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>LLEVA_CASO_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../consulta.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#loadingAndErrorsInterceptor" title="src/app/interceptor/loadinganderrors.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>loadingAndErrorsInterceptor</b>&nbsp;&nbsp;&nbsp;(src/.../loadinganderrors.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#loginRoutes" title="src/app/pages/cuenta/cuenta.routes.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>loginRoutes</b>&nbsp;&nbsp;&nbsp;(src/.../cuenta.routes.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#MATERIA_CONSULTA_OPCIONES" title="src/app/pages/consulta/models/consulta.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>MATERIA_CONSULTA_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../consulta.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#noBlank" title="src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>noBlank</b>&nbsp;&nbsp;&nbsp;(src/.../audiencia.detalle.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#noBlank" title="src/app/pages/audiencia/audiencia.registrar/audiencia.registrar.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>noBlank</b>&nbsp;&nbsp;&nbsp;(src/.../audiencia.registrar.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#noBlank" title="src/app/pages/tramite/tramite.registrar/tramite.registrar.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>noBlank</b>&nbsp;&nbsp;&nbsp;(src/.../tramite.registrar.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#noInicialConocio" title="src/app/pages/ciudadano/ciudadano.registrar/ciudadano.registrar.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>noInicialConocio</b>&nbsp;&nbsp;&nbsp;(src/.../ciudadano.registrar.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#noInicialMateria" title="src/app/pages/consulta/consulta.registrar/consulta.registrar.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>noInicialMateria</b>&nbsp;&nbsp;&nbsp;(src/.../consulta.registrar.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#noInicialTipo" title="src/app/pages/justificacion/justificacion.registrar/justificacion.registrar.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>noInicialTipo</b>&nbsp;&nbsp;&nbsp;(src/.../justificacion.registrar.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#numericIdMatcher" title="src/app/pages/ciudadano/ciudadano.routes.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>numericIdMatcher</b>&nbsp;&nbsp;&nbsp;(src/.../ciudadano.routes.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#numericIdMatcher" title="src/app/pages/consulta/consulta.routes.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>numericIdMatcher</b>&nbsp;&nbsp;&nbsp;(src/.../consulta.routes.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#numericIdMatcher" title="src/app/pages/cuenta/cuenta.routes.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>numericIdMatcher</b>&nbsp;&nbsp;&nbsp;(src/.../cuenta.routes.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#numericIdMatcher" title="src/app/pages/admin/usuario/usuario.router.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>numericIdMatcher</b>&nbsp;&nbsp;&nbsp;(src/.../usuario.router.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#numericIdMatcherHorario" title="src/app/pages/horario/horario.routes.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>numericIdMatcherHorario</b>&nbsp;&nbsp;&nbsp;(src/.../horario.routes.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#PROCESO_ESTADO_OPCIONES" title="src/app/pages/proceso/models/proceso.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>PROCESO_ESTADO_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../proceso.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#procesoRoutes" title="src/app/pages/proceso/proceso.routes.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>procesoRoutes</b>&nbsp;&nbsp;&nbsp;(src/.../proceso.routes.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#registrarNumericIdMatcher" title="src/app/pages/consulta/consulta.routes.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>registrarNumericIdMatcher</b>&nbsp;&nbsp;&nbsp;(src/.../consulta.routes.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#registrarNumericIdMatcher" title="src/app/pages/cuenta/cuenta.routes.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>registrarNumericIdMatcher</b>&nbsp;&nbsp;&nbsp;(src/.../cuenta.routes.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#registrarNumericIdMatcher" title="src/app/pages/seguimiento/seguimiento.routes.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>registrarNumericIdMatcher</b>&nbsp;&nbsp;&nbsp;(src/.../seguimiento.routes.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#registrarNumericIdMatcher" title="src/app/pages/admin/usuario/usuario.router.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>registrarNumericIdMatcher</b>&nbsp;&nbsp;&nbsp;(src/.../usuario.router.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#REPORTE_ESTADO_OPCIONES" title="src/app/pages/ciudadano/models/ciudadano.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>REPORTE_ESTADO_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../ciudadano.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#REPORTE_ESTADO_OPCIONES" title="src/app/pages/consulta/models/consulta.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>REPORTE_ESTADO_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../consulta.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#REPORTE_ESTADO_OPCIONES" title="src/app/pages/proceso/models/proceso.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>REPORTE_ESTADO_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../proceso.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#REPORTE_FORMATO_OPCIONES" title="src/app/pages/ciudadano/models/ciudadano.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>REPORTE_FORMATO_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../ciudadano.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#REPORTE_FORMATO_OPCIONES" title="src/app/pages/consulta/models/consulta.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>REPORTE_FORMATO_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../consulta.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#REPORTE_FORMATO_OPCIONES" title="src/app/pages/proceso/models/proceso.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>REPORTE_FORMATO_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../proceso.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#REPORTE_MES_OPCIONES" title="src/app/pages/ciudadano/models/ciudadano.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>REPORTE_MES_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../ciudadano.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#REPORTE_MES_OPCIONES" title="src/app/pages/consulta/models/consulta.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>REPORTE_MES_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../consulta.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#REPORTE_MES_OPCIONES" title="src/app/pages/proceso/models/proceso.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>REPORTE_MES_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../proceso.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#REPORTE_MODO_OPCIONES" title="src/app/pages/ciudadano/models/ciudadano.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>REPORTE_MODO_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../ciudadano.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#REPORTE_MODO_OPCIONES" title="src/app/pages/consulta/models/consulta.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>REPORTE_MODO_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../consulta.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#REPORTE_MODO_OPCIONES" title="src/app/pages/proceso/models/proceso.dominio.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>REPORTE_MODO_OPCIONES</b>&nbsp;&nbsp;&nbsp;(src/.../proceso.dominio.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#REQUEST_TIMEOUT_MS" title="src/app/interceptor/loadinganderrors.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>REQUEST_TIMEOUT_MS</b>&nbsp;&nbsp;&nbsp;(src/.../loadinganderrors.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#routes" title="src/app/app.routes.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>routes</b>&nbsp;&nbsp;&nbsp;(src/.../app.routes.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#seguimientoRoutes" title="src/app/pages/seguimiento/seguimiento.routes.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>seguimientoRoutes</b>&nbsp;&nbsp;&nbsp;(src/.../seguimiento.routes.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#SS_KEY_LAST_BAD" title="src/app/components/paginanoencontrada/services/paginanoencontrada.service.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>SS_KEY_LAST_BAD</b>&nbsp;&nbsp;&nbsp;(src/.../paginanoencontrada.service.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#SS_KEY_STACK" title="src/app/components/paginanoencontrada/services/paginanoencontrada.service.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>SS_KEY_STACK</b>&nbsp;&nbsp;&nbsp;(src/.../paginanoencontrada.service.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#SUPPRESS_401_DIALOG" title="src/app/components/notificaciones/supresor/supresor.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>SUPPRESS_401_DIALOG</b>&nbsp;&nbsp;&nbsp;(src/.../supresor.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#TOKEN_KEY" title="src/app/auth/auth.store.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>TOKEN_KEY</b>&nbsp;&nbsp;&nbsp;(src/.../auth.store.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#tramiteRoutes" title="src/app/pages/tramite/tramite.routes.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>tramiteRoutes</b>&nbsp;&nbsp;&nbsp;(src/.../tramite.routes.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#UI_TZ" title="src/app/pages/asistencia/mappers/asistencia.mapper.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>UI_TZ</b>&nbsp;&nbsp;&nbsp;(src/.../asistencia.mapper.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#usuarioRoutes" title="src/app/pages/admin/usuario/usuario.router.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>usuarioRoutes</b>&nbsp;&nbsp;&nbsp;(src/.../usuario.router.ts)</span></a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <h3>src/app/pages/admin/admin.router.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="adminRoutes"></a>
+                    <span class="name">
+                        <span ><b>adminRoutes</b></span>
+                        <a href="#adminRoutes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/router/Routes" target="_blank" >Routes</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    path: &#x27;admin&#x27;,
+    canMatch: [accessGuardMatch],
+    children: [
+        {
+            path: &#x27;usuario&#x27;,
+            canMatch: [accessGuardMatch],
+            children: [
+              ...cuentaregistrarSuper,
+              { path: &#x27;lista&#x27;, component: UsuarioLista, data: { minLevel: 2 }, pathMatch: &#x27;full&#x27; },
+              {matcher:numericIdMatcher, component: UsuarioDetalle,data:{minLevel:2}},
+              {path:&#x27;**&#x27;, component: PaginaNoEncontradaComponent },
+            ],
+          }
+    ],
+  },
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/justificacion/models/justificacion.dominio.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AJ_ESTADO_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>AJ_ESTADO_OPCIONES</b></span>
+                        <a href="#AJ_ESTADO_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ReadonlyArray&lt;{ value: AsistenciaJustificacionEstadoFiltro; label: string }&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: &#x27;&#x27;,          label: &#x27;Todos&#x27; },
+  { value: &#x27;PENDIENTE&#x27;, label: &#x27;PENDIENTE&#x27; },
+  { value: &#x27;APROBADA&#x27;,  label: &#x27;APROBADA&#x27; },
+  { value: &#x27;RECHAZADA&#x27;, label: &#x27;RECHAZADA&#x27; },
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AJ_TIPO_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>AJ_TIPO_OPCIONES</b></span>
+                        <a href="#AJ_TIPO_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: &#x27;&#x27; as const, label: &#x27;TODOS&#x27; },
+  ...ASISTENCIA_JUSTIFICACION_TIPO_OPCIONES,
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ASISTENCIA_JUSTIFICACION_ESTADO_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>ASISTENCIA_JUSTIFICACION_ESTADO_OPCIONES</b></span>
+                        <a href="#ASISTENCIA_JUSTIFICACION_ESTADO_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: &#x27;PENDIENTE&#x27;, label: &#x27;PENDIENTE&#x27; },
+  { value: &#x27;APROBADA&#x27;,  label: &#x27;APROBADA&#x27; },
+  { value: &#x27;RECHAZADA&#x27;, label: &#x27;RECHAZADA&#x27; },
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ASISTENCIA_JUSTIFICACION_TIPO_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>ASISTENCIA_JUSTIFICACION_TIPO_OPCIONES</b></span>
+                        <a href="#ASISTENCIA_JUSTIFICACION_TIPO_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: &#x27;TARDANZA&#x27;,      label: &#x27;Tardanza (se considera a tiempo)&#x27; },
+  { value: &#x27;SIN_MARCA&#x27;,     label: &#x27;Sin marca (se considera asistió)&#x27; },
+  { value: &#x27;NO_PROGRAMADO&#x27;, label: &#x27;No programado (excluir del cómputo)&#x27; },
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/analiticas/analiticas.routes.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="analiticasRoutes"></a>
+                    <span class="name">
+                        <span ><b>analiticasRoutes</b></span>
+                        <a href="#analiticasRoutes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/router/Routes" target="_blank" >Routes</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    path: &#x27;analiticas&#x27;,
+    canMatch: [accessGuardMatch],
+    children: [
+      { path:&#x27;&#x27;, component: AnaliticasDashboard, data: { minLevel: 2 }, pathMatch: &#x27;full&#x27; },
+      {path:&#x27;**&#x27;, component: PaginaNoEncontradaComponent },
+    ],
+  },
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/analiticas/mappers/analiticas.mapper.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ANALYTICS_TZ"></a>
+                    <span class="name">
+                        <span ><b>ANALYTICS_TZ</b></span>
+                        <a href="#ANALYTICS_TZ"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;America/Lima&#x27;</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/app.token.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="API_URL"></a>
+                    <span class="name">
+                        <span ><b>API_URL</b></span>
+                        <a href="#API_URL"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;string&gt;(&#x27;API_URL&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/app.config.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="appConfig"></a>
+                    <span class="name">
+                        <span ><b>appConfig</b></span>
+                        <a href="#appConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/App.html" target="_self" >ApplicationConfig</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  providers: [
+    provideBrowserGlobalErrorListeners(),
+
+    provideZoneChangeDetection({
+      eventCoalescing: true
+    }),
+
+    provideRouter(routes),
+
+    provideHttpClient(
+      withInterceptors([
+        jwtInterceptor,
+        loadingAndErrorsInterceptor
+      ])
+    ),
+
+    {
+      provide: API_URL,
+      useValue: environment.apiUrl
+    }
+  ]
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/asistencia.analiticas/asistencia.analiticas.routes.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="asistenciaanaliticasRoutes"></a>
+                    <span class="name">
+                        <span ><b>asistenciaanaliticasRoutes</b></span>
+                        <a href="#asistenciaanaliticasRoutes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/router/Routes" target="_blank" >Routes</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    path: &#x27;controlusuario&#x27;,
+    canMatch: [accessGuardMatch],
+    children: [
+      { path:&#x27;&#x27;, component: AsistenciasDashboard, data: { minLevel: 2 }, pathMatch: &#x27;full&#x27; },
+      {path:&#x27;**&#x27;, component: PaginaNoEncontradaComponent },
+    ],
+  },
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/asistencia/asistencia.routes.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="asistenciaRoutes"></a>
+                    <span class="name">
+                        <span ><b>asistenciaRoutes</b></span>
+                        <a href="#asistenciaRoutes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/router/Routes" target="_blank" >Routes</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    path: &#x27;asistencia&#x27;,
+    canMatch: [accessGuardMatch],
+    children: [
+      {path: &#x27;&#x27;,component: AsistenciaLista,data: { minLevel: 3 },pathMatch: &#x27;full&#x27;,},
+      {path: &#x27;justificacion/mis&#x27;,component: JustificacionListaMis,data: { minLevel: 3 },pathMatch: &#x27;full&#x27;,},
+      {path: &#x27;justificacion/registrar&#x27;,component: JustificacionRegistrar,data: { minLevel: 3 },pathMatch: &#x27;full&#x27;,},
+      { path: &#x27;**&#x27;, component: PaginaNoEncontradaComponent },
+    ],
+  },
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/audiencia/models/audiencia.dominio.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AUDIENCIA_ESTADO_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>AUDIENCIA_ESTADO_OPCIONES</b></span>
+                        <a href="#AUDIENCIA_ESTADO_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    { value: 1, label: &#x27;ACTIVO&#x27; },
+    { value: 0, label: &#x27;ELIMINADO&#x27; },
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/audiencia/audiencia.routes.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="audienciaRoutes"></a>
+                    <span class="name">
+                        <span ><b>audienciaRoutes</b></span>
+                        <a href="#audienciaRoutes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/router/Routes" target="_blank" >Routes</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    {
+        path: &#x27;audiencia&#x27;,
+        canMatch: [accessGuardMatch],
+        children: [
+            
+            {path: &#x27;&#x27;,component: AudienciaCalendario,data: { minLevel: 3 },pathMatch: &#x27;full&#x27;,},
+            {path: &#x27;registrar&#x27;,component: AudienciaRegistrar,data: { minLevel: 3 },pathMatch: &#x27;full&#x27;,},
+            {path: &#x27;:idaudiencia&#x27;,component: AudienciaDetalle,data: { minLevel: 3 },},
+            {path: &#x27;**&#x27;,component: PaginaNoEncontradaComponent,},
+        ],
+    },
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/ciudadano/ciudadano.routes.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ciudadanoRoutes"></a>
+                    <span class="name">
+                        <span ><b>ciudadanoRoutes</b></span>
+                        <a href="#ciudadanoRoutes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/router/Routes" target="_blank" >Routes</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    path: &#x27;ciudadano&#x27;,
+    canMatch: [accessGuardMatch],
+    children: [
+      { path: &#x27;&#x27;, component: CiudadanoLista, data: { minLevel: 3 }, pathMatch: &#x27;full&#x27; },
+      { path: &#x27;registrar&#x27;, component: CiudadanoRegistrar, data: { minLevel: 3 }, pathMatch: &#x27;full&#x27; },
+
+      { path: &#x27;:idciudadano/consulta/registrar&#x27;, component: ConsultaRegistar, data: { minLevel: 3 } },
+      { path: &#x27;:idciudadano/consulta/:idconsulta&#x27;, component: ConsultaDetalle, data: { minLevel: 3 } },
+      { path: &#x27;:idciudadano/consulta/:idconsulta/seguimiento/registrar&#x27;, component: SeguimientoRegistar, data: { minLevel: 3 } },
+      
+      { matcher: numericIdMatcher, component: CiudadanoDetalle, data: { minLevel: 3 } },
+      { path: &#x27;**&#x27;, component: PaginaNoEncontradaComponent },
+    ],
+  }
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="numericIdMatcher"></a>
+                    <span class="name">
+                        <span ><b>numericIdMatcher</b></span>
+                        <a href="#numericIdMatcher"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/router/UrlMatcher" target="_blank" >UrlMatcher</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(segments: UrlSegment[]) &#x3D;&gt;
+  segments.length &#x3D;&#x3D;&#x3D; 1 &amp;&amp; /^\d+$/.test(segments[0].path)
+    ? { consumed: segments, posParams: { id: segments[0] } }
+    : null</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/cuenta/cuenta.routes.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="confirmarCorreoRoutes"></a>
+                    <span class="name">
+                        <span ><b>confirmarCorreoRoutes</b></span>
+                        <a href="#confirmarCorreoRoutes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/router/Routes" target="_blank" >Routes</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    path: &#x27;confirmar-correo&#x27;,
+    component: ConfirmarCorreo,
+    pathMatch: &#x27;full&#x27;,
+  },
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cuentaregistrarSuper"></a>
+                    <span class="name">
+                        <span ><b>cuentaregistrarSuper</b></span>
+                        <a href="#cuentaregistrarSuper"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/router/Routes" target="_blank" >Routes</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    path: &#x27;registrar&#x27;,
+    canMatch: [accessGuardMatch],
+    children: [
+      
+      {path:&#x27;&#x27;, component: Registar,pathMatch: &#x27;full&#x27;,data:{minLevel:2, mode: &#x27;admin&#x27;}},
+      {path:&#x27;**&#x27;, component: PaginaNoEncontradaComponent },
+    ],
+    
+  }
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cuentaRoutes"></a>
+                    <span class="name">
+                        <span ><b>cuentaRoutes</b></span>
+                        <a href="#cuentaRoutes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/router/Routes" target="_blank" >Routes</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    path: &#x27;cuenta&#x27;,
+    canMatch: [accessGuardMatch],
+    children: [
+      
+      {path:&#x27;perfil&#x27;, component: Perfil,pathMatch: &#x27;full&#x27;,data:{minLevel:3}},
+      {path:&#x27;**&#x27;, component: PaginaNoEncontradaComponent },
+    ],
+    
+  }
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loginRoutes"></a>
+                    <span class="name">
+                        <span ><b>loginRoutes</b></span>
+                        <a href="#loginRoutes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/router/Routes" target="_blank" >Routes</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    path: &#x27;login&#x27;,
+    canMatch: [loginGuardMactch],
+    children: [
+      
+      {path:&#x27;&#x27;, component: Ingresar,pathMatch: &#x27;full&#x27;},
+      {path:&#x27;registrar&#x27;, component: Registar,pathMatch: &#x27;full&#x27;,  data: { mode: &#x27;public&#x27; },},
+      //{matcher:registrarNumericIdMatcher, component: ConsultaRegistar,data:{minLevel:3}},
+      //{matcher:numericIdMatcher, component: ConsultaDetalle,data:{minLevel:3}},
+      {path:&#x27;**&#x27;, component: PaginaNoEncontradaComponent },
+    ],
+    
+  }
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="numericIdMatcher"></a>
+                    <span class="name">
+                        <span ><b>numericIdMatcher</b></span>
+                        <a href="#numericIdMatcher"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/router/UrlMatcher" target="_blank" >UrlMatcher</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(segments: UrlSegment[]) &#x3D;&gt;
+  segments.length &#x3D;&#x3D;&#x3D; 1 &amp;&amp; /^\d+$/.test(segments[0].path)
+    ? { consumed: segments, posParams: { id: segments[0] } }
+    : null</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="registrarNumericIdMatcher"></a>
+                    <span class="name">
+                        <span ><b>registrarNumericIdMatcher</b></span>
+                        <a href="#registrarNumericIdMatcher"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/router/UrlMatcher" target="_blank" >UrlMatcher</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(segments: UrlSegment[]) &#x3D;&gt;
+  segments.length &#x3D;&#x3D;&#x3D; 2 &amp;&amp;
+  segments[0].path &#x3D;&#x3D;&#x3D; &#x27;registrar&#x27; &amp;&amp;
+  /^\d+$/.test(segments[1].path)
+    ? { consumed: segments, posParams: { id: segments[1] } }
+    : null</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/ciudadano/models/ciudadano.dominio.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CONOCIO_CIUDADANO_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>CONOCIO_CIUDADANO_OPCIONES</b></span>
+                        <a href="#CONOCIO_CIUDADANO_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: &#x27;AMIGO&#x27;,        label: &#x27;Amigo&#x27; },
+  { value: &#x27;VECINO&#x27;,       label: &#x27;Vecino&#x27; },
+  { value: &#x27;VOLANTE&#x27;,      label: &#x27;Volante&#x27; },
+  { value: &#x27;OTROS&#x27;,        label: &#x27;Otros&#x27; },
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="REPORTE_ESTADO_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>REPORTE_ESTADO_OPCIONES</b></span>
+                        <a href="#REPORTE_ESTADO_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: &#x27;ACTIVOS&#x27;, label: &#x27;Solo activos&#x27;, minLevel: 3 },
+  { value: &#x27;ELIMINADOS&#x27;, label: &#x27;Solo eliminados&#x27;, minLevel: 2 },
+  { value: &#x27;TODOS&#x27;, label: &#x27;Todos&#x27;, minLevel: 2 },
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="REPORTE_FORMATO_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>REPORTE_FORMATO_OPCIONES</b></span>
+                        <a href="#REPORTE_FORMATO_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: &#x27;xlsx&#x27;, label: &#x27;Excel (.xlsx)&#x27; },
+  { value: &#x27;csv&#x27;, label: &#x27;CSV (.csv)&#x27; },
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="REPORTE_MES_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>REPORTE_MES_OPCIONES</b></span>
+                        <a href="#REPORTE_MES_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: 1, label: &#x27;Enero&#x27; },
+  { value: 2, label: &#x27;Febrero&#x27; },
+  { value: 3, label: &#x27;Marzo&#x27; },
+  { value: 4, label: &#x27;Abril&#x27; },
+  { value: 5, label: &#x27;Mayo&#x27; },
+  { value: 6, label: &#x27;Junio&#x27; },
+  { value: 7, label: &#x27;Julio&#x27; },
+  { value: 8, label: &#x27;Agosto&#x27; },
+  { value: 9, label: &#x27;Septiembre&#x27; },
+  { value: 10, label: &#x27;Octubre&#x27; },
+  { value: 11, label: &#x27;Noviembre&#x27; },
+  { value: 12, label: &#x27;Diciembre&#x27; },
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="REPORTE_MODO_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>REPORTE_MODO_OPCIONES</b></span>
+                        <a href="#REPORTE_MODO_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: &#x27;ASESOR&#x27;, label: &#x27;Datos para asesores&#x27;, minLevel: 3 },
+  { value: &#x27;ANALITICO&#x27;, label: &#x27;Datos para gráficas&#x27;, minLevel: 3 },
+  { value: &#x27;AUDITORIA&#x27;, label: &#x27;Datos auditables&#x27;, minLevel: 2 },
+  { value: &#x27;COMPLETO&#x27;, label: &#x27;Exportación completa&#x27;, minLevel: 1 },
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/consulta/consulta.routes.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="consultaRoutes"></a>
+                    <span class="name">
+                        <span ><b>consultaRoutes</b></span>
+                        <a href="#consultaRoutes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/router/Routes" target="_blank" >Routes</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    path: &#x27;consulta&#x27;,
+    canMatch: [accessGuardMatch],
+    children: [
+      {path: &#x27;&#x27;,component: ConsultaLista,data: { minLevel: 3 },pathMatch: &#x27;full&#x27;,},
+      {path:&#x27;registrar&#x27;, component: ConsultaRegistar,data:{minLevel:3}},
+      { path: &#x27;:idconsulta/seguimiento/registrar&#x27;, component: SeguimientoRegistar, data: { minLevel: 3 } },
+      {matcher:registrarNumericIdMatcher, component: ConsultaRegistar,data:{minLevel:3}},
+      {matcher:numericIdMatcher, component: ConsultaDetalle,data:{minLevel:3}},
+      {path:&#x27;**&#x27;, component: PaginaNoEncontradaComponent },
+    ],
+    
+  }
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="numericIdMatcher"></a>
+                    <span class="name">
+                        <span ><b>numericIdMatcher</b></span>
+                        <a href="#numericIdMatcher"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/router/UrlMatcher" target="_blank" >UrlMatcher</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(segments: UrlSegment[]) &#x3D;&gt;
+  segments.length &#x3D;&#x3D;&#x3D; 1 &amp;&amp; /^\d+$/.test(segments[0].path)
+    ? { consumed: segments, posParams: { id: segments[0] } }
+    : null</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="registrarNumericIdMatcher"></a>
+                    <span class="name">
+                        <span ><b>registrarNumericIdMatcher</b></span>
+                        <a href="#registrarNumericIdMatcher"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/router/UrlMatcher" target="_blank" >UrlMatcher</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(segments: UrlSegment[]) &#x3D;&gt;
+  segments.length &#x3D;&#x3D;&#x3D; 2 &amp;&amp;
+  segments[0].path &#x3D;&#x3D;&#x3D; &#x27;registrar&#x27; &amp;&amp;
+  /^\d+$/.test(segments[1].path)
+    ? { consumed: segments, posParams: { id: segments[1] } }
+    : null</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/horario/models/horario.dominio.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DIAS_SEMANA"></a>
+                    <span class="name">
+                        <span ><b>DIAS_SEMANA</b></span>
+                        <a href="#DIAS_SEMANA"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: &#x27;LU&#x27;, label: &#x27;Lunes&#x27; },
+  { value: &#x27;MA&#x27;, label: &#x27;Martes&#x27; },
+  { value: &#x27;MI&#x27;, label: &#x27;Miércoles&#x27; },
+  { value: &#x27;JU&#x27;, label: &#x27;Jueves&#x27; },
+  { value: &#x27;VI&#x27;, label: &#x27;Viernes&#x27; },
+  { value: &#x27;SA&#x27;, label: &#x27;Sábado&#x27; },
+  { value: &#x27;DO&#x27;, label: &#x27;Domingo&#x27; },
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/documentos/models/documentos.dominio.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DOCUMENTO_CATEGORIA_BACKUP_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>DOCUMENTO_CATEGORIA_BACKUP_OPCIONES</b></span>
+                        <a href="#DOCUMENTO_CATEGORIA_BACKUP_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: &#x27;BASE_DATOS&#x27;, label: &#x27;Base de datos&#x27; },
+  { value: &#x27;SISTEMA&#x27;, label: &#x27;Sistema&#x27; },
+  { value: &#x27;DOCUMENTOS&#x27;, label: &#x27;Documentos&#x27; },
+  { value: &#x27;CONFIGURACION&#x27;, label: &#x27;Configuración&#x27; },
+  { value: &#x27;OTROS&#x27;, label: &#x27;Otros&#x27; },
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DOCUMENTO_CATEGORIA_MANUAL_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>DOCUMENTO_CATEGORIA_MANUAL_OPCIONES</b></span>
+                        <a href="#DOCUMENTO_CATEGORIA_MANUAL_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: &#x27;ASESOR&#x27;, label: &#x27;Manual para asesor&#x27; },
+  { value: &#x27;SUPERVISOR&#x27;, label: &#x27;Manual para supervisor&#x27; },
+  { value: &#x27;ADMINISTRADOR&#x27;, label: &#x27;Manual para administrador&#x27; },
+  { value: &#x27;GENERAL&#x27;, label: &#x27;Manual general&#x27; },
+  { value: &#x27;OTROS&#x27;, label: &#x27;Otros&#x27; },
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DOCUMENTO_CATEGORIA_MATERIAL_APOYO_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>DOCUMENTO_CATEGORIA_MATERIAL_APOYO_OPCIONES</b></span>
+                        <a href="#DOCUMENTO_CATEGORIA_MATERIAL_APOYO_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: &#x27;LEGISLACION&#x27;, label: &#x27;Legislación&#x27; },
+  { value: &#x27;JURISPRUDENCIA&#x27;, label: &#x27;Jurisprudencia / precedentes&#x27; },
+  { value: &#x27;DOCTRINA&#x27;, label: &#x27;Doctrina&#x27; },
+  { value: &#x27;GUIAS_ESTUDIO&#x27;, label: &#x27;Guías de estudio&#x27; },
+  { value: &#x27;MODELOS_REFERENCIALES&#x27;, label: &#x27;Modelos referenciales&#x27; },
+  { value: &#x27;MATERIAL_CLASE&#x27;, label: &#x27;Material de clase&#x27; },
+  { value: &#x27;OTROS&#x27;, label: &#x27;Otros&#x27; },
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DOCUMENTO_CATEGORIA_PROCESO_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>DOCUMENTO_CATEGORIA_PROCESO_OPCIONES</b></span>
+                        <a href="#DOCUMENTO_CATEGORIA_PROCESO_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: &#x27;DEMANDA&#x27;, label: &#x27;Demanda&#x27; },
+  { value: &#x27;ESCRITO&#x27;, label: &#x27;Escrito&#x27; },
+  { value: &#x27;RESOLUCION&#x27;, label: &#x27;Resolución&#x27; },
+  { value: &#x27;NOTIFICACION&#x27;, label: &#x27;Notificación&#x27; },
+  { value: &#x27;PRUEBA&#x27;, label: &#x27;Prueba&#x27; },
+  { value: &#x27;ANEXO&#x27;, label: &#x27;Anexo&#x27; },
+  { value: &#x27;OTROS&#x27;, label: &#x27;Otros&#x27; },
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DOCUMENTO_CATEGORIA_REPORTE_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>DOCUMENTO_CATEGORIA_REPORTE_OPCIONES</b></span>
+                        <a href="#DOCUMENTO_CATEGORIA_REPORTE_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: &#x27;ANALITICAS&#x27;, label: &#x27;Analíticas&#x27; },
+  { value: &#x27;CIUDADANOS&#x27;, label: &#x27;Ciudadanos&#x27; },
+  { value: &#x27;CONSULTAS&#x27;, label: &#x27;Consultas&#x27; },
+  { value: &#x27;PROCESOS&#x27;, label: &#x27;Procesos&#x27; },
+  { value: &#x27;TRAMITES&#x27;, label: &#x27;Trámites&#x27; },
+  { value: &#x27;ASISTENCIA&#x27;, label: &#x27;Asistencia&#x27; },
+  { value: &#x27;OTROS&#x27;, label: &#x27;Otros&#x27; },
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DOCUMENTO_CATEGORIA_TRAMITE_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>DOCUMENTO_CATEGORIA_TRAMITE_OPCIONES</b></span>
+                        <a href="#DOCUMENTO_CATEGORIA_TRAMITE_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: &#x27;SOLICITUD&#x27;, label: &#x27;Solicitud&#x27; },
+  { value: &#x27;CARGO&#x27;, label: &#x27;Cargo&#x27; },
+  { value: &#x27;EXPEDIENTE&#x27;, label: &#x27;Expediente&#x27; },
+  { value: &#x27;RESOLUCION&#x27;, label: &#x27;Resolución&#x27; },
+  { value: &#x27;NOTIFICACION&#x27;, label: &#x27;Notificación&#x27; },
+  { value: &#x27;CONSTANCIA&#x27;, label: &#x27;Constancia&#x27; },
+  { value: &#x27;ANEXO&#x27;, label: &#x27;Anexo&#x27; },
+  { value: &#x27;OTROS&#x27;, label: &#x27;Otros&#x27; },
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DOCUMENTO_RUTA_BASE_CODIGO_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>DOCUMENTO_RUTA_BASE_CODIGO_OPCIONES</b></span>
+                        <a href="#DOCUMENTO_RUTA_BASE_CODIGO_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: &#x27;GENERAL&#x27;, label: &#x27;Drive principal&#x27; },
+  { value: &#x27;BACKUP&#x27;, label: &#x27;Drive de backups&#x27; },
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DOCUMENTO_RUTA_BASE_ESTADO_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>DOCUMENTO_RUTA_BASE_ESTADO_OPCIONES</b></span>
+                        <a href="#DOCUMENTO_RUTA_BASE_ESTADO_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: 1, label: &#x27;ACTIVO&#x27; },
+  { value: 0, label: &#x27;ELIMINADO&#x27; },
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DOCUMENTO_TIPO_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>DOCUMENTO_TIPO_OPCIONES</b></span>
+                        <a href="#DOCUMENTO_TIPO_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: &#x27;PROCESO&#x27;, label: &#x27;Proceso&#x27; },
+  { value: &#x27;TRAMITE&#x27;, label: &#x27;Trámite&#x27; },
+  { value: &#x27;MATERIAL_APOYO&#x27;, label: &#x27;Material de apoyo&#x27; },
+  { value: &#x27;REPORTE&#x27;, label: &#x27;Reporte&#x27; },
+  { value: &#x27;MANUAL&#x27;, label: &#x27;Manual&#x27; },
+  { value: &#x27;BACKUP&#x27;, label: &#x27;Backup&#x27; },
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/documentos/documentos.routes.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="documentosRoutes"></a>
+                    <span class="name">
+                        <span ><b>documentosRoutes</b></span>
+                        <a href="#documentosRoutes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/router/Routes" target="_blank" >Routes</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    path: &#x27;documentos&#x27;,
+    canMatch: [accessGuardMatch],
+    children: [
+      {
+        path: &#x27;&#x27;,
+        component: DocumentosListaGeneral,
+        data: { minLevel: 3 },
+        pathMatch: &#x27;full&#x27;,
+      },
+      {
+        path: &#x27;registrar&#x27;,
+        component: DocumentosRegistrar,
+        data: { minLevel: 3 },
+        pathMatch: &#x27;full&#x27;,
+      },
+      {
+        path: &#x27;rutas-base&#x27;,
+        component: DocumentosRutaBaseLista,
+        data: { minLevel: 3 },
+        pathMatch: &#x27;full&#x27;,
+      },
+      {
+        path: &#x27;rutas-base/registrar&#x27;,
+        component: DocumentosRutaBaseRegistrar,
+        data: { minLevel: 3 },
+        pathMatch: &#x27;full&#x27;,
+      },
+      {
+        path: &#x27;**&#x27;,
+        component: PaginaNoEncontradaComponent,
+      },
+    ],
+  },
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/environments/environment.prod.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="environment"></a>
+                    <span class="name">
+                        <span ><b>environment</b></span>
+                        <a href="#environment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  production: true,
+  apiUrl: &#x27;https://spiritual-marie-jeanne-cerjus-caf28ccd.koyeb.app/cerjusbackend&#x27;
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/environments/environment.staging.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="environment"></a>
+                    <span class="name">
+                        <span ><b>environment</b></span>
+                        <a href="#environment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  production: true,
+  apiUrl: &#x27;https://independent-meg-pruebapersonalcerjus-da8accb2.koyeb.app/entornopuerbacerjusbackend&#x27;
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/environments/environment.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="environment"></a>
+                    <span class="name">
+                        <span ><b>environment</b></span>
+                        <a href="#environment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{ 
+    production: false, 
+    apiUrl: &#x27;http://localhost:3000&#x27; 
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/tramite/models/tramite.dominio.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ESTADO_TRAMITE_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>ESTADO_TRAMITE_OPCIONES</b></span>
+                        <a href="#ESTADO_TRAMITE_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    { value: &#x27;INICIADO&#x27;, label: &#x27;Iniciado&#x27; },
+    { value: &#x27;EN_PROCESO&#x27;, label: &#x27;En proceso&#x27; },
+    { value: &#x27;CONCLUIDO&#x27;, label: &#x27;Concluido&#x27; },
+    { value: &#x27;SUSPENDIDO&#x27;, label: &#x27;Suspendido&#x27; },
+    { value: &#x27;DENEGADO&#x27;, label: &#x27;Denegado&#x27; },
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/admin/usuario_horario/models/usuario_horario.dominio.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ESTADO_USUARIO_HORARIO_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>ESTADO_USUARIO_HORARIO_OPCIONES</b></span>
+                        <a href="#ESTADO_USUARIO_HORARIO_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: 1 as EstadoUsuarioHorario, label: &#x27;Activo&#x27; },
+  { value: 0 as EstadoUsuarioHorario, label: &#x27;Eliminado&#x27; },
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/admin/usuario/models/usuario.dominio.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ESTADO_USUARIO_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>ESTADO_USUARIO_OPCIONES</b></span>
+                        <a href="#ESTADO_USUARIO_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: 1, label: &#x27;Activo&#x27; },
+  { value: 2, label: &#x27;Suspendido&#x27; },
+  { value: 3, label: &#x27;Por confirmar correo&#x27; },
+  { value: 4, label: &#x27;Por autorizar&#x27; },
+  { value: 0, label: &#x27;Eliminado&#x27; },
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/horario/horario.routes.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="horarioRoutes"></a>
+                    <span class="name">
+                        <span ><b>horarioRoutes</b></span>
+                        <a href="#horarioRoutes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/router/Routes" target="_blank" >Routes</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    path: &#x27;horario&#x27;,
+    canMatch: [accessGuardMatch],
+    children: [
+        { path: &#x27;&#x27;, component: HorarioLista, data: { minLevel: 1 }, pathMatch: &#x27;full&#x27; },
+        { path: &#x27;registrar&#x27;, component: HorarioRegistrar, data: { minLevel: 1 }, pathMatch: &#x27;full&#x27; },
+        { matcher: numericIdMatcherHorario, component: HorarioDetalle, data: { minLevel: 1 } },
+        { path: &#x27;**&#x27;, component: PaginaNoEncontradaComponent },
+    ],
+  },
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="numericIdMatcherHorario"></a>
+                    <span class="name">
+                        <span ><b>numericIdMatcherHorario</b></span>
+                        <a href="#numericIdMatcherHorario"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/router/UrlMatcher" target="_blank" >UrlMatcher</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(segments: UrlSegment[]) &#x3D;&gt;
+  segments.length &#x3D;&#x3D;&#x3D; 1 &amp;&amp; /^\d+$/.test(segments[0].path)
+    ? { consumed: segments, posParams: { id: segments[0] } }
+    : null</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/justificacion/justificacion.routes.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="justificacionRoutes"></a>
+                    <span class="name">
+                        <span ><b>justificacionRoutes</b></span>
+                        <a href="#justificacionRoutes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/router/Routes" target="_blank" >Routes</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    path: &#x27;justificacion&#x27;,
+    canMatch: [accessGuardMatch],
+    children: [
+      {path: &#x27;lista&#x27;,component: JustificacionListaPendientes,data: { minLevel: 2 },pathMatch: &#x27;full&#x27;,},
+      { path: &#x27;**&#x27;, component: PaginaNoEncontradaComponent },
+    ],
+  },
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/interceptor/interceptor.auth.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="jwtInterceptor"></a>
+                    <span class="name">
+                        <span ><b>jwtInterceptor</b></span>
+                        <a href="#jwtInterceptor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/common/http/HttpInterceptorFn" target="_blank" >HttpInterceptorFn</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(req, next) &#x3D;&gt; {
+  const router &#x3D; inject(Router);
+  const authStore &#x3D; inject(AuthStore);
+
+  const token &#x3D; authStore.getToken(); // snapshot del Store
+  if (token) {
+    req &#x3D; req.clone({ setHeaders: { Authorization: &#x60;Bearer ${token}&#x60; } });
+  }
+
+  return next(req).pipe(
+    catchError((error: HttpErrorResponse) &#x3D;&gt; {
+      if (error.status &#x3D;&#x3D;&#x3D; 401) {
+        authStore.logout();
+      }
+      return throwError(() &#x3D;&gt; error);
+    })
+  );
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/components/paginanoencontrada/services/paginanoencontrada.service.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="KNOWN_PREFIXES"></a>
+                    <span class="name">
+                        <span ><b>KNOWN_PREFIXES</b></span>
+                        <a href="#KNOWN_PREFIXES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[&#x27;/ciudadano&#x27;, &#x27;/consulta&#x27;, &#x27;/seguimiento&#x27;]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SS_KEY_LAST_BAD"></a>
+                    <span class="name">
+                        <span ><b>SS_KEY_LAST_BAD</b></span>
+                        <a href="#SS_KEY_LAST_BAD"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;lastBadUrl&#x27;</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SS_KEY_STACK"></a>
+                    <span class="name">
+                        <span ><b>SS_KEY_STACK</b></span>
+                        <a href="#SS_KEY_STACK"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;lastGoodUrlsStack&#x27;</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/consulta/models/consulta.dominio.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="LLEVA_CASO_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>LLEVA_CASO_OPCIONES</b></span>
+                        <a href="#LLEVA_CASO_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#LlevaCasoConNosotros" target="_self" >ReadonlyArray&lt;{ value: LlevaCasoConNosotros; label: string }&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: &#x27;SI&#x27;, label: &#x27;SÍ&#x27; },
+  { value: &#x27;NO&#x27;, label: &#x27;NO&#x27; },
+  { value: &#x27;POR_CONFIRMAR&#x27;, label: &#x27;POR CONFIRMAR&#x27; },
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MATERIA_CONSULTA_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>MATERIA_CONSULTA_OPCIONES</b></span>
+                        <a href="#MATERIA_CONSULTA_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: &#x27;DERECHO CIVIL&#x27;,          label: &#x27;Derecho Civil&#x27; },
+  { value: &#x27;DERECHO FAMILIAR&#x27;,       label: &#x27;Derecho Familiar&#x27; },
+  { value: &#x27;DERECHO LABORAL&#x27;,        label: &#x27;Derecho Laboral&#x27; },
+  { value: &#x27;DERECHO PENAL&#x27;,          label: &#x27;Derecho Penal&#x27; },
+  { value: &#x27;DERECHO CONSTITUCIONAL&#x27;, label: &#x27;Derecho Constitucional&#x27; },
+  { value: &#x27;DERECHO SUCESORIO&#x27;,      label: &#x27;Derecho Sucesorio&#x27; },
+  { value: &#x27;OTROS&#x27;,                  label: &#x27;Otros&#x27; },
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="REPORTE_ESTADO_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>REPORTE_ESTADO_OPCIONES</b></span>
+                        <a href="#REPORTE_ESTADO_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: &#x27;ACTIVOS&#x27;, label: &#x27;Solo activos&#x27;, minLevel: 3 },
+  { value: &#x27;ELIMINADOS&#x27;, label: &#x27;Solo eliminados&#x27;, minLevel: 2 },
+  { value: &#x27;TODOS&#x27;, label: &#x27;Todos&#x27;, minLevel: 2 },
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="REPORTE_FORMATO_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>REPORTE_FORMATO_OPCIONES</b></span>
+                        <a href="#REPORTE_FORMATO_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: &#x27;xlsx&#x27;, label: &#x27;Excel (.xlsx)&#x27; },
+  { value: &#x27;csv&#x27;, label: &#x27;CSV (.csv)&#x27; },
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="REPORTE_MES_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>REPORTE_MES_OPCIONES</b></span>
+                        <a href="#REPORTE_MES_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: 1, label: &#x27;Enero&#x27; },
+  { value: 2, label: &#x27;Febrero&#x27; },
+  { value: 3, label: &#x27;Marzo&#x27; },
+  { value: 4, label: &#x27;Abril&#x27; },
+  { value: 5, label: &#x27;Mayo&#x27; },
+  { value: 6, label: &#x27;Junio&#x27; },
+  { value: 7, label: &#x27;Julio&#x27; },
+  { value: 8, label: &#x27;Agosto&#x27; },
+  { value: 9, label: &#x27;Septiembre&#x27; },
+  { value: 10, label: &#x27;Octubre&#x27; },
+  { value: 11, label: &#x27;Noviembre&#x27; },
+  { value: 12, label: &#x27;Diciembre&#x27; },
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="REPORTE_MODO_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>REPORTE_MODO_OPCIONES</b></span>
+                        <a href="#REPORTE_MODO_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: &#x27;ASESOR&#x27;, label: &#x27;Datos para asesores&#x27;, minLevel: 3 },
+  { value: &#x27;ANALITICO&#x27;, label: &#x27;Datos para gráficas&#x27;, minLevel: 3 },
+  { value: &#x27;AUDITORIA&#x27;, label: &#x27;Datos auditables&#x27;, minLevel: 2 },
+  { value: &#x27;COMPLETO&#x27;, label: &#x27;Exportación completa&#x27;, minLevel: 1 },
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/interceptor/loadinganderrors.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadingAndErrorsInterceptor"></a>
+                    <span class="name">
+                        <span ><b>loadingAndErrorsInterceptor</b></span>
+                        <a href="#loadingAndErrorsInterceptor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/common/http/HttpInterceptorFn" target="_blank" >HttpInterceptorFn</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(req, next) &#x3D;&gt; {
+  const notify &#x3D; inject(NotificacionesService);
+  notify.startLoading();
+
+  return next(req).pipe(
+    timeout(REQUEST_TIMEOUT_MS),
+    catchError((err: unknown) &#x3D;&gt; {
+      if (err instanceof TimeoutError) {
+        if (!shouldSuppress(req, 0)) {
+          notify.ok({
+            variant: &#x27;error&#x27;,
+            title: &#x27;Servicio no disponible&#x27;,
+            message: &#x27;No pudimos conectarnos al servicio. Intenta de nuevo en unos segundos.&#x27;,
+            primaryText: &#x27;Aceptar&#x27;
+          });
+        }
+        return throwError(() &#x3D;&gt; err);
+      }
+
+      if (err instanceof HttpErrorResponse) {
+        const status &#x3D; err.status;
+        const msg &#x3D; extractMessage(err);
+        const code &#x3D; extractCode(err);
+        const title &#x3D; extractTitle(err)                // 1) title del backend
+                   ?? (code ? titleByBusinessCode(code) : null) // 2) map por code
+                   ?? genericTitleByStatus(status);    // 3) genérico por status
+
+        if (status &#x3D;&#x3D;&#x3D; 0) {
+          if (!shouldSuppress(req, 0)) {
+            notify.ok({
+              variant: &#x27;error&#x27;, title: &#x27;Servicio no disponible&#x27;,
+              message: &#x27;No pudimos conectarnos al servicio. Verifica tu conexión e inténtalo nuevamente.&#x27;,
+              primaryText: &#x27;Aceptar&#x27;
+            });
+          }
+          return throwError(() &#x3D;&gt; err);
+        }
+
+        if (status &gt;&#x3D; 500) {
+          if (!shouldSuppress(req, status)) {
+            notify.ok({
+              variant: &#x27;error&#x27;, title,
+              message: &#x27;No pudimos procesar tu solicitud. Inténtalo más tarde.&#x27;,
+              primaryText: &#x27;Aceptar&#x27;
+            });
+          }
+          return throwError(() &#x3D;&gt; err);
+        }
+
+        if (status &#x3D;&#x3D;&#x3D; 400 &amp;&amp; Array.isArray(err.error?.message)) {
+          if (!shouldSuppress(req, status)) {
+            notify.ok({
+              variant: &#x27;warning&#x27;,
+              title: &#x27;Corrige los datos&#x27;,
+              message: &#x27;Algunos campos tienen errores. Revisa e inténtalo nuevamente.&#x27;,
+              primaryText: &#x27;Aceptar&#x27;
+            });
+          }
+          return throwError(() &#x3D;&gt; err);
+        }
+
+        if (!shouldSuppress(req, status)) {
+          notify.ok({
+            variant: status &gt;&#x3D; 400 &amp;&amp; status &lt; 500 ? &#x27;warning&#x27; : &#x27;error&#x27;,
+            title,
+            message: msg ?? &#x27;No se pudo completar la operación. Inténtalo nuevamente.&#x27;,
+            primaryText: &#x27;Aceptar&#x27;
+          });
+        }
+      }
+
+      return throwError(() &#x3D;&gt; err);
+    }),
+    finalize(() &#x3D;&gt; notify.stopLoading())
+  );
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="REQUEST_TIMEOUT_MS"></a>
+                    <span class="name">
+                        <span ><b>REQUEST_TIMEOUT_MS</b></span>
+                        <a href="#REQUEST_TIMEOUT_MS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>15000</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/audiencia/audiencia.detalle/audiencia.detalle.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="noBlank"></a>
+                    <span class="name">
+                        <span ><b>noBlank</b></span>
+                        <a href="#noBlank"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/forms/ValidatorFn" target="_blank" >ValidatorFn</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(c: AbstractControl): ValidationErrors | null &#x3D;&gt; {
+    const v &#x3D; String(c.value ?? &#x27;&#x27;).trim();
+    return v.length &#x3D;&#x3D;&#x3D; 0 ? { required: true } : null;
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/audiencia/audiencia.registrar/audiencia.registrar.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="noBlank"></a>
+                    <span class="name">
+                        <span ><b>noBlank</b></span>
+                        <a href="#noBlank"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/forms/ValidatorFn" target="_blank" >ValidatorFn</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(c: AbstractControl): ValidationErrors | null &#x3D;&gt; {
+    const v &#x3D; String(c.value ?? &#x27;&#x27;).trim();
+    return v.length &#x3D;&#x3D;&#x3D; 0 ? { required: true } : null;
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/tramite/tramite.registrar/tramite.registrar.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="noBlank"></a>
+                    <span class="name">
+                        <span ><b>noBlank</b></span>
+                        <a href="#noBlank"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/forms/ValidatorFn" target="_blank" >ValidatorFn</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(c: AbstractControl): ValidationErrors | null &#x3D;&gt; {
+    const v &#x3D; String(c.value ?? &#x27;&#x27;).trim();
+    return v.length &#x3D;&#x3D;&#x3D; 0 ? { required: true } : null;
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/ciudadano/ciudadano.registrar/ciudadano.registrar.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="noInicialConocio"></a>
+                    <span class="name">
+                        <span ><b>noInicialConocio</b></span>
+                        <a href="#noInicialConocio"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/forms/ValidatorFn" target="_blank" >ValidatorFn</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(c: AbstractControl) &#x3D;&gt; {
+  return c.value &#x3D;&#x3D;&#x3D; &#x27;&#x27; ? { placeholder: true } : null;
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/consulta/consulta.registrar/consulta.registrar.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="noInicialMateria"></a>
+                    <span class="name">
+                        <span ><b>noInicialMateria</b></span>
+                        <a href="#noInicialMateria"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/forms/ValidatorFn" target="_blank" >ValidatorFn</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(c: AbstractControl) &#x3D;&gt;
+  c.value &#x3D;&#x3D;&#x3D; &#x27;&#x27; ? { placeholder: true } : null</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/justificacion/justificacion.registrar/justificacion.registrar.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="noInicialTipo"></a>
+                    <span class="name">
+                        <span ><b>noInicialTipo</b></span>
+                        <a href="#noInicialTipo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/forms/ValidatorFn" target="_blank" >ValidatorFn</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(c: AbstractControl) &#x3D;&gt; (c.value &#x3D;&#x3D;&#x3D; &#x27;&#x27; ? { placeholder: true } : null)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/admin/usuario/usuario.router.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="numericIdMatcher"></a>
+                    <span class="name">
+                        <span ><b>numericIdMatcher</b></span>
+                        <a href="#numericIdMatcher"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/router/UrlMatcher" target="_blank" >UrlMatcher</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(segments: UrlSegment[]) &#x3D;&gt;
+  segments.length &#x3D;&#x3D;&#x3D; 1 &amp;&amp; /^\d+$/.test(segments[0].path)
+    ? { consumed: segments, posParams: { id: segments[0] } }
+    : null</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="registrarNumericIdMatcher"></a>
+                    <span class="name">
+                        <span ><b>registrarNumericIdMatcher</b></span>
+                        <a href="#registrarNumericIdMatcher"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/router/UrlMatcher" target="_blank" >UrlMatcher</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(segments: UrlSegment[]) &#x3D;&gt;
+  segments.length &#x3D;&#x3D;&#x3D; 2 &amp;&amp;
+  segments[0].path &#x3D;&#x3D;&#x3D; &#x27;registrar&#x27; &amp;&amp;
+  /^\d+$/.test(segments[1].path)
+    ? { consumed: segments, posParams: { id: segments[1] } }
+    : null</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="usuarioRoutes"></a>
+                    <span class="name">
+                        <span ><b>usuarioRoutes</b></span>
+                        <a href="#usuarioRoutes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/router/Routes" target="_blank" >Routes</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    path: &#x27;usuario&#x27;,
+    canMatch: [accessGuardMatch],
+    children: [
+      ...cuentaregistrarSuper,
+      { path: &#x27;lista&#x27;, component: UsuarioLista, data: { minLevel: 2 }, pathMatch: &#x27;full&#x27; },
+      {matcher:numericIdMatcher, component: UsuarioDetalle,data:{minLevel:2}},
+      {path:&#x27;**&#x27;, component: PaginaNoEncontradaComponent },
+    ],
+  },
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/proceso/models/proceso.dominio.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PROCESO_ESTADO_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>PROCESO_ESTADO_OPCIONES</b></span>
+                        <a href="#PROCESO_ESTADO_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: 1, label: &#x27;ACTIVO&#x27; },
+  { value: 0, label: &#x27;ELIMINADO&#x27; },
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="REPORTE_ESTADO_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>REPORTE_ESTADO_OPCIONES</b></span>
+                        <a href="#REPORTE_ESTADO_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: &#x27;ACTIVOS&#x27;, label: &#x27;Solo activos&#x27;, minLevel: 3 },
+  { value: &#x27;ELIMINADOS&#x27;, label: &#x27;Solo eliminados&#x27;, minLevel: 2 },
+  { value: &#x27;TODOS&#x27;, label: &#x27;Todos&#x27;, minLevel: 2 },
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="REPORTE_FORMATO_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>REPORTE_FORMATO_OPCIONES</b></span>
+                        <a href="#REPORTE_FORMATO_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: &#x27;xlsx&#x27;, label: &#x27;Excel (.xlsx)&#x27; },
+  { value: &#x27;csv&#x27;, label: &#x27;CSV (.csv)&#x27; },
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="REPORTE_MES_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>REPORTE_MES_OPCIONES</b></span>
+                        <a href="#REPORTE_MES_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: 1, label: &#x27;Enero&#x27; },
+  { value: 2, label: &#x27;Febrero&#x27; },
+  { value: 3, label: &#x27;Marzo&#x27; },
+  { value: 4, label: &#x27;Abril&#x27; },
+  { value: 5, label: &#x27;Mayo&#x27; },
+  { value: 6, label: &#x27;Junio&#x27; },
+  { value: 7, label: &#x27;Julio&#x27; },
+  { value: 8, label: &#x27;Agosto&#x27; },
+  { value: 9, label: &#x27;Septiembre&#x27; },
+  { value: 10, label: &#x27;Octubre&#x27; },
+  { value: 11, label: &#x27;Noviembre&#x27; },
+  { value: 12, label: &#x27;Diciembre&#x27; },
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="REPORTE_MODO_OPCIONES"></a>
+                    <span class="name">
+                        <span ><b>REPORTE_MODO_OPCIONES</b></span>
+                        <a href="#REPORTE_MODO_OPCIONES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  { value: &#x27;ASESOR&#x27;, label: &#x27;Datos para asesores&#x27;, minLevel: 3 },
+  { value: &#x27;ANALITICO&#x27;, label: &#x27;Datos para gráficas&#x27;, minLevel: 3 },
+  { value: &#x27;AUDITORIA&#x27;, label: &#x27;Datos auditables&#x27;, minLevel: 2 },
+  { value: &#x27;COMPLETO&#x27;, label: &#x27;Exportación completa&#x27;, minLevel: 1 },
+] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/proceso/proceso.routes.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="procesoRoutes"></a>
+                    <span class="name">
+                        <span ><b>procesoRoutes</b></span>
+                        <a href="#procesoRoutes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/router/Routes" target="_blank" >Routes</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    path: &#x27;proceso&#x27;,
+    canMatch: [accessGuardMatch],
+    children: [
+      {path: &#x27;&#x27;,component: ProcesoLista,data: { minLevel: 3 },pathMatch: &#x27;full&#x27;,},
+      {path: &#x27;registrar&#x27;,component: ProcesoRegistrar,data: { minLevel: 3 },pathMatch: &#x27;full&#x27;,},
+      {path: &#x27;:idproceso&#x27;,component: ProcesoDetalle,data: { minLevel: 3 },},
+      { path: &#x27;**&#x27;, component: PaginaNoEncontradaComponent },
+    ],
+  },
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/seguimiento/seguimiento.routes.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="registrarNumericIdMatcher"></a>
+                    <span class="name">
+                        <span ><b>registrarNumericIdMatcher</b></span>
+                        <a href="#registrarNumericIdMatcher"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/router/UrlMatcher" target="_blank" >UrlMatcher</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(segments: UrlSegment[]) &#x3D;&gt;
+  segments.length &#x3D;&#x3D;&#x3D; 2 &amp;&amp;
+  segments[0].path &#x3D;&#x3D;&#x3D; &#x27;registrar&#x27; &amp;&amp;
+  /^\d+$/.test(segments[1].path)
+    ? { consumed: segments, posParams: { id: segments[1] } }
+    : null</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="seguimientoRoutes"></a>
+                    <span class="name">
+                        <span ><b>seguimientoRoutes</b></span>
+                        <a href="#seguimientoRoutes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/router/Routes" target="_blank" >Routes</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    path: &#x27;seguimiento&#x27;,
+    canMatch: [accessGuardMatch],
+    children: [
+      
+      {path:&#x27;registrar&#x27;, component: SeguimientoListaConsulta,data:{minLevel:3},pathMatch: &#x27;full&#x27;,},
+      {matcher:registrarNumericIdMatcher, component: SeguimientoRegistar,data:{minLevel:3},pathMatch: &#x27;full&#x27;,},
+      {path:&#x27;**&#x27;, component: PaginaNoEncontradaComponent },
+    ],
+    
+  }
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/app.routes.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="routes"></a>
+                    <span class="name">
+                        <span ><b>routes</b></span>
+                        <a href="#routes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/router/Routes" target="_blank" >Routes</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    {path:&#x27;&#x27;, component: Simple_layout,
+        children:[
+            {path:&#x27;&#x27;, redirectTo:&#x27;login&#x27;, pathMatch:&#x27;full&#x27;, },
+            {
+                path: &#x27;login&#x27;,
+                canMatch: [loginGuardMactch],
+                children: [
+                  
+                  {path:&#x27;&#x27;, component: Ingresar,pathMatch: &#x27;full&#x27;},
+                  {path:&#x27;registrar&#x27;, component: Registar,pathMatch: &#x27;full&#x27;,  data: { mode: &#x27;public&#x27; },},
+                  //{matcher:registrarNumericIdMatcher, component: ConsultaRegistar,data:{minLevel:3}},
+                  //{matcher:numericIdMatcher, component: ConsultaDetalle,data:{minLevel:3}},
+                  {path:&#x27;**&#x27;, component: PaginaNoEncontradaComponent },
+                ],
+                
+              },
+            {
+                path: &#x27;confirmar-correo&#x27;,
+                component: ConfirmarCorreo,
+                pathMatch: &#x27;full&#x27;,
+              }
+        ]
+    },
+    {path:&#x27;&#x27;, component: Main_layout,
+        children:[
+            {
+                path: &#x27;asistencia&#x27;,
+                canMatch: [accessGuardMatch],
+                children: [
+                  {path: &#x27;&#x27;,component: AsistenciaLista,data: { minLevel: 3 },pathMatch: &#x27;full&#x27;,},
+                  {path: &#x27;justificacion/mis&#x27;,component: JustificacionListaMis,data: { minLevel: 3 },pathMatch: &#x27;full&#x27;,},
+                  {path: &#x27;justificacion/registrar&#x27;,component: JustificacionRegistrar,data: { minLevel: 3 },pathMatch: &#x27;full&#x27;,},
+                  { path: &#x27;**&#x27;, component: PaginaNoEncontradaComponent },
+                ],
+              },
+            {
+                path: &#x27;ciudadano&#x27;,
+                canMatch: [accessGuardMatch],
+                children: [
+                  { path: &#x27;&#x27;, component: CiudadanoLista, data: { minLevel: 3 }, pathMatch: &#x27;full&#x27; },
+                  { path: &#x27;registrar&#x27;, component: CiudadanoRegistrar, data: { minLevel: 3 }, pathMatch: &#x27;full&#x27; },
+
+                  { path: &#x27;:idciudadano/consulta/registrar&#x27;, component: ConsultaRegistar, data: { minLevel: 3 } },
+                  { path: &#x27;:idciudadano/consulta/:idconsulta&#x27;, component: ConsultaDetalle, data: { minLevel: 3 } },
+                  { path: &#x27;:idciudadano/consulta/:idconsulta/seguimiento/registrar&#x27;, component: SeguimientoRegistar, data: { minLevel: 3 } },
+                  
+                  { matcher: numericIdMatcher, component: CiudadanoDetalle, data: { minLevel: 3 } },
+                  { path: &#x27;**&#x27;, component: PaginaNoEncontradaComponent },
+                ],
+              },
+            {
+                path: &#x27;consulta&#x27;,
+                canMatch: [accessGuardMatch],
+                children: [
+                  {path: &#x27;&#x27;,component: ConsultaLista,data: { minLevel: 3 },pathMatch: &#x27;full&#x27;,},
+                  {path:&#x27;registrar&#x27;, component: ConsultaRegistar,data:{minLevel:3}},
+                  { path: &#x27;:idconsulta/seguimiento/registrar&#x27;, component: SeguimientoRegistar, data: { minLevel: 3 } },
+                  {matcher:registrarNumericIdMatcher, component: ConsultaRegistar,data:{minLevel:3}},
+                  {matcher:numericIdMatcher, component: ConsultaDetalle,data:{minLevel:3}},
+                  {path:&#x27;**&#x27;, component: PaginaNoEncontradaComponent },
+                ],
+                
+              },
+            {
+                path: &#x27;seguimiento&#x27;,
+                canMatch: [accessGuardMatch],
+                children: [
+                  
+                  {path:&#x27;registrar&#x27;, component: SeguimientoListaConsulta,data:{minLevel:3},pathMatch: &#x27;full&#x27;,},
+                  {matcher:registrarNumericIdMatcher, component: SeguimientoRegistar,data:{minLevel:3},pathMatch: &#x27;full&#x27;,},
+                  {path:&#x27;**&#x27;, component: PaginaNoEncontradaComponent },
+                ],
+                
+              },
+            {
+                path: &#x27;analiticas&#x27;,
+                canMatch: [accessGuardMatch],
+                children: [
+                  { path:&#x27;&#x27;, component: AnaliticasDashboard, data: { minLevel: 2 }, pathMatch: &#x27;full&#x27; },
+                  {path:&#x27;**&#x27;, component: PaginaNoEncontradaComponent },
+                ],
+              },
+            {
+                path: &#x27;horario&#x27;,
+                canMatch: [accessGuardMatch],
+                children: [
+                    { path: &#x27;&#x27;, component: HorarioLista, data: { minLevel: 1 }, pathMatch: &#x27;full&#x27; },
+                    { path: &#x27;registrar&#x27;, component: HorarioRegistrar, data: { minLevel: 1 }, pathMatch: &#x27;full&#x27; },
+                    { matcher: numericIdMatcherHorario, component: HorarioDetalle, data: { minLevel: 1 } },
+                    { path: &#x27;**&#x27;, component: PaginaNoEncontradaComponent },
+                ],
+              },
+            {
+                path: &#x27;controlusuario&#x27;,
+                canMatch: [accessGuardMatch],
+                children: [
+                  { path:&#x27;&#x27;, component: AsistenciasDashboard, data: { minLevel: 2 }, pathMatch: &#x27;full&#x27; },
+                  {path:&#x27;**&#x27;, component: PaginaNoEncontradaComponent },
+                ],
+              },
+            {
+                path: &#x27;cuenta&#x27;,
+                canMatch: [accessGuardMatch],
+                children: [
+                  
+                  {path:&#x27;perfil&#x27;, component: Perfil,pathMatch: &#x27;full&#x27;,data:{minLevel:3}},
+                  {path:&#x27;**&#x27;, component: PaginaNoEncontradaComponent },
+                ],
+                
+              },
+            {
+                path: &#x27;admin&#x27;,
+                canMatch: [accessGuardMatch],
+                children: [
+                    ...usuarioRoutes,
+                ],
+              },
+            {
+                path: &#x27;justificacion&#x27;,
+                canMatch: [accessGuardMatch],
+                children: [
+                  {path: &#x27;lista&#x27;,component: JustificacionListaPendientes,data: { minLevel: 2 },pathMatch: &#x27;full&#x27;,},
+                  { path: &#x27;**&#x27;, component: PaginaNoEncontradaComponent },
+                ],
+              },
+            {
+                path: &#x27;proceso&#x27;,
+                canMatch: [accessGuardMatch],
+                children: [
+                  {path: &#x27;&#x27;,component: ProcesoLista,data: { minLevel: 3 },pathMatch: &#x27;full&#x27;,},
+                  {path: &#x27;registrar&#x27;,component: ProcesoRegistrar,data: { minLevel: 3 },pathMatch: &#x27;full&#x27;,},
+                  {path: &#x27;:idproceso&#x27;,component: ProcesoDetalle,data: { minLevel: 3 },},
+                  { path: &#x27;**&#x27;, component: PaginaNoEncontradaComponent },
+                ],
+              },
+            {
+                path: &#x27;tramite&#x27;,
+                canMatch: [accessGuardMatch],
+                children: [
+                  { path: &#x27;&#x27;, component: TramiteLista, data: { minLevel: 3 }, pathMatch: &#x27;full&#x27; },
+                  { path: &#x27;registrar&#x27;, component: TramiteRegistrar, data: { minLevel: 3 }, pathMatch: &#x27;full&#x27; },
+                  { path: &#x27;:idtramite&#x27;, component: TramiteDetalle, data: { minLevel: 3 } },
+                  { path: &#x27;**&#x27;, component: PaginaNoEncontradaComponent },
+                ],
+              },
+            {
+                    path: &#x27;audiencia&#x27;,
+                    canMatch: [accessGuardMatch],
+                    children: [
+                        
+                        {path: &#x27;&#x27;,component: AudienciaCalendario,data: { minLevel: 3 },pathMatch: &#x27;full&#x27;,},
+                        {path: &#x27;registrar&#x27;,component: AudienciaRegistrar,data: { minLevel: 3 },pathMatch: &#x27;full&#x27;,},
+                        {path: &#x27;:idaudiencia&#x27;,component: AudienciaDetalle,data: { minLevel: 3 },},
+                        {path: &#x27;**&#x27;,component: PaginaNoEncontradaComponent,},
+                    ],
+                },
+            {
+                path: &#x27;documentos&#x27;,
+                canMatch: [accessGuardMatch],
+                children: [
+                  {
+                    path: &#x27;&#x27;,
+                    component: DocumentosListaGeneral,
+                    data: { minLevel: 3 },
+                    pathMatch: &#x27;full&#x27;,
+                  },
+                  {
+                    path: &#x27;registrar&#x27;,
+                    component: DocumentosRegistrar,
+                    data: { minLevel: 3 },
+                    pathMatch: &#x27;full&#x27;,
+                  },
+                  {
+                    path: &#x27;rutas-base&#x27;,
+                    component: DocumentosRutaBaseLista,
+                    data: { minLevel: 3 },
+                    pathMatch: &#x27;full&#x27;,
+                  },
+                  {
+                    path: &#x27;rutas-base/registrar&#x27;,
+                    component: DocumentosRutaBaseRegistrar,
+                    data: { minLevel: 3 },
+                    pathMatch: &#x27;full&#x27;,
+                  },
+                  {
+                    path: &#x27;**&#x27;,
+                    component: PaginaNoEncontradaComponent,
+                  },
+                ],
+              }
+        ]
+    },
+    {path:&#x27;**&#x27;, component: PaginaNoEncontradaComponent },
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/components/notificaciones/supresor/supresor.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SUPPRESS_401_DIALOG"></a>
+                    <span class="name">
+                        <span ><b>SUPPRESS_401_DIALOG</b></span>
+                        <a href="#SUPPRESS_401_DIALOG"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new HttpContextToken&lt;boolean&gt;(() &#x3D;&gt; false)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/auth/auth.store.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TOKEN_KEY"></a>
+                    <span class="name">
+                        <span ><b>TOKEN_KEY</b></span>
+                        <a href="#TOKEN_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;token&#x27;</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/tramite/tramite.routes.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tramiteRoutes"></a>
+                    <span class="name">
+                        <span ><b>tramiteRoutes</b></span>
+                        <a href="#tramiteRoutes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.dev/api/router/Routes" target="_blank" >Routes</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    path: &#x27;tramite&#x27;,
+    canMatch: [accessGuardMatch],
+    children: [
+      { path: &#x27;&#x27;, component: TramiteLista, data: { minLevel: 3 }, pathMatch: &#x27;full&#x27; },
+      { path: &#x27;registrar&#x27;, component: TramiteRegistrar, data: { minLevel: 3 }, pathMatch: &#x27;full&#x27; },
+      { path: &#x27;:idtramite&#x27;, component: TramiteDetalle, data: { minLevel: 3 } },
+      { path: &#x27;**&#x27;, component: PaginaNoEncontradaComponent },
+    ],
+  },
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/pages/asistencia/mappers/asistencia.mapper.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="UI_TZ"></a>
+                    <span class="name">
+                        <span ><b>UI_TZ</b></span>
+                        <a href="#UI_TZ"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;America/Lima&#x27;</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-variables';
+            var COMPODOC_CURRENT_PAGE_URL = 'variables.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

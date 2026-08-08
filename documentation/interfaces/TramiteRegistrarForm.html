@@ -1,0 +1,1381 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">frontend documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  TramiteRegistrarForm</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/pages/tramite/tramite.registrar/tramite.registrar.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" 
+                class="nav-link"
+                
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+
+            </div>
+
+    <div class="tab-pane fade " id="api"><section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-3">
+                    <h6><b>Properties</b></h6>
+                </td>
+                <td class="col-md-9">
+                    <ul class="index-list">
+                        <li>
+                                <a href="#asunto" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">asunto</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#descripcion" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">descripcion</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#dniBusqueda" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">dniBusqueda</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#entidad" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">entidad</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#estadoTramite" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">estadoTramite</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#expediente" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">expediente</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#fechaConclusion" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">fechaConclusion</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#fechaInicio" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">fechaInicio</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#fechaRegistrada" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">fechaRegistrada</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#fechaVencimiento" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">fechaVencimiento</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#idconsulta" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">idconsulta</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#observacion" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">observacion</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#usarFechaRegistrada" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">usarFechaRegistrada</span>
+                                </a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+    <section data-compodoc="block-properties">
+        <h3 id="inputs">Properties</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="asunto"></a>
+                                <span class="name "><b>asunto</b>
+                                    <a href="#asunto">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>asunto:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="510" class="link-to-prism">src/app/pages/tramite/tramite.registrar/tramite.registrar.ts:510</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="descripcion"></a>
+                                <span class="name "><b>descripcion</b>
+                                    <a href="#descripcion">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>descripcion:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="511" class="link-to-prism">src/app/pages/tramite/tramite.registrar/tramite.registrar.ts:511</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="dniBusqueda"></a>
+                                <span class="name "><b>dniBusqueda</b>
+                                    <a href="#dniBusqueda">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>dniBusqueda:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="506" class="link-to-prism">src/app/pages/tramite/tramite.registrar/tramite.registrar.ts:506</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="entidad"></a>
+                                <span class="name "><b>entidad</b>
+                                    <a href="#entidad">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>entidad:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="509" class="link-to-prism">src/app/pages/tramite/tramite.registrar/tramite.registrar.ts:509</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="estadoTramite"></a>
+                                <span class="name "><b>estadoTramite</b>
+                                    <a href="#estadoTramite">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>estadoTramite:         <code><a href="../miscellaneous/typealiases.html#EstadoTramite" target="_self" >EstadoTramite | string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#EstadoTramite" target="_self" >EstadoTramite | string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="512" class="link-to-prism">src/app/pages/tramite/tramite.registrar/tramite.registrar.ts:512</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="expediente"></a>
+                                <span class="name "><b>expediente</b>
+                                    <a href="#expediente">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>expediente:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="508" class="link-to-prism">src/app/pages/tramite/tramite.registrar/tramite.registrar.ts:508</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="fechaConclusion"></a>
+                                <span class="name "><b>fechaConclusion</b>
+                                    <a href="#fechaConclusion">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>fechaConclusion:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="516" class="link-to-prism">src/app/pages/tramite/tramite.registrar/tramite.registrar.ts:516</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="fechaInicio"></a>
+                                <span class="name "><b>fechaInicio</b>
+                                    <a href="#fechaInicio">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>fechaInicio:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="514" class="link-to-prism">src/app/pages/tramite/tramite.registrar/tramite.registrar.ts:514</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="fechaRegistrada"></a>
+                                <span class="name "><b>fechaRegistrada</b>
+                                    <a href="#fechaRegistrada">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>fechaRegistrada:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="521" class="link-to-prism">src/app/pages/tramite/tramite.registrar/tramite.registrar.ts:521</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="fechaVencimiento"></a>
+                                <span class="name "><b>fechaVencimiento</b>
+                                    <a href="#fechaVencimiento">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>fechaVencimiento:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="515" class="link-to-prism">src/app/pages/tramite/tramite.registrar/tramite.registrar.ts:515</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="idconsulta"></a>
+                                <span class="name "><b>idconsulta</b>
+                                    <a href="#idconsulta">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>idconsulta:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="505" class="link-to-prism">src/app/pages/tramite/tramite.registrar/tramite.registrar.ts:505</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="observacion"></a>
+                                <span class="name "><b>observacion</b>
+                                    <a href="#observacion">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>observacion:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="518" class="link-to-prism">src/app/pages/tramite/tramite.registrar/tramite.registrar.ts:518</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="usarFechaRegistrada"></a>
+                                <span class="name "><b>usarFechaRegistrada</b>
+                                    <a href="#usarFechaRegistrada">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>usarFechaRegistrada:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="520" class="link-to-prism">src/app/pages/tramite/tramite.registrar/tramite.registrar.ts:520</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+    </section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, OnDestroy, inject } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import {ReactiveFormsModule,FormBuilder,Validators,FormControl,AbstractControl,ValidationErrors,ValidatorFn,
+    } from &#x27;@angular/forms&#x27;;
+import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;;
+import { debounceTime, distinctUntilChanged } from &#x27;rxjs/operators&#x27;;
+import { Subscription } from &#x27;rxjs&#x27;;
+
+import { TramiteService } from &#x27;../services/tramite.service&#x27;;
+import { ConsultaService } from &#x27;../../consulta/services/consulta.service&#x27;;
+
+import { VMTramiteCreate } from &#x27;../models/tramite.vm&#x27;;
+import { EstadoTramite, ESTADO_TRAMITE_OPCIONES } from &#x27;../models/tramite.dominio&#x27;;
+import {VMConsultaDetalleSimple,VMConsultaListaGeneralSimple,} from &#x27;../../consulta/models/consulta.vm&#x27;;
+
+import { NotificacionesService } from &#x27;@/app/components/notificaciones/services/notificaciones.service&#x27;;
+import { PageMetaService } from &#x27;@/app/services/page_meta.service&#x27;;
+
+const noBlank: ValidatorFn &#x3D; (c: AbstractControl): ValidationErrors | null &#x3D;&gt; {
+    const v &#x3D; String(c.value ?? &#x27;&#x27;).trim();
+    return v.length &#x3D;&#x3D;&#x3D; 0 ? { required: true } : null;
+};
+
+@Component({
+    selector: &#x27;app-tramite-registrar&#x27;,
+    standalone: true,
+    imports: [CommonModule, ReactiveFormsModule],
+    templateUrl: &#x27;./tramite.registrar.html&#x27;,
+    styleUrl: &#x27;./tramite.registrar.css&#x27;,
+})
+export class TramiteRegistrar implements OnInit, OnDestroy {
+    private fb &#x3D; inject(FormBuilder);
+    private router &#x3D; inject(Router);
+    private route &#x3D; inject(ActivatedRoute);
+    private tramiteService &#x3D; inject(TramiteService);
+    private consultaService &#x3D; inject(ConsultaService);
+    private notify &#x3D; inject(NotificacionesService);
+    private pageMeta &#x3D; inject(PageMetaService);
+
+    private subForm &#x3D; new Subscription();
+
+    readonly estadoTramiteOpciones &#x3D; ESTADO_TRAMITE_OPCIONES;
+
+    requiereConsulta &#x3D; true;
+
+    consultas: VMConsultaListaGeneralSimple[] &#x3D; [];
+    consultaSeleccionada: VMConsultaDetalleSimple | null &#x3D; null;
+
+    consultaTotal &#x3D; 0;
+    consultaPage &#x3D; 1;
+    consultaPageSize &#x3D; 5;
+
+    buscandoConsultas &#x3D; false;
+    consultaBuscada &#x3D; false;
+    showConsultaOverlay &#x3D; false;
+
+    consultaShownFrom &#x3D; 0;
+    consultaShownTo &#x3D; 0;
+    consultaShownPage &#x3D; 1;
+    consultaShownLastPage &#x3D; 1;
+    consultaShownTotal &#x3D; 0;
+
+    private pendConsultas: VMConsultaListaGeneralSimple[] &#x3D; [];
+    private pendConsultaTotal &#x3D; 0;
+    private pendConsultaFrom &#x3D; 0;
+    private pendConsultaTo &#x3D; 0;
+    private pendConsultaPage &#x3D; 1;
+    private pendConsultaLastPage &#x3D; 1;
+
+    private consultaReqSeq &#x3D; 0;
+    private consultaOverlayTimer: any;
+    private consultaOverlayShownAt &#x3D; 0;
+
+    private readonly consultaOverlayDelay &#x3D; 180;
+    private readonly consultaMinOverlayMs &#x3D; 220;
+
+    submitting &#x3D; false;
+
+    headerBlockPx &#x3D; 40;
+
+    get consultaListMinHeight(): number {
+        return this.headerBlockPx + this.consultaPageSize * 48 + 12;
+    }
+
+    get consultaSkeletonRows(): number[] {
+        return Array.from({ length: this.consultaPageSize }, (_, i) &#x3D;&gt; i);
+    }
+
+    get consultaLastPage(): number {
+        return this.consultaPageSize
+        ? Math.max(1, Math.ceil(this.consultaTotal / this.consultaPageSize))
+        : 1;
+    }
+
+    form &#x3D; this.fb.group&lt;ControlsOf&lt;TramiteRegistrarForm&gt;&gt;({
+        idconsulta: new FormControl(0, {nonNullable: true,validators: [Validators.required, Validators.min(1)],}),
+        dniBusqueda: new FormControl(&#x27;&#x27;, {nonNullable: true,validators: [Validators.pattern(/^\d{0,11}$/)],}),
+        expediente: new FormControl(&#x27;&#x27;, {nonNullable: true,validators: [Validators.maxLength(50)],}),
+        entidad: new FormControl(&#x27;&#x27;, {nonNullable: true,validators: [Validators.maxLength(150)],}),
+        asunto: new FormControl(&#x27;&#x27;, {nonNullable: true,validators: [noBlank, Validators.maxLength(150)],}),
+        descripcion: new FormControl(&#x27;&#x27;, {nonNullable: true,validators: [Validators.maxLength(600)],}),
+        estadoTramite: new FormControl(&#x27;&#x27;, {nonNullable: true,validators: [Validators.required],}),
+        fechaInicio: new FormControl(&#x27;&#x27;, {nonNullable: true,}),
+        fechaVencimiento: new FormControl(&#x27;&#x27;, {nonNullable: true,}),
+        fechaConclusion: new FormControl(&#x27;&#x27;, {nonNullable: true,}),
+        observacion: new FormControl(&#x27;&#x27;, {nonNullable: true,validators: [Validators.maxLength(600)],}),
+        usarFechaRegistrada: new FormControl(false, {nonNullable: true,}),
+        fechaRegistrada: new FormControl({ value: &#x27;&#x27;, disabled: true }, {nonNullable: true,}),
+    });
+
+    ngOnInit(): void {
+        const idconsulta &#x3D; Number(
+        this.route.snapshot.paramMap.get(&#x27;idconsulta&#x27;) ??
+        this.route.snapshot.paramMap.get(&#x27;id&#x27;)
+        );
+
+        this.requiereConsulta &#x3D; !(idconsulta &gt; 0);
+
+        this.pageMeta.replace({
+        titulo: &#x27;Registrar Trámite&#x27;,
+        ruta: this.backRoute(),
+        });
+
+        if (idconsulta &gt; 0) {
+        this.form.patchValue({ idconsulta });
+        this.cargarConsulta(idconsulta);
+        }
+
+        this.subForm.add(
+        this.form.get(&#x27;usarFechaRegistrada&#x27;)!.valueChanges.subscribe(() &#x3D;&gt; {
+            this.syncFechaRegistrada();
+        }),
+        );
+
+        this.subForm.add(
+        this.form.get(&#x27;dniBusqueda&#x27;)!.valueChanges
+            .pipe(
+            debounceTime(300),
+            distinctUntilChanged(),
+            )
+            .subscribe(() &#x3D;&gt; {
+            if (this.requiereConsulta) {
+                this.consultaPage &#x3D; 1;
+                this.buscarConsultasPorDni();
+            }
+            }),
+        );
+        this.syncFechaRegistrada();
+    }
+
+    ngOnDestroy(): void {
+        this.subForm.unsubscribe();
+        this.cancelConsultaTimers();
+        this.pageMeta.clear();
+    }
+
+    private syncFechaRegistrada(): void {
+        const usar &#x3D; this.form.get(&#x27;usarFechaRegistrada&#x27;)!.value;
+        const fechaCtrl &#x3D; this.form.get(&#x27;fechaRegistrada&#x27;)!;
+
+        if (usar) {
+            fechaCtrl.enable({ emitEvent: false });
+            fechaCtrl.setValidators([Validators.required]);
+        } else {
+            fechaCtrl.setValue(&#x27;&#x27;, { emitEvent: false });
+            fechaCtrl.clearValidators();
+            fechaCtrl.disable({ emitEvent: false });
+        }
+
+        fechaCtrl.updateValueAndValidity({ emitEvent: false });
+    }
+
+    private cancelConsultaTimers(): void {
+        clearTimeout(this.consultaOverlayTimer);
+    }
+
+    buscarConsultasPorDni(): void {
+        const dni &#x3D; this.form.get(&#x27;dniBusqueda&#x27;)!.value.trim();
+
+        this.cancelConsultaTimers();
+
+        if (dni.length &lt; 8) {
+            this.consultas &#x3D; [];
+            this.consultaTotal &#x3D; 0;
+
+            this.consultaShownFrom &#x3D; 0;
+            this.consultaShownTo &#x3D; 0;
+            this.consultaShownPage &#x3D; 1;
+            this.consultaShownLastPage &#x3D; 1;
+            this.consultaShownTotal &#x3D; 0;
+
+            this.consultaBuscada &#x3D; false;
+            this.buscandoConsultas &#x3D; false;
+            this.showConsultaOverlay &#x3D; false;
+            return;
+        }
+
+        this.buscandoConsultas &#x3D; true;
+
+        const myReq &#x3D; ++this.consultaReqSeq;
+
+        if (this.consultas.length &gt; 0) {
+        this.consultaOverlayTimer &#x3D; setTimeout(() &#x3D;&gt; {
+            if (this.consultaReqSeq &#x3D;&#x3D;&#x3D; myReq) {
+                this.showConsultaOverlay &#x3D; true;
+                this.consultaOverlayShownAt &#x3D; performance.now();
+            }
+        }, this.consultaOverlayDelay);
+        } else {
+            this.showConsultaOverlay &#x3D; false;
+        }
+
+        this.consultaService.list({
+        page: this.consultaPage,
+        pageSize: this.consultaPageSize,
+        dni,
+        })
+        .subscribe({
+        next: (res) &#x3D;&gt; {
+            if (myReq !&#x3D;&#x3D; this.consultaReqSeq) return;
+
+            const incoming &#x3D; res.items ?? [];
+            const total &#x3D; res.total ?? incoming.length;
+
+            const from &#x3D; incoming.length &gt; 0
+            ? (this.consultaPage - 1) * this.consultaPageSize + 1
+            : 0;
+
+            const to &#x3D; incoming.length &gt; 0
+            ? (this.consultaPage - 1) * this.consultaPageSize + incoming.length
+            : 0;
+
+            const last &#x3D; this.consultaPageSize
+            ? Math.max(1, Math.ceil(total / this.consultaPageSize))
+            : 1;
+
+            this.pendConsultas &#x3D; incoming;
+            this.pendConsultaTotal &#x3D; total;
+            this.pendConsultaFrom &#x3D; from;
+            this.pendConsultaTo &#x3D; to;
+            this.pendConsultaPage &#x3D; this.consultaPage;
+            this.pendConsultaLastPage &#x3D; last;
+
+            this.finishConsultaLoading();
+        },
+        error: () &#x3D;&gt; {
+            if (myReq !&#x3D;&#x3D; this.consultaReqSeq) return;
+
+            this.pendConsultas &#x3D; this.consultas;
+            this.pendConsultaTotal &#x3D; this.consultaTotal;
+            this.pendConsultaFrom &#x3D; this.consultaShownFrom;
+            this.pendConsultaTo &#x3D; this.consultaShownTo;
+            this.pendConsultaPage &#x3D; this.consultaShownPage || this.consultaPage;
+            this.pendConsultaLastPage &#x3D; this.consultaShownLastPage || this.consultaLastPage;
+
+            this.finishConsultaLoading();
+        },
+        });
+    }
+
+    private finishConsultaLoading(): void {
+        const complete &#x3D; () &#x3D;&gt; {
+        this.buscandoConsultas &#x3D; false;
+        clearTimeout(this.consultaOverlayTimer);
+
+        if (this.showConsultaOverlay) {
+            const elapsed &#x3D; performance.now() - this.consultaOverlayShownAt;
+            const remain &#x3D; Math.max(0, this.consultaMinOverlayMs - elapsed);
+
+            setTimeout(() &#x3D;&gt; {
+                this.showConsultaOverlay &#x3D; false;
+            }, remain);
+        } else {
+            this.showConsultaOverlay &#x3D; false;
+        }
+
+        this.consultas &#x3D; this.pendConsultas;
+        this.consultaTotal &#x3D; this.pendConsultaTotal;
+        this.consultaShownFrom &#x3D; this.pendConsultaFrom;
+        this.consultaShownTo &#x3D; this.pendConsultaTo;
+        this.consultaShownPage &#x3D; this.pendConsultaPage;
+        this.consultaShownLastPage &#x3D; this.pendConsultaLastPage;
+        this.consultaShownTotal &#x3D; this.pendConsultaTotal;
+        this.consultaBuscada &#x3D; true;
+        };
+
+        complete();
+    }
+
+    goToConsultaPage(page: number): void {
+        if (page &lt; 1) return;
+
+        const last &#x3D; this.consultaLastPage;
+        if (last &amp;&amp; page &gt; last) return;
+
+        this.consultaPage &#x3D; page;
+        this.buscarConsultasPorDni();
+    }
+
+    seleccionarConsulta(c: VMConsultaListaGeneralSimple): void {
+        this.form.patchValue({ idconsulta: c.id });
+        this.cargarConsulta(c.id);
+    }
+
+    toggleConsulta(c: VMConsultaListaGeneralSimple): void {
+        if (this.isConsultaSeleccionada(c)) {
+            this.limpiarConsultaSeleccionada();
+            return;
+        }
+
+        this.seleccionarConsulta(c);
+    }
+
+    isConsultaSeleccionada(c: VMConsultaListaGeneralSimple): boolean {
+        return this.form.get(&#x27;idconsulta&#x27;)!.value &#x3D;&#x3D;&#x3D; c.id;
+    }
+
+    limpiarConsultaSeleccionada(): void {
+        this.form.patchValue({ idconsulta: 0 });
+        this.consultaSeleccionada &#x3D; null;
+    }
+
+    limpiarConsulta(): void {
+        this.form.patchValue({idconsulta: 0,dniBusqueda: &#x27;&#x27;,}, { emitEvent: false });
+        this.consultaPage &#x3D; 1;
+        this.consultaTotal &#x3D; 0;
+        this.consultas &#x3D; [];
+        this.consultaBuscada &#x3D; false;
+        this.consultaSeleccionada &#x3D; null;
+        this.buscandoConsultas &#x3D; false;
+        this.showConsultaOverlay &#x3D; false;
+
+        this.consultaShownFrom &#x3D; 0;
+        this.consultaShownTo &#x3D; 0;
+        this.consultaShownPage &#x3D; 1;
+        this.consultaShownLastPage &#x3D; 1;
+        this.consultaShownTotal &#x3D; 0;
+
+        this.cancelConsultaTimers();
+    }
+
+    private cargarConsulta(idconsulta: number): void {
+        this.consultaService.getById(idconsulta).subscribe({
+        next: (data) &#x3D;&gt; {
+            this.consultaSeleccionada &#x3D; data;
+        },
+        error: () &#x3D;&gt; {
+            this.consultaSeleccionada &#x3D; null;
+        },
+        });
+    }
+
+    private validaConsulta(): string | null {
+        const idconsulta &#x3D; this.form.get(&#x27;idconsulta&#x27;)!.value;
+
+        if (!idconsulta || idconsulta &lt;&#x3D; 0) {
+            return &#x27;Debe seleccionar una consulta para registrar el trámite.&#x27;;
+        }
+
+        return null;
+    }
+
+    async onSubmit(): Promise&lt;void&gt; {
+        const msgConsulta &#x3D; this.validaConsulta();
+
+        if (msgConsulta) {
+            await this.notify.ok({
+                variant: &#x27;warning&#x27;,
+                title: &#x27;Consulta requerida&#x27;,
+                message: msgConsulta,
+                primaryText: &#x27;Aceptar&#x27;,
+            });
+            return;
+        }
+
+        this.trimEditableControls();
+        this.form.updateValueAndValidity({ emitEvent: false });
+
+        if (this.form.invalid) {
+            this.form.markAllAsTouched();
+
+            await this.notify.ok({
+                variant: &#x27;warning&#x27;,
+                title: &#x27;Datos incompletos&#x27;,
+                message: &#x27;Revisa los campos obligatorios. El asunto y el estado del trámite son obligatorios.&#x27;,
+                primaryText: &#x27;Aceptar&#x27;,
+            });
+
+            return;
+        }
+
+        this.submitting &#x3D; true;
+
+        try {
+            const v &#x3D; this.form.getRawValue();
+
+            const vm: VMTramiteCreate &#x3D; {
+                idconsulta: v.idconsulta,
+
+                expediente: v.expediente,
+                entidad: v.entidad,
+                asunto: v.asunto,
+                descripcion: v.descripcion,
+
+                estadoTramite: v.estadoTramite as EstadoTramite,
+
+                fechaInicio: v.fechaInicio || null,
+                fechaVencimiento: v.fechaVencimiento || null,
+                fechaConclusion: v.fechaConclusion || null,
+
+                observacion: v.observacion,
+                fechaRegistrada: v.fechaRegistrada || null,
+            };
+
+            await this.tramiteService.create(vm);
+
+            await this.notify.ok({
+                variant: &#x27;success&#x27;,
+                title: &#x27;Trámite registrado&#x27;,
+                message: &#x27;El trámite se creó correctamente.&#x27;,
+                primaryText: &#x27;Aceptar&#x27;,
+            });
+
+            this.router.navigate(this.backRoute());
+        } catch (error: unknown) {
+            const message &#x3D; error instanceof Error
+                ? error.message
+                : &#x27;No se pudo registrar el trámite.&#x27;;
+
+            await this.notify.ok({
+                variant: &#x27;warning&#x27;,
+                title: &#x27;Datos inválidos&#x27;,
+                message,
+                primaryText: &#x27;Aceptar&#x27;,
+            });
+            // El interceptor ya mostró el resto de errores.
+        } finally {
+            this.submitting &#x3D; false;
+        }
+    }
+
+    async onBack(): Promise&lt;void&gt; {
+        if (this.form.dirty) {
+        const ok &#x3D; await this.notify.confirm({
+            variant: &#x27;warning&#x27;,
+            title: &#x27;Descartar cambios&#x27;,
+            message: &#x27;Hay datos sin guardar. ¿Deseas descartarlos?&#x27;,
+            confirmText: &#x27;Descartar&#x27;,
+            cancelText: &#x27;Seguir aquí&#x27;,
+        });
+
+        if (!ok) return;
+        }
+
+        this.router.navigate(this.backRoute());
+    }
+
+    private trimEditableControls(): void {
+        const v &#x3D; this.form.getRawValue();
+
+        this.form.patchValue({
+        expediente: this.clean(v.expediente),
+        entidad: this.clean(v.entidad),
+        asunto: this.clean(v.asunto),
+        descripcion: this.clean(v.descripcion),
+        observacion: this.clean(v.observacion),
+        }, { emitEvent: false });
+    }
+
+    private clean(value: unknown): string {
+        return String(value ?? &#x27;&#x27;).trim();
+    }
+
+    private backRoute(): any[] {
+        const idciudadano &#x3D; Number(this.route.snapshot.paramMap.get(&#x27;idciudadano&#x27;));
+
+        const idconsulta &#x3D; Number(
+        this.route.snapshot.paramMap.get(&#x27;idconsulta&#x27;) ??
+        this.route.snapshot.paramMap.get(&#x27;id&#x27;)
+        );
+
+        if (idciudadano &gt; 0 &amp;&amp; idconsulta &gt; 0) {
+            return [&#x27;/ciudadano&#x27;, idciudadano, &#x27;consulta&#x27;, idconsulta];
+        }
+
+        if (idconsulta &gt; 0) {
+            return [&#x27;/consulta&#x27;, idconsulta];
+        }
+
+        return [&#x27;/tramite&#x27;];
+    }
+
+    nombreCiudadano(c: VMConsultaDetalleSimple | null): string {
+        if (!c) return &#x27;—&#x27;;
+
+        return &#x60;${c.apellidoPaterno ?? &#x27;&#x27;} ${c.apellidoMaterno ?? &#x27;&#x27;}, ${c.nombres ?? &#x27;&#x27;}&#x60;
+        .replace(/\s+/g, &#x27; &#x27;)
+        .trim();
+    }
+}
+
+interface TramiteRegistrarForm {
+    idconsulta: number;
+    dniBusqueda: string;
+
+    expediente: string;
+    entidad: string;
+    asunto: string;
+    descripcion: string;
+    estadoTramite: EstadoTramite | &#x27;&#x27;;
+
+    fechaInicio: string;
+    fechaVencimiento: string;
+    fechaConclusion: string;
+
+    observacion: string;
+
+    usarFechaRegistrada: boolean;
+    fechaRegistrada: string;
+}
+
+type ControlsOf&lt;T&gt; &#x3D; {
+    [K in keyof T]: FormControl&lt;T[K]&gt;;
+};</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'TramiteRegistrarForm.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

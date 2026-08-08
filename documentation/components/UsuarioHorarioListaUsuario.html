@@ -1,0 +1,2361 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">frontend documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  UsuarioHorarioListaUsuario</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/pages/admin/usuario_horario/usuario_horario.lista.usuario/usuario_horario.lista.usuario.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" class="nav-link"
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.dev/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.dev/api/core/OnChanges" target="_blank" >OnChanges</a></code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-usuario-horario-lista-usuario</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                        <div>        <code><a href="https://angular.dev/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+</div>
+                        <div>        <code><a href="https://angular.dev/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+</div>
+                        <div>        <code><a href="https://angular.dev/api/router/RouterLink" target="_blank" >RouterLink</a></code>
+</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./usuario_horario.lista.usuario.css</code></td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./usuario_horario.lista.usuario.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./usuario_horario.lista.usuario.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+        <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="../components/UsuarioDetalle.html" target="_self" >UsuarioDetalle</a></code>
+                                </li>
+                        </ul>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="https://angular.dev/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/router/RouterLink" target="_blank" >RouterLink</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/core/OnInit" target="_blank" >OnInit</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/core/OnChanges" target="_blank" >OnChanges</a></code>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+</div>
+
+    <div class="tab-pane fade " id="api">    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#asignarForm" >asignarForm</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#editForm" >editForm</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#editingId" >editingId</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#fb" >fb</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#horarios" >horarios</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#horarioService" >horarioService</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#items" >items</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#loading" >loading</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#notify" >notify</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#usuarioHorarioService" >usuarioHorarioService</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#cancelEdit" >cancelEdit</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#clearHastaEdit" >clearHastaEdit</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#loadAsignacionesAll" >loadAsignacionesAll</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#loadHorariosActivos" >loadHorariosActivos</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#ngOnChanges" >ngOnChanges</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#onAsignar" >onAsignar</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#onDesactivar" >onDesactivar</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#onReactivar" >onReactivar</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#saveEdit" >saveEdit</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#setLoading" >setLoading</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#startEdit" >startEdit</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#updateHorarioControlState" >updateHorarioControlState</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">I</span><a href="#idUsuario" >idUsuario</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+</section>
+
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="idUsuario"></a>
+                        <b>idUsuario</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/pages/admin/usuario_horario/usuario_horario.lista.usuario/usuario_horario.lista.usuario.ts:26</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cancelEdit"></a>
+                    <span class="name">
+                        <span ><b>cancelEdit</b></span>
+                        <a href="#cancelEdit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cancelEdit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="204"
+                                    class="link-to-prism">src/app/pages/admin/usuario_horario/usuario_horario.lista.usuario/usuario_horario.lista.usuario.ts:204</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clearHastaEdit"></a>
+                    <span class="name">
+                        <span ><b>clearHastaEdit</b></span>
+                        <a href="#clearHastaEdit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>clearHastaEdit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="212"
+                                    class="link-to-prism">src/app/pages/admin/usuario_horario/usuario_horario.lista.usuario/usuario_horario.lista.usuario.ts:212</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadAsignacionesAll"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>loadAsignacionesAll</b></span>
+                        <a href="#loadAsignacionesAll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>loadAsignacionesAll()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="100"
+                                    class="link-to-prism">src/app/pages/admin/usuario_horario/usuario_horario.lista.usuario/usuario_horario.lista.usuario.ts:100</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Para tabla: SIEMPRE traer TODO (activos + eliminados)</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadHorariosActivos"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>loadHorariosActivos</b></span>
+                        <a href="#loadHorariosActivos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>loadHorariosActivos()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="91"
+                                    class="link-to-prism">src/app/pages/admin/usuario_horario/usuario_horario.lista.usuario/usuario_horario.lista.usuario.ts:91</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Para asignar: SOLO horarios activos</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnChanges"></a>
+                    <span class="name">
+                        <span ><b>ngOnChanges</b></span>
+                        <a href="#ngOnChanges"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnChanges(changes: <a href="https://angular.dev/api/core/SimpleChanges" target="_blank">SimpleChanges</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="59"
+                                    class="link-to-prism">src/app/pages/admin/usuario_horario/usuario_horario.lista.usuario/usuario_horario.lista.usuario.ts:59</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>changes</td>
+                                            <td>
+                                                            <code><a href="https://angular.dev/api/core/SimpleChanges" target="_blank" >SimpleChanges</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="50"
+                                    class="link-to-prism">src/app/pages/admin/usuario_horario/usuario_horario.lista.usuario/usuario_horario.lista.usuario.ts:50</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onAsignar"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>onAsignar</b></span>
+                        <a href="#onAsignar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onAsignar()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="121"
+                                    class="link-to-prism">src/app/pages/admin/usuario_horario/usuario_horario.lista.usuario/usuario_horario.lista.usuario.ts:121</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onDesactivar"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>onDesactivar</b></span>
+                        <a href="#onDesactivar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onDesactivar(row: <a href="../interfaces/VMUsuarioHorarioListaItem.html" target="_self">VMUsuarioHorarioListaItem</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="303"
+                                    class="link-to-prism">src/app/pages/admin/usuario_horario/usuario_horario.lista.usuario/usuario_horario.lista.usuario.ts:303</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>row</td>
+                                            <td>
+                                                            <code><a href="../interfaces/VMUsuarioHorarioListaItem.html" target="_self" >VMUsuarioHorarioListaItem</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onReactivar"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>onReactivar</b></span>
+                        <a href="#onReactivar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onReactivar(row: <a href="../interfaces/VMUsuarioHorarioListaItem.html" target="_self">VMUsuarioHorarioListaItem</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="333"
+                                    class="link-to-prism">src/app/pages/admin/usuario_horario/usuario_horario.lista.usuario/usuario_horario.lista.usuario.ts:333</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>row</td>
+                                            <td>
+                                                            <code><a href="../interfaces/VMUsuarioHorarioListaItem.html" target="_self" >VMUsuarioHorarioListaItem</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saveEdit"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>saveEdit</b></span>
+                        <a href="#saveEdit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>saveEdit(row: <a href="../interfaces/VMUsuarioHorarioListaItem.html" target="_self">VMUsuarioHorarioListaItem</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="216"
+                                    class="link-to-prism">src/app/pages/admin/usuario_horario/usuario_horario.lista.usuario/usuario_horario.lista.usuario.ts:216</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>row</td>
+                                            <td>
+                                                            <code><a href="../interfaces/VMUsuarioHorarioListaItem.html" target="_self" >VMUsuarioHorarioListaItem</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setLoading"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>setLoading</b></span>
+                        <a href="#setLoading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>setLoading(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="72"
+                                    class="link-to-prism">src/app/pages/admin/usuario_horario/usuario_horario.lista.usuario/usuario_horario.lista.usuario.ts:72</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="startEdit"></a>
+                    <span class="name">
+                        <span ><b>startEdit</b></span>
+                        <a href="#startEdit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>startEdit(row: <a href="../interfaces/VMUsuarioHorarioListaItem.html" target="_self">VMUsuarioHorarioListaItem</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="190"
+                                    class="link-to-prism">src/app/pages/admin/usuario_horario/usuario_horario.lista.usuario/usuario_horario.lista.usuario.ts:190</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>row</td>
+                                            <td>
+                                                            <code><a href="../interfaces/VMUsuarioHorarioListaItem.html" target="_self" >VMUsuarioHorarioListaItem</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateHorarioControlState"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>updateHorarioControlState</b></span>
+                        <a href="#updateHorarioControlState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateHorarioControlState()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="77"
+                                    class="link-to-prism">src/app/pages/admin/usuario_horario/usuario_horario.lista.usuario/usuario_horario.lista.usuario.ts:77</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="asignarForm"></a>
+                    <span class="name">
+                        <span ><b>asignarForm</b></span>
+                        <a href="#asignarForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.fb.group({
+    horarioId: [{ value: null as number | null, disabled: true }, [Validators.required]],
+    desde: [&#x27;&#x27;],   // YYYY-MM-DD
+    hasta: [&#x27;&#x27;],   // YYYY-MM-DD
+    cerrarAnterior: [true],
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/pages/admin/usuario_horario/usuario_horario.lista.usuario/usuario_horario.lista.usuario.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editForm"></a>
+                    <span class="name">
+                        <span ><b>editForm</b></span>
+                        <a href="#editForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.fb.group({
+    uh_ID: [{ value: null as number | null, disabled: true }],
+    desde: [&#x27;&#x27;],
+    hasta: [&#x27;&#x27;],
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/pages/admin/usuario_horario/usuario_horario.lista.usuario/usuario_horario.lista.usuario.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editingId"></a>
+                    <span class="name">
+                        <span ><b>editingId</b></span>
+                        <a href="#editingId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/pages/admin/usuario_horario/usuario_horario.lista.usuario/usuario_horario.lista.usuario.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fb"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>fb</b></span>
+                        <a href="#fb"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(FormBuilder)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/pages/admin/usuario_horario/usuario_horario.lista.usuario/usuario_horario.lista.usuario.ts:21</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="horarios"></a>
+                    <span class="name">
+                        <span ><b>horarios</b></span>
+                        <a href="#horarios"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/VMHorario.html" target="_self" >VMHorarioListaSimple[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/pages/admin/usuario_horario/usuario_horario.lista.usuario/usuario_horario.lista.usuario.ts:45</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="horarioService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>horarioService</b></span>
+                        <a href="#horarioService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(HorarioService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/pages/admin/usuario_horario/usuario_horario.lista.usuario/usuario_horario.lista.usuario.ts:23</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="items"></a>
+                    <span class="name">
+                        <span ><b>items</b></span>
+                        <a href="#items"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/HorarioLista.html" target="_self" >VMUsuarioHorarioListaItem[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/pages/admin/usuario_horario/usuario_horario.lista.usuario/usuario_horario.lista.usuario.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loading"></a>
+                    <span class="name">
+                        <span ><b>loading</b></span>
+                        <a href="#loading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/pages/admin/usuario_horario/usuario_horario.lista.usuario/usuario_horario.lista.usuario.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="notify"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>notify</b></span>
+                        <a href="#notify"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(NotificacionesService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/pages/admin/usuario_horario/usuario_horario.lista.usuario/usuario_horario.lista.usuario.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="usuarioHorarioService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>usuarioHorarioService</b></span>
+                        <a href="#usuarioHorarioService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(UsuarioHorarioService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/pages/admin/usuario_horario/usuario_horario.lista.usuario/usuario_horario.lista.usuario.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input, OnInit, OnChanges, SimpleChanges, inject } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { ReactiveFormsModule, FormBuilder, Validators } from &#x27;@angular/forms&#x27;;
+import { RouterLink } from &#x27;@angular/router&#x27;;
+
+import { UsuarioHorarioService } from &#x27;../services/usuario_horario.service&#x27;;
+import { HorarioService } from &#x27;src/app/pages/horario/services/horario.service&#x27;;
+import { VMUsuarioHorarioListaItem, VMUsuarioHorarioCreate } from &#x27;../models/usuario_horario.vm&#x27;;
+import { VMHorarioListaSimple, VMHorarioListaOptions } from &#x27;src/app/pages/horario/models/horario.vm&#x27;;
+import { NotificacionesService } from &#x27;@/app/components/notificaciones/services/notificaciones.service&#x27;;
+import { DTOUsuarioHorarioUpdate } from &#x27;../models/usuario_horario.dto&#x27;;
+
+@Component({
+  selector: &#x27;app-usuario-horario-lista-usuario&#x27;,
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  templateUrl: &#x27;./usuario_horario.lista.usuario.html&#x27;,
+  styleUrl: &#x27;./usuario_horario.lista.usuario.css&#x27;,
+})
+export class UsuarioHorarioListaUsuario implements OnInit, OnChanges {
+  private fb &#x3D; inject(FormBuilder);
+  private usuarioHorarioService &#x3D; inject(UsuarioHorarioService);
+  private horarioService &#x3D; inject(HorarioService);
+  private notify &#x3D; inject(NotificacionesService);
+
+  @Input() idUsuario?: number;
+
+  // Formulario de asignación
+  asignarForm &#x3D; this.fb.group({
+    horarioId: [{ value: null as number | null, disabled: true }, [Validators.required]],
+    desde: [&#x27;&#x27;],   // YYYY-MM-DD
+    hasta: [&#x27;&#x27;],   // YYYY-MM-DD
+    cerrarAnterior: [true],
+  });
+
+  // Formulario de edición (una fila a la vez)
+  editForm &#x3D; this.fb.group({
+    uh_ID: [{ value: null as number | null, disabled: true }],
+    desde: [&#x27;&#x27;],
+    hasta: [&#x27;&#x27;],
+  });
+
+  editingId: number | null &#x3D; null;
+
+  horarios: VMHorarioListaSimple[] &#x3D; [];
+  items: VMUsuarioHorarioListaItem[] &#x3D; [];
+
+  loading &#x3D; false;
+
+  ngOnInit(): void {
+    this.loadHorariosActivos();
+    this.updateHorarioControlState();
+
+    if (this.idUsuario !&#x3D; null) {
+      this.loadAsignacionesAll();
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes[&#x27;idUsuario&#x27;]) {
+      this.updateHorarioControlState();
+
+      if (this.idUsuario !&#x3D; null) {
+        this.loadAsignacionesAll();
+      } else {
+        this.items &#x3D; [];
+        this.cancelEdit();
+      }
+    }
+  }
+
+  private setLoading(value: boolean): void {
+    this.loading &#x3D; value;
+    this.updateHorarioControlState();
+  }
+
+  private updateHorarioControlState(): void {
+    const ctrl &#x3D; this.asignarForm.get(&#x27;horarioId&#x27;);
+    if (!ctrl) return;
+
+    const shouldDisable &#x3D; this.loading || !this.idUsuario;
+
+    if (shouldDisable &amp;&amp; ctrl.enabled) {
+      ctrl.disable({ emitEvent: false });
+    } else if (!shouldDisable &amp;&amp; ctrl.disabled) {
+      ctrl.enable({ emitEvent: false });
+    }
+  }
+
+  /** Para asignar: SOLO horarios activos */
+  private loadHorariosActivos(): void {
+    const opts: VMHorarioListaOptions &#x3D; { page: 1, pageSize: 50, estado: 1 };
+    this.horarioService.list(opts).subscribe({
+      next: (page) &#x3D;&gt; (this.horarios &#x3D; page.items ?? []),
+      error: () &#x3D;&gt; (this.horarios &#x3D; []),
+    });
+  }
+
+  /** Para tabla: SIEMPRE traer TODO (activos + eliminados) */
+  private loadAsignacionesAll(): void {
+    if (this.idUsuario &#x3D;&#x3D; null) return;
+
+    this.setLoading(true);
+    this.usuarioHorarioService
+      .listAllByUsuario(this.idUsuario)
+      .subscribe({
+        next: (rows) &#x3D;&gt; {
+          this.items &#x3D; rows ?? [];
+          this.setLoading(false);
+        },
+        error: () &#x3D;&gt; {
+          this.items &#x3D; [];
+          this.setLoading(false);
+        },
+      });
+  }
+
+  // -------------------------
+  // Asignar nuevo horario
+  // -------------------------
+  async onAsignar(): Promise&lt;void&gt; {
+    if (!this.idUsuario) {
+      await this.notify.ok({
+        variant: &#x27;error&#x27;,
+        title: &#x27;Operación inválida&#x27;,
+        message: &#x27;No se encontró el usuario para asignar el horario.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    this.asignarForm.markAllAsTouched();
+    if (this.asignarForm.invalid) {
+      await this.notify.ok({
+        variant: &#x27;warning&#x27;,
+        title: &#x27;Datos incompletos&#x27;,
+        message: &#x27;Seleccione un horario antes de continuar.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    const v &#x3D; this.asignarForm.getRawValue();
+    const vm: VMUsuarioHorarioCreate &#x3D; {
+      usuarioId: this.idUsuario,
+      horarioId: v.horarioId as number,
+      desde: v.desde || undefined,
+      hasta: v.hasta || undefined,
+      cerrarAnterior: !!v.cerrarAnterior,
+    };
+
+    if (vm.desde &amp;&amp; vm.hasta &amp;&amp; vm.hasta &lt; vm.desde) {
+      await this.notify.ok({
+        variant: &#x27;warning&#x27;,
+        title: &#x27;Rango de fechas inválido&#x27;,
+        message: &#x27;La fecha &quot;Hasta&quot; no puede ser menor que &quot;Desde&quot;.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    try {
+      this.setLoading(true);
+      await this.usuarioHorarioService.create(vm);
+
+      await this.notify.ok({
+        variant: &#x27;success&#x27;,
+        title: &#x27;Horario asignado&#x27;,
+        message: &#x27;El horario se asignó correctamente al usuario.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+
+      this.asignarForm.reset({
+        horarioId: null,
+        desde: &#x27;&#x27;,
+        hasta: &#x27;&#x27;,
+        cerrarAnterior: true,
+      });
+
+      this.updateHorarioControlState();
+      this.loadAsignacionesAll();
+    } catch {
+      this.setLoading(false);
+    }
+  }
+
+  // -------------------------
+  // Edición de asignación
+  // -------------------------
+  startEdit(row: VMUsuarioHorarioListaItem): void {
+    if (this.loading) return;
+
+    this.editingId &#x3D; row.id;
+    this.editForm.reset(
+      {
+        uh_ID: row.id,
+        desde: row.desde ?? &#x27;&#x27;,
+        hasta: row.hasta ?? &#x27;&#x27;,
+      },
+      { emitEvent: false },
+    );
+  }
+
+  cancelEdit(): void {
+    this.editingId &#x3D; null;
+    this.editForm.reset(
+      { uh_ID: null, desde: &#x27;&#x27;, hasta: &#x27;&#x27; },
+      { emitEvent: false },
+    );
+  }
+
+  clearHastaEdit(): void {
+    this.editForm.patchValue({ hasta: &#x27;&#x27; }, { emitEvent: false });
+  }
+
+  async saveEdit(row: VMUsuarioHorarioListaItem): Promise&lt;void&gt; {
+    if (this.loading) return;
+    if (this.editingId !&#x3D;&#x3D; row.id) return;
+
+    const v &#x3D; this.editForm.getRawValue();
+    const desde &#x3D; (v.desde ?? &#x27;&#x27;).trim();
+    const hasta &#x3D; (v.hasta ?? &#x27;&#x27;).trim();
+
+    if (desde &amp;&amp; hasta &amp;&amp; hasta &lt; desde) {
+      await this.notify.ok({
+        variant: &#x27;warning&#x27;,
+        title: &#x27;Rango inválido&#x27;,
+        message: &#x27;La fecha &quot;Hasta&quot; no puede ser menor que &quot;Desde&quot;.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    const patch: DTOUsuarioHorarioUpdate &#x3D; { uh_ID: row.id };
+
+    const rowDesde &#x3D; row.desde ?? &#x27;&#x27;;
+    const rowHasta &#x3D; row.hasta ?? &#x27;&#x27;;
+
+    if (desde !&#x3D;&#x3D; rowDesde) {
+      if (!desde) {
+        await this.notify.ok({
+          variant: &#x27;warning&#x27;,
+          title: &#x27;Dato inválido&#x27;,
+          message: &#x27;La fecha &quot;Desde&quot; no puede quedar vacía.&#x27;,
+          primaryText: &#x27;Aceptar&#x27;,
+        });
+        return;
+      }
+      patch.uh_desde &#x3D; desde;
+    }
+
+    if (hasta !&#x3D;&#x3D; rowHasta) {
+      patch.uh_hasta &#x3D; hasta ? hasta : null; // limpiar &#x3D;&gt; null
+    }
+
+    // Importante: si está eliminado (estado 0), el backend exige que se envíe uh_estado
+    // para permitir cambios SIN reactivar.
+    const tieneCambios &#x3D; Object.keys(patch).length &gt; 1;
+    if (tieneCambios &amp;&amp; row.estado &#x3D;&#x3D;&#x3D; 0) {
+      patch.uh_estado &#x3D; 0;
+    }
+
+    if (!tieneCambios) {
+      await this.notify.ok({
+        variant: &#x27;info&#x27;,
+        title: &#x27;Sin cambios&#x27;,
+        message: &#x27;No hay cambios que guardar en esta asignación.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    const ok &#x3D; await this.notify.confirm({
+      variant: &#x27;info&#x27;,
+      title: &#x27;Guardar cambios&#x27;,
+      message: &#x27;¿Desea guardar los cambios del rango de fechas?&#x27;,
+      confirmText: &#x27;Guardar&#x27;,
+      cancelText: &#x27;Cancelar&#x27;,
+    });
+    if (!ok) return;
+
+    try {
+      this.setLoading(true);
+      await this.usuarioHorarioService.update(row.id, patch);
+
+      await this.notify.ok({
+        variant: &#x27;success&#x27;,
+        title: &#x27;Actualizado&#x27;,
+        message: &#x27;La asignación se actualizó correctamente.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+
+      this.cancelEdit();
+      this.loadAsignacionesAll();
+    } catch {
+      this.setLoading(false);
+    }
+  }
+
+  // -------------------------
+  // Desactivar / Reactivar
+  // -------------------------
+  async onDesactivar(row: VMUsuarioHorarioListaItem): Promise&lt;void&gt; {
+    if (this.loading) return;
+
+    const ok &#x3D; await this.notify.confirm({
+      variant: &#x27;warning&#x27;,
+      title: &#x27;Desactivar asignación&#x27;,
+      message: &#x27;Esta acción desactivará la asignación del usuario. ¿Desea continuar?&#x27;,
+      confirmText: &#x27;Desactivar&#x27;,
+      cancelText: &#x27;Cancelar&#x27;,
+    });
+    if (!ok) return;
+
+    try {
+      this.setLoading(true);
+      await this.usuarioHorarioService.deactivate(row.id);
+
+      await this.notify.ok({
+        variant: &#x27;success&#x27;,
+        title: &#x27;Desactivado&#x27;,
+        message: &#x27;La asignación fue desactivada correctamente.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+
+      if (this.editingId &#x3D;&#x3D;&#x3D; row.id) this.cancelEdit();
+      this.loadAsignacionesAll();
+    } catch {
+      this.setLoading(false);
+    }
+  }
+
+  async onReactivar(row: VMUsuarioHorarioListaItem): Promise&lt;void&gt; {
+    if (this.loading) return;
+
+    const ok &#x3D; await this.notify.confirm({
+      variant: &#x27;info&#x27;,
+      title: &#x27;Reactivar asignación&#x27;,
+      message: &#x27;Se reactivará esta asignación. Si se solapa con otra activa, el sistema lo impedirá. ¿Continuar?&#x27;,
+      confirmText: &#x27;Reactivar&#x27;,
+      cancelText: &#x27;Cancelar&#x27;,
+    });
+    if (!ok) return;
+
+    try {
+      this.setLoading(true);
+      await this.usuarioHorarioService.reactivate(row.id);
+
+      await this.notify.ok({
+        variant: &#x27;success&#x27;,
+        title: &#x27;Reactivado&#x27;,
+        message: &#x27;La asignación fue reactivada correctamente.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+
+      if (this.editingId &#x3D;&#x3D;&#x3D; row.id) this.cancelEdit();
+      this.loadAsignacionesAll();
+    } catch {
+      this.setLoading(false);
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;card-body&quot; [formGroup]&#x3D;&quot;asignarForm&quot;&gt;
+
+  &lt;!-- Formulario de asignación --&gt;
+  &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+    &lt;div class&#x3D;&quot;row g-2 align-items-end&quot;&gt;
+
+      &lt;div class&#x3D;&quot;col-12 col-md-5&quot;&gt;
+        &lt;label class&#x3D;&quot;form-label fw-semibold&quot;&gt;Horario&lt;/label&gt;
+        &lt;select class&#x3D;&quot;form-select&quot; formControlName&#x3D;&quot;horarioId&quot;&gt;
+          &lt;option [ngValue]&#x3D;&quot;null&quot; disabled&gt;Seleccione un horario&lt;/option&gt;
+          @for (h of horarios; track h.id) {
+            &lt;option [ngValue]&#x3D;&quot;h.id&quot;&gt;
+              {{ h.nombre }} ({{ h.tz }})
+            &lt;/option&gt;
+          }
+        &lt;/select&gt;
+      &lt;/div&gt;
+
+      &lt;div class&#x3D;&quot;col-6 col-md-3 col-lg-2&quot;&gt;
+        &lt;label class&#x3D;&quot;form-label fw-semibold&quot;&gt;Desde&lt;/label&gt;
+        &lt;input type&#x3D;&quot;date&quot; class&#x3D;&quot;form-control&quot; formControlName&#x3D;&quot;desde&quot; /&gt;
+      &lt;/div&gt;
+
+      &lt;div class&#x3D;&quot;col-6 col-md-3 col-lg-2&quot;&gt;
+        &lt;label class&#x3D;&quot;form-label fw-semibold&quot;&gt;Hasta&lt;/label&gt;
+        &lt;input type&#x3D;&quot;date&quot; class&#x3D;&quot;form-control&quot; formControlName&#x3D;&quot;hasta&quot; /&gt;
+      &lt;/div&gt;
+
+      &lt;div class&#x3D;&quot;col-12 col-md-2&quot;&gt;
+        &lt;div class&#x3D;&quot;form-check mt-4 pt-1&quot;&gt;
+          &lt;input id&#x3D;&quot;cerrarAnteriorChk&quot;
+                 type&#x3D;&quot;checkbox&quot;
+                 class&#x3D;&quot;form-check-input&quot;
+                 formControlName&#x3D;&quot;cerrarAnterior&quot; /&gt;
+          &lt;label class&#x3D;&quot;form-check-label small&quot; for&#x3D;&quot;cerrarAnteriorChk&quot;&gt;
+            Cerrar horario anterior si esta abierto
+          &lt;/label&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div class&#x3D;&quot;col-12 col-md-2 text-md-end&quot;&gt;
+        &lt;button type&#x3D;&quot;button&quot;
+                class&#x3D;&quot;btn btn-sm btn-success mt-3 mt-md-0&quot;
+                (click)&#x3D;&quot;onAsignar()&quot;
+                [disabled]&#x3D;&quot;loading || !idUsuario&quot;&gt;
+          Asignar
+        &lt;/button&gt;
+      &lt;/div&gt;
+
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;hr class&#x3D;&quot;my-3&quot; /&gt;
+
+  &lt;!-- Tabla: SIEMPRE muestra TODO (activos + eliminados) --&gt;
+  &lt;div class&#x3D;&quot;tabla-wrap&quot;&gt;
+    &lt;table class&#x3D;&quot;table table-striped table-hover m-0&quot;&gt;
+      &lt;thead class&#x3D;&quot;table-light&quot;&gt;
+        &lt;tr&gt;
+          &lt;th style&#x3D;&quot;width: 4rem;&quot;&gt;ID&lt;/th&gt;
+          &lt;th style&#x3D;&quot;width: 10rem;&quot;&gt;Horario&lt;/th&gt;
+          &lt;th style&#x3D;&quot;width: 11rem;&quot;&gt;Vigencia&lt;/th&gt;
+          &lt;th style&#x3D;&quot;width: 5rem;&quot;&gt;Estado&lt;/th&gt;
+          &lt;th style&#x3D;&quot;width: 15rem;&quot;&gt;Opciones&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+
+      &lt;tbody&gt;
+        @if (loading) {
+          &lt;tr&gt;
+            &lt;td colspan&#x3D;&quot;5&quot; class&#x3D;&quot;text-center text-muted py-3&quot;&gt;Cargando…&lt;/td&gt;
+          &lt;/tr&gt;
+        } @else if (items.length &gt; 0) {
+          @for (row of items; track row.id) {
+            &lt;tr&gt;
+              &lt;td&gt;{{ row.id }}&lt;/td&gt;
+
+              &lt;td&gt;
+                &lt;div class&#x3D;&quot;fw-semibold&quot;&gt;{{ row.horarioNombre }}&lt;/div&gt;
+                &lt;div class&#x3D;&quot;text-muted small&quot;&gt;{{ row.horarioTz }}&lt;/div&gt;
+              &lt;/td&gt;
+
+              &lt;td&gt;{{ row.vigenciaTexto }}&lt;/td&gt;
+
+              &lt;td&gt;
+                &lt;span class&#x3D;&quot;badge&quot;
+                      [class.bg-success]&#x3D;&quot;row.estado &#x3D;&#x3D;&#x3D; 1&quot;
+                      [class.bg-danger]&#x3D;&quot;row.estado &#x3D;&#x3D;&#x3D; 0&quot;
+                      [class.bg-secondary]&#x3D;&quot;row.estado !&#x3D;&#x3D; 1 &amp;&amp; row.estado !&#x3D;&#x3D; 0&quot;&gt;
+                  {{ row.estadoTexto }}
+                &lt;/span&gt;
+              &lt;/td&gt;
+
+              &lt;td&gt;
+                &lt;div class&#x3D;&quot;btn-group btn-group-sm&quot; role&#x3D;&quot;group&quot;&gt;
+                  &lt;a class&#x3D;&quot;btn btn-outline-primary&quot;
+                     [routerLink]&#x3D;&quot;[&#x27;/horario&#x27;, row.horarioId]&quot;&gt;
+                    Ver horario
+                  &lt;/a&gt;
+
+                  &lt;button type&#x3D;&quot;button&quot;
+                          class&#x3D;&quot;btn btn-outline-secondary&quot;
+                          (click)&#x3D;&quot;startEdit(row)&quot;
+                          [disabled]&#x3D;&quot;loading&quot;&gt;
+                    Editar
+                  &lt;/button&gt;
+
+                  @if (row.estado &#x3D;&#x3D;&#x3D; 1) {
+                    &lt;button type&#x3D;&quot;button&quot;
+                            class&#x3D;&quot;btn btn-outline-danger&quot;
+                            (click)&#x3D;&quot;onDesactivar(row)&quot;
+                            [disabled]&#x3D;&quot;loading&quot;&gt;
+                      Desactivar
+                    &lt;/button&gt;
+                  } @else {
+                    &lt;button type&#x3D;&quot;button&quot;
+                            class&#x3D;&quot;btn btn-success&quot;
+                            (click)&#x3D;&quot;onReactivar(row)&quot;
+                            [disabled]&#x3D;&quot;loading&quot;&gt;
+                      Reactivar
+                    &lt;/button&gt;
+                  }
+                &lt;/div&gt;
+              &lt;/td&gt;
+            &lt;/tr&gt;
+
+            @if (editingId &#x3D;&#x3D;&#x3D; row.id) {
+              &lt;tr class&#x3D;&quot;table-secondary&quot;&gt;
+                &lt;td colspan&#x3D;&quot;5&quot;&gt;
+                  &lt;div class&#x3D;&quot;p-2&quot; [formGroup]&#x3D;&quot;editForm&quot;&gt;
+                    &lt;div class&#x3D;&quot;row g-2 align-items-end&quot;&gt;
+
+                      &lt;div class&#x3D;&quot;col-12 col-md-3&quot;&gt;
+                        &lt;label class&#x3D;&quot;form-label small fw-semibold&quot;&gt;Desde&lt;/label&gt;
+                        &lt;input type&#x3D;&quot;date&quot;
+                               class&#x3D;&quot;form-control form-control-sm&quot;
+                               formControlName&#x3D;&quot;desde&quot; /&gt;
+                      &lt;/div&gt;
+
+                      &lt;div class&#x3D;&quot;col-12 col-md-3&quot;&gt;
+                        &lt;label class&#x3D;&quot;form-label small fw-semibold&quot;&gt;Hasta&lt;/label&gt;
+                        &lt;input type&#x3D;&quot;date&quot;
+                               class&#x3D;&quot;form-control form-control-sm&quot;
+                               formControlName&#x3D;&quot;hasta&quot; /&gt;
+                      &lt;/div&gt;
+
+                      &lt;div class&#x3D;&quot;col-12 col-md-6 text-md-end&quot;&gt;
+                        &lt;div class&#x3D;&quot;btn-group btn-group-sm&quot; role&#x3D;&quot;group&quot;&gt;
+                          &lt;button type&#x3D;&quot;button&quot;
+                                  class&#x3D;&quot;btn btn-outline-dark&quot;
+                                  (click)&#x3D;&quot;clearHastaEdit()&quot;
+                                  [disabled]&#x3D;&quot;loading&quot;&gt;
+                            Limpiar “Hasta”
+                          &lt;/button&gt;
+
+                          &lt;button type&#x3D;&quot;button&quot;
+                                  class&#x3D;&quot;btn btn-success&quot;
+                                  (click)&#x3D;&quot;saveEdit(row)&quot;
+                                  [disabled]&#x3D;&quot;loading&quot;&gt;
+                            Guardar
+                          &lt;/button&gt;
+
+                          &lt;button type&#x3D;&quot;button&quot;
+                                  class&#x3D;&quot;btn btn-warning&quot;
+                                  (click)&#x3D;&quot;cancelEdit()&quot;
+                                  [disabled]&#x3D;&quot;loading&quot;&gt;
+                            Cancelar
+                          &lt;/button&gt;
+                        &lt;/div&gt;
+
+                        @if (row.estado &#x3D;&#x3D;&#x3D; 0) {
+                          &lt;div class&#x3D;&quot;form-text mt-1&quot;&gt;
+                            Nota: si la asignación está eliminada, puede ajustar fechas y luego “Reactivar”.
+                            La reactivación validará solapamientos.
+                          &lt;/div&gt;
+                        }
+                      &lt;/div&gt;
+
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                &lt;/td&gt;
+              &lt;/tr&gt;
+            }
+          }
+        } @else {
+          &lt;tr&gt;
+            &lt;td colspan&#x3D;&quot;5&quot; class&#x3D;&quot;text-center text-muted py-3&quot;&gt;
+              No hay horarios asignados.
+            &lt;/td&gt;
+          &lt;/tr&gt;
+        }
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/div&gt;
+
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./usuario_horario.lista.usuario.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">/* &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+   Estilos ordenados A–Z
+   &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; */
+
+.card--flat {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid var(--bs-border-color, #dee2e6);
+}
+
+/* Altura de fila unificada (ajuste si su tema usa otro alto) */
+.tabla-wrap {
+  contain: paint;
+  overflow: auto;
+  position: relative;
+
+  /* Altura exacta por fila (la que indicó) */
+  --row-h: 30.7px;
+
+  /* Tomamos el padding horizontal real de Bootstrap si existe */
+  --thead-h: 96px;
+  --cell-px: var(--bs-table-cell-padding-x, .75rem);
+}
+
+/* Contenedor principal tabla */
+.tabla-wrap {
+  contain: paint;
+  overflow: auto;
+  position: relative;
+}
+
+/* Tabla base */
+table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+td, th {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  /* altura y centrado vertical en TODAS las celdas de datos */
+  height: var(--row-h);
+  vertical-align: middle;
+}
+
+/* Altura y centrado VERTICAL de TODAS las filas reales */
+.table &gt; :not(caption) &gt; * &gt; td,
+.table &gt; :not(caption) &gt; * &gt; th {
+  /* mismos paddings para todas las celdas */
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  /* centrado vertical del contenido real */
+  vertical-align: middle;
+  /* reservar altura mínima de la fila */
+  height: var(--row-h);
+}
+
+/* ---------- SKELETON ---------- */
+
+/* Fila skeleton: altura exacta y sin rayado alterno */
+.tbody-skeleton {
+  height: var(--row-h);
+  background: transparent !important; /* base */
+}
+.table-striped tbody tr.tbody-skeleton:nth-of-type(odd),
+.table-striped tbody tr.tbody-skeleton:nth-of-type(even) {
+  --bs-table-accent-bg: transparent;
+  background-color: transparent !important;
+}
+
+/* Envoltorio para centrar verticalmente las barras skeleton */
+.sk-wrap {
+  display: flex;
+  align-items: center;
+  height: var(--row-h);
+  /* IMPORTANTE: sin padding; lo aporta el &lt;td&gt; para alinear con el texto real */
+  padding: 0;
+  width: 100%;
+}
+
+/* Barras skeleton (contraste suficiente en claros/osc.) */
+.sk-cell {
+  animation: shimmer 1.4s ease-in-out infinite;
+  background: linear-gradient(90deg, #e7ebee 25%, #dfe4e8 37%, #e7ebee 63%);
+  background-size: 400% 100%;
+  border-radius: .25rem;
+  height: .9rem;
+}
+
+/* Anchos típicos por celda */
+.sk-id    { width: 2.5rem; }
+.sk-text  { width: 60%; }
+.sk-date  { width: 80%; height: .85rem; }
+.sk-badge { width: 70%; height: .85rem; }
+.sk-btn   { width: 60%; height: 1.4rem; border-radius: .375rem; }
+
+/* &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+   Overlays
+   &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; */
+
+/* Overlay de “vacío” que ocupa TODO el área de lista (menos head+filtros) */
+.empty-overlay {
+  position: absolute;
+  inset: var(--thead-h) 0 0 0;   /* ⬅️ desde debajo del thead hasta el final */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;  
+  opacity: 1;
+  transition: opacity .18s ease;        /* no bloquear interacción con los filtros */
+}
+
+.empty-message {
+  font-size: .95rem;
+  text-align: center;
+}
+/* Overlay suave mientras hay datos previos */
+.loading-overlay {
+  backdrop-filter: blur(1px);
+  background: rgba(255,255,255,0.6);
+  font-weight: 600;
+  inset: 0;
+  position: absolute;
+}
+
+/* Hover neutro mientras está “is-loading” */
+.is-loading .table-hover tbody tr:hover { background-color: inherit; }
+
+/* Paginación reservada (opcional, si ya lo tenía en otro archivo) */
+.pager-wrap.invisible { visibility: hidden; min-height: 40px; }
+
+/* Scrollbar estable */
+html, body { scrollbar-gutter: stable both-edges; }
+
+/* Animación */
+@keyframes shimmer {
+  0%   { background-position: 100% 0; }
+  100% { background-position:   0% 0; }
+}
+/* Paginación */
+.pager-wrap {
+  border-bottom: 1px solid var(--bs-border-color, #dee2e6);
+  min-height: 2rem;        /* altura estable del bloque */
+  padding: 0 1rem .5rem;     /* padding superior/laterales */
+}
+
+.pager-wrap .num-range,
+.pager-wrap .total-num {
+  display: inline-block;
+  font-variant-numeric: tabular-nums; /* dígitos de ancho fijo */
+  min-width: 9ch;                     /* reserve según su máximo esperado */
+  text-align: right;
+  transition: opacity .15s ease;      /* crossfade leve en cambios */
+}
+
+.pager-wrap.is-loading .num-range,
+.pager-wrap.is-loading .total-num {
+  opacity: .75;
+}
+
+
+.pager-wrap.invisible {
+  min-height: 40px;
+  visibility: hidden;
+}
+
+.prewrap {
+  white-space: pre-wrap;
+}
+
+/* Quitar flechas en Chrome/Safari/Edge (Blink/WebKit) */
+input[type&#x3D;&quot;number&quot;].no-spinner::-webkit-outer-spin-button,
+input[type&#x3D;&quot;number&quot;].no-spinner::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="card-body" [formGroup]="asignarForm">  <!-- Formulario de asignación -->  <div class="mb-3">    <div class="row g-2 align-items-end">      <div class="col-12 col-md-5">        <label class="form-label fw-semibold">Horario</label>        <select class="form-select" formControlName="horarioId">          <option [ngValue]="null" disabled>Seleccione un horario</option>          @for (h of horarios; track h.id) {            <option [ngValue]="h.id">              {{ h.nombre }} ({{ h.tz }})            </option>          }        </select>      </div>      <div class="col-6 col-md-3 col-lg-2">        <label class="form-label fw-semibold">Desde</label>        <input type="date" class="form-control" formControlName="desde" />      </div>      <div class="col-6 col-md-3 col-lg-2">        <label class="form-label fw-semibold">Hasta</label>        <input type="date" class="form-control" formControlName="hasta" />      </div>      <div class="col-12 col-md-2">        <div class="form-check mt-4 pt-1">          <input id="cerrarAnteriorChk"                 type="checkbox"                 class="form-check-input"                 formControlName="cerrarAnterior" />          <label class="form-check-label small" for="cerrarAnteriorChk">            Cerrar horario anterior si esta abierto          </label>        </div>      </div>      <div class="col-12 col-md-2 text-md-end">        <button type="button"                class="btn btn-sm btn-success mt-3 mt-md-0"                (click)="onAsignar()"                [disabled]="loading || !idUsuario">          Asignar        </button>      </div>    </div>  </div>  <hr class="my-3" />  <!-- Tabla: SIEMPRE muestra TODO (activos + eliminados) -->  <div class="tabla-wrap">    <table class="table table-striped table-hover m-0">      <thead class="table-light">        <tr>          <th style="width: 4rem;">ID</th>          <th style="width: 10rem;">Horario</th>          <th style="width: 11rem;">Vigencia</th>          <th style="width: 5rem;">Estado</th>          <th style="width: 15rem;">Opciones</th>        </tr>      </thead>      <tbody>        @if (loading) {          <tr>            <td colspan="5" class="text-center text-muted py-3">Cargando…</td>          </tr>        } @else if (items.length > 0) {          @for (row of items; track row.id) {            <tr>              <td>{{ row.id }}</td>              <td>                <div class="fw-semibold">{{ row.horarioNombre }}</div>                <div class="text-muted small">{{ row.horarioTz }}</div>              </td>              <td>{{ row.vigenciaTexto }}</td>              <td>                <span class="badge"                      [class.bg-success]="row.estado === 1"                      [class.bg-danger]="row.estado === 0"                      [class.bg-secondary]="row.estado !== 1 && row.estado !== 0">                  {{ row.estadoTexto }}                </span>              </td>              <td>                <div class="btn-group btn-group-sm" role="group">                  <a class="btn btn-outline-primary"                     [routerLink]="[\'/horario\', row.horarioId]">                    Ver horario                  </a>                  <button type="button"                          class="btn btn-outline-secondary"                          (click)="startEdit(row)"                          [disabled]="loading">                    Editar                  </button>                  @if (row.estado === 1) {                    <button type="button"                            class="btn btn-outline-danger"                            (click)="onDesactivar(row)"                            [disabled]="loading">                      Desactivar                    </button>                  } @else {                    <button type="button"                            class="btn btn-success"                            (click)="onReactivar(row)"                            [disabled]="loading">                      Reactivar                    </button>                  }                </div>              </td>            </tr>            @if (editingId === row.id) {              <tr class="table-secondary">                <td colspan="5">                  <div class="p-2" [formGroup]="editForm">                    <div class="row g-2 align-items-end">                      <div class="col-12 col-md-3">                        <label class="form-label small fw-semibold">Desde</label>                        <input type="date"                               class="form-control form-control-sm"                               formControlName="desde" />                      </div>                      <div class="col-12 col-md-3">                        <label class="form-label small fw-semibold">Hasta</label>                        <input type="date"                               class="form-control form-control-sm"                               formControlName="hasta" />                      </div>                      <div class="col-12 col-md-6 text-md-end">                        <div class="btn-group btn-group-sm" role="group">                          <button type="button"                                  class="btn btn-outline-dark"                                  (click)="clearHastaEdit()"                                  [disabled]="loading">                            Limpiar “Hasta”                          </button>                          <button type="button"                                  class="btn btn-success"                                  (click)="saveEdit(row)"                                  [disabled]="loading">                            Guardar                          </button>                          <button type="button"                                  class="btn btn-warning"                                  (click)="cancelEdit()"                                  [disabled]="loading">                            Cancelar                          </button>                        </div>                        @if (row.estado === 0) {                          <div class="form-text mt-1">                            Nota: si la asignación está eliminada, puede ajustar fechas y luego “Reactivar”.                            La reactivación validará solapamientos.                          </div>                        }                      </div>                    </div>                  </div>                </td>              </tr>            }          }        } @else {          <tr>            <td colspan="5" class="text-center text-muted py-3">              No hay horarios asignados.            </td>          </tr>        }      </tbody>    </table>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AnaliticasDashboard', 'selector': 'app-analiticas-dashboard'},{'name': 'App', 'selector': 'app-root'},{'name': 'AsistenciaLista', 'selector': 'app-asistencia-lista'},{'name': 'AsistenciasDashboard', 'selector': 'app-asistencias-dashboard'},{'name': 'AudienciaCalendario', 'selector': 'app-audiencia-calendario'},{'name': 'AudienciaDetalle', 'selector': 'app-audiencia-detalle'},{'name': 'AudienciaRegistrar', 'selector': 'app-audiencia-registrar'},{'name': 'CiudadanoDetalle', 'selector': 'app-ciudadano-detalle'},{'name': 'CiudadanoLista', 'selector': 'app-ciudadano-lista'},{'name': 'CiudadanoRegistrar', 'selector': 'app-ciudadano-registrar'},{'name': 'ConfirmarCorreo', 'selector': 'app-cuenta-confirmar-correo'},{'name': 'ConsultaDetalle', 'selector': 'app-consulta-detalle'},{'name': 'ConsultaLista', 'selector': 'app-consulta-lista'},{'name': 'ConsultaListaCiudadano', 'selector': 'app-consulta-lista-ciudadano'},{'name': 'ConsultaRegistar', 'selector': 'app-consulta-registrar'},{'name': 'DocumentosListaEntidad', 'selector': 'app-documentos-lista-entidad'},{'name': 'DocumentosListaGeneral', 'selector': 'app-documentos-lista-general'},{'name': 'DocumentosRegistrar', 'selector': 'app-documentos-registrar'},{'name': 'DocumentosRutaBaseLista', 'selector': 'app-documentos-ruta-base-lista'},{'name': 'DocumentosRutaBaseRegistrar', 'selector': 'app-documentos-ruta-base-registrar'},{'name': 'ExportarConDriveComponent', 'selector': 'app-exportar-con-drive'},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'Header', 'selector': 'app-header'},{'name': 'HorarioDetalle', 'selector': 'app-horario-detalle'},{'name': 'HorarioLista', 'selector': 'app-horario-lista'},{'name': 'HorarioRegistrar', 'selector': 'app-horario-registrar'},{'name': 'Ingresar', 'selector': 'app-cuenta-ingresar'},{'name': 'JustificacionListaMis', 'selector': 'app-justificacion-lista-mis'},{'name': 'JustificacionListaPendientes', 'selector': 'app-justificacion-lista-pendientes'},{'name': 'JustificacionRegistrar', 'selector': 'app-justificacion-registrar'},{'name': 'Main_layout', 'selector': 'app-main-layout'},{'name': 'NotificacionestVer', 'selector': 'app-notificaciones-ver'},{'name': 'PaginaNoEncontradaComponent', 'selector': 'app-pagina-no-encontrada'},{'name': 'Perfil', 'selector': 'app-cuenta-perfil'},{'name': 'ProcesoDetalle', 'selector': 'app-proceso-detalle'},{'name': 'ProcesoLista', 'selector': 'app-proceso-lista'},{'name': 'ProcesoRegistrar', 'selector': 'app-proceso-registrar'},{'name': 'Registar', 'selector': 'app-cuenta-registrar'},{'name': 'SeguimientoListaConsulta', 'selector': 'app-seguimiento-lista-consulta'},{'name': 'SeguimientoRegistar', 'selector': 'app-seguimiento-registrar'},{'name': 'Sidebar', 'selector': 'app-sidebar'},{'name': 'Simple_layout', 'selector': 'app-simple_layout'},{'name': 'TramiteDetalle', 'selector': 'app-tramite-detalle'},{'name': 'TramiteLista', 'selector': 'app-tramite-lista'},{'name': 'TramiteRegistrar', 'selector': 'app-tramite-registrar'},{'name': 'UsuarioDetalle', 'selector': 'app-usuario-detalle'},{'name': 'UsuarioHorarioListaUsuario', 'selector': 'app-usuario-horario-lista-usuario'},{'name': 'UsuarioLista', 'selector': 'app-usuario-lista'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'UsuarioHorarioListaUsuario'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'UsuarioHorarioListaUsuario.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

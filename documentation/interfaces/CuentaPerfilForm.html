@@ -1,0 +1,963 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">frontend documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  CuentaPerfilForm</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/pages/cuenta/cuenta.perfil/perfil.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" 
+                class="nav-link"
+                
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+
+            </div>
+
+    <div class="tab-pane fade " id="api"><section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-3">
+                    <h6><b>Properties</b></h6>
+                </td>
+                <td class="col-md-9">
+                    <ul class="index-list">
+                        <li>
+                                <a href="#apellidoMaterno" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">apellidoMaterno</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#apellidoPaterno" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">apellidoPaterno</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#correoE" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">correoE</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#dni" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">dni</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#fechaCreadoPorTexto" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">fechaCreadoPorTexto</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#nombres" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">nombres</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#telefono" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">telefono</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#tz" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">tz</span>
+                                </a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+    <section data-compodoc="block-properties">
+        <h3 id="inputs">Properties</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="apellidoMaterno"></a>
+                                <span class="name "><b>apellidoMaterno</b>
+                                    <a href="#apellidoMaterno">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>apellidoMaterno:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="291" class="link-to-prism">src/app/pages/cuenta/cuenta.perfil/perfil.ts:291</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="apellidoPaterno"></a>
+                                <span class="name "><b>apellidoPaterno</b>
+                                    <a href="#apellidoPaterno">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>apellidoPaterno:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="290" class="link-to-prism">src/app/pages/cuenta/cuenta.perfil/perfil.ts:290</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="correoE"></a>
+                                <span class="name "><b>correoE</b>
+                                    <a href="#correoE">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>correoE:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="293" class="link-to-prism">src/app/pages/cuenta/cuenta.perfil/perfil.ts:293</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="dni"></a>
+                                <span class="name "><b>dni</b>
+                                    <a href="#dni">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>dni:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="292" class="link-to-prism">src/app/pages/cuenta/cuenta.perfil/perfil.ts:292</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="fechaCreadoPorTexto"></a>
+                                <span class="name "><b>fechaCreadoPorTexto</b>
+                                    <a href="#fechaCreadoPorTexto">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>fechaCreadoPorTexto:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="296" class="link-to-prism">src/app/pages/cuenta/cuenta.perfil/perfil.ts:296</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="nombres"></a>
+                                <span class="name "><b>nombres</b>
+                                    <a href="#nombres">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>nombres:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="289" class="link-to-prism">src/app/pages/cuenta/cuenta.perfil/perfil.ts:289</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="telefono"></a>
+                                <span class="name "><b>telefono</b>
+                                    <a href="#telefono">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>telefono:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="294" class="link-to-prism">src/app/pages/cuenta/cuenta.perfil/perfil.ts:294</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="tz"></a>
+                                <span class="name "><b>tz</b>
+                                    <a href="#tz">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>tz:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="295" class="link-to-prism">src/app/pages/cuenta/cuenta.perfil/perfil.ts:295</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+    </section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, OnDestroy, inject } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  FormControl,
+  Validators,
+  AbstractControl,
+  ValidationErrors,
+  FormGroup,
+} from &#x27;@angular/forms&#x27;;
+
+import { CuentaService } from &#x27;../services/cuenta.service&#x27;;
+import { VMCuentaPerfil, VMCuentaPerfilUpdateForm } from &#x27;../models/cuenta.vm&#x27;;
+import { NotificacionesService } from &#x27;@/app/components/notificaciones/services/notificaciones.service&#x27;;
+import { PageMetaService } from &#x27;@/app/services/page_meta.service&#x27;;
+
+@Component({
+  selector: &#x27;app-cuenta-perfil&#x27;,
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: &#x27;./perfil.html&#x27;,
+  styleUrl: &#x27;./perfil.css&#x27;,
+})
+export class Perfil implements OnInit, OnDestroy {
+
+  private fb &#x3D; inject(FormBuilder);
+  private cuentaService &#x3D; inject(CuentaService);
+  private notify &#x3D; inject(NotificacionesService);
+  private pageMeta &#x3D; inject(PageMetaService);
+
+  perfil?: VMCuentaPerfil;
+
+  openPerfil &#x3D; true;
+  openPassword &#x3D; true;
+
+  isEditingPerfil &#x3D; false;
+  submittedPerfil &#x3D; false;
+
+  // Para restaurar valores originales
+  originalPerfil?: VMCuentaPerfil;
+
+  formPerfil &#x3D; this.fb.group&lt;ControlsOf&lt;CuentaPerfilForm&gt;&gt;({
+    nombres: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+    apellidoPaterno: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+    apellidoMaterno: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+    dni: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+    correoE: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+    telefono: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+    tz: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+    fechaCreadoPorTexto: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+  });
+
+  formPassword: FormGroup &#x3D; this.fb.group(
+    {
+      actual: [&#x27;&#x27;, [Validators.required]],
+      nueva: [&#x27;&#x27;, [Validators.required, Validators.minLength(6)]],
+      nuevaConfirm: [&#x27;&#x27;, [Validators.required]],
+    },
+    { validators: passwordMatchValidator }
+  );
+
+  constructor() {}
+
+  ngOnInit(): void {
+    // Título de la página
+    this.pageMeta.replace({
+      titulo: &#x27;Mi perfil&#x27;,
+    });
+
+    this.cuentaService.getMiPerfil().subscribe({
+      next: (p) &#x3D;&gt; {
+        this.perfil &#x3D; p;
+        this.originalPerfil &#x3D; { ...p };
+
+        const fechaTxt &#x3D; formatDateTime(p.fechaCreadoPor);
+
+        this.formPerfil.patchValue({
+          nombres: p.nombres,
+          apellidoPaterno: p.apellidoPaterno,
+          apellidoMaterno: p.apellidoMaterno,
+          dni: p.dni,
+          correoE: p.correoE,
+          telefono: p.telefono,
+          tz: p.tz,
+          fechaCreadoPorTexto: fechaTxt,
+        });
+      },
+      error: () &#x3D;&gt; {
+        // El interceptor global debería manejar el error (401, 404, etc.)
+      },
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.pageMeta.clear();
+  }
+
+  // &#x3D;&#x3D;&#x3D;&#x3D;&#x3D; PERFIL &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+  onEditPerfil(ev: Event): void {
+    ev.stopPropagation();
+    this.isEditingPerfil &#x3D; !this.isEditingPerfil;
+    this.submittedPerfil &#x3D; false;
+
+    if (!this.isEditingPerfil &amp;&amp; this.originalPerfil) {
+      this.resetPerfilForm(this.originalPerfil);
+    }
+  }
+
+  async onCancelPerfil(): Promise&lt;void&gt; {
+    if (this.hasUnsavedPerfilChanges()) {
+      const ok &#x3D; await this.notify.confirm({
+        variant: &#x27;warning&#x27;,
+        title: &#x27;Descartar cambios&#x27;,
+        message: &#x27;Tienes cambios sin guardar. ¿Deseas descartarlos?&#x27;,
+        confirmText: &#x27;Descartar&#x27;,
+        cancelText: &#x27;Seguir editando&#x27;,
+      });
+      if (!ok) return;
+    }
+
+    if (this.originalPerfil) {
+      this.resetPerfilForm(this.originalPerfil);
+    }
+
+    this.isEditingPerfil &#x3D; false;
+    this.submittedPerfil &#x3D; false;
+  }
+
+  private resetPerfilForm(p: VMCuentaPerfil): void {
+    const fechaTxt &#x3D; formatDateTime(p.fechaCreadoPor);
+    this.formPerfil.patchValue({
+      nombres: p.nombres,
+      apellidoPaterno: p.apellidoPaterno,
+      apellidoMaterno: p.apellidoMaterno,
+      dni: p.dni,
+      correoE: p.correoE,
+      telefono: p.telefono,
+      tz: p.tz,
+      fechaCreadoPorTexto: fechaTxt,
+    });
+  }
+
+  async onSavePerfil(): Promise&lt;void&gt; {
+    this.submittedPerfil &#x3D; true;
+
+    if (!this.perfil) return;
+
+    const v &#x3D; this.formPerfil.value;
+
+    const changes: VMCuentaPerfilUpdateForm &#x3D; {};
+
+    if (v.nombres !&#x3D;&#x3D; this.originalPerfil?.nombres) {
+      changes.nombres &#x3D; v.nombres ?? &#x27;&#x27;;
+    }
+    if (v.apellidoPaterno !&#x3D;&#x3D; this.originalPerfil?.apellidoPaterno) {
+      changes.apellidoPaterno &#x3D; v.apellidoPaterno ?? &#x27;&#x27;;
+    }
+    if (v.apellidoMaterno !&#x3D;&#x3D; this.originalPerfil?.apellidoMaterno) {
+      changes.apellidoMaterno &#x3D; v.apellidoMaterno ?? &#x27;&#x27;;
+    }
+
+    if (v.telefono !&#x3D;&#x3D; this.originalPerfil?.telefono) {
+      changes.telefono &#x3D; v.telefono ?? &#x27;&#x27;;
+    }
+  
+
+    if (Object.keys(changes).length &#x3D;&#x3D;&#x3D; 0) {
+      await this.notify.ok({
+        variant: &#x27;info&#x27;,
+        title: &#x27;Sin cambios&#x27;,
+        message: &#x27;No hay cambios para guardar.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    const confirm &#x3D; await this.notify.confirm({
+      variant: &#x27;info&#x27;,
+      title: &#x27;Guardar cambios&#x27;,
+      message: &#x27;¿Deseas guardar los cambios de tu perfil?&#x27;,
+      confirmText: &#x27;Guardar&#x27;,
+      cancelText: &#x27;Cancelar&#x27;,
+    });
+    if (!confirm) return;
+
+    try {
+      await this.cuentaService.updateMiPerfil(changes);
+
+      // Actualizar modelo local
+      if (this.perfil) {
+        this.perfil &#x3D; { ...this.perfil, ...changes };
+        this.originalPerfil &#x3D; { ...this.perfil };
+        this.resetPerfilForm(this.perfil);
+      }
+
+      await this.notify.ok({
+        variant: &#x27;success&#x27;,
+        title: &#x27;Perfil actualizado&#x27;,
+        message: &#x27;Tu perfil se actualizó correctamente.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+
+      this.isEditingPerfil &#x3D; false;
+      this.submittedPerfil &#x3D; false;
+    } catch {
+      // El interceptor global mostrará los errores HTTP.
+    }
+  }
+
+  private hasUnsavedPerfilChanges(): boolean {
+    if (!this.originalPerfil) return false;
+    const v &#x3D; this.formPerfil.value;
+
+    if (v.nombres !&#x3D;&#x3D; this.originalPerfil.nombres) return true;
+    if (v.apellidoPaterno !&#x3D;&#x3D; this.originalPerfil.apellidoPaterno) return true;
+    if (v.apellidoMaterno !&#x3D;&#x3D; this.originalPerfil.apellidoMaterno) return true;
+    if (v.telefono !&#x3D;&#x3D; this.originalPerfil.telefono) return true;
+
+
+    return false;
+  }
+
+  // &#x3D;&#x3D;&#x3D;&#x3D;&#x3D; CONTRASEÑA &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+  get passwordMismatch(): boolean {
+    return !!(
+        this.formPassword.hasError(&#x27;passwordMismatch&#x27;) &amp;&amp;
+        (this.formPassword.get(&#x27;nuevaConfirm&#x27;)?.touched ||
+        this.formPassword.get(&#x27;nuevaConfirm&#x27;)?.dirty)
+    );
+    }
+
+  async onChangePassword(): Promise&lt;void&gt; {
+    if (this.formPassword.invalid) {
+      this.formPassword.markAllAsTouched();
+      if (this.formPassword.hasError(&#x27;passwordMismatch&#x27;)) {
+        await this.notify.ok({
+          variant: &#x27;error&#x27;,
+          title: &#x27;Contraseña no válida&#x27;,
+          message: &#x27;Las nuevas contraseñas no coinciden.&#x27;,
+          primaryText: &#x27;Aceptar&#x27;,
+        });
+      }
+      return;
+    }
+
+    const actual &#x3D; this.formPassword.value.actual ?? &#x27;&#x27;;
+    const nueva &#x3D; this.formPassword.value.nueva ?? &#x27;&#x27;;
+    const nuevaConfirm &#x3D; this.formPassword.value.nuevaConfirm ?? &#x27;&#x27;;
+
+    if (nueva !&#x3D;&#x3D; nuevaConfirm) {
+      await this.notify.ok({
+        variant: &#x27;error&#x27;,
+        title: &#x27;Contraseña no válida&#x27;,
+        message: &#x27;Las nuevas contraseñas no coinciden.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    const confirm &#x3D; await this.notify.confirm({
+      variant: &#x27;info&#x27;,
+      title: &#x27;Actualizar contraseña&#x27;,
+      message: &#x27;¿Deseas actualizar tu contraseña?&#x27;,
+      confirmText: &#x27;Actualizar&#x27;,
+      cancelText: &#x27;Cancelar&#x27;,
+    });
+    if (!confirm) return;
+
+    try {
+      await this.cuentaService.changePassword(actual, nueva);
+
+      this.formPassword.reset();
+      await this.notify.ok({
+        variant: &#x27;success&#x27;,
+        title: &#x27;Contraseña actualizada&#x27;,
+        message: &#x27;Tu contraseña se actualizó correctamente.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+    } catch {
+      // El interceptor global mostrará mensajes: contraseña actual incorrecta, etc.
+    }
+  }
+}
+
+// &#x3D;&#x3D;&#x3D;&#x3D; Tipos de formulario &#x3D;&#x3D;&#x3D;&#x3D;
+
+interface CuentaPerfilForm {
+  nombres: string;
+  apellidoPaterno: string;
+  apellidoMaterno: string;
+  dni: string;
+  correoE: string;
+  telefono: string;
+  tz: string;
+  fechaCreadoPorTexto: string;
+}
+
+type ControlsOf&lt;T&gt; &#x3D; {
+  [K in keyof T]: FormControl&lt;T[K]&gt;;
+};
+
+// &#x3D;&#x3D;&#x3D;&#x3D; Helpers &#x3D;&#x3D;&#x3D;&#x3D;
+
+function formatDateTime(dt: Date | string | null | undefined): string {
+  if (!dt) return &#x27;&#x27;;
+  const d &#x3D; dt instanceof Date ? dt : new Date(dt);
+  if (Number.isNaN(d.getTime())) return &#x27;&#x27;;
+  const dd &#x3D; String(d.getDate()).padStart(2, &#x27;0&#x27;);
+  const mm &#x3D; String(d.getMonth() + 1).padStart(2, &#x27;0&#x27;);
+  const yyyy &#x3D; d.getFullYear();
+  const hh &#x3D; String(d.getHours()).padStart(2, &#x27;0&#x27;);
+  const mi &#x3D; String(d.getMinutes()).padStart(2, &#x27;0&#x27;);
+  return &#x60;${dd}/${mm}/${yyyy} ${hh}:${mi}&#x60;;
+}
+
+// Validador de coincidencia de nueva contraseña
+function passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
+  const nueva &#x3D; control.get(&#x27;nueva&#x27;)?.value;
+  const confirm &#x3D; control.get(&#x27;nuevaConfirm&#x27;)?.value;
+  if (nueva &amp;&amp; confirm &amp;&amp; nueva !&#x3D;&#x3D; confirm) {
+    return { passwordMismatch: true };
+  }
+  return null;
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'CuentaPerfilForm.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

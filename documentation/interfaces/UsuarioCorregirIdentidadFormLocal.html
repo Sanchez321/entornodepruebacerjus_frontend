@@ -1,0 +1,1275 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">frontend documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  UsuarioCorregirIdentidadFormLocal</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/pages/admin/usuario/usuario.detalle/usuario.detalle.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" 
+                class="nav-link"
+                
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+
+            </div>
+
+    <div class="tab-pane fade " id="api"><section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-3">
+                    <h6><b>Properties</b></h6>
+                </td>
+                <td class="col-md-9">
+                    <ul class="index-list">
+                        <li>
+                                <a href="#correoE" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">correoE</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#dni" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">dni</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#motivo" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">motivo</span>
+                                </a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+    <section data-compodoc="block-properties">
+        <h3 id="inputs">Properties</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="correoE"></a>
+                                <span class="name "><b>correoE</b>
+                                    <a href="#correoE">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>correoE:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="836" class="link-to-prism">src/app/pages/admin/usuario/usuario.detalle/usuario.detalle.ts:836</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="dni"></a>
+                                <span class="name "><b>dni</b>
+                                    <a href="#dni">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>dni:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="835" class="link-to-prism">src/app/pages/admin/usuario/usuario.detalle/usuario.detalle.ts:835</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="motivo"></a>
+                                <span class="name "><b>motivo</b>
+                                    <a href="#motivo">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>motivo:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="837" class="link-to-prism">src/app/pages/admin/usuario/usuario.detalle/usuario.detalle.ts:837</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+    </section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, OnDestroy, inject, } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { ReactiveFormsModule, FormBuilder, FormControl,Validators} from &#x27;@angular/forms&#x27;;
+import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;;
+
+import {VMUsuarioDetalle,VMUsuarioUpdate,VMUsuarioUpdateForm,VMUsuarioCorregirIdentidadForm} from &#x27;../models/usuario.vm&#x27;;
+import { ApiTipoUsuario  } from &#x27;../models/usuario.api&#x27;;
+import { UsuarioService } from &#x27;../services/usuario.service&#x27;;
+
+import {EstadoUsuario,ESTADO_USUARIO_OPCIONES,estadoUsuarioToLabel,} from &#x27;../models/usuario.dominio&#x27;;
+
+import { NotificacionesService } from &#x27;@/app/components/notificaciones/services/notificaciones.service&#x27;;
+import { PageMetaService } from &#x27;@/app/services/page_meta.service&#x27;;
+
+import { UsuarioHorarioListaUsuario } from &#x27;src/app/pages/admin/usuario_horario/usuario_horario.lista.usuario/usuario_horario.lista.usuario&#x27;;
+import { firstValueFrom ,} from &#x27;rxjs&#x27;;
+
+
+@Component({
+  selector: &#x27;app-usuario-detalle&#x27;,
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, UsuarioHorarioListaUsuario],
+  templateUrl: &#x27;./usuario.detalle.html&#x27;,
+  styleUrl: &#x27;./usuario.detalle.css&#x27;,
+})
+export class UsuarioDetalle implements OnInit, OnDestroy {
+  private route &#x3D; inject(ActivatedRoute);
+  private router &#x3D; inject(Router);
+
+  private fb &#x3D; inject(FormBuilder);
+  private notify &#x3D; inject(NotificacionesService);
+  private pageMeta &#x3D; inject(PageMetaService);
+  private usuarioService &#x3D; inject(UsuarioService);
+
+  reactivating &#x3D; false;
+  resettingPass &#x3D; false;
+  resendingVerification &#x3D; false;
+  authorizing &#x3D; false;
+
+  correctingIdentity &#x3D; false;
+  deleting &#x3D; false;
+  purging &#x3D; false;
+
+  showIdentityForm &#x3D; false;
+
+  usuario?: VMUsuarioDetalle;
+  tipos: ApiTipoUsuario[] &#x3D; [];
+
+  isEditing &#x3D; false;
+  submittedEdit &#x3D; false;
+  open &#x3D; true;
+  openHorarios &#x3D; true;
+
+  estadoOpciones &#x3D; ESTADO_USUARIO_OPCIONES;
+  estadoOpcionesEdicion &#x3D; ESTADO_USUARIO_OPCIONES.filter(
+    (x) &#x3D;&gt; x.value &#x3D;&#x3D;&#x3D; 1 || x.value &#x3D;&#x3D;&#x3D; 2,
+  );
+
+  originalData!: VMUsuarioUpdate;
+
+  form &#x3D; this.fb.group&lt;ControlsOf&lt;UsuarioDetalleForm&gt;&gt;({
+    nombres: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+    apellidoPaterno: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+    apellidoMaterno: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+    dni: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+    correoE: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+    telefono: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+    tz: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+    fechaCreadoPorTexto: new FormControl(&#x27;&#x27;, { nonNullable: true }),
+
+    estado: new FormControl&lt;EstadoUsuario | &#x27;&#x27;&gt;(1, { nonNullable: true }),
+    rolId: new FormControl&lt;number | null&gt;(null, { nonNullable: false }),
+  });
+
+  identityForm &#x3D; this.fb.group&lt;ControlsOf&lt;UsuarioCorregirIdentidadFormLocal&gt;&gt;({
+    dni: new FormControl(&#x27;&#x27;, {
+      nonNullable: true,
+      validators: [Validators.pattern(/^\d{8,11}$/)],
+    }),
+    correoE: new FormControl(&#x27;&#x27;, {
+      nonNullable: true,
+      validators: [Validators.email, Validators.maxLength(255)],
+    }),
+    motivo: new FormControl(&#x27;&#x27;, {
+      nonNullable: true,
+      validators: [Validators.required, Validators.maxLength(255)],
+    }),
+  });
+
+  ngOnInit(): void {
+    const id &#x3D; Number(this.route.snapshot.paramMap.get(&#x27;id&#x27;));
+    if (!id) return;
+
+    this.usuarioService.listAll().subscribe({
+      next: (rows) &#x3D;&gt; {
+        this.tipos &#x3D; rows ?? [];
+      },
+      error: () &#x3D;&gt; {
+        this.tipos &#x3D; [];
+      },
+    });
+
+    this.cargarUsuario(id);
+  }
+
+  ngOnDestroy(): void {
+    this.pageMeta.clear();
+  }
+
+  private async cargarUsuario(id: number): Promise&lt;void&gt; {
+    try {
+      const usuario &#x3D; await firstValueFrom(this.usuarioService.getById(id));
+      this.aplicarUsuario(usuario);
+    } catch {
+      // El interceptor global ya maneja 404, etc.
+    }
+  }
+
+  private aplicarUsuario(u: VMUsuarioDetalle): void {
+    this.usuario &#x3D; u;
+
+    const fechaTxt &#x3D; formatDateTime(u.fechaCreadoPor);
+
+    this.pageMeta.replace({
+      titulo: &#x27;Usuario:&#x27;,
+      ruta: [&#x27;/admin/usuario/lista&#x27;],
+    });
+
+    this.form.patchValue({
+      nombres: u.nombres,
+      apellidoPaterno: u.apellidoPaterno,
+      apellidoMaterno: u.apellidoMaterno,
+      dni: u.dni,
+      correoE: u.correoE,
+      telefono: u.telefono,
+      tz: u.tz,
+      fechaCreadoPorTexto: fechaTxt,
+      estado: u.estado,
+      rolId: u.rolId ?? null,
+    });
+
+    this.originalData &#x3D; {
+      id: u.id,
+      estado: u.estado,
+      rolId: u.rolId ?? null,
+    };
+
+    this.form.get(&#x27;estado&#x27;)?.disable({ emitEvent: false });
+    this.form.get(&#x27;rolId&#x27;)?.disable({ emitEvent: false });
+
+    this.pageMeta.set({
+      titulo: &#x60;Usuario: ${u.apellidoPaterno ?? &#x27;&#x27;} ${u.apellidoMaterno ?? &#x27;&#x27;}, ${u.nombres ?? &#x27;&#x27;} - DNI: ${u.dni ?? &#x27;&#x27;}&#x60;,
+    });
+  }
+
+  async onEdit(ev: Event): Promise&lt;void&gt; {
+    ev.stopPropagation();
+
+    if (this.usuario?.estado &#x3D;&#x3D;&#x3D; 0) {
+      await this.notify.ok({
+        variant: &#x27;warning&#x27;,
+        title: &#x27;Usuario eliminado&#x27;,
+        message: &#x27;No se puede editar el rol o estado de un usuario eliminado.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    if (this.usuario &amp;&amp; !this.usuario.correoVerificado) {
+      await this.notify.ok({
+        variant: &#x27;warning&#x27;,
+        title: &#x27;Correo no verificado&#x27;,
+        message: &#x27;No se puede modificar el estado o rol hasta que el usuario confirme su correo.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    this.submittedEdit &#x3D; false;
+    this.isEditing &#x3D; true;
+    this.open &#x3D; true;
+
+    if (this.puedeEditarEstadoManual) {
+      this.form.get(&#x27;estado&#x27;)?.enable({ emitEvent: false });
+    } else {
+      this.form.get(&#x27;estado&#x27;)?.disable({ emitEvent: false });
+    }
+
+    if (this.puedeEditarRolManual) {
+      this.form.get(&#x27;rolId&#x27;)?.enable({ emitEvent: false });
+    } else {
+      this.form.get(&#x27;rolId&#x27;)?.disable({ emitEvent: false });
+    }
+  }
+
+  async onCancel(): Promise&lt;void&gt; {
+    if (this.hasUnsavedChanges()) {
+      const ok &#x3D; await this.notify.confirm({
+        variant: &#x27;warning&#x27;,
+        title: &#x27;Descartar cambios&#x27;,
+        message: &#x27;Tienes cambios sin guardar. ¿Deseas descartarlos?&#x27;,
+        confirmText: &#x27;Descartar&#x27;,
+        cancelText: &#x27;Seguir editando&#x27;,
+      });
+      if (!ok) return;
+    }
+
+    if (this.usuario) {
+      const fechaTxt &#x3D; formatDateTime(this.usuario.fechaCreadoPor);
+
+      this.form.patchValue({
+        nombres: this.usuario.nombres,
+        apellidoPaterno: this.usuario.apellidoPaterno,
+        apellidoMaterno: this.usuario.apellidoMaterno,
+        dni: this.usuario.dni,
+        correoE: this.usuario.correoE,
+        telefono: this.usuario.telefono,
+        tz: this.usuario.tz,
+        fechaCreadoPorTexto: fechaTxt,
+        estado: this.originalData.estado ?? this.usuario.estado,
+        rolId: this.originalData.rolId ?? this.usuario.rolId ?? null,
+      });
+    }
+
+    this.form.get(&#x27;estado&#x27;)?.disable({ emitEvent: false });
+    this.form.get(&#x27;rolId&#x27;)?.disable({ emitEvent: false });
+
+    this.isEditing &#x3D; false;
+    this.submittedEdit &#x3D; false;
+  }
+
+  async onSave(): Promise&lt;void&gt; {
+    this.submittedEdit &#x3D; true;
+
+    const v &#x3D; this.form.value;
+    const changes: VMUsuarioUpdateForm &#x3D; {};
+
+    if (
+      v.estado !&#x3D;&#x3D; undefined &amp;&amp;
+      v.estado !&#x3D;&#x3D; null &amp;&amp;
+      v.estado !&#x3D;&#x3D; this.originalData.estado
+    ) {
+      changes.estado &#x3D; v.estado as EstadoUsuario;
+    }
+
+    if (v.rolId !&#x3D;&#x3D; undefined &amp;&amp; v.rolId !&#x3D;&#x3D; this.originalData.rolId) {
+      changes.rolId &#x3D; v.rolId ?? null;
+    }
+
+    if (Object.keys(changes).length &#x3D;&#x3D;&#x3D; 0) {
+      await this.notify.ok({
+        variant: &#x27;info&#x27;,
+        title: &#x27;Sin cambios&#x27;,
+        message: &#x27;No hay cambios para guardar.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    const confirm &#x3D; await this.notify.confirm({
+      variant: &#x27;info&#x27;,
+      title: &#x27;Guardar cambios&#x27;,
+      message: &#x27;¿Deseas guardar los cambios realizados?&#x27;,
+      confirmText: &#x27;Guardar&#x27;,
+      cancelText: &#x27;Cancelar&#x27;,
+    });
+
+    if (!confirm) return;
+
+    const id &#x3D; this.originalData.id;
+
+    if (id &#x3D;&#x3D; null) {
+      await this.notify.ok({
+        variant: &#x27;error&#x27;,
+        title: &#x27;Operación inválida&#x27;,
+        message: &#x27;No se encontró el ID del usuario.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    try {
+      await this.usuarioService.update(id, changes);
+
+      this.originalData &#x3D; { ...this.originalData, ...changes };
+
+      if (this.usuario) {
+        if (changes.estado !&#x3D; null) {
+          this.usuario.estado &#x3D; changes.estado;
+          this.usuario.estadoTexto &#x3D; estadoUsuarioToLabel(changes.estado);
+        }
+
+        if (changes.rolId !&#x3D;&#x3D; undefined) {
+          const rol &#x3D; this.tipos.find((t) &#x3D;&gt; t.tu_ID &#x3D;&#x3D;&#x3D; changes.rolId);
+
+          this.usuario.rolId &#x3D; changes.rolId ?? null;
+          this.usuario.rolNombre &#x3D; rol?.tu_nombre ?? this.usuario.rolNombre;
+          this.usuario.rolNivel &#x3D; rol?.tu_nivel ?? this.usuario.rolNivel;
+        }
+      }
+
+      await this.notify.ok({
+        variant: &#x27;success&#x27;,
+        title: &#x27;Cambios guardados&#x27;,
+        message: &#x27;La información del usuario se actualizó correctamente.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+
+      this.form.get(&#x27;estado&#x27;)?.disable({ emitEvent: false });
+      this.form.get(&#x27;rolId&#x27;)?.disable({ emitEvent: false });
+
+      this.isEditing &#x3D; false;
+      this.submittedEdit &#x3D; false;
+    } catch {
+      // El interceptor global muestra el error.
+    }
+  }
+
+  private hasUnsavedChanges(): boolean {
+    const v &#x3D; this.form.value;
+
+    if (v.estado !&#x3D;&#x3D; this.originalData.estado) return true;
+    if ((v.rolId ?? null) !&#x3D;&#x3D; (this.originalData.rolId ?? null)) return true;
+
+    return false;
+  }
+
+  async onResetContrasenaProvisional(ev: Event): Promise&lt;void&gt; {
+    ev.stopPropagation();
+
+    const id &#x3D; this.usuario?.id ?? this.originalData?.id;
+
+    if (!id) {
+      await this.notify.ok({
+        variant: &#x27;error&#x27;,
+        title: &#x27;Operación inválida&#x27;,
+        message: &#x27;No se encontró el ID del usuario.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    if (this.usuario?.estado &#x3D;&#x3D;&#x3D; 0) {
+      await this.notify.ok({
+        variant: &#x27;warning&#x27;,
+        title: &#x27;Acción no permitida&#x27;,
+        message: &#x27;No se puede generar contraseña provisional para un usuario eliminado.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    const ok &#x3D; await this.notify.confirm({
+      variant: &#x27;warning&#x27;,
+      title: &#x27;Generar contraseña provisional&#x27;,
+      message:
+        &#x27;Esto reemplazará la contraseña actual del usuario por una contraseña temporal.\n\n&#x27; +
+        &#x27;Comparta la contraseña temporal con el usuario para que ingrese y luego la cambie en &quot;Mi contraseña&quot;.\n\n&#x27; +
+        &#x27;¿Desea continuar?&#x27;,
+      confirmText: &#x27;Generar&#x27;,
+      cancelText: &#x27;Cancelar&#x27;,
+    });
+
+    if (!ok) return;
+
+    this.resettingPass &#x3D; true;
+
+    try {
+      const resp &#x3D; await this.usuarioService.resetContrasenaProvisional(id, 10);
+
+      const copy &#x3D; await this.notify.confirm({
+        variant: &#x27;info&#x27;,
+        title: &#x27;Contraseña provisional generada&#x27;,
+        message:
+          &#x60;Contraseña provisional:\n${resp.provisional}\n\n&#x60; +
+          &#x27;Recomendación: Indique al usuario que la cambie apenas ingrese.&#x27;,
+        confirmText: &#x27;Copiar&#x27;,
+        cancelText: &#x27;Cerrar&#x27;,
+      });
+
+      if (copy) {
+        try {
+          await navigator.clipboard.writeText(resp.provisional);
+
+          await this.notify.ok({
+            variant: &#x27;success&#x27;,
+            title: &#x27;Copiado&#x27;,
+            message: &#x27;La contraseña provisional fue copiada al portapapeles.&#x27;,
+            primaryText: &#x27;Aceptar&#x27;,
+          });
+        } catch {
+          await this.notify.ok({
+            variant: &#x27;warning&#x27;,
+            title: &#x27;No se pudo copiar automáticamente&#x27;,
+            message:
+              &#x27;No se pudo copiar al portapapeles por permisos del navegador.\n&#x27; +
+              &#x27;Copie manualmente la contraseña mostrada.&#x27;,
+            primaryText: &#x27;Aceptar&#x27;,
+          });
+        }
+      }
+    } catch {
+      // El interceptor global muestra el error.
+    } finally {
+      this.resettingPass &#x3D; false;
+    }
+  }
+
+  async onAutorizar(ev: Event): Promise&lt;void&gt; {
+    ev.stopPropagation();
+
+    const id &#x3D; this.usuario?.id ?? this.originalData?.id;
+
+    if (!id) {
+      await this.notify.ok({
+        variant: &#x27;error&#x27;,
+        title: &#x27;Operación inválida&#x27;,
+        message: &#x27;No se encontró el ID del usuario.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    const ok &#x3D; await this.notify.confirm({
+      variant: &#x27;warning&#x27;,
+      title: &#x27;Autorizar usuario&#x27;,
+      message:
+        &#x27;Se activará la cuenta, se compartirá la carpeta principal de Drive con su correo y se enviará una notificación al usuario.\n\n¿Deseas continuar?&#x27;,
+      confirmText: &#x27;Autorizar&#x27;,
+      cancelText: &#x27;Cancelar&#x27;,
+    });
+
+    if (!ok) return;
+
+    this.authorizing &#x3D; true;
+
+    try {
+      await this.usuarioService.autorizar(id);
+
+      await this.cargarUsuario(id);
+
+      await this.notify.ok({
+        variant: &#x27;success&#x27;,
+        title: &#x27;Usuario autorizado&#x27;,
+        message: &#x27;La cuenta fue activada correctamente.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+    } catch {
+      // El interceptor global muestra el error.
+    } finally {
+      this.authorizing &#x3D; false;
+    }
+  }
+
+  async onReenviarConfirmacionCorreo(ev: Event): Promise&lt;void&gt; {
+    ev.stopPropagation();
+
+    const id &#x3D; this.usuario?.id ?? this.originalData?.id;
+
+    if (!id) {
+      await this.notify.ok({
+        variant: &#x27;error&#x27;,
+        title: &#x27;Operación inválida&#x27;,
+        message: &#x27;No se encontró el ID del usuario.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    const correo &#x3D; this.usuario?.correoE ?? &#x27;&#x27;;
+
+    const ok &#x3D; await this.notify.confirm({
+      variant: &#x27;warning&#x27;,
+      title: &#x27;Reenviar verificación&#x27;,
+      message:
+        &#x60;Se enviará un nuevo correo de verificación a:\n${correo}\n\n&#x60; +
+        &#x27;Los enlaces anteriores quedarán invalidados.\n\n&#x27; +
+        &#x27;¿Deseas continuar?&#x27;,
+      confirmText: &#x27;Reenviar&#x27;,
+      cancelText: &#x27;Cancelar&#x27;,
+    });
+
+    if (!ok) return;
+
+    this.resendingVerification &#x3D; true;
+
+    try {
+      await this.usuarioService.reenviarConfirmacionCorreo(id);
+
+      await this.notify.ok({
+        variant: &#x27;success&#x27;,
+        title: &#x27;Correo reenviado&#x27;,
+        message: &#x27;Se envió un nuevo correo de verificación.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+    } catch {
+      // El interceptor global muestra el error.
+    } finally {
+      this.resendingVerification &#x3D; false;
+    }
+  }
+
+  onToggleCorregirIdentidad(ev: Event): void {
+    ev.stopPropagation();
+
+    if (!this.usuario) return;
+
+    this.showIdentityForm &#x3D; !this.showIdentityForm;
+    this.open &#x3D; true;
+
+    if (this.showIdentityForm) {
+      this.identityForm.reset({
+        dni: this.usuario.dni ?? &#x27;&#x27;,
+        correoE: this.usuario.correoE ?? &#x27;&#x27;,
+        motivo: &#x27;&#x27;,
+      });
+    }
+  }
+
+  async onCancelarCorregirIdentidad(): Promise&lt;void&gt; {
+    this.showIdentityForm &#x3D; false;
+
+    this.identityForm.reset({
+      dni: &#x27;&#x27;,
+      correoE: &#x27;&#x27;,
+      motivo: &#x27;&#x27;,
+    });
+  }
+
+  async onGuardarCorregirIdentidad(): Promise&lt;void&gt; {
+    if (!this.usuario) return;
+
+    this.identityForm.markAllAsTouched();
+
+    if (this.identityForm.invalid) {
+      await this.notify.ok({
+        variant: &#x27;warning&#x27;,
+        title: &#x27;Datos inválidos&#x27;,
+        message: &#x27;Revisa el DNI, el correo y el motivo de corrección.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    const v &#x3D; this.identityForm.getRawValue();
+
+    const nuevoDni &#x3D; (v.dni ?? &#x27;&#x27;).trim();
+    const nuevoCorreo &#x3D; (v.correoE ?? &#x27;&#x27;).trim().toLowerCase();
+    const motivo &#x3D; (v.motivo ?? &#x27;&#x27;).trim();
+
+    const cambiaDni &#x3D; !!nuevoDni &amp;&amp; nuevoDni !&#x3D;&#x3D; this.usuario.dni;
+    const cambiaCorreo &#x3D;
+      !!nuevoCorreo &amp;&amp; nuevoCorreo !&#x3D;&#x3D; this.usuario.correoE.toLowerCase();
+
+    if (!cambiaDni &amp;&amp; !cambiaCorreo) {
+      await this.notify.ok({
+        variant: &#x27;info&#x27;,
+        title: &#x27;Sin cambios&#x27;,
+        message: &#x27;No hay DNI ni correo nuevos para corregir.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    const mensajeCorreo &#x3D;
+      cambiaCorreo &amp;&amp; this.usuario.correoVerificado &amp;&amp; this.usuario.estado !&#x3D;&#x3D; 0
+        ? &#x27;\n\nComo el correo actual ya estaba verificado, el nuevo correo quedará pendiente hasta que el usuario lo confirme.&#x27;
+        : cambiaCorreo &amp;&amp; this.usuario.estado !&#x3D;&#x3D; 0
+          ? &#x27;\n\nSe enviará una nueva verificación al correo corregido.&#x27;
+          : cambiaCorreo &amp;&amp; this.usuario.estado &#x3D;&#x3D;&#x3D; 0
+            ? &#x27;\n\nComo el usuario está eliminado, no se enviará correo de verificación.&#x27;
+            : &#x27;&#x27;;
+
+    const ok &#x3D; await this.notify.confirm({
+      variant: &#x27;warning&#x27;,
+      title: &#x27;Corregir identidad&#x27;,
+      message:
+        &#x27;Se corregirán datos críticos del usuario.\n\n&#x27; +
+        &#x60;Motivo: ${motivo}&#x60; +
+        mensajeCorreo +
+        &#x27;\n\n¿Deseas continuar?&#x27;,
+      confirmText: &#x27;Corregir&#x27;,
+      cancelText: &#x27;Cancelar&#x27;,
+    });
+
+    if (!ok) return;
+
+    const payload: VMUsuarioCorregirIdentidadForm &#x3D; {
+      motivo,
+    };
+
+    if (cambiaDni) payload.dni &#x3D; nuevoDni;
+    if (cambiaCorreo) payload.correoE &#x3D; nuevoCorreo;
+
+    this.correctingIdentity &#x3D; true;
+
+    try {
+      const res &#x3D; await this.usuarioService.corregirIdentidad(
+        this.usuario.id,
+        payload,
+      );
+
+      await this.cargarUsuario(this.usuario.id);
+
+      this.showIdentityForm &#x3D; false;
+
+      await this.notify.ok({
+        variant: &#x27;success&#x27;,
+        title: &#x27;Identidad corregida&#x27;,
+        message:
+          res.message ||
+          &#x27;La identidad del usuario fue corregida correctamente.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+    } catch {
+      // El interceptor global muestra el error.
+    } finally {
+      this.correctingIdentity &#x3D; false;
+    }
+  }
+
+  async onEliminarUsuario(ev: Event): Promise&lt;void&gt; {
+    ev.stopPropagation();
+
+    const id &#x3D; this.usuario?.id ?? this.originalData?.id;
+
+    if (!id) {
+      await this.notify.ok({
+        variant: &#x27;error&#x27;,
+        title: &#x27;Operación inválida&#x27;,
+        message: &#x27;No se encontró el ID del usuario.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    const ok &#x3D; await this.notify.confirm({
+      variant: &#x27;warning&#x27;,
+      title: &#x27;Eliminar usuario&#x27;,
+      message:
+        &#x27;El usuario quedará eliminado lógicamente y no podrá ingresar al sistema.\n\n&#x27; +
+        &#x27;Sus registros asociados se conservarán.\n\n&#x27; +
+        &#x27;¿Deseas continuar?&#x27;,
+      confirmText: &#x27;Eliminar&#x27;,
+      cancelText: &#x27;Cancelar&#x27;,
+    });
+
+    if (!ok) return;
+
+    this.deleting &#x3D; true;
+
+    try {
+      await this.usuarioService.eliminar(id);
+      await this.cargarUsuario(id);
+
+      await this.notify.ok({
+        variant: &#x27;success&#x27;,
+        title: &#x27;Usuario eliminado&#x27;,
+        message: &#x27;El usuario fue eliminado correctamente.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+    } catch {
+      // El interceptor global muestra el error.
+    } finally {
+      this.deleting &#x3D; false;
+    }
+  }
+
+  async onReactivarUsuario(ev: Event): Promise&lt;void&gt; {
+    ev.stopPropagation();
+
+    const id &#x3D; this.usuario?.id ?? this.originalData?.id;
+
+    if (!id) {
+      await this.notify.ok({
+        variant: &#x27;error&#x27;,
+        title: &#x27;Operación inválida&#x27;,
+        message: &#x27;No se encontró el ID del usuario.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    const ok &#x3D; await this.notify.confirm({
+      variant: &#x27;warning&#x27;,
+      title: &#x27;Reactivar usuario&#x27;,
+      message:
+        &#x27;Se reactivará la cuenta según su situación actual,\n\n&#x27; +
+
+        &#x27;¿Deseas continuar?&#x27;,
+      confirmText: &#x27;Reactivar&#x27;,
+      cancelText: &#x27;Cancelar&#x27;,
+    });
+
+    if (!ok) return;
+
+    this.reactivating &#x3D; true;
+
+    try {
+      await this.usuarioService.reactivar(id);
+      await this.cargarUsuario(id);
+
+      await this.notify.ok({
+        variant: &#x27;success&#x27;,
+        title: &#x27;Usuario reactivado&#x27;,
+        message: &#x27;El usuario fue reactivado correctamente.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+    } catch {
+      // El interceptor global muestra el error.
+    } finally {
+      this.reactivating &#x3D; false;
+    }
+  }
+  async onEliminarDefinitivo(ev: Event): Promise&lt;void&gt; {
+    ev.stopPropagation();
+
+    const id &#x3D; this.usuario?.id ?? this.originalData?.id;
+
+    if (!id) {
+      await this.notify.ok({
+        variant: &#x27;error&#x27;,
+        title: &#x27;Operación inválida&#x27;,
+        message: &#x27;No se encontró el ID del usuario.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    const ok &#x3D; await this.notify.confirm({
+      variant: &#x27;warning&#x27;,
+      title: &#x27;Eliminar definitivamente&#x27;,
+      message:
+        &#x27;Esta acción intentará borrar definitivamente la cuenta.\n\n&#x27; +
+        &#x27;Solo se permitirá si el usuario no tiene actividad asociada.\n\n&#x27; +
+        &#x27;Esta acción no se puede deshacer.\n\n&#x27; +
+        &#x27;¿Deseas continuar?&#x27;,
+      confirmText: &#x27;Eliminar definitivamente&#x27;,
+      cancelText: &#x27;Cancelar&#x27;,
+    });
+
+    if (!ok) return;
+
+    this.purging &#x3D; true;
+
+    try {
+      const res &#x3D; await this.usuarioService.eliminarDefinitivo(id);
+
+      await this.notify.ok({
+        variant: &#x27;success&#x27;,
+        title: &#x27;Usuario eliminado definitivamente&#x27;,
+        message: res.message || &#x27;Usuario eliminado definitivamente.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+
+      await this.router.navigate([&#x27;/admin/usuario/lista&#x27;]);
+    } catch {
+      // El interceptor global muestra el error.
+    } finally {
+      this.purging &#x3D; false;
+    }
+  }
+
+  get puedeAutorizar(): boolean {
+    return !!(
+      this.usuario &amp;&amp;
+      this.usuario.estado &#x3D;&#x3D;&#x3D; 4 &amp;&amp;
+      this.usuario.correoVerificado
+    );
+  }
+
+  get puedeEditarRolManual(): boolean {
+    return !!(
+      this.usuario &amp;&amp;
+      this.usuario.correoVerificado &amp;&amp;
+      this.usuario.estado !&#x3D;&#x3D; 0
+    );
+  }
+
+  get puedeEditarEstadoManual(): boolean {
+    return !!(
+      this.usuario &amp;&amp;
+      this.usuario.correoVerificado &amp;&amp;
+      (this.usuario.estado &#x3D;&#x3D;&#x3D; 1 || this.usuario.estado &#x3D;&#x3D;&#x3D; 2)
+    );
+  }
+
+  get puedeReenviarConfirmacionCorreo(): boolean {
+    return !!(
+      this.usuario &amp;&amp;
+      !this.usuario.correoVerificado &amp;&amp;
+      this.usuario.estado !&#x3D;&#x3D; 0
+    );
+  }
+
+  get puedeCorregirIdentidad(): boolean {
+    return !!this.usuario;
+  }
+
+  get puedeEliminarSoft(): boolean {
+    return !!(
+      this.usuario &amp;&amp;
+      this.usuario.estado !&#x3D;&#x3D; 0
+    );
+  }
+
+  get puedeEliminarDefinitivo(): boolean {
+    return !!(
+      this.usuario &amp;&amp;
+      this.usuario.estado &#x3D;&#x3D;&#x3D; 0
+    );
+  }
+  get puedeReactivar(): boolean {
+    return !!(
+      this.usuario &amp;&amp;
+      this.usuario.estado &#x3D;&#x3D;&#x3D; 0
+    );
+  }
+}
+
+interface UsuarioDetalleForm {
+  nombres: string;
+  apellidoPaterno: string;
+  apellidoMaterno: string;
+  dni: string;
+  correoE: string;
+  telefono: string;
+  tz: string;
+  fechaCreadoPorTexto: string;
+  estado: EstadoUsuario | &#x27;&#x27;;
+  rolId: number | null;
+}
+
+interface UsuarioCorregirIdentidadFormLocal {
+  dni: string;
+  correoE: string;
+  motivo: string;
+}
+
+type ControlsOf&lt;T&gt; &#x3D; {
+  [K in keyof T]: FormControl&lt;T[K]&gt;;
+};
+
+function formatDateTime(dt: Date | string | null | undefined): string {
+  if (!dt) return &#x27;&#x27;;
+
+  const d &#x3D; dt instanceof Date ? dt : new Date(dt);
+
+  if (Number.isNaN(d.getTime())) return &#x27;&#x27;;
+
+  const dd &#x3D; String(d.getDate()).padStart(2, &#x27;0&#x27;);
+  const mm &#x3D; String(d.getMonth() + 1).padStart(2, &#x27;0&#x27;);
+  const yyyy &#x3D; d.getFullYear();
+  const hh &#x3D; String(d.getHours()).padStart(2, &#x27;0&#x27;);
+  const mi &#x3D; String(d.getMinutes()).padStart(2, &#x27;0&#x27;);
+
+  return &#x60;${dd}/${mm}/${yyyy} ${hh}:${mi}&#x60;;
+}</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'UsuarioCorregirIdentidadFormLocal.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

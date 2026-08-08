@@ -3,29 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { map, Observable, firstValueFrom } from 'rxjs';
 import { API_URL } from '@/app/app.token';
 
-import {
-  ApiHorarioListaSimple,
-  ApiHorarioPageSimple,
-  ApiHorarioDetalle,
-} from '../models/horario.api';
-import {
-  VMHorarioListaSimple,
-  VMHorarioListaOptions,
-  VMHorarioCreate,
-  VMHorarioDetalle,
-  VMPage,
-} from '../models/horario.vm';
-import {
-  MapHorarioListaItemVM,
-  MapHorarioListaOpciones,
-  MapHorarioCreate,
-  MapHorarioDetalleVM,
-  MapPageToVM,
-} from '../mappers/horario.mapper';
-import {
-  DTOHorarioListaOptions,
-  DTOHorarioCreate,DTOHorarioBloqueCreate 
-} from '../models/horario.dto';
+import {ApiHorarioListaSimple,ApiHorarioPageSimple,ApiHorarioDetalle,} from '../models/horario.api';
+import {VMHorarioListaSimple,VMHorarioListaOptions,VMHorarioCreate,VMHorarioDetalle,VMPage,} from '../models/horario.vm';
+import {MapHorarioListaItemVM,MapHorarioListaOpciones,MapHorarioCreate,MapHorarioDetalleVM,MapPageToVM,
+  } from '../mappers/horario.mapper';
+import {DTOHorarioListaOptions,DTOHorarioCreate,DTOHorarioBloqueCreate } from '../models/horario.dto';
 import { toHttpParams } from '@/app/components/utils/http.utils';
 
 @Injectable({ providedIn: 'root' })

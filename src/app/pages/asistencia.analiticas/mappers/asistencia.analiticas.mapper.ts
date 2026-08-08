@@ -1,85 +1,74 @@
 import {
   ApiAsistenciaDashboardResponse,
-  ApiAsistenciaPeriodoPageResponse,
   ApiAsistenciaDiaUsuario,
-  ApiEstadoAsistencia,
+  ApiAsistenciaDimUsuario,
+  ApiAsistenciaEtlStatus,
+  ApiAsistenciaPeriodoPageResponse,
 } from '../models/asistencia.analiticas.api';
-
 import {
   VMAsistenciaDashboard,
+  VMAsistenciaDimUsuario,
+  VMAsistenciaEtlStatus,
   VMAsistenciaPeriodoPage,
   VMEstadoActualRow,
-  VMEstadoAsistencia,
   VMBarrasAsistencia,
 } from '../models/asistencia.analiticas.vm';
 
-/* ===== Helpers fecha ===== */
-
 function fmtDiaCorto(ymd: string): string {
-  const [y, m, d] = ymd.split('-').map(Number);
-  const dt = new Date(y, m - 1, d);
+  const [year, month, day] = ymd.split('-').map(Number);
+  const date = new Date(Date.UTC(year, month - 1, day));
+
   return new Intl.DateTimeFormat('es-PE', {
     weekday: 'short',
     day: '2-digit',
     month: 'short',
-  }).format(dt);
+    year: 'numeric',
+    timeZone: 'UTC',
+  }).format(date);
 }
 
 function fmtMesCorto(ym: string): string {
-  // ym: "YYYY-MM"
-  const [y, m] = ym.split('-').map(Number);
-  const dt = new Date(y, m - 1, 1);
+  const [year, month] = ym.split('-').map(Number);
+  const date = new Date(Date.UTC(year, month - 1, 1));
+
   return new Intl.DateTimeFormat('es-PE', {
     month: 'short',
     year: 'numeric',
-  }).format(dt);
+    timeZone: 'UTC',
+  }).format(date);
 }
-
-/* ===== Estados ===== */
-
-function deriveEstado(r: ApiAsistenciaDiaUsuario): ApiEstadoAsistencia {
-  if (!r.tuvo_horario) return 'SIN_HORARIO';
-  if (r.es_pendiente) return 'PENDIENTE';
-  if (r.es_futuro) return 'PENDIENTE';
-  if (r.fue_ausente) return 'AUSENTE';
-  if (r.incompleto) return 'INCOMPLETO';
-  if (r.fue_tarde) return 'TARDE';
-  if (r.asistio) return 'A_TIEMPO';
-  return 'NO_INICIA';
-}
-
-function mapEstadoLabelAndClass(estado: ApiEstadoAsistencia): { label: string; css: string } {
-  switch (estado) {
-    case 'PENDIENTE':   return { label: 'Pendiente', css: 'badge-info' };
-    case 'A_TIEMPO':    return { label: 'A tiempo', css: 'badge-ok' };
-    case 'TARDE':       return { label: 'Tarde', css: 'badge-warn' };
-    case 'AUSENTE':     return { label: 'Ausente', css: 'badge-danger' };
-    case 'INCOMPLETO':  return { label: 'Incompleto', css: 'badge-warn-soft' };
-    case 'NO_INICIA':   return { label: 'Aún no inicia', css: 'badge-muted' };
-    case 'SIN_HORARIO': return { label: 'Sin horario', css: 'badge-muted' };
-    case 'FUERA_HORARIO': return { label: 'Fuera de horario', css: 'badge-info' };
-    default:            return { label: String(estado), css: 'badge-muted' };
-  }
-}
-
-/* ===== Barras ===== */
 
 function mapBarras(api: ApiAsistenciaDashboardResponse): VMBarrasAsistencia {
-  const gran = api.barras.granularity;
-  const cats = api.barras.categories.map((c) => (gran === 'MONTH' ? fmtMesCorto(c) : fmtDiaCorto(c)));
+  const granularity = api.barras.granularity;
 
   return {
-    granularity: gran,
-    categories: cats,
+    granularity,
+    categories: api.barras.categories.map((category) =>
+      granularity === 'MONTH'
+        ? fmtMesCorto(category)
+        : fmtDiaCorto(category),
+    ),
     series: api.barras.series,
   };
 }
 
-/* ===== Dashboard ===== */
-
-export function mapAsistenciaDashboard(api: ApiAsistenciaDashboardResponse): VMAsistenciaDashboard {
+export function mapAsistenciaDashboard(
+  api: ApiAsistenciaDashboardResponse,
+): VMAsistenciaDashboard {
   return {
-    cards: api.cards,
+    cards: {
+      programados: api.cards.programados,
+      asistencias: api.cards.asistencias,
+      completos: api.cards.completos,
+      aTiempo: api.cards.a_tiempo,
+      tardanzas: api.cards.tardanzas,
+      ausencias: api.cards.ausencias,
+      incompletos: api.cards.incompletos,
+      justificados: api.cards.justificados,
+      puntualidadPorcentaje: api.cards.puntualidad_porcentaje,
+      tardanzaPromedioMin: api.cards.tardanza_promedio_min,
+      minutosTrabajados: api.cards.minutos_trabajados,
+    },
     barras: mapBarras(api),
     fechaDesde: api.desde,
     fechaHasta: api.hasta,
@@ -89,30 +78,9 @@ export function mapAsistenciaDashboard(api: ApiAsistenciaDashboardResponse): VMA
   };
 }
 
-/* ===== Periodo page (tabla) ===== */
-
-export function mapAsistenciaPeriodoPage(api: ApiAsistenciaPeriodoPageResponse): VMAsistenciaPeriodoPage {
-  const rows: VMEstadoActualRow[] = (api.items ?? []).map((r) => {
-    const estado = deriveEstado(r);
-    const { label, css } = mapEstadoLabelAndClass(estado);
-
-    return {
-      fechaYmd: r.fecha_ymd,
-      fechaLabel: fmtDiaCorto(r.fecha_ymd),
-
-      usId: r.us_id,
-      nombre: r.nombre?.trim() || `Usuario #${r.us_id}`,
-
-      horario: r.tuvo_horario ? 'Con horario' : 'Sin horario',
-      horaInicio: r.hora_inicio_programada ?? null,
-      primeraMarca: r.hora_primera_marca ?? null,
-
-      estado: estado as VMEstadoAsistencia,
-      estadoLabel: label,
-      estadoBadgeClass: css,
-    };
-  });
-
+export function mapAsistenciaPeriodoPage(
+  api: ApiAsistenciaPeriodoPageResponse,
+): VMAsistenciaPeriodoPage {
   return {
     segment: api.segment,
     page: api.page,
@@ -121,6 +89,104 @@ export function mapAsistenciaPeriodoPage(api: ApiAsistenciaPeriodoPageResponse):
     countHoy: api.countHoy,
     countAnteriores: api.countAnteriores,
     countProximos: api.countProximos,
-    items: rows,
+    items: (api.items ?? []).map(mapEstadoRow),
   };
+}
+
+export function mapAsistenciaDimUsuarios(
+  rows: ApiAsistenciaDimUsuario[],
+): VMAsistenciaDimUsuario[] {
+  return (rows ?? []).map((row) => ({
+    usId: row.us_id,
+    dni: row.dni ?? null,
+    nombre: `${row.nombres ?? ''} ${row.apellidos ?? ''}`
+      .replace(/\s+/g, ' ')
+      .trim(),
+  }));
+}
+
+export function mapAsistenciaEtlStatus(
+  api: ApiAsistenciaEtlStatus,
+): VMAsistenciaEtlStatus {
+  return {
+    running: !!api.isRunning,
+    runId: api.running?.id ?? null,
+    runningPreset: api.running?.preset ?? null,
+    runningSince: instantIso(api.running?.started_at),
+    lastRunAt: instantIso(api.lastSuccessAt),
+    lastStart: calendarYmd(api.lastSuccessStart),
+    lastEnd: calendarYmd(api.lastSuccessEnd),
+    missingFrom: calendarYmd(api.missingFrom),
+    missingTo: calendarYmd(api.missingTo),
+    hasMissing: !!api.hasMissing,
+  };
+}
+
+function mapEstadoRow(row: ApiAsistenciaDiaUsuario): VMEstadoActualRow {
+  const estadoLabel = row.estado_visual || deriveEstado(row);
+
+  return {
+    fechaYmd: row.fecha_ymd,
+    fechaLabel: fmtDiaCorto(row.fecha_ymd),
+    usId: row.us_id,
+    dni: row.dni ?? null,
+    nombre: row.nombre?.trim() || `Usuario #${row.us_id}`,
+    idAsistencia: row.as_id,
+    horario: row.horario_nombre ?? (row.programado ? 'Horario activo' : 'Sin horario'),
+    horaInicio: row.hora_inicio_programada,
+    horaFin: row.hora_fin_programada,
+    horaEntrada: row.hora_entrada,
+    horaSalida: row.hora_salida,
+    tardanzaMin: row.tardanza_min,
+    salidaAnticipadaMin: row.salida_anticipada_min,
+    minutosProgramados: row.minutos_programados,
+    minutosTrabajados: row.minutos_trabajados,
+    minutosExtra: row.minutos_extra,
+    justificado: row.justificado,
+    justificacionTipo: row.justificacion_tipo,
+    justificacionEstado: row.justificacion_estado,
+    excluido: row.excluido,
+    estadoLabel,
+    estadoBadgeClass: estadoClass(estadoLabel),
+  };
+}
+
+function deriveEstado(row: ApiAsistenciaDiaUsuario): string {
+  if (row.excluido) return 'NO PROGRAMADO JUSTIFICADO';
+  if (!row.programado) return 'SIN HORARIO';
+  if (row.incompleto) return 'INCOMPLETO';
+  if (row.asistio) return row.fue_tarde ? 'TARDE' : 'A TIEMPO';
+  if (row.fue_ausente) return 'AUSENTE';
+  if (row.es_futuro) return 'PROGRAMADO';
+  if (row.es_pendiente) return 'AÚN NO INICIA';
+  return 'PROGRAMADO';
+}
+
+function estadoClass(value: string): string {
+  const normalized = value.toUpperCase();
+
+  if (normalized === 'A TIEMPO') return 'badge-ok';
+  if (normalized === 'TARDE') return 'badge-warn';
+  if (normalized === 'AUSENTE') return 'badge-danger';
+  if (normalized === 'INCOMPLETO') return 'badge-warn-soft';
+  if (normalized.includes('JUSTIFICADO')) return 'badge-justified';
+  if (normalized === 'PROGRAMADO' || normalized === 'AÚN NO INICIA') {
+    return 'badge-info';
+  }
+
+  return 'badge-muted';
+}
+
+function calendarYmd(value: string | Date | null | undefined): string | null {
+  if (value == null) return null;
+  if (value instanceof Date) return value.toISOString().slice(0, 10);
+
+  const match = String(value).match(/^(\d{4}-\d{2}-\d{2})/);
+  return match?.[1] ?? null;
+}
+
+function instantIso(value: string | Date | null | undefined): string | null {
+  if (value == null) return null;
+  if (value instanceof Date) return value.toISOString();
+  return String(value);
 }

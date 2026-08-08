@@ -1,126 +1,301 @@
+<div class="attendance-shell">
+  <section
+    class="card schedule-card mb-3 shadow-sm"
+    [class.is-loading]="loadingHorario">
+    <div class="card-body">
+      <div class="schedule-layout">
+        <div class="schedule-main">
+          <div class="schedule-heading">
+            <h5 class="mb-0">Mi horario de hoy</h5>
 
-<div class="d-flex align-items-center justify-content-center gap-2 mb-3">
-  <button type="button" class="btn btn-primary" (click)="goJustificaciones()">
-    Justificación
-  </button>
-  <button type="button" class="btn btn-success"
-          (click)="marcarEntrada()" 
-          [disabled]="loading || marcando">
-    Marcar entrada
-  </button>
-   <button type="button" class="btn btn-warning"
-          (click)="marcarSalida()"
-          [disabled]="loading || marcando">
-    Marcar salida 
-  </button>
-</div>
-<div [formGroup]="form" class="card card--flat">
-  <div class="card-body p-0 tabla-wrap"
-       [class.is-loading]="loading"
-       [class.skeleton-mode]="firstLoad || (loading && items.length === 0)"
-       [style.minHeight.px]="listMinHeight"
-       [style.--thead-h.px]="headerBlockPx"
-       style="position: relative;">
+            <span
+              class="schedule-status"
+              [ngClass]="horarioEstadoClass">
+              @if (loadingHorario && !horarioHoy) {
+                Consultando
+              } @else if (!horarioHoy?.programado) {
+                Sin horario
+              } @else if (horarioHoy?.asistencia?.estado === 1) {
+                Jornada completa
+              } @else if (horarioHoy?.asistencia) {
+                Jornada abierta
+              } @else {
+                Programado
+              }
+            </span>
+          </div>
 
-    <table class="table table-striped table-hover m-0">
-      <thead class="table-light">
-        <tr>
-          <th style="width: 15rem;">Fecha</th>
-          <th style="width: 4rem;">#</th>
-          <th >Tipo</th>
-          
-        </tr>
+          @if (loadingHorario && !horarioHoy) {
+            <div class="schedule-loading-content">
+              <div class="sk-line sk-line-date"></div>
 
-        <!-- Filtros -->
-      </thead>
+              <div class="schedule-grid schedule-grid-skeleton">
+                @for (_ of [0, 1, 2, 3, 4, 5]; track $index) {
+                  <div class="schedule-data">
+                    <div class="sk-line sk-line-label"></div>
+                    <div class="sk-line sk-line-value"></div>
+                  </div>
+                }
+              </div>
 
-      <tbody>
-        <!-- SKELETON filas (primera carga o carga sin datos previos) -->
-        @if (firstLoad || (loading && items.length === 0)) {
-          @for (_ of skeletonRows; track $index) {
-            <tr class="tbody-skeleton">
-              <td style="width: 10rem;">
-                <div class="sk-wrap"><div class="sk-cell sk-text"></div></div>
-              </td>
-              <td style="width: 4rem;">
-                <div class="sk-wrap"><div class="sk-cell sk-id"></div></div>
-              </td>
-              <td >
-                <div class="sk-wrap"><div class="sk-cell sk-text"></div></div>
-              </td>
-              
-            </tr>
+              <div class="sk-line sk-line-message"></div>
+            </div>
+          } @else if (horarioHoy; as h) {
+            <div class="text-muted small schedule-date text-capitalize">
+              {{ h.fechaLabel }} · {{ h.zonaHoraria }}
+            </div>
+
+            @if (h.programado && h.horario; as horario) {
+              <div class="schedule-grid">
+                <div class="schedule-data">
+                  <span class="schedule-label">Horario</span>
+                  <strong>{{ horario.nombre }}</strong>
+                </div>
+
+                <div class="schedule-data">
+                  <span class="schedule-label">Día</span>
+                  <strong>{{ horario.diaSemanaLabel }}</strong>
+                </div>
+
+                <div class="schedule-data">
+                  <span class="schedule-label">Jornada</span>
+                  <strong>
+                    {{ horario.horaInicio }} – {{ horario.horaFin }}
+                  </strong>
+                </div>
+
+                <div class="schedule-data">
+                  <span class="schedule-label">Tolerancia</span>
+                  <strong>{{ horario.toleranciaMin }} min</strong>
+                </div>
+
+                <div class="schedule-data">
+                  <span class="schedule-label">Entrada registrada</span>
+                  <strong>
+                    {{ h.asistencia?.entradaHoraLocal ?? '—' }}
+                  </strong>
+                </div>
+
+                <div class="schedule-data">
+                  <span class="schedule-label">Salida registrada</span>
+                  <strong>
+                    {{ h.asistencia?.salidaHoraLocal ?? '—' }}
+                  </strong>
+                </div>
+              </div>
+            } @else {
+              <div class="schedule-no-data">
+                No tiene un horario programado para hoy. Los botones de
+                marcación permanecerán deshabilitados.
+              </div>
+            }
+
+            <div class="schedule-message">{{ h.mensaje }}</div>
+          } @else {
+            <div class="schedule-error">
+              No fue posible consultar el horario del día.
+            </div>
           }
-        } @else {
-          <!-- FILAS REALES -->
-          @if (items.length > 0) {
-             @for (c of items; track (c.idmarcaasistencia + '-' + c.idmarca)) {
+        </div>
+
+        <div class="attendance-actions">
+          <button
+            type="button"
+            class="btn btn-success"
+            (click)="marcarEntrada()"
+            [disabled]="
+              loading ||
+              loadingHorario ||
+              marcando ||
+              !puedeMarcarEntrada
+            ">
+            @if (marcando) {
+              Procesando…
+            } @else {
+              Marcar entrada
+            }
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-warning"
+            (click)="marcarSalida()"
+            [disabled]="
+              loading ||
+              loadingHorario ||
+              marcando ||
+              !puedeMarcarSalida
+            ">
+            @if (marcando) {
+              Procesando…
+            } @else {
+              Marcar salida
+            }
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-outline-warning"
+            (click)="corregirSalida()"
+            [disabled]="
+              loading ||
+              loadingHorario ||
+              marcando ||
+              !puedeCorregirSalida
+            ">
+            Actualizar salida
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+            (click)="goJustificaciones()"
+            [disabled]="marcando">
+            Justificaciones
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="history-heading">
+    <h6 class="mb-0">Historial de marcas</h6>
+
+    <button
+      type="button"
+      class="btn btn-sm btn-outline-secondary"
+      (click)="load()"
+      [disabled]="loading || marcando">
+      Actualizar
+    </button>
+  </div>
+
+  <div [formGroup]="form" class="card card--flat">
+    <div
+      class="card-body p-0 tabla-wrap"
+      [class.is-loading]="loading"
+      [class.skeleton-mode]="
+        firstLoad || (loading && items.length === 0)
+      "
+      [style.minHeight.px]="listMinHeight"
+      [style.--thead-h.px]="headerBlockPx">
+
+      <table class="table table-striped table-hover m-0">
+        <thead class="table-light">
+          <tr>
+            <th style="width: 15rem;">Fecha y hora</th>
+            <th style="width: 6rem;">Marca</th>
+            <th>Tipo</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @if (firstLoad || (loading && items.length === 0)) {
+            @for (_ of skeletonRows; track $index) {
+              <tr class="tbody-skeleton">
+                <td>
+                  <div class="sk-wrap">
+                    <div class="sk-cell sk-date"></div>
+                  </div>
+                </td>
+                <td>
+                  <div class="sk-wrap">
+                    <div class="sk-cell sk-id"></div>
+                  </div>
+                </td>
+                <td>
+                  <div class="sk-wrap">
+                    <div class="sk-cell sk-text"></div>
+                  </div>
+                </td>
+              </tr>
+            }
+          } @else if (items.length > 0) {
+            @for (
+              item of items;
+              track trackById($index, item)
+            ) {
               <tr>
-                <td style="width: 15rem;">{{ c.fecha_formato }}</td>
-                <td style="width: 4rem;">{{ c.idmarca }}</td>
+                <td>{{ item.fecha_formato }}</td>
+                <td>{{ item.idmarca }}</td>
                 <td>
                   <span
                     class="tipo-text"
-                    [ngClass]="{
-                      'entrada': (c.tipo || '').toLowerCase() === 'entrada',
-                      'salida': (c.tipo || '').toLowerCase() === 'salida'
-                    }"
-                  >
-                    {{ c.tipo }}
+                    [class.entrada]="item.tipo === 'Entrada'"
+                    [class.salida]="item.tipo === 'Salida'">
+                    {{ item.tipo }}
                   </span>
                 </td>
-                
               </tr>
             }
           }
-        }
-      </tbody>
-    </table>
+        </tbody>
+      </table>
 
-    <!-- OVERLAY: estado vacío (con debounce, estable) -->
-    @if (showEmpty) {
-      <div class="empty-overlay">
-        <div class="text-center text-muted estado-vacio fullheight">
-          No se encontraron resultados.
+      @if (showEmpty) {
+        <div class="empty-overlay">
+          <div class="text-center text-muted">
+            No se encontraron marcas.
+          </div>
         </div>
-      </div>
-    }
+      }
 
-    <!-- OVERLAY de carga solo si ya había datos (evita destellos) -->
-    @if (showOverlay && items.length > 0) {
-      <div class="loading-overlay d-flex align-items-center justify-content-center">
-        Cargando…
-      </div>
-    }
-  </div>
-</div>
-
-<!-- Paginación con contadores desacoplados (shown*) y reserva de ancho -->
-<div class="d-flex align-items-center justify-content-between mt-3 pager-wrap"
-     [class.is-loading]="loading"
-     [style.--range-min.ch]="rangeReserveCh"
-     [style.--total-min.ch]="totalReserveCh"
-     style="user-select: none;">
-  <div class="text-muted small">
-    Página
-    <span class="num-range">{{ shownPage }}</span>
-    de
-    <span class="num-range">{{ shownLastPage }}</span>
-    —
-    Mostrando
-    <span class="num-range">
-      @if (shownFrom > 0) { {{ shownFrom }}&ndash;{{ shownTo }} } @else { 0 }
-    </span>
-    de
-    <span class="total-num">{{ shownTotal }}</span>
+      @if (showOverlay && items.length > 0) {
+        <div
+          class="loading-overlay d-flex align-items-center justify-content-center">
+          Cargando…
+        </div>
+      }
+    </div>
   </div>
 
-  <ul class="pagination m-0" style="user-select: none;">
-    <li class="page-item" [class.disabled]="page === 1 || loading">
-      <button class="page-link" (click)="goTo(page - 1)" [disabled]="page === 1 || loading">Anterior</button>
-    </li>
-    <li class="page-item" [class.disabled]="page >= lastPage || loading">
-      <button class="page-link" (click)="goTo(page + 1)" [disabled]="page >= lastPage || loading">Siguiente</button>
-    </li>
-  </ul>
+  <div
+    class="pager-wrap"
+    [class.is-loading]="loading"
+    [style.--range-min.ch]="rangeReserveCh"
+    [style.--total-min.ch]="totalReserveCh">
+
+    <div class="text-muted small">
+      Página
+      <span class="num-range">{{ shownPage }}</span>
+      de
+      <span class="num-range">{{ shownLastPage }}</span>
+      — Mostrando
+      <span class="num-range">
+        @if (shownFrom > 0) {
+          {{ shownFrom }}&ndash;{{ shownTo }}
+        } @else {
+          0
+        }
+      </span>
+      de
+      <span class="total-num">{{ shownTotal }}</span>
+    </div>
+
+    <ul class="pagination m-0">
+      <li
+        class="page-item"
+        [class.disabled]="page === 1 || loading">
+        <button
+          class="page-link"
+          type="button"
+          (click)="goTo(page - 1)"
+          [disabled]="page === 1 || loading">
+          Anterior
+        </button>
+      </li>
+
+      <li
+        class="page-item"
+        [class.disabled]="page >= lastPage || loading">
+        <button
+          class="page-link"
+          type="button"
+          (click)="goTo(page + 1)"
+          [disabled]="page >= lastPage || loading">
+          Siguiente
+        </button>
+      </li>
+    </ul>
+  </div>
 </div>

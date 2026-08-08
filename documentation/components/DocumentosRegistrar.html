@@ -1,0 +1,2051 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">frontend documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  DocumentosRegistrar</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/pages/documentos/documentos.registrar/documentos.registrar.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" class="nav-link"
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.dev/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.dev/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-documentos-registrar</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                        <div>        <code><a href="https://angular.dev/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+</div>
+                        <div>        <code><a href="https://angular.dev/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./documentos.registrar.css</code></td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./documentos.registrar.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./documentos.registrar.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+        <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <p class="comment"><i>No results matching.</i></p>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="https://angular.dev/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/core/OnInit" target="_blank" >OnInit</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+</div>
+
+    <div class="tab-pane fade " id="api">    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#fb" >fb</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#form" >form</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#notify" >notify</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#pageMeta" >pageMeta</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#router" >router</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#rutasBase" >rutasBase</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#selectedFile" >selectedFile</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#service" >service</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#subForm" >subForm</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#submitting" >submitting</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#tipoOpciones" >tipoOpciones</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#cargarRutasBase" >cargarRutasBase</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#onBack" >onBack</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#onFileSelected" >onFileSelected</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#onSubmit" >onSubmit</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#onTipoDocumentoChange" >onTipoDocumentoChange</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#setRutaBasePorTipo" >setRutaBasePorTipo</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#syncCategoriaOtros" >syncCategoriaOtros</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#syncEntidadId" >syncEntidadId</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Accessors</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--accessor" aria-hidden="true">A</span>
+                                <a href="#entidadTipo" >entidadTipo</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--accessor" aria-hidden="true">A</span>
+                                <a href="#categoriaOpciones" >categoriaOpciones</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--accessor" aria-hidden="true">A</span>
+                                <a href="#requiereEntidadId" >requiereEntidadId</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--accessor" aria-hidden="true">A</span>
+                                <a href="#entidadIdLabel" >entidadIdLabel</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--accessor" aria-hidden="true">A</span>
+                                <a href="#entidadIdPlaceholder" >entidadIdPlaceholder</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--accessor" aria-hidden="true">A</span>
+                                <a href="#isCategoriaOtros" >isCategoriaOtros</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cargarRutasBase"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>cargarRutasBase</b></span>
+                        <a href="#cargarRutasBase"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>cargarRutasBase()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="130"
+                                    class="link-to-prism">src/app/pages/documentos/documentos.registrar/documentos.registrar.ts:130</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="125"
+                                    class="link-to-prism">src/app/pages/documentos/documentos.registrar/documentos.registrar.ts:125</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="101"
+                                    class="link-to-prism">src/app/pages/documentos/documentos.registrar/documentos.registrar.ts:101</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onBack"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>onBack</b></span>
+                        <a href="#onBack"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onBack()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="318"
+                                    class="link-to-prism">src/app/pages/documentos/documentos.registrar/documentos.registrar.ts:318</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onFileSelected"></a>
+                    <span class="name">
+                        <span ><b>onFileSelected</b></span>
+                        <a href="#onFileSelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onFileSelected(event: <a href="https://angular.dev/api/router/Event" target="_blank">Event</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="209"
+                                    class="link-to-prism">src/app/pages/documentos/documentos.registrar/documentos.registrar.ts:209</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="https://angular.dev/api/router/Event" target="_blank" >Event</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSubmit"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>onSubmit</b></span>
+                        <a href="#onSubmit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onSubmit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="214"
+                                    class="link-to-prism">src/app/pages/documentos/documentos.registrar/documentos.registrar.ts:214</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onTipoDocumentoChange"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>onTipoDocumentoChange</b></span>
+                        <a href="#onTipoDocumentoChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onTipoDocumentoChange()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="148"
+                                    class="link-to-prism">src/app/pages/documentos/documentos.registrar/documentos.registrar.ts:148</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setRutaBasePorTipo"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>setRutaBasePorTipo</b></span>
+                        <a href="#setRutaBasePorTipo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>setRutaBasePorTipo()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="163"
+                                    class="link-to-prism">src/app/pages/documentos/documentos.registrar/documentos.registrar.ts:163</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="syncCategoriaOtros"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>syncCategoriaOtros</b></span>
+                        <a href="#syncCategoriaOtros"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>syncCategoriaOtros()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="194"
+                                    class="link-to-prism">src/app/pages/documentos/documentos.registrar/documentos.registrar.ts:194</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="syncEntidadId"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>syncEntidadId</b></span>
+                        <a href="#syncEntidadId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>syncEntidadId()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="181"
+                                    class="link-to-prism">src/app/pages/documentos/documentos.registrar/documentos.registrar.ts:181</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fb"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>fb</b></span>
+                        <a href="#fb"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(FormBuilder)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/pages/documentos/documentos.registrar/documentos.registrar.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="form"></a>
+                    <span class="name">
+                        <span ><b>form</b></span>
+                        <a href="#form"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.fb.group&lt;ControlsOf&lt;DocumentosRegistrarForm&gt;&gt;({
+    entidadTipo: new FormControl&lt;DocumentoEntidadTipo | &#x27;&#x27;&gt;(&#x27;&#x27;, {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+
+    entidadId: new FormControl&lt;number | null&gt;(null, {
+      validators: [],
+    }),
+
+    rutaBaseId: new FormControl&lt;number | null&gt;(null, {
+      validators: [Validators.required],
+    }),
+
+    categoria: new FormControl(&#x27;&#x27;, {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+
+    categoriaOtros: new FormControl(&#x27;&#x27;, {
+      nonNullable: true,
+      validators: [Validators.maxLength(80)],
+    }),
+
+    fechaDocumento: new FormControl(&#x27;&#x27;, {
+      nonNullable: true,
+    }),
+
+    descripcion: new FormControl(&#x27;&#x27;, {
+      nonNullable: true,
+      validators: [Validators.maxLength(255)],
+    }),
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/pages/documentos/documentos.registrar/documentos.registrar.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="notify"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>notify</b></span>
+                        <a href="#notify"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(NotificacionesService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/pages/documentos/documentos.registrar/documentos.registrar.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pageMeta"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>pageMeta</b></span>
+                        <a href="#pageMeta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(PageMetaService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/pages/documentos/documentos.registrar/documentos.registrar.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="router"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>router</b></span>
+                        <a href="#router"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(Router)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/pages/documentos/documentos.registrar/documentos.registrar.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="rutasBase"></a>
+                    <span class="name">
+                        <span ><b>rutasBase</b></span>
+                        <a href="#rutasBase"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/VMDocumentoRutaBaseListaSimple.html" target="_self" >VMDocumentoRutaBaseListaSimple[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/pages/documentos/documentos.registrar/documentos.registrar.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedFile"></a>
+                    <span class="name">
+                        <span ><b>selectedFile</b></span>
+                        <a href="#selectedFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>File | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/pages/documentos/documentos.registrar/documentos.registrar.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="service"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>service</b></span>
+                        <a href="#service"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(DocumentosService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/pages/documentos/documentos.registrar/documentos.registrar.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subForm"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>subForm</b></span>
+                        <a href="#subForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Subscription()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/pages/documentos/documentos.registrar/documentos.registrar.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="submitting"></a>
+                    <span class="name">
+                        <span ><b>submitting</b></span>
+                        <a href="#submitting"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/pages/documentos/documentos.registrar/documentos.registrar.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tipoOpciones"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>tipoOpciones</b></span>
+                        <a href="#tipoOpciones"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>DOCUMENTO_TIPO_OPCIONES</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/pages/documentos/documentos.registrar/documentos.registrar.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="entidadTipo"></a>
+                        <span class="name"><b>entidadTipo</b><a href="#entidadTipo"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>entidadTipo()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/pages/documentos/documentos.registrar/documentos.registrar.ts:77</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="categoriaOpciones"></a>
+                        <span class="name"><b>categoriaOpciones</b><a href="#categoriaOpciones"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>categoriaOpciones()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/pages/documentos/documentos.registrar/documentos.registrar.ts:81</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="requiereEntidadId"></a>
+                        <span class="name"><b>requiereEntidadId</b><a href="#requiereEntidadId"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>requiereEntidadId()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/pages/documentos/documentos.registrar/documentos.registrar.ts:85</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="entidadIdLabel"></a>
+                        <span class="name"><b>entidadIdLabel</b><a href="#entidadIdLabel"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>entidadIdLabel()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/pages/documentos/documentos.registrar/documentos.registrar.ts:89</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="entidadIdPlaceholder"></a>
+                        <span class="name"><b>entidadIdPlaceholder</b><a href="#entidadIdPlaceholder"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>entidadIdPlaceholder()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/pages/documentos/documentos.registrar/documentos.registrar.ts:93</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isCategoriaOtros"></a>
+                        <span class="name"><b>isCategoriaOtros</b><a href="#isCategoriaOtros"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>isCategoriaOtros()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/pages/documentos/documentos.registrar/documentos.registrar.ts:97</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnDestroy, OnInit, inject } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import {ReactiveFormsModule,FormBuilder,FormControl,Validators,} from &#x27;@angular/forms&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { Subscription } from &#x27;rxjs&#x27;;
+
+import { DocumentosService } from &#x27;../services/documentos.service&#x27;;
+
+import {VMDocumentoRutaBaseListaSimple,VMDocumentoSubir,} from &#x27;../models/documentos.vm&#x27;;
+
+import {DOCUMENTO_TIPO_OPCIONES,DocumentoEntidadTipo,documentoCategoriaOpcionesPorTipo,documentoEntidadIdLabel,documentoEntidadIdPlaceholder,
+  documentoTipoRequiereEntidadId,
+} from &#x27;../models/documentos.dominio&#x27;;
+
+import { NotificacionesService } from &#x27;@/app/components/notificaciones/services/notificaciones.service&#x27;;
+import { PageMetaService } from &#x27;@/app/services/page_meta.service&#x27;;
+
+@Component({
+  selector: &#x27;app-documentos-registrar&#x27;,
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: &#x27;./documentos.registrar.html&#x27;,
+  styleUrl: &#x27;./documentos.registrar.css&#x27;,
+})
+export class DocumentosRegistrar implements OnInit, OnDestroy {
+  private fb &#x3D; inject(FormBuilder);
+  private router &#x3D; inject(Router);
+  private service &#x3D; inject(DocumentosService);
+  private notify &#x3D; inject(NotificacionesService);
+  private pageMeta &#x3D; inject(PageMetaService);
+
+  private subForm &#x3D; new Subscription();
+
+  readonly tipoOpciones &#x3D; DOCUMENTO_TIPO_OPCIONES;
+
+  rutasBase: VMDocumentoRutaBaseListaSimple[] &#x3D; [];
+  selectedFile: File | null &#x3D; null;
+
+  submitting &#x3D; false;
+
+  form &#x3D; this.fb.group&lt;ControlsOf&lt;DocumentosRegistrarForm&gt;&gt;({
+    entidadTipo: new FormControl&lt;DocumentoEntidadTipo | &#x27;&#x27;&gt;(&#x27;&#x27;, {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+
+    entidadId: new FormControl&lt;number | null&gt;(null, {
+      validators: [],
+    }),
+
+    rutaBaseId: new FormControl&lt;number | null&gt;(null, {
+      validators: [Validators.required],
+    }),
+
+    categoria: new FormControl(&#x27;&#x27;, {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+
+    categoriaOtros: new FormControl(&#x27;&#x27;, {
+      nonNullable: true,
+      validators: [Validators.maxLength(80)],
+    }),
+
+    fechaDocumento: new FormControl(&#x27;&#x27;, {
+      nonNullable: true,
+    }),
+
+    descripcion: new FormControl(&#x27;&#x27;, {
+      nonNullable: true,
+      validators: [Validators.maxLength(255)],
+    }),
+  });
+
+  get entidadTipo(): DocumentoEntidadTipo | &#x27;&#x27; {
+    return this.form.controls.entidadTipo.value;
+  }
+
+  get categoriaOpciones(): readonly { value: string; label: string }[] {
+    return documentoCategoriaOpcionesPorTipo(this.entidadTipo);
+  }
+
+  get requiereEntidadId(): boolean {
+    return documentoTipoRequiereEntidadId(this.entidadTipo);
+  }
+
+  get entidadIdLabel(): string {
+    return documentoEntidadIdLabel(this.entidadTipo);
+  }
+
+  get entidadIdPlaceholder(): string {
+    return documentoEntidadIdPlaceholder(this.entidadTipo);
+  }
+
+  get isCategoriaOtros(): boolean {
+    return this.form.controls.categoria.value &#x3D;&#x3D;&#x3D; &#x27;OTROS&#x27;;
+  }
+
+  ngOnInit(): void {
+    this.pageMeta.replace({
+      titulo: &#x27;Registrar documento&#x27;,
+      ruta: [&#x27;/documentos&#x27;],
+    });
+
+    this.cargarRutasBase();
+
+    this.subForm.add(
+      this.form.controls.entidadTipo.valueChanges.subscribe(() &#x3D;&gt; {
+        this.onTipoDocumentoChange();
+      }),
+    );
+
+    this.subForm.add(
+      this.form.controls.categoria.valueChanges.subscribe(() &#x3D;&gt; {
+        this.syncCategoriaOtros();
+      }),
+    );
+
+    this.syncCategoriaOtros();
+    this.syncEntidadId();
+  }
+
+  ngOnDestroy(): void {
+    this.subForm.unsubscribe();
+    this.pageMeta.clear();
+  }
+
+  private cargarRutasBase(): void {
+    this.service
+      .listRutasBase({
+        page: 1,
+        pageSize: 50,
+        estado: 1,
+      })
+      .subscribe({
+        next: (res) &#x3D;&gt; {
+          this.rutasBase &#x3D; res.items ?? [];
+          this.setRutaBasePorTipo();
+        },
+        error: () &#x3D;&gt; {
+          this.rutasBase &#x3D; [];
+        },
+      });
+  }
+
+  private onTipoDocumentoChange(): void {
+    this.form.patchValue(
+      {
+        categoria: &#x27;&#x27;,
+        categoriaOtros: &#x27;&#x27;,
+        entidadId: null,
+      },
+      { emitEvent: false },
+    );
+
+    this.syncEntidadId();
+    this.syncCategoriaOtros();
+    this.setRutaBasePorTipo();
+  }
+
+  private setRutaBasePorTipo(): void {
+    if (this.rutasBase.length &#x3D;&#x3D;&#x3D; 0) return;
+
+    const tipo &#x3D; this.entidadTipo;
+
+    const rutaPreferida &#x3D;
+      tipo &#x3D;&#x3D;&#x3D; &#x27;BACKUP&#x27;
+        ? this.rutasBase.find((r) &#x3D;&gt; r.codigo &#x3D;&#x3D;&#x3D; &#x27;BACKUP&#x27;) ?? this.rutasBase[0]
+        : this.rutasBase.find((r) &#x3D;&gt; r.codigo &#x3D;&#x3D;&#x3D; &#x27;GENERAL&#x27;) ?? this.rutasBase[0];
+
+    if (rutaPreferida) {
+      this.form.patchValue(
+        { rutaBaseId: rutaPreferida.id },
+        { emitEvent: false },
+      );
+    }
+  }
+
+  private syncEntidadId(): void {
+    const ctrl &#x3D; this.form.controls.entidadId;
+
+    if (this.requiereEntidadId) {
+      ctrl.setValidators([Validators.required, Validators.min(1)]);
+    } else {
+      ctrl.clearValidators();
+      ctrl.setValue(null, { emitEvent: false });
+    }
+
+    ctrl.updateValueAndValidity({ emitEvent: false });
+  }
+
+  private syncCategoriaOtros(): void {
+    const ctrl &#x3D; this.form.controls.categoriaOtros;
+
+    if (this.isCategoriaOtros) {
+      ctrl.enable({ emitEvent: false });
+      ctrl.setValidators([Validators.required, Validators.maxLength(80)]);
+    } else {
+      ctrl.clearValidators();
+      ctrl.setValue(&#x27;&#x27;, { emitEvent: false });
+      ctrl.disable({ emitEvent: false });
+    }
+
+    ctrl.updateValueAndValidity({ emitEvent: false });
+  }
+
+  onFileSelected(event: Event): void {
+    const input &#x3D; event.target as HTMLInputElement;
+    this.selectedFile &#x3D; input.files?.[0] ?? null;
+  }
+
+  async onSubmit(): Promise&lt;void&gt; {
+    if (!this.selectedFile) {
+      await this.notify.ok({
+        variant: &#x27;warning&#x27;,
+        title: &#x27;Archivo requerido&#x27;,
+        message: &#x27;Seleccione un archivo para subir.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    this.form.markAllAsTouched();
+
+    if (this.form.invalid) {
+      await this.notify.ok({
+        variant: &#x27;warning&#x27;,
+        title: &#x27;Datos incompletos&#x27;,
+        message: &#x27;Revisa el tipo, ruta base, categoría y datos obligatorios.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    const v &#x3D; this.form.getRawValue();
+
+    const tipo &#x3D; v.entidadTipo;
+
+    if (!tipo) {
+      await this.notify.ok({
+        variant: &#x27;warning&#x27;,
+        title: &#x27;Tipo requerido&#x27;,
+        message: &#x27;Seleccione el tipo de documento.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    const categoria &#x3D;
+      v.categoria &#x3D;&#x3D;&#x3D; &#x27;OTROS&#x27;
+        ? v.categoriaOtros.trim()
+        : v.categoria.trim();
+
+    if (!categoria) {
+      await this.notify.ok({
+        variant: &#x27;warning&#x27;,
+        title: &#x27;Categoría requerida&#x27;,
+        message: &#x27;Seleccione o indique la categoría del documento.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    if (documentoTipoRequiereEntidadId(tipo) &amp;&amp; !v.entidadId) {
+      await this.notify.ok({
+        variant: &#x27;warning&#x27;,
+        title: &#x27;Entidad requerida&#x27;,
+        message: &#x60;Indique el ${this.entidadIdLabel.toLowerCase()}.&#x60;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    const ok &#x3D; await this.notify.confirm({
+      variant: &#x27;info&#x27;,
+      title: &#x27;Registrar documento&#x27;,
+      message: &#x27;¿Deseas subir y registrar este documento?&#x27;,
+      confirmText: &#x27;Registrar&#x27;,
+      cancelText: &#x27;Cancelar&#x27;,
+    });
+
+    if (!ok) return;
+
+    const vm: VMDocumentoSubir &#x3D; {
+      file: this.selectedFile,
+      entidadTipo: tipo,
+      entidadId: documentoTipoRequiereEntidadId(tipo)
+        ? Number(v.entidadId)
+        : undefined,
+      rutaBaseId: Number(v.rutaBaseId),
+      categoria,
+      descripcion: v.descripcion,
+      fechaDocumento: v.fechaDocumento || undefined,
+    };
+
+    this.submitting &#x3D; true;
+
+    try {
+      await this.service.subirDocumento(vm);
+
+      await this.notify.ok({
+        variant: &#x27;success&#x27;,
+        title: &#x27;Documento registrado&#x27;,
+        message: &#x27;El documento fue subido y registrado correctamente.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+
+      await this.router.navigate([&#x27;/documentos&#x27;]);
+    } catch {
+      // El interceptor global muestra el error.
+    } finally {
+      this.submitting &#x3D; false;
+    }
+  }
+
+  async onBack(): Promise&lt;void&gt; {
+    if (this.form.dirty || this.selectedFile) {
+      const ok &#x3D; await this.notify.confirm({
+        variant: &#x27;warning&#x27;,
+        title: &#x27;Descartar registro&#x27;,
+        message: &#x27;Hay datos sin guardar. ¿Deseas descartarlos?&#x27;,
+        confirmText: &#x27;Descartar&#x27;,
+        cancelText: &#x27;Seguir aquí&#x27;,
+      });
+
+      if (!ok) return;
+    }
+
+    await this.router.navigate([&#x27;/documentos&#x27;]);
+  }
+}
+
+interface DocumentosRegistrarForm {
+  entidadTipo: DocumentoEntidadTipo | &#x27;&#x27;;
+  entidadId: number | null;
+  rutaBaseId: number | null;
+  categoria: string;
+  categoriaOtros: string;
+  fechaDocumento: string;
+  descripcion: string;
+}
+
+type ControlsOf&lt;T&gt; &#x3D; {
+  [K in keyof T]: FormControl&lt;T[K]&gt;;
+};</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!-- src/app/pages/documentos/documentos.registrar/documentos.registrar.html --&gt;
+
+&lt;div class&#x3D;&quot;container&quot;&gt;
+  &lt;div class&#x3D;&quot;row justify-content-center&quot;&gt;
+    &lt;div class&#x3D;&quot;col-12 col-lg-8&quot;&gt;
+
+      &lt;div class&#x3D;&quot;card shadow-sm&quot;&gt;
+        &lt;div class&#x3D;&quot;card-body&quot;&gt;
+
+          &lt;h5 class&#x3D;&quot;mb-4&quot;&gt;Registrar documento&lt;/h5&gt;
+
+          &lt;form [formGroup]&#x3D;&quot;form&quot; novalidate [class.was-validated]&#x3D;&quot;submitting&quot;&gt;
+
+            &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+              &lt;div class&#x3D;&quot;col-12&quot;&gt;
+                &lt;label class&#x3D;&quot;form-label fw-semibold&quot;&gt;Archivo&lt;/label&gt;
+
+                &lt;input
+                  type&#x3D;&quot;file&quot;
+                  class&#x3D;&quot;form-control&quot;
+                  (change)&#x3D;&quot;onFileSelected($event)&quot;
+                  [disabled]&#x3D;&quot;submitting&quot;&gt;
+
+                @if (selectedFile) {
+                  &lt;div class&#x3D;&quot;form-text&quot;&gt;
+                    Seleccionado: {{ selectedFile.name }}
+                  &lt;/div&gt;
+                }
+              &lt;/div&gt;
+
+              &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;
+                &lt;label class&#x3D;&quot;form-label fw-semibold&quot;&gt;Tipo de documento&lt;/label&gt;
+
+                &lt;select
+                  class&#x3D;&quot;form-select&quot;
+                  formControlName&#x3D;&quot;entidadTipo&quot;&gt;
+                  &lt;option value&#x3D;&quot;&quot;&gt;Seleccione&lt;/option&gt;
+
+                  @for (opt of tipoOpciones; track opt.value) {
+                    &lt;option [value]&#x3D;&quot;opt.value&quot;&gt;{{ opt.label }}&lt;/option&gt;
+                  }
+                &lt;/select&gt;
+              &lt;/div&gt;
+
+              @if (requiereEntidadId) {
+                &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;
+                  &lt;label class&#x3D;&quot;form-label fw-semibold&quot;&gt;{{ entidadIdLabel }}&lt;/label&gt;
+
+                  &lt;input
+                    type&#x3D;&quot;number&quot;
+                    min&#x3D;&quot;1&quot;
+                    class&#x3D;&quot;form-control&quot;
+                    formControlName&#x3D;&quot;entidadId&quot;
+                    [placeholder]&#x3D;&quot;entidadIdPlaceholder&quot;&gt;
+
+                  &lt;div class&#x3D;&quot;form-text&quot;&gt;
+                    Debe existir en el sistema. El backend validará que no esté eliminado.
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              }
+
+              &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;
+                &lt;label class&#x3D;&quot;form-label fw-semibold&quot;&gt;Ruta base&lt;/label&gt;
+
+                &lt;select
+                  class&#x3D;&quot;form-select&quot;
+                  formControlName&#x3D;&quot;rutaBaseId&quot;&gt;
+                  @for (r of rutasBase; track r.id) {
+                    &lt;option [ngValue]&#x3D;&quot;r.id&quot;&gt;
+                      {{ r.nombre }} — {{ r.codigo }}
+                    &lt;/option&gt;
+                  }
+                &lt;/select&gt;
+
+                @if (rutasBase.length &#x3D;&#x3D;&#x3D; 0) {
+                  &lt;div class&#x3D;&quot;form-text text-danger&quot;&gt;
+                    No hay rutas base activas registradas.
+                  &lt;/div&gt;
+                }
+              &lt;/div&gt;
+
+              &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;
+                &lt;label class&#x3D;&quot;form-label fw-semibold&quot;&gt;Categoría&lt;/label&gt;
+
+                &lt;select
+                  class&#x3D;&quot;form-select&quot;
+                  formControlName&#x3D;&quot;categoria&quot;&gt;
+                  &lt;option value&#x3D;&quot;&quot;&gt;Seleccione&lt;/option&gt;
+
+                  @for (opt of categoriaOpciones; track opt.value) {
+                    &lt;option [value]&#x3D;&quot;opt.value&quot;&gt;{{ opt.label }}&lt;/option&gt;
+                  }
+                &lt;/select&gt;
+              &lt;/div&gt;
+
+              @if (isCategoriaOtros) {
+                &lt;div class&#x3D;&quot;col-12&quot;&gt;
+                  &lt;label class&#x3D;&quot;form-label fw-semibold&quot;&gt;Otra categoría&lt;/label&gt;
+
+                  &lt;input
+                    type&#x3D;&quot;text&quot;
+                    maxlength&#x3D;&quot;80&quot;
+                    class&#x3D;&quot;form-control&quot;
+                    formControlName&#x3D;&quot;categoriaOtros&quot;&gt;
+                &lt;/div&gt;
+              }
+
+              &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;
+                &lt;label class&#x3D;&quot;form-label fw-semibold&quot;&gt;Fecha del documento&lt;/label&gt;
+
+                &lt;input
+                  type&#x3D;&quot;date&quot;
+                  class&#x3D;&quot;form-control&quot;
+                  formControlName&#x3D;&quot;fechaDocumento&quot;&gt;
+
+                &lt;div class&#x3D;&quot;form-text&quot;&gt;
+                  Para reportes y backups se usará para organizar por año y mes.
+                &lt;/div&gt;
+              &lt;/div&gt;
+
+              &lt;div class&#x3D;&quot;col-12&quot;&gt;
+                &lt;label class&#x3D;&quot;form-label fw-semibold&quot;&gt;Descripción&lt;/label&gt;
+
+                &lt;textarea
+                  rows&#x3D;&quot;3&quot;
+                  maxlength&#x3D;&quot;255&quot;
+                  class&#x3D;&quot;form-control&quot;
+                  formControlName&#x3D;&quot;descripcion&quot;
+                  placeholder&#x3D;&quot;Descripción opcional&quot;&gt;
+                &lt;/textarea&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;d-flex justify-content-between mt-4&quot;&gt;
+              &lt;button
+                type&#x3D;&quot;button&quot;
+                class&#x3D;&quot;btn btn-warning&quot;
+                (click)&#x3D;&quot;onBack()&quot;
+                [disabled]&#x3D;&quot;submitting&quot;&gt;
+                Regresar
+              &lt;/button&gt;
+
+              &lt;button
+                type&#x3D;&quot;button&quot;
+                class&#x3D;&quot;btn btn-success&quot;
+                (click)&#x3D;&quot;onSubmit()&quot;
+                [disabled]&#x3D;&quot;submitting || rutasBase.length &#x3D;&#x3D;&#x3D; 0&quot;&gt;
+                @if (submitting) {
+                  Registrando…
+                } @else {
+                  Registrar documento
+                }
+              &lt;/button&gt;
+            &lt;/div&gt;
+
+          &lt;/form&gt;
+
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./documentos.registrar.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">/* src/app/pages/documentos/documentos.registrar/documentos.registrar.css */
+
+.card {
+  border-radius: .5rem;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.form-text {
+  font-size: .82rem;
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!-- src/app/pages/documentos/documentos.registrar/documentos.registrar.html --><div class="container">  <div class="row justify-content-center">    <div class="col-12 col-lg-8">      <div class="card shadow-sm">        <div class="card-body">          <h5 class="mb-4">Registrar documento</h5>          <form [formGroup]="form" novalidate [class.was-validated]="submitting">            <div class="row g-3">              <div class="col-12">                <label class="form-label fw-semibold">Archivo</label>                <input                  type="file"                  class="form-control"                  (change)="onFileSelected($event)"                  [disabled]="submitting">                @if (selectedFile) {                  <div class="form-text">                    Seleccionado: {{ selectedFile.name }}                  </div>                }              </div>              <div class="col-12 col-md-6">                <label class="form-label fw-semibold">Tipo de documento</label>                <select                  class="form-select"                  formControlName="entidadTipo">                  <option value="">Seleccione</option>                  @for (opt of tipoOpciones; track opt.value) {                    <option [value]="opt.value">{{ opt.label }}</option>                  }                </select>              </div>              @if (requiereEntidadId) {                <div class="col-12 col-md-6">                  <label class="form-label fw-semibold">{{ entidadIdLabel }}</label>                  <input                    type="number"                    min="1"                    class="form-control"                    formControlName="entidadId"                    [placeholder]="entidadIdPlaceholder">                  <div class="form-text">                    Debe existir en el sistema. El backend validará que no esté eliminado.                  </div>                </div>              }              <div class="col-12 col-md-6">                <label class="form-label fw-semibold">Ruta base</label>                <select                  class="form-select"                  formControlName="rutaBaseId">                  @for (r of rutasBase; track r.id) {                    <option [ngValue]="r.id">                      {{ r.nombre }} — {{ r.codigo }}                    </option>                  }                </select>                @if (rutasBase.length === 0) {                  <div class="form-text text-danger">                    No hay rutas base activas registradas.                  </div>                }              </div>              <div class="col-12 col-md-6">                <label class="form-label fw-semibold">Categoría</label>                <select                  class="form-select"                  formControlName="categoria">                  <option value="">Seleccione</option>                  @for (opt of categoriaOpciones; track opt.value) {                    <option [value]="opt.value">{{ opt.label }}</option>                  }                </select>              </div>              @if (isCategoriaOtros) {                <div class="col-12">                  <label class="form-label fw-semibold">Otra categoría</label>                  <input                    type="text"                    maxlength="80"                    class="form-control"                    formControlName="categoriaOtros">                </div>              }              <div class="col-12 col-md-6">                <label class="form-label fw-semibold">Fecha del documento</label>                <input                  type="date"                  class="form-control"                  formControlName="fechaDocumento">                <div class="form-text">                  Para reportes y backups se usará para organizar por año y mes.                </div>              </div>              <div class="col-12">                <label class="form-label fw-semibold">Descripción</label>                <textarea                  rows="3"                  maxlength="255"                  class="form-control"                  formControlName="descripcion"                  placeholder="Descripción opcional">                </textarea>              </div>            </div>            <div class="d-flex justify-content-between mt-4">              <button                type="button"                class="btn btn-warning"                (click)="onBack()"                [disabled]="submitting">                Regresar              </button>              <button                type="button"                class="btn btn-success"                (click)="onSubmit()"                [disabled]="submitting || rutasBase.length === 0">                @if (submitting) {                  Registrando…                } @else {                  Registrar documento                }              </button>            </div>          </form>        </div>      </div>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AnaliticasDashboard', 'selector': 'app-analiticas-dashboard'},{'name': 'App', 'selector': 'app-root'},{'name': 'AsistenciaLista', 'selector': 'app-asistencia-lista'},{'name': 'AsistenciasDashboard', 'selector': 'app-asistencias-dashboard'},{'name': 'AudienciaCalendario', 'selector': 'app-audiencia-calendario'},{'name': 'AudienciaDetalle', 'selector': 'app-audiencia-detalle'},{'name': 'AudienciaRegistrar', 'selector': 'app-audiencia-registrar'},{'name': 'CiudadanoDetalle', 'selector': 'app-ciudadano-detalle'},{'name': 'CiudadanoLista', 'selector': 'app-ciudadano-lista'},{'name': 'CiudadanoRegistrar', 'selector': 'app-ciudadano-registrar'},{'name': 'ConfirmarCorreo', 'selector': 'app-cuenta-confirmar-correo'},{'name': 'ConsultaDetalle', 'selector': 'app-consulta-detalle'},{'name': 'ConsultaLista', 'selector': 'app-consulta-lista'},{'name': 'ConsultaListaCiudadano', 'selector': 'app-consulta-lista-ciudadano'},{'name': 'ConsultaRegistar', 'selector': 'app-consulta-registrar'},{'name': 'DocumentosListaEntidad', 'selector': 'app-documentos-lista-entidad'},{'name': 'DocumentosListaGeneral', 'selector': 'app-documentos-lista-general'},{'name': 'DocumentosRegistrar', 'selector': 'app-documentos-registrar'},{'name': 'DocumentosRutaBaseLista', 'selector': 'app-documentos-ruta-base-lista'},{'name': 'DocumentosRutaBaseRegistrar', 'selector': 'app-documentos-ruta-base-registrar'},{'name': 'ExportarConDriveComponent', 'selector': 'app-exportar-con-drive'},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'Header', 'selector': 'app-header'},{'name': 'HorarioDetalle', 'selector': 'app-horario-detalle'},{'name': 'HorarioLista', 'selector': 'app-horario-lista'},{'name': 'HorarioRegistrar', 'selector': 'app-horario-registrar'},{'name': 'Ingresar', 'selector': 'app-cuenta-ingresar'},{'name': 'JustificacionListaMis', 'selector': 'app-justificacion-lista-mis'},{'name': 'JustificacionListaPendientes', 'selector': 'app-justificacion-lista-pendientes'},{'name': 'JustificacionRegistrar', 'selector': 'app-justificacion-registrar'},{'name': 'Main_layout', 'selector': 'app-main-layout'},{'name': 'NotificacionestVer', 'selector': 'app-notificaciones-ver'},{'name': 'PaginaNoEncontradaComponent', 'selector': 'app-pagina-no-encontrada'},{'name': 'Perfil', 'selector': 'app-cuenta-perfil'},{'name': 'ProcesoDetalle', 'selector': 'app-proceso-detalle'},{'name': 'ProcesoLista', 'selector': 'app-proceso-lista'},{'name': 'ProcesoRegistrar', 'selector': 'app-proceso-registrar'},{'name': 'Registar', 'selector': 'app-cuenta-registrar'},{'name': 'SeguimientoListaConsulta', 'selector': 'app-seguimiento-lista-consulta'},{'name': 'SeguimientoRegistar', 'selector': 'app-seguimiento-registrar'},{'name': 'Sidebar', 'selector': 'app-sidebar'},{'name': 'Simple_layout', 'selector': 'app-simple_layout'},{'name': 'TramiteDetalle', 'selector': 'app-tramite-detalle'},{'name': 'TramiteLista', 'selector': 'app-tramite-lista'},{'name': 'TramiteRegistrar', 'selector': 'app-tramite-registrar'},{'name': 'UsuarioDetalle', 'selector': 'app-usuario-detalle'},{'name': 'UsuarioHorarioListaUsuario', 'selector': 'app-usuario-horario-lista-usuario'},{'name': 'UsuarioLista', 'selector': 'app-usuario-lista'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'DocumentosRegistrar'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'DocumentosRegistrar.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,38 +1,81 @@
-<nav class="navbar navbar-expand-lg navbar-dark color_azul" style="user-select: none;">
+<nav class="navbar navbar-dark color_azul header-navbar" style="user-select: none;">
   <div class="container-fluid header-bar">
-    <!-- SLOT FIJO PARA ATRÁS (evita saltos) -->
     <div class="back-slot">
       @if (backLink) {
-        <button type="button"
-                class="btn btn-back"
-                (click)="goBack()"
-                aria-label="Volver">
+        <button type="button" class="btn btn-back" (click)="goBack()" aria-label="Volver">
           ⬅️
         </button>
       } @else {
-        <!-- Placeholder idéntico en tamaño -->
         <span class="btn-back placeholder" aria-hidden="true">⬅️</span>
       }
     </div>
 
-    <!-- SLOT TÍTULO (ancho/altura reservado) -->
     <div class="navbar-brand title-slot">
       <span class="title-text">{{ title || ' ' }}</span>
     </div>
 
-    <!-- Toggler -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <div class="header-actions">
+      <div class="notification-area" (click)="keepNotificationMenuOpen($event)">
+        <button
+          type="button"
+          class="notification-button"
+          [class.has-unread]="unreadCount > 0"
+          (click)="toggleNotifications($event)"
+          aria-label="Notificaciones"
+          [attr.aria-expanded]="notificationOpen">
+          <span class="notification-bell" aria-hidden="true">🔔</span>
+          @if (unreadCount > 0) {
+            <span class="notification-counter">
+              {{ unreadCount > 99 ? '99+' : unreadCount }}
+            </span>
+          }
+        </button>
 
-    <!-- Menú -->
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link text-light" href="#" (click)="onLogout(); $event.preventDefault()">Cerrar sesión</a>
-        </li>
-      </ul>
+        @if (notificationOpen) {
+          <div class="notification-menu shadow-lg" (click)="keepNotificationMenuOpen($event)">
+            <div class="notification-menu-header">
+              <strong>Notificaciones</strong>
+              <button
+                type="button"
+                class="btn-close btn-close-sm"
+                aria-label="Cerrar"
+                (click)="notificationOpen = false">
+              </button>
+            </div>
+
+            <div class="notification-menu-body">
+              @if (notificationLoading && notificationItems.length === 0) {
+                <div class="notification-empty">Cargando…</div>
+              } @else if (notificationItems.length === 0) {
+                <div class="notification-empty">No hay notificaciones pendientes.</div>
+              } @else {
+                @for (item of notificationItems; track trackNotification($index, item)) {
+                  <article class="notification-item" [class.unread]="!item.leida">
+                    <div class="notification-item-main">
+                      <div class="notification-title">{{ item.titulo }}</div>
+                      <div class="notification-message">{{ item.mensaje }}</div>
+                      <div class="notification-date">{{ fechaNotificacion(item) }}</div>
+                    </div>
+
+                    <button
+                      type="button"
+                      class="notification-dismiss"
+                      aria-label="Descartar notificación"
+                      title="No volver a mostrar"
+                      (click)="descartarNotification($event, item)">
+                      ×
+                    </button>
+                  </article>
+                }
+              }
+            </div>
+          </div>
+        }
+      </div>
+
+      <button type="button" class="logout-button" (click)="onLogout()">
+        Cerrar sesión
+      </button>
     </div>
   </div>
 </nav>

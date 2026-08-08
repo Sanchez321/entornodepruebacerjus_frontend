@@ -6,9 +6,10 @@ import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { PageMetaService } from '@/app/services/page_meta.service';
+import { ESTADO_USUARIO_OPCIONES,usuarioEstadoBadgeClass } from '../models/usuario.dominio';
 
 import { UsuarioService } from '../services/usuario.service';
-import { VMUsuarioListaSimple } from '../models/usuario.vm';
+import { VMUsuarioListaSimple, } from '../models/usuario.vm';
 
 @Component({
   selector: 'app-usuario-lista',
@@ -22,6 +23,8 @@ export class UsuarioLista implements OnInit {
   private fb = inject(FormBuilder);
   private service = inject(UsuarioService);
   private pageMeta = inject(PageMetaService);
+  estadoOpciones = ESTADO_USUARIO_OPCIONES;
+  badgeClass = usuarioEstadoBadgeClass;
   /* Formulario de filtros */
   form = this.fb.group({
     id: [null],
@@ -29,8 +32,8 @@ export class UsuarioLista implements OnInit {
     apellidoPaterno: [''],
     apellidoMaterno: [''],
     nombres: [''],
+    estado: [''],
   });
-
   /* Estado de datos / UI visibles */
   items: VMUsuarioListaSimple[] = [];
   total = 0;
@@ -113,6 +116,7 @@ export class UsuarioLista implements OnInit {
       apellidoPaterno: '',
       apellidoMaterno: '',
       nombres: '',
+      estado: '',
     });
     this.page = 1;
     this.load();
@@ -133,6 +137,7 @@ export class UsuarioLista implements OnInit {
   }
 
   load(): void {
+  
     this.loading = true;
     this.cancelTimers();
     const myReq = ++this.reqSeq;
@@ -164,6 +169,7 @@ export class UsuarioLista implements OnInit {
         apellidoPaterno: v.apellidoPaterno || undefined,
         apellidoMaterno: v.apellidoMaterno || undefined,
         nombres: v.nombres || undefined,
+        estado: v.estado === '' || v.estado == null ? undefined : Number(v.estado) as any,
       })
       .subscribe({
         next: (res) => {

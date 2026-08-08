@@ -16,7 +16,7 @@ export function MapConsultaListaGeneralItemVM(a: ApiConsultaListaGeneralSimple):
     dni: a.ci_DNI ?? null,
 
     fecha: a.co_fecha,
-    fecha_formato: formatFechaPeru(new Date(a.co_fecha)),
+    fecha_formato: formatFechaConsulta(a.co_fecha),
 
     materias,
     materiaOtros,
@@ -33,7 +33,7 @@ export function MapConsultaListaCiudadanoItemVM(a: ApiConsultaListaCiudadanoSimp
     id: a.co_ID,
     resumen: a.co_resumen,
     fecha: a.co_fecha,
-    fecha_formato: formatFechaPeru(new Date(a.co_fecha)),
+    fecha_formato: formatFechaConsulta(a.co_fecha),
     llevaCaso: a.co_lleva_caso,
     llevaCasoTexto: llevaCasoToLabel(a.co_lleva_caso),
   };
@@ -66,9 +66,7 @@ export function MapConsultaCreate(vm: VMConsultaCreate): DTOConsultaCreate {
       ? toUpperSafe(vm.observaciones)
       : null,
 
-    co_fecha_registrada: vm.fechaRegistrada
-      ? new Date(vm.fechaRegistrada).toISOString()
-      : null,
+    co_fecha_registrada: dateOnlyOrNull(vm.fechaRegistrada),
   };
 }
 
@@ -102,7 +100,7 @@ export function MapConsultaListaCiudadanoOpciones(vm: VMConsultaListaCiudadanoOp
 
     co_ID: vm.id ?? undefined,
     co_resumen: trimU(vm.resumen),
-    co_fecha: vm.fecha,
+    co_fecha: dateOnlyOrUndefined(vm.fecha),
     co_lleva_caso: vm.llevaCaso || undefined,
   };
 }
@@ -234,4 +232,57 @@ function formatFechaPeru(fecha?: Date): string {
   };
 
   return fecha.toLocaleString('es-PE', opciones).replace(',', '');
+}
+function isDateOnly(value?: Date | string | null): boolean {
+  if (value instanceof Date) return false;
+
+  return /^\d{4}-\d{2}-\d{2}$/.test(String(value ?? '').trim());
+}
+
+function formatYmdCalendar(ymd?: string | null): string {
+  if (!ymd) return '';
+
+  const [y, m, d] = ymd.split('-').map(Number);
+
+  if (![y, m, d].every(Number.isFinite)) return '';
+
+  return new Intl.DateTimeFormat('es-PE', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    timeZone: 'UTC',
+  }).format(new Date(Date.UTC(y, m - 1, d)));
+}
+
+function formatFechaConsulta(value?: Date | string | null): string {
+  if (!value) return '';
+
+  if (isDateOnly(value)) {
+    return formatYmdCalendar(String(value).trim());
+  }
+
+  const d = value instanceof Date ? value : new Date(value);
+
+  if (Number.isNaN(d.getTime())) return '';
+
+  return formatFechaPeru(d);
+}
+
+function dateOnlyOrNull(value?: Date | string | null): string | null {
+  if (!value) return null;
+
+  if (value instanceof Date) {
+    if (Number.isNaN(value.getTime())) return null;
+    return value.toISOString().slice(0, 10);
+  }
+
+  const raw = String(value).trim();
+
+  if (!raw) return null;
+
+  return raw.slice(0, 10);
+}
+
+function dateOnlyOrUndefined(value?: Date | string | null): string | undefined {
+  return dateOnlyOrNull(value) ?? undefined;
 }

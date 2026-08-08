@@ -1,0 +1,1516 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">frontend documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  AudienciaRegistrarForm</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/pages/audiencia/audiencia.registrar/audiencia.registrar.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" 
+                class="nav-link"
+                
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+
+            </div>
+
+    <div class="tab-pane fade " id="api"><section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-3">
+                    <h6><b>Properties</b></h6>
+                </td>
+                <td class="col-md-9">
+                    <ul class="index-list">
+                        <li>
+                                <a href="#abogado" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">abogado</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#asesorDniBusqueda" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">asesorDniBusqueda</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#asesorId" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">asesorId</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#dniBusqueda" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">dniBusqueda</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#enlaceMeet" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">enlaceMeet</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#expedienteBusqueda" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">expedienteBusqueda</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#fechaHoraFin" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">fechaHoraFin</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#fechaHoraInicio" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">fechaHoraInicio</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#idproceso" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">idproceso</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#observacion" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">observacion</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#titulo" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">titulo</span>
+                                </a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+    <section data-compodoc="block-properties">
+        <h3 id="inputs">Properties</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="abogado"></a>
+                                <span class="name "><b>abogado</b>
+                                    <a href="#abogado">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>abogado:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="735" class="link-to-prism">src/app/pages/audiencia/audiencia.registrar/audiencia.registrar.ts:735</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="asesorDniBusqueda"></a>
+                                <span class="name "><b>asesorDniBusqueda</b>
+                                    <a href="#asesorDniBusqueda">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>asesorDniBusqueda:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="737" class="link-to-prism">src/app/pages/audiencia/audiencia.registrar/audiencia.registrar.ts:737</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="asesorId"></a>
+                                <span class="name "><b>asesorId</b>
+                                    <a href="#asesorId">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>asesorId:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="738" class="link-to-prism">src/app/pages/audiencia/audiencia.registrar/audiencia.registrar.ts:738</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="dniBusqueda"></a>
+                                <span class="name "><b>dniBusqueda</b>
+                                    <a href="#dniBusqueda">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>dniBusqueda:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="731" class="link-to-prism">src/app/pages/audiencia/audiencia.registrar/audiencia.registrar.ts:731</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="enlaceMeet"></a>
+                                <span class="name "><b>enlaceMeet</b>
+                                    <a href="#enlaceMeet">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>enlaceMeet:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="743" class="link-to-prism">src/app/pages/audiencia/audiencia.registrar/audiencia.registrar.ts:743</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="expedienteBusqueda"></a>
+                                <span class="name "><b>expedienteBusqueda</b>
+                                    <a href="#expedienteBusqueda">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>expedienteBusqueda:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="732" class="link-to-prism">src/app/pages/audiencia/audiencia.registrar/audiencia.registrar.ts:732</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="fechaHoraFin"></a>
+                                <span class="name "><b>fechaHoraFin</b>
+                                    <a href="#fechaHoraFin">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>fechaHoraFin:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="741" class="link-to-prism">src/app/pages/audiencia/audiencia.registrar/audiencia.registrar.ts:741</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="fechaHoraInicio"></a>
+                                <span class="name "><b>fechaHoraInicio</b>
+                                    <a href="#fechaHoraInicio">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>fechaHoraInicio:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="740" class="link-to-prism">src/app/pages/audiencia/audiencia.registrar/audiencia.registrar.ts:740</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="idproceso"></a>
+                                <span class="name "><b>idproceso</b>
+                                    <a href="#idproceso">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>idproceso:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="729" class="link-to-prism">src/app/pages/audiencia/audiencia.registrar/audiencia.registrar.ts:729</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="observacion"></a>
+                                <span class="name "><b>observacion</b>
+                                    <a href="#observacion">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>observacion:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="744" class="link-to-prism">src/app/pages/audiencia/audiencia.registrar/audiencia.registrar.ts:744</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="titulo"></a>
+                                <span class="name "><b>titulo</b>
+                                    <a href="#titulo">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>titulo:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="734" class="link-to-prism">src/app/pages/audiencia/audiencia.registrar/audiencia.registrar.ts:734</a></div>
+                                </td>
+                            </tr>
+
+                </tbody>
+            </table>
+    </section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnDestroy, OnInit, inject } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import {ReactiveFormsModule,FormBuilder,Validators,FormControl,AbstractControl,ValidationErrors,ValidatorFn,} from &#x27;@angular/forms&#x27;;
+import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;;
+import { debounceTime, distinctUntilChanged } from &#x27;rxjs/operators&#x27;;
+import { firstValueFrom, Subscription } from &#x27;rxjs&#x27;;
+
+import { AudienciaService } from &#x27;../services/audiencia.service&#x27;;
+import { ProcesoService } from &#x27;../../proceso/services/proceso.service&#x27;;
+
+import { VMAudienciaCreate,VMAudienciaAsesorResumen, } from &#x27;../models/audiencia.vm&#x27;;
+import { VMProcesoListaSimple } from &#x27;../../proceso/models/proceso.vm&#x27;;
+
+import { NotificacionesService } from &#x27;@/app/components/notificaciones/services/notificaciones.service&#x27;;
+import { PageMetaService } from &#x27;@/app/services/page_meta.service&#x27;;
+
+const noBlank: ValidatorFn &#x3D; (c: AbstractControl): ValidationErrors | null &#x3D;&gt; {
+    const v &#x3D; String(c.value ?? &#x27;&#x27;).trim();
+    return v.length &#x3D;&#x3D;&#x3D; 0 ? { required: true } : null;
+};
+
+@Component({
+    selector: &#x27;app-audiencia-registrar&#x27;,
+    standalone: true,
+    imports: [CommonModule, ReactiveFormsModule],
+    templateUrl: &#x27;./audiencia.registrar.html&#x27;,
+    styleUrl: &#x27;./audiencia.registrar.css&#x27;,
+})
+export class AudienciaRegistrar implements OnInit, OnDestroy {
+    private fb &#x3D; inject(FormBuilder);
+    private router &#x3D; inject(Router);
+    private route &#x3D; inject(ActivatedRoute);
+    private audienciaService &#x3D; inject(AudienciaService);
+    private procesoService &#x3D; inject(ProcesoService);
+    private notify &#x3D; inject(NotificacionesService);
+    private pageMeta &#x3D; inject(PageMetaService);
+
+    private subForm &#x3D; new Subscription();
+
+    requiereProceso &#x3D; true;
+
+    procesos: VMProcesoListaSimple[] &#x3D; [];
+    procesoSeleccionado: VMProcesoListaSimple | null &#x3D; null;
+
+    procesoTotal &#x3D; 0;
+    procesoPage &#x3D; 1;
+    procesoPageSize &#x3D; 5;
+
+    buscandoProcesos &#x3D; false;
+    procesoBuscado &#x3D; false;
+    showProcesoOverlay &#x3D; false;
+
+    procesoShownFrom &#x3D; 0;
+    procesoShownTo &#x3D; 0;
+    procesoShownPage &#x3D; 1;
+    procesoShownLastPage &#x3D; 1;
+    procesoShownTotal &#x3D; 0;
+
+    private pendProcesos: VMProcesoListaSimple[] &#x3D; [];
+    private pendProcesoTotal &#x3D; 0;
+    private pendProcesoFrom &#x3D; 0;
+    private pendProcesoTo &#x3D; 0;
+    private pendProcesoPage &#x3D; 1;
+    private pendProcesoLastPage &#x3D; 1;
+
+    private procesoReqSeq &#x3D; 0;
+    private procesoOverlayTimer: any;
+    private procesoOverlayShownAt &#x3D; 0;
+
+    private readonly procesoOverlayDelay &#x3D; 180;
+    private readonly procesoMinOverlayMs &#x3D; 220;
+
+    submitting &#x3D; false;
+
+    asesorEncontrado: VMAudienciaAsesorResumen | null &#x3D; null;
+    asesorBuscado &#x3D; false;
+    buscandoAsesor &#x3D; false;
+
+    private asesorReqSeq &#x3D; 0;
+    headerBlockPx &#x3D; 40;
+
+    get procesoListMinHeight(): number {
+        return this.headerBlockPx + this.procesoPageSize * 48 + 12;
+    }
+
+    get procesoSkeletonRows(): number[] {
+        return Array.from({ length: this.procesoPageSize }, (_, i) &#x3D;&gt; i);
+    }
+
+    get procesoLastPage(): number {
+        return this.procesoPageSize
+            ? Math.max(1, Math.ceil(this.procesoTotal / this.procesoPageSize))
+            : 1;
+    }
+
+    form &#x3D; this.fb.group&lt;ControlsOf&lt;AudienciaRegistrarForm&gt;&gt;({
+        idproceso: new FormControl(0, {
+            nonNullable: true,
+            validators: [Validators.required, Validators.min(1)],
+        }),
+
+        dniBusqueda: new FormControl(&#x27;&#x27;, {
+            nonNullable: true,
+            validators: [Validators.pattern(/^\d{0,11}$/)],
+        }),
+
+        expedienteBusqueda: new FormControl(&#x27;&#x27;, {
+            nonNullable: true,
+            validators: [Validators.maxLength(50)],
+        }),
+
+        titulo: new FormControl(&#x27;&#x27;, {
+            nonNullable: true,
+            validators: [Validators.maxLength(150)],
+        }),
+
+        abogado: new FormControl(&#x27;&#x27;, {
+            nonNullable: true,
+            validators: [noBlank, Validators.maxLength(150)],
+        }),
+
+        asesorDniBusqueda: new FormControl(&#x27;&#x27;, {
+            nonNullable: true,
+            validators: [Validators.pattern(/^\d{0,11}$/)],
+        }),
+
+        asesorId: new FormControl(0, {
+            nonNullable: true,
+            validators: [Validators.required, Validators.min(1)],
+        }),
+
+        fechaHoraInicio: new FormControl(&#x27;&#x27;, {
+            nonNullable: true,
+            validators: [Validators.required],
+        }),
+
+        fechaHoraFin: new FormControl(&#x27;&#x27;, {
+            nonNullable: true,
+        }),
+
+        enlaceMeet: new FormControl(&#x27;&#x27;, {
+            nonNullable: true,
+            validators: [Validators.maxLength(500)],
+        }),
+
+        observacion: new FormControl(&#x27;&#x27;, {
+            nonNullable: true,
+            validators: [Validators.maxLength(600)],
+        }),
+    });
+
+    ngOnInit(): void {
+        const idproceso &#x3D; this.idProcesoFromRoute();
+
+        this.requiereProceso &#x3D; !(idproceso &gt; 0);
+
+        this.pageMeta.replace({
+            titulo: &#x27;Registrar Audiencia&#x27;,
+            ruta: this.backRoute(),
+        });
+
+        if (idproceso &gt; 0) {
+            this.form.patchValue({ idproceso });
+            this.cargarProceso(idproceso);
+        }
+
+        this.subForm.add(
+            this.form.get(&#x27;dniBusqueda&#x27;)!.valueChanges
+                .pipe(
+                    debounceTime(300),
+                    distinctUntilChanged(),
+                )
+                .subscribe(() &#x3D;&gt; {
+                    if (this.requiereProceso) {
+                        this.procesoPage &#x3D; 1;
+                        this.buscarProcesos();
+                    }
+                }),
+        );
+
+        this.subForm.add(
+            this.form.get(&#x27;expedienteBusqueda&#x27;)!.valueChanges
+                .pipe(
+                    debounceTime(300),
+                    distinctUntilChanged(),
+                )
+                .subscribe(() &#x3D;&gt; {
+                    if (this.requiereProceso) {
+                        this.procesoPage &#x3D; 1;
+                        this.buscarProcesos();
+                    }
+                }),
+        );
+        this.subForm.add(
+            this.form.get(&#x27;asesorDniBusqueda&#x27;)!.valueChanges
+                .pipe(
+                    debounceTime(300),
+                    distinctUntilChanged(),
+                )
+                .subscribe(() &#x3D;&gt; {
+                    this.buscarAsesor();
+                }),
+        );
+    }
+
+    ngOnDestroy(): void {
+        this.subForm.unsubscribe();
+        this.cancelProcesoTimers();
+        this.asesorReqSeq++;
+        this.pageMeta.clear();
+    }
+    buscarProcesos(): void {
+        const dni &#x3D; this.form.get(&#x27;dniBusqueda&#x27;)!.value.trim();
+        const expediente &#x3D; this.form.get(&#x27;expedienteBusqueda&#x27;)!.value.trim();
+
+        this.cancelProcesoTimers();
+
+        if (dni.length &lt; 8 &amp;&amp; expediente.length &lt; 3) {
+            this.procesos &#x3D; [];
+            this.procesoTotal &#x3D; 0;
+
+            this.procesoShownFrom &#x3D; 0;
+            this.procesoShownTo &#x3D; 0;
+            this.procesoShownPage &#x3D; 1;
+            this.procesoShownLastPage &#x3D; 1;
+            this.procesoShownTotal &#x3D; 0;
+
+            this.procesoBuscado &#x3D; false;
+            this.buscandoProcesos &#x3D; false;
+            this.showProcesoOverlay &#x3D; false;
+            return;
+        }
+
+        this.buscandoProcesos &#x3D; true;
+
+        const myReq &#x3D; ++this.procesoReqSeq;
+
+        if (this.procesos.length &gt; 0) {
+            this.procesoOverlayTimer &#x3D; setTimeout(() &#x3D;&gt; {
+                if (this.procesoReqSeq &#x3D;&#x3D;&#x3D; myReq) {
+                    this.showProcesoOverlay &#x3D; true;
+                    this.procesoOverlayShownAt &#x3D; performance.now();
+                }
+            }, this.procesoOverlayDelay);
+        } else {
+            this.showProcesoOverlay &#x3D; false;
+        }
+
+        this.procesoService.list({
+            page: this.procesoPage,
+            pageSize: this.procesoPageSize,
+            dni: dni || undefined,
+            numeroExpediente: expediente || undefined,
+        })
+        .subscribe({
+            next: (res) &#x3D;&gt; {
+                if (myReq !&#x3D;&#x3D; this.procesoReqSeq) return;
+
+                const incoming &#x3D; res.items ?? [];
+                const total &#x3D; res.total ?? incoming.length;
+
+                const from &#x3D; incoming.length &gt; 0
+                    ? (this.procesoPage - 1) * this.procesoPageSize + 1
+                    : 0;
+
+                const to &#x3D; incoming.length &gt; 0
+                    ? (this.procesoPage - 1) * this.procesoPageSize + incoming.length
+                    : 0;
+
+                const last &#x3D; this.procesoPageSize
+                    ? Math.max(1, Math.ceil(total / this.procesoPageSize))
+                    : 1;
+
+                this.pendProcesos &#x3D; incoming;
+                this.pendProcesoTotal &#x3D; total;
+                this.pendProcesoFrom &#x3D; from;
+                this.pendProcesoTo &#x3D; to;
+                this.pendProcesoPage &#x3D; this.procesoPage;
+                this.pendProcesoLastPage &#x3D; last;
+
+                this.finishProcesoLoading();
+            },
+            error: () &#x3D;&gt; {
+                if (myReq !&#x3D;&#x3D; this.procesoReqSeq) return;
+
+                this.pendProcesos &#x3D; this.procesos;
+                this.pendProcesoTotal &#x3D; this.procesoTotal;
+                this.pendProcesoFrom &#x3D; this.procesoShownFrom;
+                this.pendProcesoTo &#x3D; this.procesoShownTo;
+                this.pendProcesoPage &#x3D; this.procesoShownPage || this.procesoPage;
+                this.pendProcesoLastPage &#x3D; this.procesoShownLastPage || this.procesoLastPage;
+
+                this.finishProcesoLoading();
+            },
+        });
+    }
+
+    goToProcesoPage(page: number): void {
+        if (page &lt; 1) return;
+
+        const last &#x3D; this.procesoLastPage;
+        if (last &amp;&amp; page &gt; last) return;
+
+        this.procesoPage &#x3D; page;
+        this.buscarProcesos();
+    }
+
+    toggleProceso(p: VMProcesoListaSimple): void {
+        if (this.isProcesoSeleccionado(p)) {
+            this.limpiarProcesoSeleccionado();
+            return;
+        }
+
+        this.seleccionarProceso(p);
+    }
+
+    seleccionarProceso(p: VMProcesoListaSimple): void {
+        this.procesoSeleccionado &#x3D; p;
+
+        this.form.patchValue({
+            idproceso: p.id,
+        });
+    }
+
+    isProcesoSeleccionado(p: VMProcesoListaSimple): boolean {
+        return this.form.get(&#x27;idproceso&#x27;)!.value &#x3D;&#x3D;&#x3D; p.id;
+    }
+
+    limpiarProceso(): void {
+        this.form.patchValue({
+            idproceso: 0,
+            dniBusqueda: &#x27;&#x27;,
+            expedienteBusqueda: &#x27;&#x27;,
+        }, { emitEvent: false });
+
+        this.procesoPage &#x3D; 1;
+        this.procesoTotal &#x3D; 0;
+        this.procesos &#x3D; [];
+        this.procesoBuscado &#x3D; false;
+        this.procesoSeleccionado &#x3D; null;
+        this.buscandoProcesos &#x3D; false;
+        this.showProcesoOverlay &#x3D; false;
+
+        this.procesoShownFrom &#x3D; 0;
+        this.procesoShownTo &#x3D; 0;
+        this.procesoShownPage &#x3D; 1;
+        this.procesoShownLastPage &#x3D; 1;
+        this.procesoShownTotal &#x3D; 0;
+
+        this.cancelProcesoTimers();
+    }
+
+    limpiarProcesoSeleccionado(): void {
+        this.form.patchValue({
+            idproceso: 0,
+        });
+
+        this.procesoSeleccionado &#x3D; null;
+    }
+
+    buscarAsesor(): void {
+        const dni &#x3D; this.form.get(&#x27;asesorDniBusqueda&#x27;)!.value.trim();
+
+        if (dni.length &lt; 8) {
+            this.asesorEncontrado &#x3D; null;
+            this.asesorBuscado &#x3D; false;
+            this.buscandoAsesor &#x3D; false;
+
+            this.form.patchValue({
+                asesorId: 0,
+            }, { emitEvent: false });
+
+            return;
+        }
+
+        this.buscandoAsesor &#x3D; true;
+        this.asesorEncontrado &#x3D; null;
+
+        this.form.patchValue({
+            asesorId: 0,
+        }, { emitEvent: false });
+
+        const myReq &#x3D; ++this.asesorReqSeq;
+
+        this.audienciaService.getAsesorResumenByDni(dni).subscribe({
+            next: (asesor) &#x3D;&gt; {
+                if (myReq !&#x3D;&#x3D; this.asesorReqSeq) return;
+
+                this.asesorEncontrado &#x3D; asesor;
+                this.asesorBuscado &#x3D; true;
+                this.buscandoAsesor &#x3D; false;
+
+                this.form.patchValue({
+                    asesorId: asesor?.id ?? 0,
+                }, { emitEvent: false });
+            },
+            error: () &#x3D;&gt; {
+                if (myReq !&#x3D;&#x3D; this.asesorReqSeq) return;
+
+                this.asesorEncontrado &#x3D; null;
+                this.asesorBuscado &#x3D; true;
+                this.buscandoAsesor &#x3D; false;
+
+                this.form.patchValue({
+                    asesorId: 0,
+                }, { emitEvent: false });
+            },
+        });
+    }
+
+    limpiarAsesor(): void {
+        this.asesorEncontrado &#x3D; null;
+        this.asesorBuscado &#x3D; false;
+        this.buscandoAsesor &#x3D; false;
+        this.asesorReqSeq++;
+
+        this.form.patchValue({
+            asesorDniBusqueda: &#x27;&#x27;,
+            asesorId: 0,
+        }, { emitEvent: false });
+    }
+    private validaAsesor(): string | null {
+        const asesorId &#x3D; this.form.get(&#x27;asesorId&#x27;)!.value;
+
+        if (!asesorId || asesorId &lt;&#x3D; 0) {
+            return &#x27;Debe buscar y seleccionar un asesor válido por DNI.&#x27;;
+        }
+
+        return null;
+    }
+    async onSubmit(): Promise&lt;void&gt; {
+        const msgProceso &#x3D; this.validaProceso();
+        
+        if (msgProceso) {
+            await this.notify.ok({
+                variant: &#x27;warning&#x27;,
+                title: &#x27;Proceso requerido&#x27;,
+                message: msgProceso,
+                primaryText: &#x27;Aceptar&#x27;,
+            });
+            return;
+        }
+
+        const msgAsesor &#x3D; this.validaAsesor();
+
+        if (msgAsesor) {
+            await this.notify.ok({
+                variant: &#x27;warning&#x27;,
+                title: &#x27;Asesor requerido&#x27;,
+                message: msgAsesor,
+                primaryText: &#x27;Aceptar&#x27;,
+            });
+            return;
+        }
+
+        this.trimEditableControls();
+        this.form.updateValueAndValidity({ emitEvent: false });
+
+        const msgFechas &#x3D; this.validaFechas();
+
+        if (msgFechas) {
+            await this.notify.ok({
+                variant: &#x27;warning&#x27;,
+                title: &#x27;Horario inválido&#x27;,
+                message: msgFechas,
+                primaryText: &#x27;Aceptar&#x27;,
+            });
+            return;
+        }
+
+        if (this.form.invalid) {
+            this.form.markAllAsTouched();
+
+            await this.notify.ok({
+                variant: &#x27;warning&#x27;,
+                title: &#x27;Datos incompletos&#x27;,
+                message: &#x27;Revisa los campos obligatorios. El proceso, asesor, abogado e inicio son obligatorios.&#x27;,
+                primaryText: &#x27;Aceptar&#x27;,
+            });
+
+            return;
+        }
+
+        const msgCruce &#x3D; await this.validaCruceHorarioFrontend();
+
+        if (msgCruce) {
+            await this.notify.ok({
+                variant: &#x27;warning&#x27;,
+                title: &#x27;Cruce de horario&#x27;,
+                message: msgCruce,
+                primaryText: &#x27;Aceptar&#x27;,
+            });
+
+            return;
+        }
+
+        this.submitting &#x3D; true;
+
+        try {
+            const v &#x3D; this.form.getRawValue();
+
+            const vm: VMAudienciaCreate &#x3D; {
+                idproceso: v.idproceso,
+                titulo: v.titulo,
+                abogado: v.abogado,
+                asesorId: Number(v.asesorId),
+                fechaHoraInicio: v.fechaHoraInicio,
+                fechaHoraFin: v.fechaHoraFin || null,
+                enlaceMeet: v.enlaceMeet,
+                observacion: v.observacion,
+            };
+
+            await this.audienciaService.create(vm);
+
+            await this.notify.ok({
+                variant: &#x27;success&#x27;,
+                title: &#x27;Audiencia registrada&#x27;,
+                message: &#x27;La audiencia se creó correctamente.&#x27;,
+                primaryText: &#x27;Aceptar&#x27;,
+            });
+
+            this.router.navigate(this.backRoute());
+        } catch (error: unknown) {
+            const message &#x3D; error instanceof Error
+                ? error.message
+                : &#x27;No se pudo registrar la audiencia.&#x27;;
+
+            await this.notify.ok({
+                variant: &#x27;warning&#x27;,
+                title: &#x27;Datos inválidos&#x27;,
+                message,
+                primaryText: &#x27;Aceptar&#x27;,
+            });
+        } finally {
+            this.submitting &#x3D; false;
+        }
+    }
+
+    async onBack(): Promise&lt;void&gt; {
+        if (this.form.dirty) {
+            const ok &#x3D; await this.notify.confirm({
+                variant: &#x27;warning&#x27;,
+                title: &#x27;Descartar cambios&#x27;,
+                message: &#x27;Hay datos sin guardar. ¿Deseas descartarlos?&#x27;,
+                confirmText: &#x27;Descartar&#x27;,
+                cancelText: &#x27;Seguir aquí&#x27;,
+            });
+
+            if (!ok) return;
+        }
+
+        this.router.navigate(this.backRoute());
+    }
+
+    private async validaCruceHorarioFrontend(): Promise&lt;string | null&gt; {
+        const v &#x3D; this.form.getRawValue();
+
+        const asesorId &#x3D; Number(v.asesorId);
+        const inicio &#x3D; new Date(v.fechaHoraInicio);
+        const fin &#x3D; v.fechaHoraFin
+            ? new Date(v.fechaHoraFin)
+            : new Date(inicio.getTime() + 45 * 60 * 1000);
+
+        if (!asesorId || isNaN(inicio.getTime()) || isNaN(fin.getTime())) {
+            return null;
+        }
+
+        const semana &#x3D; await firstValueFrom(
+            this.audienciaService.calendarioSemana({
+                fecha: v.fechaHoraInicio,
+            }),
+        );
+
+        const cruce &#x3D; (semana.items ?? []).find((a) &#x3D;&gt; {
+            if (a.asesorId !&#x3D;&#x3D; asesorId) return false;
+
+            const estado &#x3D; String(a.estadoAudiencia ?? &#x27;&#x27;).trim().toUpperCase();
+
+            if (estado &#x3D;&#x3D;&#x3D; &#x27;CANCELADO&#x27; || estado &#x3D;&#x3D;&#x3D; &#x27;CANCELADA&#x27;) {
+                return false;
+            }
+
+            const aInicio &#x3D; new Date(a.fechaHoraInicio);
+            const aFin &#x3D; a.fechaHoraFin
+                ? new Date(a.fechaHoraFin)
+                : new Date(aInicio.getTime() + 45 * 60 * 1000);
+
+            return aInicio &lt; fin &amp;&amp; aFin &gt; inicio;
+        });
+
+        if (!cruce) return null;
+
+        return &#x60;El asesor ya tiene una audiencia registrada en ese horario. Audiencia Nº ${cruce.id}.&#x60;;
+    }
+
+    private validaProceso(): string | null {
+        const idproceso &#x3D; this.form.get(&#x27;idproceso&#x27;)!.value;
+
+        if (!idproceso || idproceso &lt;&#x3D; 0) {
+            return &#x27;Debe seleccionar un proceso para registrar la audiencia.&#x27;;
+        }
+
+        return null;
+    }
+
+    private validaFechas(): string | null {
+        const v &#x3D; this.form.getRawValue();
+
+        if (!v.fechaHoraInicio) {
+            return &#x27;Debe indicar la fecha y hora de inicio de la audiencia.&#x27;;
+        }
+
+        const inicio &#x3D; new Date(v.fechaHoraInicio).getTime();
+
+        if (!Number.isFinite(inicio)) {
+            return &#x27;La fecha y hora de inicio no es válida.&#x27;;
+        }
+
+        if (!v.fechaHoraFin) {
+            return null;
+        }
+
+        const fin &#x3D; new Date(v.fechaHoraFin).getTime();
+
+        if (!Number.isFinite(fin)) {
+            return &#x27;La fecha y hora de fin no es válida.&#x27;;
+        }
+
+        if (fin &lt;&#x3D; inicio) {
+            return &#x27;La fecha y hora de fin debe ser posterior al inicio.&#x27;;
+        }
+
+        const duracionMinutos &#x3D; Math.round((fin - inicio) / 60000);
+
+        if (duracionMinutos &gt; 360) {
+            return &#x27;La audiencia no puede durar más de 6 horas.&#x27;;
+        }
+
+        return null;
+    }
+
+    private cargarProceso(idproceso: number): void {
+        this.procesoService.getById(idproceso).subscribe({
+            next: (data) &#x3D;&gt; {
+                this.procesoSeleccionado &#x3D; data;
+
+                this.form.patchValue({
+                    idproceso: data.id,
+                });
+            },
+            error: () &#x3D;&gt; {
+                this.procesoSeleccionado &#x3D; null;
+            },
+        });
+    }
+
+    private finishProcesoLoading(): void {
+        const complete &#x3D; () &#x3D;&gt; {
+            this.buscandoProcesos &#x3D; false;
+            clearTimeout(this.procesoOverlayTimer);
+
+            if (this.showProcesoOverlay) {
+                const elapsed &#x3D; performance.now() - this.procesoOverlayShownAt;
+                const remain &#x3D; Math.max(0, this.procesoMinOverlayMs - elapsed);
+
+                setTimeout(() &#x3D;&gt; {
+                    this.showProcesoOverlay &#x3D; false;
+                }, remain);
+            } else {
+                this.showProcesoOverlay &#x3D; false;
+            }
+
+            this.procesos &#x3D; this.pendProcesos;
+            this.procesoTotal &#x3D; this.pendProcesoTotal;
+            this.procesoShownFrom &#x3D; this.pendProcesoFrom;
+            this.procesoShownTo &#x3D; this.pendProcesoTo;
+            this.procesoShownPage &#x3D; this.pendProcesoPage;
+            this.procesoShownLastPage &#x3D; this.pendProcesoLastPage;
+            this.procesoShownTotal &#x3D; this.pendProcesoTotal;
+            this.procesoBuscado &#x3D; true;
+        };
+
+        complete();
+    }
+
+    private cancelProcesoTimers(): void {
+        clearTimeout(this.procesoOverlayTimer);
+    }
+
+    private trimEditableControls(): void {
+        const v &#x3D; this.form.getRawValue();
+
+        this.form.patchValue({
+            titulo: this.clean(v.titulo),
+            abogado: this.clean(v.abogado),
+            asesorDniBusqueda: this.clean(v.asesorDniBusqueda),
+            enlaceMeet: this.clean(v.enlaceMeet),
+            observacion: this.clean(v.observacion),
+        }, { emitEvent: false });
+    }
+
+    private clean(value: unknown): string {
+        return String(value ?? &#x27;&#x27;).trim();
+    }
+
+    private idProcesoFromRoute(): number {
+        return Number(
+            this.route.snapshot.paramMap.get(&#x27;idproceso&#x27;) ??
+            this.route.snapshot.paramMap.get(&#x27;id&#x27;) ??
+            this.route.snapshot.queryParamMap.get(&#x27;idproceso&#x27;) ??
+            0,
+        );
+    }
+
+    private backRoute(): any[] {
+        const idproceso &#x3D; this.idProcesoFromRoute();
+
+        if (idproceso &gt; 0) {
+            return [&#x27;/proceso&#x27;, idproceso];
+        }
+
+        return [&#x27;/audiencia&#x27;];
+    }
+}
+
+interface AudienciaRegistrarForm {
+    idproceso: number;
+
+    dniBusqueda: string;
+    expedienteBusqueda: string;
+
+    titulo: string;
+    abogado: string;
+
+    asesorDniBusqueda: string;
+    asesorId: number;
+
+    fechaHoraInicio: string;
+    fechaHoraFin: string;
+
+    enlaceMeet: string;
+    observacion: string;
+}
+
+type ControlsOf&lt;T&gt; &#x3D; {
+    [K in keyof T]: FormControl&lt;T[K]&gt;;
+};</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'AudienciaRegistrarForm.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

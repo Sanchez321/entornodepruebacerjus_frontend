@@ -1,0 +1,1495 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">frontend documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  Ingresar</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/pages/cuenta/cuenta.ingresar/ingresar.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" class="nav-link"
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.dev/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-cuenta-ingresar</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                        <div>        <code><a href="https://angular.dev/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+</div>
+                        <div>        <code><a href="https://angular.dev/api/forms/FormsModule" target="_blank" >FormsModule</a></code>
+</div>
+                        <div>        <code><a href="https://angular.dev/api/router/RouterLink" target="_blank" >RouterLink</a></code>
+</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./ingresar.css</code></td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./ingresar.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./ingresar.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+        <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <p class="comment"><i>No results matching.</i></p>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="https://angular.dev/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/forms/FormsModule" target="_blank" >FormsModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/router/RouterLink" target="_blank" >RouterLink</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+</div>
+
+    <div class="tab-pane fade " id="api">    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#authService" >authService</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#email" >email</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier"></span>
+                                <a href="#emailEl" >emailEl</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#error" >error</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#firstPaintAt" >firstPaintAt</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#inputsReady" >inputsReady</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#loading" >loading</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#logoLoaded" >logoLoaded</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#logoMissing" >logoMissing</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#minSkeletonMs" >minSkeletonMs</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier"></span>
+                                <a href="#passEl" >passEl</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#password" >password</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#router" >router</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#getLoginErrorMessage" >getLoginErrorMessage</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#ngAfterViewInit" >ngAfterViewInit</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#onLogin" >onLogin</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#onLogoError" >onLogoError</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#onLogoLoad" >onLogoLoad</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getLoginErrorMessage"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>getLoginErrorMessage</b></span>
+                        <a href="#getLoginErrorMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getLoginErrorMessage(err: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="80"
+                                    class="link-to-prism">src/app/pages/cuenta/cuenta.ingresar/ingresar.ts:80</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>err</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewInit"></a>
+                    <span class="name">
+                        <span ><b>ngAfterViewInit</b></span>
+                        <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngAfterViewInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="34"
+                                    class="link-to-prism">src/app/pages/cuenta/cuenta.ingresar/ingresar.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onLogin"></a>
+                    <span class="name">
+                        <span ><b>onLogin</b></span>
+                        <a href="#onLogin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onLogin()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="58"
+                                    class="link-to-prism">src/app/pages/cuenta/cuenta.ingresar/ingresar.ts:58</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onLogoError"></a>
+                    <span class="name">
+                        <span ><b>onLogoError</b></span>
+                        <a href="#onLogoError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onLogoError()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="56"
+                                    class="link-to-prism">src/app/pages/cuenta/cuenta.ingresar/ingresar.ts:56</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onLogoLoad"></a>
+                    <span class="name">
+                        <span ><b>onLogoLoad</b></span>
+                        <a href="#onLogoLoad"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onLogoLoad()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="55"
+                                    class="link-to-prism">src/app/pages/cuenta/cuenta.ingresar/ingresar.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="authService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>authService</b></span>
+                        <a href="#authService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(AuthService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/pages/cuenta/cuenta.ingresar/ingresar.ts:16</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="email"></a>
+                    <span class="name">
+                        <span ><b>email</b></span>
+                        <a href="#email"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/pages/cuenta/cuenta.ingresar/ingresar.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="emailEl"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>emailEl</b></span>
+                        <a href="#emailEl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ElementRef&lt;HTMLInputElement&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;emailInput&#x27;, {read: ElementRef})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/pages/cuenta/cuenta.ingresar/ingresar.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="error"></a>
+                    <span class="name">
+                        <span ><b>error</b></span>
+                        <a href="#error"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/pages/cuenta/cuenta.ingresar/ingresar.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="firstPaintAt"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>firstPaintAt</b></span>
+                        <a href="#firstPaintAt"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/pages/cuenta/cuenta.ingresar/ingresar.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="inputsReady"></a>
+                    <span class="name">
+                        <span ><b>inputsReady</b></span>
+                        <a href="#inputsReady"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/pages/cuenta/cuenta.ingresar/ingresar.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loading"></a>
+                    <span class="name">
+                        <span ><b>loading</b></span>
+                        <a href="#loading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/pages/cuenta/cuenta.ingresar/ingresar.ts:21</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="logoLoaded"></a>
+                    <span class="name">
+                        <span ><b>logoLoaded</b></span>
+                        <a href="#logoLoaded"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/pages/cuenta/cuenta.ingresar/ingresar.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="logoMissing"></a>
+                    <span class="name">
+                        <span ><b>logoMissing</b></span>
+                        <a href="#logoMissing"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/pages/cuenta/cuenta.ingresar/ingresar.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="minSkeletonMs"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>minSkeletonMs</b></span>
+                        <a href="#minSkeletonMs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>180</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/pages/cuenta/cuenta.ingresar/ingresar.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="passEl"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>passEl</b></span>
+                        <a href="#passEl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ElementRef&lt;HTMLInputElement&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;passwordInput&#x27;, {read: ElementRef})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/pages/cuenta/cuenta.ingresar/ingresar.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="password"></a>
+                    <span class="name">
+                        <span ><b>password</b></span>
+                        <a href="#password"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/pages/cuenta/cuenta.ingresar/ingresar.ts:20</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="router"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>router</b></span>
+                        <a href="#router"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(Router)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/pages/cuenta/cuenta.ingresar/ingresar.ts:17</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, ElementRef, ViewChild, AfterViewInit, inject } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { RouterLink } from &#x27;@angular/router&#x27;;
+import { AuthService } from &#x27;@/app/auth/auth.service&#x27;;
+
+@Component({
+  selector: &#x27;app-cuenta-ingresar&#x27;,
+  standalone: true,
+  imports: [CommonModule, FormsModule,RouterLink],
+  templateUrl: &#x27;./ingresar.html&#x27;,
+  styleUrl: &#x27;./ingresar.css&#x27;
+})
+export class Ingresar implements AfterViewInit {
+  private authService &#x3D; inject(AuthService);
+  private router &#x3D; inject(Router);
+
+  email &#x3D; &#x27;&#x27;;
+  password &#x3D; &#x27;&#x27;;
+  loading &#x3D; false;       
+  error &#x3D; &#x27;&#x27;; 
+
+  inputsReady &#x3D; false;
+  private firstPaintAt &#x3D; 0;
+  private readonly minSkeletonMs &#x3D; 180;
+
+  logoLoaded &#x3D; false;
+  logoMissing &#x3D; false;
+
+  @ViewChild(&#x27;emailInput&#x27;, { read: ElementRef }) emailEl!: ElementRef&lt;HTMLInputElement&gt;;
+  @ViewChild(&#x27;passwordInput&#x27;, { read: ElementRef }) passEl!: ElementRef&lt;HTMLInputElement&gt;;
+
+  ngAfterViewInit(): void {
+    this.firstPaintAt &#x3D; performance.now();
+    this.inputsReady &#x3D; false;
+
+    const tryReveal &#x3D; (force &#x3D; false) &#x3D;&gt; {
+      if (this.inputsReady) return;
+      const elapsed &#x3D; performance.now() - this.firstPaintAt;
+      const minReached &#x3D; elapsed &gt;&#x3D; this.minSkeletonMs;
+      const eHas &#x3D; !!this.emailEl?.nativeElement.value;
+      const pHas &#x3D; !!this.passEl?.nativeElement.value;
+      if (minReached &amp;&amp; (force || eHas || pHas)) this.inputsReady &#x3D; true;
+    };
+
+    setTimeout(() &#x3D;&gt; tryReveal(true), this.minSkeletonMs);
+    setTimeout(() &#x3D;&gt; tryReveal(true), 50);
+    setTimeout(() &#x3D;&gt; tryReveal(true), 250);
+
+    this.emailEl.nativeElement.addEventListener(&#x27;input&#x27;, () &#x3D;&gt; tryReveal(true), { passive: true });
+    this.passEl.nativeElement.addEventListener(&#x27;input&#x27;, () &#x3D;&gt; tryReveal(true), { passive: true });
+  }
+
+  onLogoLoad() { this.logoLoaded &#x3D; true; this.logoMissing &#x3D; false; }
+  onLogoError() { this.logoLoaded &#x3D; false; this.logoMissing &#x3D; true; }
+
+  onLogin() {
+    const email &#x3D; this.email.trim().toLowerCase();
+
+    if (!email || !this.password) {
+      this.error &#x3D; &#x27;Debe ingresar email y contraseña.&#x27;;
+      return;
+    }
+
+    this.loading &#x3D; true;
+    this.error &#x3D; &#x27;&#x27;;
+
+    this.authService.login({ email, password: this.password }).subscribe({
+      next: () &#x3D;&gt; {
+        this.loading &#x3D; false;
+        this.router.navigateByUrl(&#x27;/ciudadano&#x27;);
+      },
+      error: (err) &#x3D;&gt; {
+        this.loading &#x3D; false;
+        this.error &#x3D; this.getLoginErrorMessage(err);
+      }
+    });
+  }
+  private getLoginErrorMessage(err: any): string {
+    const code &#x3D;
+      err?.error?.code ??
+      err?.error?.response?.code ??
+      err?.error?.error?.code ??
+      null;
+
+    switch (code) {
+      case &#x27;AUTH_EMAIL_NOT_CONFIRMED&#x27;:
+        return &#x27;Debes confirmar tu correo electrónico antes de ingresar. Revisa tu bandeja de entrada.&#x27;;
+
+      case &#x27;AUTH_USER_NOT_AUTHORIZED&#x27;:
+        return &#x27;Tu cuenta ya confirmó el correo, pero aún está pendiente de autorización.&#x27;;
+
+      case &#x27;AUTH_USER_SUSPENDED&#x27;:
+        return &#x27;Tu cuenta está suspendida. Comunícate con el responsable del sistema.&#x27;;
+
+      case &#x27;AUTH_USER_DELETED&#x27;:
+        return &#x27;Tu cuenta ha sido eliminada o ya no está disponible.&#x27;;
+
+      case &#x27;AUTH_INVALID_CREDENTIALS&#x27;:
+        return &#x27;Credenciales inválidas. Verifica tu correo y contraseña.&#x27;;
+
+      case &#x27;AUTH_USER_NOT_ACTIVE&#x27;:
+        return &#x27;Tu cuenta no está activa.&#x27;;
+
+      default:
+        return err?.error?.message || &#x27;No se pudo iniciar sesión. Inténtalo nuevamente.&#x27;;
+    }
+  }
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;section class&#x3D;&quot;min-vh-100 d-flex align-items-center justify-content-center&quot;&gt;
+  &lt;div class&#x3D;&quot;container&quot;&gt;
+    &lt;div class&#x3D;&quot;card border-light-subtle shadow-sm&quot;&gt;
+      &lt;div class&#x3D;&quot;row g-0 h-100&quot;&gt;
+
+        &lt;!-- Columna izquierda --&gt;
+        &lt;div class&#x3D;&quot;col-12 col-md-6 bg-login-custom&quot;&gt;
+          &lt;div class&#x3D;&quot;d-flex align-items-center justify-content-center h-100&quot;&gt;
+            &lt;div class&#x3D;&quot;col-10 col-xl-8 py-3&quot;&gt;
+
+              &lt;!-- Caja de logo con espacio reservado SIEMPRE --&gt;
+              &lt;div class&#x3D;&quot;logo-box mx-auto&quot;&gt;
+                &lt;!-- Fallback mientras no carga o si falla --&gt;
+                &lt;div class&#x3D;&quot;logo-fallback&quot; [class.hidden]&#x3D;&quot;logoLoaded &amp;&amp; !logoMissing&quot; aria-hidden&#x3D;&quot;true&quot;&gt;
+                  &lt;svg viewBox&#x3D;&quot;0 0 100 30&quot; role&#x3D;&quot;img&quot; aria-label&#x3D;&quot;Logo&quot;&gt;
+                    &lt;rect x&#x3D;&quot;0&quot; y&#x3D;&quot;0&quot; width&#x3D;&quot;100&quot; height&#x3D;&quot;30&quot; rx&#x3D;&quot;4&quot; ry&#x3D;&quot;4&quot;&gt;&lt;/rect&gt;
+                    &lt;text x&#x3D;&quot;50&quot; y&#x3D;&quot;20&quot; text-anchor&#x3D;&quot;middle&quot; font-size&#x3D;&quot;12&quot;&gt;LOGO&lt;/text&gt;
+                  &lt;/svg&gt;
+                &lt;/div&gt;
+
+                &lt;!-- Imagen real --&gt;
+                &lt;img
+                  class&#x3D;&quot;logo-img&quot;
+                  [class.loaded]&#x3D;&quot;logoLoaded &amp;&amp; !logoMissing&quot;
+                  [class.hidden]&#x3D;&quot;logoMissing&quot;
+                  loading&#x3D;&quot;eager&quot;
+                  decoding&#x3D;&quot;sync&quot;
+                  src&#x3D;&quot;assets/imagenes/cerjuslogo.jpg&quot;
+                  alt&#x3D;&quot;Logo&quot;
+                  (load)&#x3D;&quot;onLogoLoad()&quot;
+                  (error)&#x3D;&quot;onLogoError()&quot;
+                /&gt;
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;abagado-box mx-auto&quot;&gt;
+                &lt;!-- Fallback mientras no carga o si falla --&gt;
+                &lt;div class&#x3D;&quot;logo-fallback&quot; [class.hidden]&#x3D;&quot;logoLoaded &amp;&amp; !logoMissing&quot; aria-hidden&#x3D;&quot;true&quot;&gt;
+                  &lt;svg viewBox&#x3D;&quot;0 0 100 30&quot; role&#x3D;&quot;img&quot; aria-label&#x3D;&quot;Logo&quot;&gt;
+                    &lt;rect x&#x3D;&quot;0&quot; y&#x3D;&quot;0&quot; width&#x3D;&quot;100&quot; height&#x3D;&quot;30&quot; rx&#x3D;&quot;4&quot; ry&#x3D;&quot;4&quot;&gt;&lt;/rect&gt;
+                    &lt;text x&#x3D;&quot;50&quot; y&#x3D;&quot;20&quot; text-anchor&#x3D;&quot;middle&quot; font-size&#x3D;&quot;12&quot;&gt;Abogado&lt;/text&gt;
+                  &lt;/svg&gt;
+                &lt;/div&gt;
+
+                &lt;!-- Imagen real --&gt;
+                &lt;img
+                  class&#x3D;&quot;logo-img&quot;
+                  [class.loaded]&#x3D;&quot;logoLoaded &amp;&amp; !logoMissing&quot;
+                  [class.hidden]&#x3D;&quot;logoMissing&quot;
+                  loading&#x3D;&quot;eager&quot;
+                  decoding&#x3D;&quot;sync&quot;
+                  src&#x3D;&quot;assets/imagenes/abogado.jpg&quot;
+                  alt&#x3D;&quot;Logo&quot;
+                  (load)&#x3D;&quot;onLogoLoad()&quot;
+                  (error)&#x3D;&quot;onLogoError()&quot;
+                /&gt;
+              &lt;/div&gt;
+              &lt;hr class&#x3D;&quot;border-primary-subtle mb-4&quot;&gt;
+              &lt;h2 class&#x3D;&quot;h1 mb-4&quot;&gt;Bienvenido a CERJUS&lt;/h2&gt;
+              &lt;p class&#x3D;&quot;lead m-0&quot;&gt;Por favor ingrese su correo y contraseña&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Columna derecha --&gt;
+        &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;
+          &lt;div class&#x3D;&quot;card-body p-3 p-md-4 p-xl-5&quot;&gt;
+            &lt;div class&#x3D;&quot;mb-5&quot;&gt;
+              &lt;h3&gt;Iniciar sesión&lt;/h3&gt;
+            &lt;/div&gt;
+
+            &lt;form (ngSubmit)&#x3D;&quot;onLogin()&quot; #f&#x3D;&quot;ngForm&quot; autocomplete&#x3D;&quot;on&quot;&gt;
+              &lt;div class&#x3D;&quot;row gy-3 gy-md-4 overflow-visible&quot;&gt;
+
+                &lt;!-- EMAIL --&gt;
+                &lt;div class&#x3D;&quot;col-12&quot;&gt;
+                  &lt;label for&#x3D;&quot;email&quot; class&#x3D;&quot;form-label&quot;&gt;Correo-electrónico &lt;span class&#x3D;&quot;text-danger&quot;&gt;*&lt;/span&gt;&lt;/label&gt;
+                  &lt;div class&#x3D;&quot;input-shell&quot;&gt;
+                    &lt;input
+                      #emailInput
+                      type&#x3D;&quot;email&quot;
+                      class&#x3D;&quot;form-control af-stable&quot;
+                      [(ngModel)]&#x3D;&quot;email&quot;
+                      name&#x3D;&quot;email&quot;
+                      id&#x3D;&quot;email&quot;
+                      placeholder&#x3D;&quot;nombre@gmail.com&quot;
+                      required
+                      autocomplete&#x3D;&quot;email&quot;
+                      spellcheck&#x3D;&quot;false&quot;
+                      autocapitalize&#x3D;&quot;off&quot;&gt;
+                    @if (!inputsReady) {
+                      &lt;div class&#x3D;&quot;sk sk-input-overlay&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/div&gt;
+                    }
+                  &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;!-- PASSWORD --&gt;
+                &lt;div class&#x3D;&quot;col-12&quot;&gt;
+                  &lt;label for&#x3D;&quot;password&quot; class&#x3D;&quot;form-label&quot;&gt;Contraseña &lt;span class&#x3D;&quot;text-danger&quot;&gt;*&lt;/span&gt;&lt;/label&gt;
+                  &lt;div class&#x3D;&quot;input-shell&quot;&gt;
+                    &lt;input
+                      #passwordInput
+                      type&#x3D;&quot;password&quot;
+                      class&#x3D;&quot;form-control af-stable&quot;
+                      [(ngModel)]&#x3D;&quot;password&quot;
+                      name&#x3D;&quot;password&quot;
+                      id&#x3D;&quot;password&quot;
+                      required
+                      autocomplete&#x3D;&quot;current-password&quot;
+                      spellcheck&#x3D;&quot;false&quot;
+                      autocapitalize&#x3D;&quot;off&quot;&gt;
+                    @if (!inputsReady) {
+                      &lt;div class&#x3D;&quot;sk sk-input-overlay&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/div&gt;
+                    }
+                  &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;div class&#x3D;&quot;col-12&quot;&gt;
+                  &lt;div class&#x3D;&quot;form-check&quot;&gt;
+                    &lt;input class&#x3D;&quot;form-check-input&quot; type&#x3D;&quot;checkbox&quot; name&#x3D;&quot;remember_me&quot; id&#x3D;&quot;remember_me&quot; autocomplete&#x3D;&quot;on&quot;&gt;
+                    &lt;label class&#x3D;&quot;form-check-label text-secondary&quot; for&#x3D;&quot;remember_me&quot;&gt;
+                      Mantener sesión
+                    &lt;/label&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;div class&#x3D;&quot;col-12&quot;&gt;
+                  &lt;!-- altura reservada para errores --&gt;
+                  &lt;p class&#x3D;&quot;error-reserved&quot; [class.visible]&#x3D;&quot;!!error&quot;&gt;{{ error || &#x27; &#x27; }}&lt;/p&gt;
+                &lt;/div&gt;
+
+                &lt;div class&#x3D;&quot;col-12&quot;&gt;
+                  &lt;div class&#x3D;&quot;d-grid&quot;&gt;
+                    &lt;button class&#x3D;&quot;btn btn-login btn-lg w-100&quot; type&#x3D;&quot;submit&quot; [disabled]&#x3D;&quot;f.invalid || loading&quot;&gt;
+                      Iniciar sesión
+                    &lt;/button&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+
+              &lt;/div&gt;
+            &lt;/form&gt;
+
+            &lt;hr class&#x3D;&quot;mt-5 mb-4 border-secondary-subtle&quot;&gt;
+            &lt;div class&#x3D;&quot;d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-end&quot;&gt;
+              &lt;a routerLink&#x3D;&quot;registrar&quot; class&#x3D;&quot;link-secondary text-decoration-none&quot;&gt;Registrarse&lt;/a&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./ingresar.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">/* Colores de panel y botón */
+.bg-login-custom { background-color: #017199; color: #ffffff; }
+.btn-login { background-color: #017199; color: #fff; border: none; }
+.btn-login:hover { background-color: #015675; color: #fff; }
+.btn-login:active { box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
+
+/* &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; LOGO BOX sin flash &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; */
+.logo-box { width: 328px; height: 80px; position:relative; margin:0 auto 1rem;overflow:hidden; }
+.logo-box .hidden { display: none !important; }
+.logo-fallback, .logo-img { position: absolute; inset: 0; display: block; }
+.logo-fallback { background: rgba(255,255,255,.12); border-radius: .25rem; display: grid; place-items: center; }
+.logo-fallback svg { width: 60%; height: 60%; fill: rgba(255,255,255,.5); }
+.logo-fallback text { fill: rgba(255,255,255,.9); font-weight: 600; }
+.logo-img {position:absolute; inset:0;width:100%; height:100%;object-fit:contain;opacity:0; transition:opacity .18s ease;}
+.logo-img.loaded { opacity: 1; }
+.abagado-box { width: 328px; height: 218.67px; position:relative; margin:0 auto 1rem;overflow:hidden; }
+/* &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; Skeleton SOLO encima del campo (no del form) &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; */
+.input-shell { position: relative; }
+.sk-input-overlay {
+  position: absolute; inset: 0;
+  border-radius: var(--bs-border-radius, .375rem);
+  animation: shimmer 1.2s ease-in-out infinite;
+  background: linear-gradient(90deg, #f0f3f5 25%, #e6eaed 37%, #f0f3f5 63%);
+  background-size: 400% 100%;
+  pointer-events: none; /* evita bloquear el mouse si aparece un instante */
+}
+@keyframes shimmer { 0% { background-position: 100% 0; } 100% { background-position: 0 0; } }
+
+/* Error con altura reservada */
+.error-reserved {
+  min-height: 1.5rem;
+  margin: 0;
+  color: #dc3545;
+  opacity: 0;
+  transition: opacity .15s ease;
+}
+.error-reserved.visible { opacity: 1; }
+
+/* Autofill estable y azul suave */
+.af-stable {
+  background-color: #fff;
+  box-shadow: 0 0 0 1000px #fff inset;
+  -webkit-box-shadow: 0 0 0 1000px #fff inset;
+  background-clip: padding-box;
+}
+.af-stable:-webkit-autofill,
+.af-stable:-webkit-autofill:hover,
+.af-stable:-webkit-autofill:focus {
+  box-shadow: 0 0 0 1000px #e6f2ff inset;
+  -webkit-box-shadow: 0 0 0 1000px #e6f2ff inset;
+  -webkit-text-fill-color: #212529;
+  transition: background-color 99999s ease 0s, color 0s ease 0s;
+}
+.af-stable::placeholder { color: #6c757d; opacity: .9; }</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><section class="min-vh-100 d-flex align-items-center justify-content-center">  <div class="container">    <div class="card border-light-subtle shadow-sm">      <div class="row g-0 h-100">        <!-- Columna izquierda -->        <div class="col-12 col-md-6 bg-login-custom">          <div class="d-flex align-items-center justify-content-center h-100">            <div class="col-10 col-xl-8 py-3">              <!-- Caja de logo con espacio reservado SIEMPRE -->              <div class="logo-box mx-auto">                <!-- Fallback mientras no carga o si falla -->                <div class="logo-fallback" [class.hidden]="logoLoaded && !logoMissing" aria-hidden="true">                  <svg viewBox="0 0 100 30" role="img" aria-label="Logo">                    <rect x="0" y="0" width="100" height="30" rx="4" ry="4"></rect>                    <text x="50" y="20" text-anchor="middle" font-size="12">LOGO</text>                  </svg>                </div>                <!-- Imagen real -->                <img                  class="logo-img"                  [class.loaded]="logoLoaded && !logoMissing"                  [class.hidden]="logoMissing"                  loading="eager"                  decoding="sync"                  src="assets/imagenes/cerjuslogo.jpg"                  alt="Logo"                  (load)="onLogoLoad()"                  (error)="onLogoError()"                />              </div>              <div class="abagado-box mx-auto">                <!-- Fallback mientras no carga o si falla -->                <div class="logo-fallback" [class.hidden]="logoLoaded && !logoMissing" aria-hidden="true">                  <svg viewBox="0 0 100 30" role="img" aria-label="Logo">                    <rect x="0" y="0" width="100" height="30" rx="4" ry="4"></rect>                    <text x="50" y="20" text-anchor="middle" font-size="12">Abogado</text>                  </svg>                </div>                <!-- Imagen real -->                <img                  class="logo-img"                  [class.loaded]="logoLoaded && !logoMissing"                  [class.hidden]="logoMissing"                  loading="eager"                  decoding="sync"                  src="assets/imagenes/abogado.jpg"                  alt="Logo"                  (load)="onLogoLoad()"                  (error)="onLogoError()"                />              </div>              <hr class="border-primary-subtle mb-4">              <h2 class="h1 mb-4">Bienvenido a CERJUS</h2>              <p class="lead m-0">Por favor ingrese su correo y contraseña</p>            </div>          </div>        </div>        <!-- Columna derecha -->        <div class="col-12 col-md-6">          <div class="card-body p-3 p-md-4 p-xl-5">            <div class="mb-5">              <h3>Iniciar sesión</h3>            </div>            <form (ngSubmit)="onLogin()" #f="ngForm" autocomplete="on">              <div class="row gy-3 gy-md-4 overflow-visible">                <!-- EMAIL -->                <div class="col-12">                  <label for="email" class="form-label">Correo-electrónico <span class="text-danger">*</span></label>                  <div class="input-shell">                    <input                      #emailInput                      type="email"                      class="form-control af-stable"                      [(ngModel)]="email"                      name="email"                      id="email"                      placeholder="nombre@gmail.com"                      required                      autocomplete="email"                      spellcheck="false"                      autocapitalize="off">                    @if (!inputsReady) {                      <div class="sk sk-input-overlay" aria-hidden="true"></div>                    }                  </div>                </div>                <!-- PASSWORD -->                <div class="col-12">                  <label for="password" class="form-label">Contraseña <span class="text-danger">*</span></label>                  <div class="input-shell">                    <input                      #passwordInput                      type="password"                      class="form-control af-stable"                      [(ngModel)]="password"                      name="password"                      id="password"                      required                      autocomplete="current-password"                      spellcheck="false"                      autocapitalize="off">                    @if (!inputsReady) {                      <div class="sk sk-input-overlay" aria-hidden="true"></div>                    }                  </div>                </div>                <div class="col-12">                  <div class="form-check">                    <input class="form-check-input" type="checkbox" name="remember_me" id="remember_me" autocomplete="on">                    <label class="form-check-label text-secondary" for="remember_me">                      Mantener sesión                    </label>                  </div>                </div>                <div class="col-12">                  <!-- altura reservada para errores -->                  <p class="error-reserved" [class.visible]="!!error">{{ error || \' \' }}</p>                </div>                <div class="col-12">                  <div class="d-grid">                    <button class="btn btn-login btn-lg w-100" type="submit" [disabled]="f.invalid || loading">                      Iniciar sesión                    </button>                  </div>                </div>              </div>            </form>            <hr class="mt-5 mb-4 border-secondary-subtle">            <div class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-end">              <a routerLink="registrar" class="link-secondary text-decoration-none">Registrarse</a>            </div>          </div>        </div>      </div>    </div>  </div></section></div>'
+    var COMPONENTS = [{'name': 'AnaliticasDashboard', 'selector': 'app-analiticas-dashboard'},{'name': 'App', 'selector': 'app-root'},{'name': 'AsistenciaLista', 'selector': 'app-asistencia-lista'},{'name': 'AsistenciasDashboard', 'selector': 'app-asistencias-dashboard'},{'name': 'AudienciaCalendario', 'selector': 'app-audiencia-calendario'},{'name': 'AudienciaDetalle', 'selector': 'app-audiencia-detalle'},{'name': 'AudienciaRegistrar', 'selector': 'app-audiencia-registrar'},{'name': 'CiudadanoDetalle', 'selector': 'app-ciudadano-detalle'},{'name': 'CiudadanoLista', 'selector': 'app-ciudadano-lista'},{'name': 'CiudadanoRegistrar', 'selector': 'app-ciudadano-registrar'},{'name': 'ConfirmarCorreo', 'selector': 'app-cuenta-confirmar-correo'},{'name': 'ConsultaDetalle', 'selector': 'app-consulta-detalle'},{'name': 'ConsultaLista', 'selector': 'app-consulta-lista'},{'name': 'ConsultaListaCiudadano', 'selector': 'app-consulta-lista-ciudadano'},{'name': 'ConsultaRegistar', 'selector': 'app-consulta-registrar'},{'name': 'DocumentosListaEntidad', 'selector': 'app-documentos-lista-entidad'},{'name': 'DocumentosListaGeneral', 'selector': 'app-documentos-lista-general'},{'name': 'DocumentosRegistrar', 'selector': 'app-documentos-registrar'},{'name': 'DocumentosRutaBaseLista', 'selector': 'app-documentos-ruta-base-lista'},{'name': 'DocumentosRutaBaseRegistrar', 'selector': 'app-documentos-ruta-base-registrar'},{'name': 'ExportarConDriveComponent', 'selector': 'app-exportar-con-drive'},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'Header', 'selector': 'app-header'},{'name': 'HorarioDetalle', 'selector': 'app-horario-detalle'},{'name': 'HorarioLista', 'selector': 'app-horario-lista'},{'name': 'HorarioRegistrar', 'selector': 'app-horario-registrar'},{'name': 'Ingresar', 'selector': 'app-cuenta-ingresar'},{'name': 'JustificacionListaMis', 'selector': 'app-justificacion-lista-mis'},{'name': 'JustificacionListaPendientes', 'selector': 'app-justificacion-lista-pendientes'},{'name': 'JustificacionRegistrar', 'selector': 'app-justificacion-registrar'},{'name': 'Main_layout', 'selector': 'app-main-layout'},{'name': 'NotificacionestVer', 'selector': 'app-notificaciones-ver'},{'name': 'PaginaNoEncontradaComponent', 'selector': 'app-pagina-no-encontrada'},{'name': 'Perfil', 'selector': 'app-cuenta-perfil'},{'name': 'ProcesoDetalle', 'selector': 'app-proceso-detalle'},{'name': 'ProcesoLista', 'selector': 'app-proceso-lista'},{'name': 'ProcesoRegistrar', 'selector': 'app-proceso-registrar'},{'name': 'Registar', 'selector': 'app-cuenta-registrar'},{'name': 'SeguimientoListaConsulta', 'selector': 'app-seguimiento-lista-consulta'},{'name': 'SeguimientoRegistar', 'selector': 'app-seguimiento-registrar'},{'name': 'Sidebar', 'selector': 'app-sidebar'},{'name': 'Simple_layout', 'selector': 'app-simple_layout'},{'name': 'TramiteDetalle', 'selector': 'app-tramite-detalle'},{'name': 'TramiteLista', 'selector': 'app-tramite-lista'},{'name': 'TramiteRegistrar', 'selector': 'app-tramite-registrar'},{'name': 'UsuarioDetalle', 'selector': 'app-usuario-detalle'},{'name': 'UsuarioHorarioListaUsuario', 'selector': 'app-usuario-horario-lista-usuario'},{'name': 'UsuarioLista', 'selector': 'app-usuario-lista'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'Ingresar'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'Ingresar.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -5,6 +5,7 @@ import { Ingresar } from './cuenta.ingresar/ingresar';
 import { Registar } from './cuenta.registrar/registrar';
 import { Perfil } from './cuenta.perfil/perfil';
 import { PaginaNoEncontradaComponent } from '../../components/paginanoencontrada/pagina';
+import { ConfirmarCorreo } from './cuenta.confirmar-correo/confirmar-correo';
 
 export const numericIdMatcher: UrlMatcher = (segments: UrlSegment[]) =>
   segments.length === 1 && /^\d+$/.test(segments[0].path)
@@ -32,6 +33,13 @@ export const loginRoutes: Routes = [
     ],
     
   }
+];
+export const confirmarCorreoRoutes: Routes = [
+  {
+    path: 'confirmar-correo',
+    component: ConfirmarCorreo,
+    pathMatch: 'full',
+  },
 ];
 export const cuentaRoutes: Routes = [
   {

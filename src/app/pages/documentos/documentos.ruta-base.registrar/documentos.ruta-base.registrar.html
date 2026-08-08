@@ -1,0 +1,89 @@
+<!-- src/app/pages/documentos/documentos.ruta-base.registrar/documentos.ruta-base.registrar.html -->
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+      <div class="card shadow-sm">
+        <div class="card-body">
+
+          <h5 class="mb-4">Registrar ruta base de Drive</h5>
+
+          <form [formGroup]="form" novalidate [class.was-validated]="submitting">
+
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Nombre</label>
+              <input
+                type="text"
+                maxlength="100"
+                class="form-control"
+                formControlName="nombre"
+                placeholder="Ej.: DRIVE PRINCIPAL CERJUS">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Código</label>
+              <select class="form-select" formControlName="codigo">
+                @for (opt of codigoOpciones; track opt.value) {
+                  <option [value]="opt.value">{{ opt.label }}</option>
+                }
+              </select>
+
+              <div class="form-text">
+                Usa GENERAL para documentos comunes y BACKUP para copias de seguridad.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label fw-semibold">URL de carpeta de Google Drive</label>
+              <input
+                type="text"
+                maxlength="500"
+                class="form-control"
+                formControlName="driveFolderUrl"
+                placeholder="https://drive.google.com/drive/folders/...">
+
+              <div class="form-text">
+                Debe ser la carpeta raíz. El backend creará subcarpetas internas según el tipo de documento.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Descripción</label>
+              <textarea
+                rows="3"
+                maxlength="255"
+                class="form-control"
+                formControlName="descripcion"
+                placeholder="Descripción opcional">
+              </textarea>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+              <button
+                type="button"
+                class="btn btn-warning"
+                (click)="onBack()"
+                [disabled]="submitting">
+                Regresar
+              </button>
+
+              <button
+                type="button"
+                class="btn btn-success"
+                (click)="onSubmit()"
+                [disabled]="submitting">
+                @if (submitting) {
+                  Registrando…
+                } @else {
+                  Registrar
+                }
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -27,6 +27,14 @@ export interface ApiUsuario {
   tu_ID?: number | null;
   tu_nombre?: string | null;
   tu_nivel?: number | null;
+
+  us_correo_verificado?: boolean;
+  us_fecha_correo_verificado?: string | Date | null;
+  us_correo_pendiente?: string | null;
+  us_fecha_correo_pendiente?: string | Date | null;
+
+  us_autorizado_por?: number | null;
+  us_fecha_autorizado_por?: string | Date | null;
 }
 
 export type ApiUsuarioListaSimple = Pick<ApiUsuario,
@@ -36,6 +44,8 @@ export type ApiUsuarioListaSimple = Pick<ApiUsuario,
   | 'us_apellido_m'
   | 'us_nombres'
   | 'us_fecha_creado_por'
+  | 'us_estado'
+  | 'us_estado_texto'
 >;
 
 export type ApiUsuarioDetalle = ApiUsuario;
@@ -55,4 +65,17 @@ export interface ApiTipoUsuario {
 export interface ApiResetContrasenaProvisionalResponse {
   us_ID: number;
   provisional: string;
+}
+export interface ApiUsuarioCorregirIdentidadResponse {
+  us_ID: number;
+  us_estado: number;
+  us_correo_e: string;
+  us_correo_pendiente?: string | null;
+  us_correo_verificado: boolean;
+  message?: string;
+}
+
+export interface ApiUsuarioDeleteDefinitivoResponse {
+  us_ID: number;
+  message: string;
 }

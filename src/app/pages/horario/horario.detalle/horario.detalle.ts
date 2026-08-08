@@ -1,12 +1,6 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  ReactiveFormsModule,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  FormArray,
-} from '@angular/forms';
+import {ReactiveFormsModule,FormBuilder,FormControl,FormGroup,FormArray,} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { HorarioService } from '../services/horario.service';

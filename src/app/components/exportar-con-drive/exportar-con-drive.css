@@ -1,0 +1,22 @@
+:host { display: block; }
+
+.export-drive-wrap {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .65rem;
+}
+
+.export-drive-check {
+  align-items: center;
+  background: #f6f9fc;
+  border: 1px solid #d8e3ec;
+  border-radius: 999px;
+  display: inline-flex;
+  gap: .45rem;
+  min-height: 38px;
+  padding: 0 .85rem;
+  white-space: nowrap;
+}
+
+.export-drive-check input { margin: 0; }

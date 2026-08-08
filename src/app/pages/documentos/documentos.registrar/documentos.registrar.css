@@ -1,0 +1,13 @@
+/* src/app/pages/documentos/documentos.registrar/documentos.registrar.css */
+
+.card {
+  border-radius: .5rem;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.form-text {
+  font-size: .82rem;
+}

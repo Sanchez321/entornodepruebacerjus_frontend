@@ -35,11 +35,20 @@
 
                 <div class="row g-3">
                     <div class="col-12 col-md-4">
-                    <label class="form-label">DNI ciudadano</label>
-                    <input
-                        type="text"
-                        formControlName="dni"
-                        class="value-box-noedit">
+                        <label class="form-label">DNI ciudadano</label>
+                        <input
+                            type="text"
+                            formControlName="dni"
+                            class="value-box-noedit">
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <label class="form-label">Fecha registrada</label>
+                        <input
+                            type="date"
+                            formControlName="fechaRegistrada"
+                            [class.value-box-edit]="isEditing"
+                            [class.value-box-noedit]="!isEditing">
                     </div>
                 </div>
 
@@ -108,29 +117,6 @@
 
                 <div style="height: 1rem;"></div>
 
-                <div class="row g-3">
-                    <div class="col-12 col-md-6">
-                    <label class="form-label">Parte</label>
-                    <input
-                        type="text"
-                        maxlength="150"
-                        formControlName="parte"
-                        [class.value-box-edit]="isEditing"
-                        [class.value-box-noedit]="!isEditing">
-                    </div>
-
-                    <div class="col-12 col-md-6">
-                    <label class="form-label">Materia</label>
-                    <input
-                        type="text"
-                        maxlength="150"
-                        formControlName="materia"
-                        [class.value-box-edit]="isEditing"
-                        [class.value-box-noedit]="!isEditing">
-                    </div>
-                </div>
-
-                <div style="height: 1rem;"></div>
 
                 <div class="row g-3">
                     <div class="col-12 col-md-6">
@@ -277,6 +263,32 @@
                 </form>
             </div>
         </div>
+        <div class="col-12 col-lg-8">
+            <div class="card shadow-sm">
 
+                <div
+                class="card-header d-flex justify-content-between align-items-center selectable-fix"
+                (click)="openDocumentos = !openDocumentos"
+                role="button"
+                [attr.aria-expanded]="openDocumentos">
+
+                <div class="d-flex align-items-center gap-2">
+                    <span class="fw-semibold" style="min-width: 220px; display: inline-block;">
+                    Documentos
+                    </span>
+                </div>
+
+                <span class="caret">{{ openDocumentos ? "▴" : "▾" }}</span>
+                </div>
+
+                <app-documentos-lista-entidad
+                    [entidadTipo]="'PROCESO'"
+                    [entidadId]="idproceso"
+                    titulo="Documentos asociados al proceso."
+                    [hidden]="!openDocumentos">
+                </app-documentos-lista-entidad>
+
+            </div>
+        </div>
     </div>
 </div>

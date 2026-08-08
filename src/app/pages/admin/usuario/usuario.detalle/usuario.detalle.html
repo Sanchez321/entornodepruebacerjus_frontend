@@ -9,16 +9,45 @@
           role="button"
           [attr.aria-expanded]="open"
         >
-          <div class="d-flex align-items-center gap-2">
-            <span
-              class="fw-semibold"
-              style="min-width: 220px; display: inline-block;"
+          <span class="fw-semibold">
+            Información del usuario
+          </span>
+
+          <span class="caret">{{ open ? '▴' : '▾' }}</span>
+        </div>
+        <!-- Cuerpo -->
+        <form
+          class="card-body selectable-fix"
+          [hidden]="!open"
+          [formGroup]="form"
+          id="formUsuario"
+          name="formUsuario"
+        >
+        <!-- Acciones administrativas -->
+        <div class="usuario-action-panel">
+          <div class="section-title mb-2">Acciones administrativas</div>
+
+          <div class="usuario-actions-body">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              [disabled]="usuario?.estado === 0"
+              (click)="onEdit($event)"
             >
-              Información del usuario
-            </span>
-            <button type="button" class="btn btn-secondary" (click)="onEdit($event)">
               Editar
             </button>
+
+            @if (puedeCorregirIdentidad) {
+              <button
+                type="button"
+                class="btn btn-outline-info"
+                [disabled]="correctingIdentity"
+                (click)="onToggleCorregirIdentidad($event)"
+              >
+                Corregir identidad
+              </button>
+            }
+
             <button
               type="button"
               class="btn btn-outline-primary"
@@ -28,18 +57,65 @@
             >
               Contraseña provisional
             </button>
+
+            @if (puedeReenviarConfirmacionCorreo) {
+              <button
+                type="button"
+                class="btn btn-outline-warning"
+                [disabled]="resendingVerification"
+                (click)="onReenviarConfirmacionCorreo($event)"
+              >
+                {{ resendingVerification ? 'Reenviando...' : 'Reenviar verificación' }}
+              </button>
+            }
+
+            @if (puedeAutorizar) {
+              <button
+                type="button"
+                class="btn btn-success"
+                [disabled]="authorizing"
+                (click)="onAutorizar($event)"
+              >
+                {{ authorizing ? 'Autorizando...' : 'Autorizar usuario' }}
+              </button>
+            }
+
+            @if (puedeEliminarSoft) {
+              <button
+                type="button"
+                class="btn btn-outline-danger"
+                [disabled]="deleting"
+                (click)="onEliminarUsuario($event)"
+              >
+                {{ deleting ? 'Eliminando...' : 'Eliminar' }}
+              </button>
+            }
+
+            @if (puedeReactivar) {
+              <button
+                type="button"
+                class="btn btn-outline-success"
+                [disabled]="reactivating"
+                (click)="onReactivarUsuario($event)"
+              >
+                {{ reactivating ? 'Reactivando...' : 'Reactivar' }}
+              </button>
+            }
+
+            @if (puedeEliminarDefinitivo) {
+              <button
+                type="button"
+                class="btn btn-danger"
+                [disabled]="purging"
+                (click)="onEliminarDefinitivo($event)"
+              >
+                {{ purging ? 'Eliminando...' : 'Eliminar definitivamente' }}
+              </button>
+            }
           </div>
-          <span class="caret">{{ open ? '▴' : '▾' }}</span>
         </div>
 
-        <!-- Cuerpo -->
-        <form
-          class="card-body selectable-fix"
-          [hidden]="!open"
-          [formGroup]="form"
-          id="formUsuario"
-          name="formUsuario"
-        >
+        <div style="height: 1rem;"></div>
           <!-- Identificación básica -->
           <div class="row g-3">
             <div class="col-12 col-md-3">
@@ -127,7 +203,146 @@
 
           <div style="height: 1rem;"></div>
 
-          <!-- Estado y rol (únicos editables) -->
+          <!-- Verificación de correo -->
+          <div class="row g-3">
+            <div class="col-12 col-md-6">
+              <label class="form-label">Correo verificado</label>
+              <input
+                type="text"
+                class="value-box-noedit"
+                [value]="usuario?.correoVerificado ? 'Sí' : 'No'"
+                readonly
+              />
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label class="form-label">Fecha de verificación</label>
+              <input
+                type="text"
+                class="value-box-noedit"
+                [value]="usuario?.fechaCorreoVerificado ? (usuario?.fechaCorreoVerificado | date:'dd/MM/yyyy HH:mm') : ''"
+                readonly
+              />
+            </div>
+          </div>
+
+          @if (usuario?.correoPendiente) {
+            <div style="height: 1rem;"></div>
+
+            <div class="row g-3">
+              <div class="col-12 col-md-6">
+                <label class="form-label">Correo pendiente</label>
+                <input
+                  type="text"
+                  class="value-box-noedit"
+                  [value]="usuario?.correoPendiente || ''"
+                  readonly
+                />
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label class="form-label">Fecha de solicitud</label>
+                <input
+                  type="text"
+                  class="value-box-noedit"
+                  [value]="usuario?.fechaCorreoPendiente ? (usuario?.fechaCorreoPendiente | date:'dd/MM/yyyy HH:mm') : ''"
+                  readonly
+                />
+              </div>
+            </div>
+          }
+
+          @if (showIdentityForm) {
+            <div style="height: 1rem;"></div>
+
+            <div class="identity-panel" [formGroup]="identityForm">
+              <div class="section-title mb-2">
+                Corrección administrativa de identidad
+              </div>
+
+              <div class="alert alert-warning py-2 mb-3">
+                Esta acción modifica datos críticos del usuario. Indica siempre el motivo.
+              </div>
+
+              <div class="row g-3">
+                <div class="col-12 col-md-4">
+                  <label class="form-label" for="uiddni">DNI</label>
+                  <input
+                    id="uiddni"
+                    type="text"
+                    class="form-control"
+                    formControlName="dni"
+                    maxlength="11"
+                  />
+
+                  @if (identityForm.controls.dni.invalid && identityForm.controls.dni.touched) {
+                    <div class="text-danger small mt-1">
+                      El DNI debe tener entre 8 y 11 dígitos.
+                    </div>
+                  }
+                </div>
+
+                <div class="col-12 col-md-8">
+                  <label class="form-label" for="uidcorreo">Correo electrónico</label>
+                  <input
+                    id="uidcorreo"
+                    type="email"
+                    class="form-control"
+                    formControlName="correoE"
+                    maxlength="255"
+                  />
+
+                  @if (identityForm.controls.correoE.invalid && identityForm.controls.correoE.touched) {
+                    <div class="text-danger small mt-1">
+                      Ingrese un correo válido.
+                    </div>
+                  }
+                </div>
+
+                <div class="col-12">
+                  <label class="form-label" for="uidmotivo">Motivo</label>
+                  <textarea
+                    id="uidmotivo"
+                    class="form-control"
+                    rows="2"
+                    formControlName="motivo"
+                    maxlength="255"
+                    placeholder="Ejemplo: el usuario registró mal su correo y no puede verificar la cuenta."
+                  ></textarea>
+
+                  @if (identityForm.controls.motivo.invalid && identityForm.controls.motivo.touched) {
+                    <div class="text-danger small mt-1">
+                      El motivo es obligatorio.
+                    </div>
+                  }
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-end gap-2 mt-3">
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary"
+                  [disabled]="correctingIdentity"
+                  (click)="onCancelarCorregirIdentidad()"
+                >
+                  Cancelar
+                </button>
+
+                <button
+                  type="button"
+                  class="btn btn-info"
+                  [disabled]="correctingIdentity"
+                  (click)="onGuardarCorregirIdentidad()"
+                >
+                  {{ correctingIdentity ? 'Corrigiendo...' : 'Guardar corrección' }}
+                </button>
+              </div>
+            </div>
+          }
+
+          <div style="height: 1rem;"></div>
+
+          <!-- Estado y rol -->
           <div class="row g-3">
             <div class="col-12 col-md-6">
               <label class="form-label" for="udf1campo8">Rol</label>
@@ -147,17 +362,26 @@
 
             <div class="col-12 col-md-6">
               <label class="form-label" for="udf1campo9">Estado</label>
-              <select
-                id="udf1campo9"
-                class="form-select"
-                formControlName="estado"
-                [class.value-box-edit]="isEditing"
-                [class.value-box-noedit]="!isEditing"
-              >
-                @for (opt of estadoOpciones; track opt.value) {
-                  <option [value]="opt.value">{{ opt.label }}</option>
-                }
-              </select>
+
+              @if (isEditing && puedeEditarEstadoManual) {
+                <select
+                  id="udf1campo9"
+                  class="form-select value-box-edit"
+                  formControlName="estado"
+                >
+                  @for (opt of estadoOpcionesEdicion; track opt.value) {
+                    <option [ngValue]="opt.value">{{ opt.label }}</option>
+                  }
+                </select>
+              } @else {
+                <input
+                  id="udf1campo9"
+                  type="text"
+                  class="value-box-noedit"
+                  [value]="usuario?.estadoTexto || ''"
+                  readonly
+                />
+              }
             </div>
           </div>
 
@@ -177,12 +401,13 @@
             </div>
           </div>
 
-          <!-- Botones -->
+          <!-- Botones de edición normal -->
           @if (isEditing) {
             <div class="d-flex justify-content-between mt-4">
               <button type="button" class="btn btn-warning" (click)="onCancel()">
                 Cancelar
               </button>
+
               <button type="button" class="btn btn-success" (click)="onSave()">
                 Guardar
               </button>
@@ -209,6 +434,7 @@
               Horarios asignados
             </span>
           </div>
+
           <span class="caret">{{ openHorarios ? '▴' : '▾' }}</span>
         </div>
 

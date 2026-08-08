@@ -159,18 +159,11 @@ export class Perfil implements OnInit, OnDestroy {
     if (v.apellidoMaterno !== this.originalPerfil?.apellidoMaterno) {
       changes.apellidoMaterno = v.apellidoMaterno ?? '';
     }
-    if (v.dni !== this.originalPerfil?.dni) {
-      changes.dni = v.dni ?? '';
-    }
-    if (v.correoE !== this.originalPerfil?.correoE) {
-      changes.correoE = v.correoE ?? '';
-    }
+
     if (v.telefono !== this.originalPerfil?.telefono) {
       changes.telefono = v.telefono ?? '';
     }
-    if (v.tz !== this.originalPerfil?.tz) {
-      changes.tz = v.tz ?? '';
-    }
+  
 
     if (Object.keys(changes).length === 0) {
       await this.notify.ok({
@@ -222,10 +215,8 @@ export class Perfil implements OnInit, OnDestroy {
     if (v.nombres !== this.originalPerfil.nombres) return true;
     if (v.apellidoPaterno !== this.originalPerfil.apellidoPaterno) return true;
     if (v.apellidoMaterno !== this.originalPerfil.apellidoMaterno) return true;
-    if (v.dni !== this.originalPerfil.dni) return true;
-    if (v.correoE !== this.originalPerfil.correoE) return true;
     if (v.telefono !== this.originalPerfil.telefono) return true;
-    if (v.tz !== this.originalPerfil.tz) return true;
+
 
     return false;
   }

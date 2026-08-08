@@ -1,0 +1,2720 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">frontend documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  ConsultaDetalle</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/pages/consulta/consulta.detalle/consulta.detalle.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" class="nav-link"
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.dev/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.dev/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-consulta-detalle</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                        <div>        <code><a href="https://angular.dev/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+</div>
+                        <div>        <code><a href="https://angular.dev/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+</div>
+                        <div>        <code><a href="../components/SeguimientoListaConsulta.html" target="_self" >SeguimientoListaConsulta</a></code>
+</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./consulta.detalle.css</code></td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./consulta.detalle.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./consulta.detalle.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+        <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <p class="comment"><i>No results matching.</i></p>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="https://angular.dev/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../components/SeguimientoListaConsulta.html" target="_self" >SeguimientoListaConsulta</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/core/OnInit" target="_blank" >OnInit</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+</div>
+
+    <div class="tab-pane fade " id="api">    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#canSeeControl" >canSeeControl</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#ciudadanoId" >ciudadanoId</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#creadoPorDni" >creadoPorDni</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#creadoPorNombre" >creadoPorNombre</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#fb" >fb</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#fechaCreadoPor" >fechaCreadoPor</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#fechaModificadoPor" >fechaModificadoPor</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#form" >form</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#idconsulta" >idconsulta</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#isEditing" >isEditing</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#isOtros" >isOtros</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#llevaCasoOpciones" >llevaCasoOpciones</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#materiaOpciones" >materiaOpciones</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#modificadoPorDni" >modificadoPorDni</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#modificadoPorNombre" >modificadoPorNombre</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#notify" >notify</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#open" >open</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#open2" >open2</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#originalData" >originalData</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#originalFormData" >originalFormData</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#pageMeta" >pageMeta</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#route" >route</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#router" >router</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#service" >service</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#subMateria" >subMateria</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#submittedEdit" >submittedEdit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#aplicarControl" >aplicarControl</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#aplicarDetalle" >aplicarDetalle</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#gotoSeguimiento" >gotoSeguimiento</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#hasUnsavedChanges" >hasUnsavedChanges</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#onCancel" >onCancel</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#onEdit" >onEdit</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#onSave" >onSave</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#syncMateriaOtros" >syncMateriaOtros</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#validaMateriaOtros" >validaMateriaOtros</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="aplicarControl"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>aplicarControl</b></span>
+                        <a href="#aplicarControl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>aplicarControl(control: <a href="../interfaces/VMConsultaControl.html" target="_self">VMConsultaControl</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="176"
+                                    class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:176</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>control</td>
+                                            <td>
+                                                            <code><a href="../interfaces/VMConsultaControl.html" target="_self" >VMConsultaControl</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="aplicarDetalle"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>aplicarDetalle</b></span>
+                        <a href="#aplicarDetalle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>aplicarDetalle(data: <a href="../miscellaneous/typealiases.html#VMConsultaDetalleSimple" target="_self">VMConsultaDetalleSimple</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="149"
+                                    class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:149</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#VMConsultaDetalleSimple" target="_self" >VMConsultaDetalleSimple</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="gotoSeguimiento"></a>
+                    <span class="name">
+                        <span ><b>gotoSeguimiento</b></span>
+                        <a href="#gotoSeguimiento"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>gotoSeguimiento()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="393"
+                                    class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:393</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hasUnsavedChanges"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>hasUnsavedChanges</b></span>
+                        <a href="#hasUnsavedChanges"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>hasUnsavedChanges()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="416"
+                                    class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:416</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="145"
+                                    class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:145</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="104"
+                                    class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:104</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onCancel"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>onCancel</b></span>
+                        <a href="#onCancel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onCancel()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="233"
+                                    class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:233</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onEdit"></a>
+                    <span class="name">
+                        <span ><b>onEdit</b></span>
+                        <a href="#onEdit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onEdit(ev: <a href="https://angular.dev/api/router/Event" target="_blank">Event</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="222"
+                                    class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:222</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>ev</td>
+                                            <td>
+                                                            <code><a href="https://angular.dev/api/router/Event" target="_blank" >Event</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSave"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>onSave</b></span>
+                        <a href="#onSave"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onSave()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="255"
+                                    class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:255</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="syncMateriaOtros"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>syncMateriaOtros</b></span>
+                        <a href="#syncMateriaOtros"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>syncMateriaOtros()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="186"
+                                    class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:186</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validaMateriaOtros"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>validaMateriaOtros</b></span>
+                        <a href="#validaMateriaOtros"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>validaMateriaOtros()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="210"
+                                    class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:210</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>string | null</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="canSeeControl"></a>
+                    <span class="name">
+                        <span ><b>canSeeControl</b></span>
+                        <a href="#canSeeControl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ciudadanoId"></a>
+                    <span class="name">
+                        <span ><b>ciudadanoId</b></span>
+                        <a href="#ciudadanoId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="creadoPorDni"></a>
+                    <span class="name">
+                        <span ><b>creadoPorDni</b></span>
+                        <a href="#creadoPorDni"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:56</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="creadoPorNombre"></a>
+                    <span class="name">
+                        <span ><b>creadoPorNombre</b></span>
+                        <a href="#creadoPorNombre"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fb"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>fb</b></span>
+                        <a href="#fb"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(FormBuilder)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fechaCreadoPor"></a>
+                    <span class="name">
+                        <span ><b>fechaCreadoPor</b></span>
+                        <a href="#fechaCreadoPor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Date | string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:57</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fechaModificadoPor"></a>
+                    <span class="name">
+                        <span ><b>fechaModificadoPor</b></span>
+                        <a href="#fechaModificadoPor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Date | string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="form"></a>
+                    <span class="name">
+                        <span ><b>form</b></span>
+                        <a href="#form"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.fb.group&lt;ControlsOf&lt;ConsultaDetalleForm&gt;&gt;({
+    resumen: new FormControl(&#x27;&#x27;, {
+      nonNullable: true,
+      validators: [Validators.maxLength(200)],
+    }),
+
+    hechos: new FormControl(&#x27;&#x27;, {
+      nonNullable: true,
+      validators: [Validators.required, Validators.maxLength(600)],
+    }),
+
+    materias: new FormControl&lt;Materia&gt;(&#x27;&#x27;, {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+
+    materiaOtros: new FormControl(&#x27;&#x27;, {
+      nonNullable: true,
+      validators: [Validators.maxLength(150)],
+    }),
+
+    absolucion: new FormControl(&#x27;&#x27;, {
+      nonNullable: true,
+      validators: [Validators.required, Validators.maxLength(600)],
+    }),
+
+    llevaCaso: new FormControl&lt;LlevaCasoConNosotros&gt;(&#x27;NO&#x27;, {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+
+    observaciones: new FormControl(&#x27;&#x27;, {
+      nonNullable: true,
+      validators: [Validators.maxLength(600)],
+    }),
+
+    fechaRegistrada: new FormControl(&#x27;&#x27;, {
+      nonNullable: true,
+    }),
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:63</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="idconsulta"></a>
+                    <span class="name">
+                        <span ><b>idconsulta</b></span>
+                        <a href="#idconsulta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isEditing"></a>
+                    <span class="name">
+                        <span ><b>isEditing</b></span>
+                        <a href="#isEditing"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isOtros"></a>
+                    <span class="name">
+                        <span ><b>isOtros</b></span>
+                        <a href="#isOtros"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:42</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="llevaCasoOpciones"></a>
+                    <span class="name">
+                        <span ><b>llevaCasoOpciones</b></span>
+                        <a href="#llevaCasoOpciones"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>LLEVA_CASO_OPCIONES</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="materiaOpciones"></a>
+                    <span class="name">
+                        <span ><b>materiaOpciones</b></span>
+                        <a href="#materiaOpciones"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>MATERIA_CONSULTA_OPCIONES</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:50</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="modificadoPorDni"></a>
+                    <span class="name">
+                        <span ><b>modificadoPorDni</b></span>
+                        <a href="#modificadoPorDni"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:60</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="modificadoPorNombre"></a>
+                    <span class="name">
+                        <span ><b>modificadoPorNombre</b></span>
+                        <a href="#modificadoPorNombre"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:59</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="notify"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>notify</b></span>
+                        <a href="#notify"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(NotificacionesService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:33</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="open"></a>
+                    <span class="name">
+                        <span ><b>open</b></span>
+                        <a href="#open"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:44</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="open2"></a>
+                    <span class="name">
+                        <span ><b>open2</b></span>
+                        <a href="#open2"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:45</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="originalData"></a>
+                    <span class="name">
+                        <span ><b>originalData</b></span>
+                        <a href="#originalData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#VMConsultaUpdate" target="_self" >VMConsultaUpdate</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="originalFormData"></a>
+                    <span class="name">
+                        <span ><b>originalFormData</b></span>
+                        <a href="#originalFormData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#ConsultaDetalleForm" target="_self" >ConsultaDetalleForm</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pageMeta"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>pageMeta</b></span>
+                        <a href="#pageMeta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(PageMetaService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="route"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>route</b></span>
+                        <a href="#route"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ActivatedRoute)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="router"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>router</b></span>
+                        <a href="#router"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(Router)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="service"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>service</b></span>
+                        <a href="#service"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ConsultaService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subMateria"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>subMateria</b></span>
+                        <a href="#subMateria"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:35</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="submittedEdit"></a>
+                    <span class="name">
+                        <span ><b>submittedEdit</b></span>
+                        <a href="#submittedEdit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/pages/consulta/consulta.detalle/consulta.detalle.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, OnDestroy, inject } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import {ReactiveFormsModule,FormBuilder,FormControl,Validators} from &#x27;@angular/forms&#x27;;
+import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;;
+
+import {VMConsultaDetalleSimple,VMConsultaUpdate,VMConsultaUpdateForm,VMConsultaControl,} from &#x27;../models/consulta.vm&#x27;;
+
+import { ConsultaService } from &#x27;../services/consulta.service&#x27;;
+import { MapDetalleToUpdate } from &#x27;../mappers/consulta.mapper&#x27;;
+import { SeguimientoListaConsulta } from &#x27;../../seguimiento/seguimiento.lista.consulta/seguimiento.lista.consulta&#x27;;
+
+import {Materia,MATERIA_CONSULTA_OPCIONES,LLEVA_CASO_OPCIONES,LlevaCasoConNosotros,} from &#x27;../models/consulta.dominio&#x27;;
+
+import { NotificacionesService } from &#x27;@/app/components/notificaciones/services/notificaciones.service&#x27;;
+import { PageMetaService } from &#x27;@/app/services/page_meta.service&#x27;;
+import { firstValueFrom, Subscription } from &#x27;rxjs&#x27;;
+
+
+@Component({
+  selector: &#x27;app-consulta-detalle&#x27;,
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, SeguimientoListaConsulta],
+  templateUrl: &#x27;./consulta.detalle.html&#x27;,
+  styleUrl: &#x27;./consulta.detalle.css&#x27;
+})
+export class ConsultaDetalle implements OnInit, OnDestroy {
+  
+
+  private route &#x3D; inject(ActivatedRoute);
+  private router &#x3D; inject(Router);
+  private service &#x3D; inject(ConsultaService);
+  private fb &#x3D; inject(FormBuilder);
+  private notify &#x3D; inject(NotificacionesService);
+  private pageMeta &#x3D; inject(PageMetaService);
+  private subMateria?: Subscription;
+
+  idconsulta!: number;
+  ciudadanoId!: number;
+
+  isEditing &#x3D; false;
+  submittedEdit &#x3D; false;
+  isOtros &#x3D; false;
+
+  open &#x3D; false;
+  open2 &#x3D; true;
+
+  originalData!: VMConsultaUpdate;
+  originalFormData!: ConsultaDetalleForm;
+
+  materiaOpciones &#x3D; MATERIA_CONSULTA_OPCIONES;
+  llevaCasoOpciones &#x3D; LLEVA_CASO_OPCIONES;
+
+  canSeeControl &#x3D; true;
+
+  creadoPorNombre: string | null &#x3D; null;
+  creadoPorDni: string | null &#x3D; null;
+  fechaCreadoPor: Date | string | null &#x3D; null;
+
+  modificadoPorNombre: string | null &#x3D; null;
+  modificadoPorDni: string | null &#x3D; null;
+  fechaModificadoPor: Date | string | null &#x3D; null;
+
+  form &#x3D; this.fb.group&lt;ControlsOf&lt;ConsultaDetalleForm&gt;&gt;({
+    resumen: new FormControl(&#x27;&#x27;, {
+      nonNullable: true,
+      validators: [Validators.maxLength(200)],
+    }),
+
+    hechos: new FormControl(&#x27;&#x27;, {
+      nonNullable: true,
+      validators: [Validators.required, Validators.maxLength(600)],
+    }),
+
+    materias: new FormControl&lt;Materia&gt;(&#x27;&#x27;, {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+
+    materiaOtros: new FormControl(&#x27;&#x27;, {
+      nonNullable: true,
+      validators: [Validators.maxLength(150)],
+    }),
+
+    absolucion: new FormControl(&#x27;&#x27;, {
+      nonNullable: true,
+      validators: [Validators.required, Validators.maxLength(600)],
+    }),
+
+    llevaCaso: new FormControl&lt;LlevaCasoConNosotros&gt;(&#x27;NO&#x27;, {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+
+    observaciones: new FormControl(&#x27;&#x27;, {
+      nonNullable: true,
+      validators: [Validators.maxLength(600)],
+    }),
+
+    fechaRegistrada: new FormControl(&#x27;&#x27;, {
+      nonNullable: true,
+    }),
+  });
+
+  ngOnInit(): void {
+    this.form.disable();
+
+    const id &#x3D; Number(
+      this.route.snapshot.paramMap.get(&#x27;idconsulta&#x27;) ??
+      this.route.snapshot.paramMap.get(&#x27;id&#x27;)
+    );
+
+    if (!id) return;
+
+    this.idconsulta &#x3D; id;
+
+    const idciudadanoRuta &#x3D; Number(this.route.snapshot.paramMap.get(&#x27;idciudadano&#x27;));
+
+    this.pageMeta.replace({
+      titulo: &#x27;Consulta Nº&#x27;,
+      ruta: !isNaN(idciudadanoRuta) &amp;&amp; idciudadanoRuta &gt; 0
+        ? [&#x27;/ciudadano&#x27;, idciudadanoRuta]
+        : [&#x27;/consulta&#x27;],
+    });
+
+    this.subMateria &#x3D; this.form.get(&#x27;materias&#x27;)!.valueChanges.subscribe(() &#x3D;&gt; {
+      this.syncMateriaOtros();
+    });
+
+    this.service.getById(id).subscribe({
+      next: (data: VMConsultaDetalleSimple) &#x3D;&gt; {
+        this.aplicarDetalle(data);
+
+        this.service.getControlById(id).subscribe({
+          next: (control) &#x3D;&gt; this.aplicarControl(control),
+          error: () &#x3D;&gt; {
+            // Si no carga auditoría, no bloquea el detalle.
+          },
+        });
+      },
+      error: () &#x3D;&gt; {
+        // El interceptor ya mostró el diálogo.
+      }
+    });
+  }
+  ngOnDestroy(): void {
+    this.subMateria?.unsubscribe();
+    this.pageMeta.clear();
+  }
+  private aplicarDetalle(data: VMConsultaDetalleSimple): void {
+    const formData: ConsultaDetalleForm &#x3D; {
+      resumen: data.resumen ?? &#x27;&#x27;,
+      hechos: data.hechos ?? &#x27;&#x27;,
+      materias: data.materias ?? &#x27;&#x27;,
+      materiaOtros: data.materiaOtros ?? &#x27;&#x27;,
+      absolucion: data.absolucion ?? &#x27;&#x27;,
+      llevaCaso: data.llevaCaso ?? &#x27;NO&#x27;,
+      observaciones: data.observaciones ?? &#x27;&#x27;,
+      fechaRegistrada: data.fechaRegistrada ?? &#x27;&#x27;,
+    };
+
+    this.form.patchValue(formData);
+
+    this.syncMateriaOtros();
+
+    this.originalFormData &#x3D; { ...formData };
+    this.originalData &#x3D; MapDetalleToUpdate(data);
+
+    this.idconsulta &#x3D; data.id;
+    this.ciudadanoId &#x3D; data.idciudadano;
+
+    this.pageMeta.set({
+      titulo: &#x60;Consulta Nº${data.id ?? this.idconsulta} - DNI: ${data.dni ?? &#x27;&#x27;}&#x60;,
+    });
+  }
+
+  private aplicarControl(control: VMConsultaControl): void {
+    this.creadoPorNombre &#x3D; control.creadoPorNombre ?? null;
+    this.creadoPorDni &#x3D; control.creadoPorDni ?? null;
+    this.fechaCreadoPor &#x3D; control.fechaCreadoPor ?? null;
+
+    this.modificadoPorNombre &#x3D; control.modificadoPorNombre ?? null;
+    this.modificadoPorDni &#x3D; control.modificadoPorDni ?? null;
+    this.fechaModificadoPor &#x3D; control.fechaModificadoPor ?? null;
+  }
+
+  private syncMateriaOtros(): void {
+    const value &#x3D; this.form.get(&#x27;materias&#x27;)!.value as Materia;
+    const otrosCtrl &#x3D; this.form.get(&#x27;materiaOtros&#x27;)!;
+
+    this.isOtros &#x3D; value &#x3D;&#x3D;&#x3D; &#x27;OTROS&#x27;;
+
+    if (this.isOtros) {
+      otrosCtrl.setValidators([Validators.required, Validators.maxLength(150)]);
+    } else {
+      otrosCtrl.clearValidators();
+
+      if (otrosCtrl.value) {
+        otrosCtrl.setValue(&#x27;&#x27;, { emitEvent: false });
+      }
+
+      otrosCtrl.markAsPristine();
+      otrosCtrl.markAsUntouched();
+    }
+
+    otrosCtrl.updateValueAndValidity({ emitEvent: false });
+  }
+
+
+
+  private validaMateriaOtros(): string | null {
+    const v &#x3D; this.form.getRawValue();
+
+    if (v.materias &#x3D;&#x3D;&#x3D; &#x27;OTROS&#x27; &amp;&amp; !v.materiaOtros?.toString().trim()) {
+      return &#x27;Indique la materia en “Otros”.&#x27;;
+    }
+
+    return null;
+  }
+
+  
+
+  onEdit(ev: Event): void {
+    ev.stopPropagation();
+
+    this.submittedEdit &#x3D; false;
+    this.isEditing &#x3D; true;
+    this.open &#x3D; true;
+
+    this.form.enable();
+    this.syncMateriaOtros();
+  }
+
+  async onCancel(): Promise&lt;void&gt; {
+    if (this.hasUnsavedChanges()) {
+      const ok &#x3D; await this.notify.confirm({
+        variant: &#x27;warning&#x27;,
+        title: &#x27;Descartar cambios&#x27;,
+        message: &#x27;Tienes cambios sin guardar. ¿Deseas descartarlos?&#x27;,
+        confirmText: &#x27;Descartar&#x27;,
+        cancelText: &#x27;Seguir editando&#x27;
+      });
+
+      if (!ok) return;
+    }
+
+    this.form.reset(this.originalFormData);
+
+    this.isEditing &#x3D; false;
+    this.form.disable();
+    this.submittedEdit &#x3D; false;
+
+    this.syncMateriaOtros();
+  }
+
+  async onSave(): Promise&lt;void&gt; {
+    this.submittedEdit &#x3D; true;
+
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+
+      await this.notify.ok({
+        variant: &#x27;warning&#x27;,
+        title: &#x27;Datos incompletos&#x27;,
+        message: &#x27;Revisa los campos obligatorios e inténtalo nuevamente.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+
+      return;
+    }
+
+    const msgOtros &#x3D; this.validaMateriaOtros();
+
+    if (msgOtros) {
+      await this.notify.ok({
+        variant: &#x27;warning&#x27;,
+        title: &#x27;Falta información&#x27;,
+        message: msgOtros,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+
+      return;
+    }
+
+    const raw &#x3D; this.form.getRawValue();
+
+    const currentForm: ConsultaDetalleForm &#x3D; {
+      resumen: raw.resumen,
+      hechos: raw.hechos,
+      materias: raw.materias,
+      materiaOtros: raw.materiaOtros,
+      absolucion: raw.absolucion,
+      llevaCaso: raw.llevaCaso,
+      observaciones: raw.observaciones,
+      fechaRegistrada: raw.fechaRegistrada,
+    };
+
+    const changes: VMConsultaUpdateForm &#x3D; {};
+
+    if (currentForm.resumen !&#x3D;&#x3D; this.originalFormData.resumen) {
+      changes.resumen &#x3D; currentForm.resumen;
+    }
+
+    if (currentForm.hechos !&#x3D;&#x3D; this.originalFormData.hechos) {
+      changes.hechos &#x3D; currentForm.hechos;
+    }
+
+    if (currentForm.materias !&#x3D;&#x3D; this.originalFormData.materias) {
+      changes.materias &#x3D; currentForm.materias;
+    }
+
+    if (currentForm.materiaOtros !&#x3D;&#x3D; this.originalFormData.materiaOtros) {
+      changes.materiaOtros &#x3D; currentForm.materiaOtros;
+    }
+
+    if (currentForm.absolucion !&#x3D;&#x3D; this.originalFormData.absolucion) {
+      changes.absolucion &#x3D; currentForm.absolucion;
+    }
+
+    if (currentForm.llevaCaso !&#x3D;&#x3D; this.originalFormData.llevaCaso) {
+      changes.llevaCaso &#x3D; currentForm.llevaCaso;
+    }
+
+    if (currentForm.observaciones !&#x3D;&#x3D; this.originalFormData.observaciones) {
+      changes.observaciones &#x3D; currentForm.observaciones;
+    }
+
+    if (currentForm.fechaRegistrada !&#x3D;&#x3D; this.originalFormData.fechaRegistrada) {
+      changes.fechaRegistrada &#x3D; currentForm.fechaRegistrada || null;
+    }
+
+    if (Object.keys(changes).length &#x3D;&#x3D;&#x3D; 0) {
+      await this.notify.ok({
+        variant: &#x27;info&#x27;,
+        title: &#x27;Sin cambios&#x27;,
+        message: &#x27;No hay cambios para guardar.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+
+      return;
+    }
+
+    const confirm &#x3D; await this.notify.confirm({
+      variant: &#x27;info&#x27;,
+      title: &#x27;Guardar cambios&#x27;,
+      message: &#x27;¿Deseas guardar los cambios realizados?&#x27;,
+      confirmText: &#x27;Guardar&#x27;,
+      cancelText: &#x27;Cancelar&#x27;,
+    });
+
+    if (!confirm) return;
+
+    const id &#x3D; this.originalData.id;
+
+    if (id &#x3D;&#x3D; null) {
+      await this.notify.ok({
+        variant: &#x27;error&#x27;,
+        title: &#x27;Operación inválida&#x27;,
+        message: &#x27;No se encontró el ID de la consulta.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+
+      return;
+    }
+
+    try {
+      await this.service.update(id, changes);
+
+      const detalle &#x3D; await firstValueFrom(this.service.getById(id));
+      this.aplicarDetalle(detalle);
+
+      this.service.getControlById(id).subscribe({
+        next: (control) &#x3D;&gt; this.aplicarControl(control),
+        error: () &#x3D;&gt; {},
+      });
+
+      await this.notify.ok({
+        variant: &#x27;success&#x27;,
+        title: &#x27;Cambios guardados&#x27;,
+        message: &#x27;La información de la consulta se actualizó correctamente.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+
+      this.isEditing &#x3D; false;
+      this.form.disable();
+      this.submittedEdit &#x3D; false;
+
+      this.syncMateriaOtros();
+    } catch {
+      // El interceptor ya mostró el error.
+    }
+  }
+
+  gotoSeguimiento(): void {
+    const idciudadanoRuta &#x3D; Number(this.route.snapshot.paramMap.get(&#x27;idciudadano&#x27;));
+
+    if (!isNaN(idciudadanoRuta) &amp;&amp; idciudadanoRuta &gt; 0) {
+      this.router.navigate([
+        &#x27;/ciudadano&#x27;,
+        idciudadanoRuta,
+        &#x27;consulta&#x27;,
+        this.idconsulta,
+        &#x27;seguimiento&#x27;,
+        &#x27;registrar&#x27;,
+      ]);
+      return;
+    }
+
+    this.router.navigate([
+      &#x27;/consulta&#x27;,
+      this.idconsulta,
+      &#x27;seguimiento&#x27;,
+      &#x27;registrar&#x27;,
+    ]);
+  }
+
+  private hasUnsavedChanges(): boolean {
+    const v &#x3D; this.form.getRawValue() as Record&lt;string, unknown&gt;;
+    const o &#x3D; this.originalFormData as Record&lt;string, unknown&gt;;
+
+    for (const k of Object.keys(v)) {
+      if (v[k] !&#x3D;&#x3D; o[k]) return true;
+    }
+
+    return false;
+  }
+}
+
+type ConsultaDetalleForm &#x3D; {
+  resumen: string;
+  hechos: string;
+  materias: Materia;
+  materiaOtros: string;
+  absolucion: string;
+  llevaCaso: LlevaCasoConNosotros;
+  observaciones: string;
+  fechaRegistrada: string;
+};
+
+type ControlsOf&lt;T&gt; &#x3D; {
+  [K in keyof T]: FormControl&lt;T[K]&gt;;
+};
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container&quot;&gt;
+  &lt;div class&#x3D;&quot;row justify-content-center&quot;&gt;
+    &lt;!-- PANEL 1: Información de la consulta --&gt;
+    &lt;div class&#x3D;&quot;col-12 col-lg-8 mb-4&quot;&gt;
+      &lt;div class&#x3D;&quot;card shadow-sm&quot;&gt;
+
+        &lt;!-- Encabezado colapsable --&gt;
+        &lt;div
+          class&#x3D;&quot;card-header d-flex justify-content-between align-items-center selectable-fix&quot;
+          (click)&#x3D;&quot;open &#x3D; !open&quot;
+          role&#x3D;&quot;button&quot;
+          [attr.aria-expanded]&#x3D;&quot;open&quot;&gt;
+          &lt;div class&#x3D;&quot;d-flex align-items-center gap-2&quot;&gt;
+            &lt;span class&#x3D;&quot;fw-semibold&quot; style&#x3D;&quot;min-width: 220px; display: inline-block;&quot;&gt;Información de la consulta&lt;/span&gt;
+            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-secondary&quot; (click)&#x3D;&quot;onEdit($event)&quot;&gt;
+              Editar
+            &lt;/button&gt;
+          &lt;/div&gt;
+          &lt;span class&#x3D;&quot;caret&quot;&gt;{{ open ? &quot;▴&quot; : &quot;▾&quot; }}&lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Cuerpo --&gt;
+        &lt;form class&#x3D;&quot;card-body selectable-fix&quot;
+          [formGroup]&#x3D;&quot;form&quot;
+          id&#x3D;&quot;form1&quot;
+          name&#x3D;&quot;form1&quot;
+          [hidden]&#x3D;&quot;!open&quot;&gt;
+
+          &lt;!-- Resumen --&gt;
+          &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+            &lt;div class&#x3D;&quot;col-12&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot;&gt;Resumen&lt;/label&gt;
+              &lt;input type&#x3D;&quot;text&quot;
+                formControlName&#x3D;&quot;resumen&quot;
+                maxlength&#x3D;&quot;200&quot;
+                [class.value-box-edit]&#x3D;&quot;isEditing&quot;
+                [class.value-box-noedit]&#x3D;&quot;!isEditing&quot;/&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div style&#x3D;&quot;height: 1rem;&quot;&gt;&lt;/div&gt;
+
+          &lt;!-- Hechos --&gt;
+          &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+            &lt;div class&#x3D;&quot;col-12&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot;&gt;Hechos&lt;/label&gt;
+              &lt;textarea formControlName&#x3D;&quot;hechos&quot;
+                rows&#x3D;&quot;4&quot;
+                maxlength&#x3D;&quot;600&quot;
+                [class.value-box-edit]&#x3D;&quot;isEditing&quot;
+                [class.value-box-noedit]&#x3D;&quot;!isEditing&quot;&gt;&lt;/textarea&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div style&#x3D;&quot;height: 1rem;&quot;&gt;&lt;/div&gt;
+
+          &lt;!-- Materia --&gt;
+          &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+            &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot;&gt;Materia&lt;/label&gt;
+              &lt;select class&#x3D;&quot;form-select&quot;
+                      formControlName&#x3D;&quot;materias&quot;
+                      [class.value-box-edit]&#x3D;&quot;isEditing&quot;
+                      [class.value-box-noedit]&#x3D;&quot;!isEditing&quot;&gt;
+                &lt;option value&#x3D;&quot;&quot; disabled&gt;Seleccione una materia&lt;/option&gt;
+                @for (opt of materiaOpciones; track opt.value) {
+                  &lt;option [value]&#x3D;&quot;opt.value&quot;&gt;{{ opt.label }}&lt;/option&gt;
+                }
+              &lt;/select&gt;
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot;&gt;Especifique otros&lt;/label&gt;
+              &lt;input
+                type&#x3D;&quot;text&quot;
+                maxlength&#x3D;&quot;150&quot;
+                formControlName&#x3D;&quot;materiaOtros&quot;
+                placeholder&#x3D;&quot;Especifique la materia&quot;
+                class&#x3D;&quot;form-control w-100&quot;
+                [readonly]&#x3D;&quot;!isOtros || !isEditing&quot;
+                [attr.tabindex]&#x3D;&quot;(!isOtros || !isEditing) ? -1 : 0&quot;
+                [class.value-box-edit]&#x3D;&quot;isOtros &amp;&amp; isEditing&quot;
+                [class.value-box-noedit]&#x3D;&quot;!(isOtros &amp;&amp; isEditing)&quot;
+              /&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div style&#x3D;&quot;height: 1rem;&quot;&gt;&lt;/div&gt;
+
+          &lt;!-- Lleva caso / Fecha registrada --&gt;
+          &lt;div class&#x3D;&quot;row g-3 align-items-end&quot;&gt;
+            &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot;&gt;¿Lleva el caso con nosotros?&lt;/label&gt;
+              &lt;select class&#x3D;&quot;form-select&quot;
+                formControlName&#x3D;&quot;llevaCaso&quot;
+                [class.value-box-edit]&#x3D;&quot;isEditing&quot;
+                [class.value-box-noedit]&#x3D;&quot;!isEditing&quot;&gt;
+                @for (opt of llevaCasoOpciones; track opt.value) {
+                  &lt;option [value]&#x3D;&quot;opt.value&quot;&gt;{{ opt.label }}&lt;/option&gt;
+                }
+              &lt;/select&gt;
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot; for&#x3D;&quot;coFechaRegistrada&quot;&gt;Fecha registrada&lt;/label&gt;
+              &lt;input
+                type&#x3D;&quot;date&quot;
+                id&#x3D;&quot;coFechaRegistrada&quot;
+                class&#x3D;&quot;form-control&quot;
+                formControlName&#x3D;&quot;fechaRegistrada&quot;
+                [class.value-box-edit]&#x3D;&quot;isEditing&quot;
+                [class.value-box-noedit]&#x3D;&quot;!isEditing&quot;&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div style&#x3D;&quot;height: 1rem;&quot;&gt;&lt;/div&gt;
+
+          &lt;!-- Absolución --&gt;
+          &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+            &lt;div class&#x3D;&quot;col-12&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot;&gt;Absolución&lt;/label&gt;
+              &lt;textarea formControlName&#x3D;&quot;absolucion&quot;
+                rows&#x3D;&quot;3&quot;
+                maxlength&#x3D;&quot;600&quot;
+                [class.value-box-edit]&#x3D;&quot;isEditing&quot;
+                [class.value-box-noedit]&#x3D;&quot;!isEditing&quot;&gt;&lt;/textarea&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div style&#x3D;&quot;height: 1rem;&quot;&gt;&lt;/div&gt;
+
+          &lt;!-- Observaciones --&gt;
+          &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+            &lt;div class&#x3D;&quot;col-12&quot;&gt;
+              &lt;label class&#x3D;&quot;form-label&quot;&gt;Observaciones&lt;/label&gt;
+              &lt;textarea formControlName&#x3D;&quot;observaciones&quot;
+                rows&#x3D;&quot;2&quot;
+                maxlength&#x3D;&quot;600&quot;
+                [class.value-box-edit]&#x3D;&quot;isEditing&quot;
+                [class.value-box-noedit]&#x3D;&quot;!isEditing&quot;&gt;&lt;/textarea&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          @if (canSeeControl) {
+            &lt;div style&#x3D;&quot;height: 1rem;&quot;&gt;&lt;/div&gt;
+
+            &lt;hr class&#x3D;&quot;my-3&quot;&gt;
+
+            &lt;div class&#x3D;&quot;section-title&quot;&gt;Información de registro&lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+              &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;
+                &lt;label class&#x3D;&quot;form-label&quot;&gt;Registrado por&lt;/label&gt;
+                &lt;input type&#x3D;&quot;text&quot;
+                  [value]&#x3D;&quot;creadoPorNombre || &#x27;—&#x27;&quot;
+                  class&#x3D;&quot;value-box-noedit&quot;
+                  readonly&gt;
+              &lt;/div&gt;
+
+              &lt;div class&#x3D;&quot;col-12 col-md-3&quot;&gt;
+                &lt;label class&#x3D;&quot;form-label&quot;&gt;DNI&lt;/label&gt;
+                &lt;input type&#x3D;&quot;text&quot;
+                  [value]&#x3D;&quot;creadoPorDni || &#x27;—&#x27;&quot;
+                  class&#x3D;&quot;value-box-noedit&quot;
+                  readonly&gt;
+              &lt;/div&gt;
+
+              &lt;div class&#x3D;&quot;col-12 col-md-3&quot;&gt;
+                &lt;label class&#x3D;&quot;form-label&quot;&gt;Fecha sistema&lt;/label&gt;
+                &lt;input type&#x3D;&quot;text&quot;
+                  [value]&#x3D;&quot;fechaCreadoPor ? (fechaCreadoPor | date:&#x27;yyyy-MM-dd HH:mm&#x27;) : &#x27;—&#x27;&quot;
+                  class&#x3D;&quot;value-box-noedit&quot;
+                  readonly&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div style&#x3D;&quot;height: 1rem;&quot;&gt;&lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;row g-3&quot;&gt;
+              &lt;div class&#x3D;&quot;col-12 col-md-6&quot;&gt;
+                &lt;label class&#x3D;&quot;form-label&quot;&gt;Última actualización por&lt;/label&gt;
+                &lt;input type&#x3D;&quot;text&quot;
+                  [value]&#x3D;&quot;modificadoPorNombre || &#x27;—&#x27;&quot;
+                  class&#x3D;&quot;value-box-noedit&quot;
+                  readonly&gt;
+              &lt;/div&gt;
+
+              &lt;div class&#x3D;&quot;col-12 col-md-3&quot;&gt;
+                &lt;label class&#x3D;&quot;form-label&quot;&gt;DNI&lt;/label&gt;
+                &lt;input type&#x3D;&quot;text&quot;
+                  [value]&#x3D;&quot;modificadoPorDni || &#x27;—&#x27;&quot;
+                  class&#x3D;&quot;value-box-noedit&quot;
+                  readonly&gt;
+              &lt;/div&gt;
+
+              &lt;div class&#x3D;&quot;col-12 col-md-3&quot;&gt;
+                &lt;label class&#x3D;&quot;form-label&quot;&gt;Fecha sistema&lt;/label&gt;
+                &lt;input type&#x3D;&quot;text&quot;
+                  [value]&#x3D;&quot;fechaModificadoPor ? (fechaModificadoPor | date:&#x27;yyyy-MM-dd HH:mm&#x27;) : &#x27;—&#x27;&quot;
+                  class&#x3D;&quot;value-box-noedit&quot;
+                  readonly&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          }
+
+          &lt;div style&#x3D;&quot;height: 1rem;&quot;&gt;&lt;/div&gt;
+
+          &lt;!-- Botones --&gt;
+          @if (isEditing) {
+            &lt;div class&#x3D;&quot;d-flex justify-content-between mt-4&quot;&gt;
+              &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-warning&quot; (click)&#x3D;&quot;onCancel()&quot;&gt;
+                Cancelar
+              &lt;/button&gt;
+              &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-success&quot; (click)&#x3D;&quot;onSave()&quot;&gt;
+                Guardar
+              &lt;/button&gt;
+            &lt;/div&gt;
+          }
+        &lt;/form&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- PANEL 2: Seguimiento --&gt;
+    &lt;div class&#x3D;&quot;col-12 col-lg-8&quot;&gt;
+      &lt;div class&#x3D;&quot;card shadow-sm&quot;&gt;
+        &lt;div
+          class&#x3D;&quot;card-header d-flex justify-content-between align-items-center selectable-fix&quot;
+          (click)&#x3D;&quot;open2 &#x3D; !open2&quot;
+          role&#x3D;&quot;button&quot;
+          [attr.aria-expanded]&#x3D;&quot;open2&quot;&gt;
+          &lt;div class&#x3D;&quot;d-flex align-items-center gap-2&quot;&gt;
+            &lt;span class&#x3D;&quot;fw-semibold&quot; style&#x3D;&quot;min-width: 220px; display: inline-block;&quot;&gt;Seguimiento&lt;/span&gt;
+            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-secondary&quot;
+                    (click)&#x3D;&quot;gotoSeguimiento(); $event.stopPropagation()&quot;&gt;Nuevo Seguimiento&lt;/button&gt;
+          &lt;/div&gt;
+          &lt;span class&#x3D;&quot;caret&quot;&gt;{{ open2 ? &quot;▴&quot; : &quot;▾&quot; }}&lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;card-body p-0 no-fouc&quot; [hidden]&#x3D;&quot;!open2&quot;&gt;
+          &lt;app-seguimiento-lista-consulta [idconsulta]&#x3D;&quot;idconsulta&quot;&gt;&lt;/app-seguimiento-lista-consulta&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./consulta.detalle.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">/* Mantiene coherencia visual con inputs, pero en modo lectura */
+
+.value-box-noedit {
+  display: block;
+  width: 100%;
+  padding: .475rem .75rem;
+  background-color: #f8f9fa;   /* gris claro tipo form-control readonly */
+  border: 1px solid #dee2e6;
+  border-radius: .375rem;
+  min-height: calc(1.5em + .95rem + 2px);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  cursor: default;
+  pointer-events: none;
+  user-select: none; 
+} 
+.value-box-edit {
+  display: block;
+  width: 100%;
+  padding: .475rem .75rem;
+  background-color: #fff;     /* blanco como input normal */
+  border: 1px solid #ced4da;  /* borde típico de bootstrap */
+  border-radius: .375rem;
+  min-height: calc(1.5em + .95rem + 2px);
+  line-height: 1.5;
+}
+
+/* Encabezado clicable; evita selección accidental de texto */
+.card-header {
+  cursor: pointer;
+  user-select: none;
+}
+
+.section-title {
+  font-weight: 600;
+  color: #6c757d;
+  margin-bottom: .25rem;
+}
+
+/* Flecha simple (si no usa Bootstrap Icons) */
+.caret {
+  font-size: 1rem;
+}
+
+/* Opcional: si desea impedir selección en todo el panel */
+.selectable-fix {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.form-control.ng-invalid.ng-touched {
+  border-color: #dc3545;            /* rojo bootstrap */
+  box-shadow: none;                  /* opcional */
+}
+
+/* Cuando presionaste Guardar y marcas submitting&#x3D;true */
+.was-validated .form-control.ng-invalid {
+  border-color: #dc3545;
+  box-shadow: none;
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="container">  <div class="row justify-content-center">    <!-- PANEL 1: Información de la consulta -->    <div class="col-12 col-lg-8 mb-4">      <div class="card shadow-sm">        <!-- Encabezado colapsable -->        <div          class="card-header d-flex justify-content-between align-items-center selectable-fix"          (click)="open = !open"          role="button"          [attr.aria-expanded]="open">          <div class="d-flex align-items-center gap-2">            <span class="fw-semibold" style="min-width: 220px; display: inline-block;">Información de la consulta</span>            <button type="button" class="btn btn-secondary" (click)="onEdit($event)">              Editar            </button>          </div>          <span class="caret">{{ open ? "▴" : "▾" }}</span>        </div>        <!-- Cuerpo -->        <form class="card-body selectable-fix"          [formGroup]="form"          id="form1"          name="form1"          [hidden]="!open">          <!-- Resumen -->          <div class="row g-3">            <div class="col-12">              <label class="form-label">Resumen</label>              <input type="text"                formControlName="resumen"                maxlength="200"                [class.value-box-edit]="isEditing"                [class.value-box-noedit]="!isEditing"/>            </div>          </div>          <div style="height: 1rem;"></div>          <!-- Hechos -->          <div class="row g-3">            <div class="col-12">              <label class="form-label">Hechos</label>              <textarea formControlName="hechos"                rows="4"                maxlength="600"                [class.value-box-edit]="isEditing"                [class.value-box-noedit]="!isEditing"></textarea>            </div>          </div>          <div style="height: 1rem;"></div>          <!-- Materia -->          <div class="row g-3">            <div class="col-12 col-md-6">              <label class="form-label">Materia</label>              <select class="form-select"                      formControlName="materias"                      [class.value-box-edit]="isEditing"                      [class.value-box-noedit]="!isEditing">                <option value="" disabled>Seleccione una materia</option>                @for (opt of materiaOpciones; track opt.value) {                  <option [value]="opt.value">{{ opt.label }}</option>                }              </select>            </div>            <div class="col-12 col-md-6">              <label class="form-label">Especifique otros</label>              <input                type="text"                maxlength="150"                formControlName="materiaOtros"                placeholder="Especifique la materia"                class="form-control w-100"                [readonly]="!isOtros || !isEditing"                [attr.tabindex]="(!isOtros || !isEditing) ? -1 : 0"                [class.value-box-edit]="isOtros && isEditing"                [class.value-box-noedit]="!(isOtros && isEditing)"              />            </div>          </div>          <div style="height: 1rem;"></div>          <!-- Lleva caso / Fecha registrada -->          <div class="row g-3 align-items-end">            <div class="col-12 col-md-6">              <label class="form-label">¿Lleva el caso con nosotros?</label>              <select class="form-select"                formControlName="llevaCaso"                [class.value-box-edit]="isEditing"                [class.value-box-noedit]="!isEditing">                @for (opt of llevaCasoOpciones; track opt.value) {                  <option [value]="opt.value">{{ opt.label }}</option>                }              </select>            </div>            <div class="col-12 col-md-6">              <label class="form-label" for="coFechaRegistrada">Fecha registrada</label>              <input                type="date"                id="coFechaRegistrada"                class="form-control"                formControlName="fechaRegistrada"                [class.value-box-edit]="isEditing"                [class.value-box-noedit]="!isEditing">            </div>          </div>          <div style="height: 1rem;"></div>          <!-- Absolución -->          <div class="row g-3">            <div class="col-12">              <label class="form-label">Absolución</label>              <textarea formControlName="absolucion"                rows="3"                maxlength="600"                [class.value-box-edit]="isEditing"                [class.value-box-noedit]="!isEditing"></textarea>            </div>          </div>          <div style="height: 1rem;"></div>          <!-- Observaciones -->          <div class="row g-3">            <div class="col-12">              <label class="form-label">Observaciones</label>              <textarea formControlName="observaciones"                rows="2"                maxlength="600"                [class.value-box-edit]="isEditing"                [class.value-box-noedit]="!isEditing"></textarea>            </div>          </div>          @if (canSeeControl) {            <div style="height: 1rem;"></div>            <hr class="my-3">            <div class="section-title">Información de registro</div>            <div class="row g-3">              <div class="col-12 col-md-6">                <label class="form-label">Registrado por</label>                <input type="text"                  [value]="creadoPorNombre || \'—\'"                  class="value-box-noedit"                  readonly>              </div>              <div class="col-12 col-md-3">                <label class="form-label">DNI</label>                <input type="text"                  [value]="creadoPorDni || \'—\'"                  class="value-box-noedit"                  readonly>              </div>              <div class="col-12 col-md-3">                <label class="form-label">Fecha sistema</label>                <input type="text"                  [value]="fechaCreadoPor ? (fechaCreadoPor | date:\'yyyy-MM-dd HH:mm\') : \'—\'"                  class="value-box-noedit"                  readonly>              </div>            </div>            <div style="height: 1rem;"></div>            <div class="row g-3">              <div class="col-12 col-md-6">                <label class="form-label">Última actualización por</label>                <input type="text"                  [value]="modificadoPorNombre || \'—\'"                  class="value-box-noedit"                  readonly>              </div>              <div class="col-12 col-md-3">                <label class="form-label">DNI</label>                <input type="text"                  [value]="modificadoPorDni || \'—\'"                  class="value-box-noedit"                  readonly>              </div>              <div class="col-12 col-md-3">                <label class="form-label">Fecha sistema</label>                <input type="text"                  [value]="fechaModificadoPor ? (fechaModificadoPor | date:\'yyyy-MM-dd HH:mm\') : \'—\'"                  class="value-box-noedit"                  readonly>              </div>            </div>          }          <div style="height: 1rem;"></div>          <!-- Botones -->          @if (isEditing) {            <div class="d-flex justify-content-between mt-4">              <button type="button" class="btn btn-warning" (click)="onCancel()">                Cancelar              </button>              <button type="button" class="btn btn-success" (click)="onSave()">                Guardar              </button>            </div>          }        </form>      </div>    </div>    <!-- PANEL 2: Seguimiento -->    <div class="col-12 col-lg-8">      <div class="card shadow-sm">        <div          class="card-header d-flex justify-content-between align-items-center selectable-fix"          (click)="open2 = !open2"          role="button"          [attr.aria-expanded]="open2">          <div class="d-flex align-items-center gap-2">            <span class="fw-semibold" style="min-width: 220px; display: inline-block;">Seguimiento</span>            <button type="button" class="btn btn-secondary"                    (click)="gotoSeguimiento(); $event.stopPropagation()">Nuevo Seguimiento</button>          </div>          <span class="caret">{{ open2 ? "▴" : "▾" }}</span>        </div>        <div class="card-body p-0 no-fouc" [hidden]="!open2">          <app-seguimiento-lista-consulta [idconsulta]="idconsulta"></app-seguimiento-lista-consulta>        </div>      </div>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AnaliticasDashboard', 'selector': 'app-analiticas-dashboard'},{'name': 'App', 'selector': 'app-root'},{'name': 'AsistenciaLista', 'selector': 'app-asistencia-lista'},{'name': 'AsistenciasDashboard', 'selector': 'app-asistencias-dashboard'},{'name': 'AudienciaCalendario', 'selector': 'app-audiencia-calendario'},{'name': 'AudienciaDetalle', 'selector': 'app-audiencia-detalle'},{'name': 'AudienciaRegistrar', 'selector': 'app-audiencia-registrar'},{'name': 'CiudadanoDetalle', 'selector': 'app-ciudadano-detalle'},{'name': 'CiudadanoLista', 'selector': 'app-ciudadano-lista'},{'name': 'CiudadanoRegistrar', 'selector': 'app-ciudadano-registrar'},{'name': 'ConfirmarCorreo', 'selector': 'app-cuenta-confirmar-correo'},{'name': 'ConsultaDetalle', 'selector': 'app-consulta-detalle'},{'name': 'ConsultaLista', 'selector': 'app-consulta-lista'},{'name': 'ConsultaListaCiudadano', 'selector': 'app-consulta-lista-ciudadano'},{'name': 'ConsultaRegistar', 'selector': 'app-consulta-registrar'},{'name': 'DocumentosListaEntidad', 'selector': 'app-documentos-lista-entidad'},{'name': 'DocumentosListaGeneral', 'selector': 'app-documentos-lista-general'},{'name': 'DocumentosRegistrar', 'selector': 'app-documentos-registrar'},{'name': 'DocumentosRutaBaseLista', 'selector': 'app-documentos-ruta-base-lista'},{'name': 'DocumentosRutaBaseRegistrar', 'selector': 'app-documentos-ruta-base-registrar'},{'name': 'ExportarConDriveComponent', 'selector': 'app-exportar-con-drive'},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'Header', 'selector': 'app-header'},{'name': 'HorarioDetalle', 'selector': 'app-horario-detalle'},{'name': 'HorarioLista', 'selector': 'app-horario-lista'},{'name': 'HorarioRegistrar', 'selector': 'app-horario-registrar'},{'name': 'Ingresar', 'selector': 'app-cuenta-ingresar'},{'name': 'JustificacionListaMis', 'selector': 'app-justificacion-lista-mis'},{'name': 'JustificacionListaPendientes', 'selector': 'app-justificacion-lista-pendientes'},{'name': 'JustificacionRegistrar', 'selector': 'app-justificacion-registrar'},{'name': 'Main_layout', 'selector': 'app-main-layout'},{'name': 'NotificacionestVer', 'selector': 'app-notificaciones-ver'},{'name': 'PaginaNoEncontradaComponent', 'selector': 'app-pagina-no-encontrada'},{'name': 'Perfil', 'selector': 'app-cuenta-perfil'},{'name': 'ProcesoDetalle', 'selector': 'app-proceso-detalle'},{'name': 'ProcesoLista', 'selector': 'app-proceso-lista'},{'name': 'ProcesoRegistrar', 'selector': 'app-proceso-registrar'},{'name': 'Registar', 'selector': 'app-cuenta-registrar'},{'name': 'SeguimientoListaConsulta', 'selector': 'app-seguimiento-lista-consulta'},{'name': 'SeguimientoRegistar', 'selector': 'app-seguimiento-registrar'},{'name': 'Sidebar', 'selector': 'app-sidebar'},{'name': 'Simple_layout', 'selector': 'app-simple_layout'},{'name': 'TramiteDetalle', 'selector': 'app-tramite-detalle'},{'name': 'TramiteLista', 'selector': 'app-tramite-lista'},{'name': 'TramiteRegistrar', 'selector': 'app-tramite-registrar'},{'name': 'UsuarioDetalle', 'selector': 'app-usuario-detalle'},{'name': 'UsuarioHorarioListaUsuario', 'selector': 'app-usuario-horario-lista-usuario'},{'name': 'UsuarioLista', 'selector': 'app-usuario-lista'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ConsultaDetalle'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ConsultaDetalle.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -6,9 +6,10 @@ import { map, Observable, firstValueFrom } from 'rxjs';
 import { API_URL } from '../../../app.token';
 import { Router } from '@angular/router';
 
-import { DTOCuentaCreate, DTOCuentaPerfil, DTOCuentaPerfilUpdate, DTOCuentaChangePassword } from '../models/cuenta.dtos';
-import { VMCuentaCreate, VMCuentaPerfil, VMCuentaPerfilUpdateForm } from '../models/cuenta.vm';
-import { MapCuentaCreate, MapCuentaPerfilFromDTO, MapCuentaPerfilUpdate } from '../mappers/cuenta.mapper';
+import { DTOCuentaCreate, DTOCuentaPerfil, DTOCuentaPerfilUpdate, DTOCuentaChangePassword, DTOCuentaConfirmarCorreoResponse, 
+ } from '../models/cuenta.dtos';
+import { VMCuentaCreate, VMCuentaPerfil, VMCuentaPerfilUpdateForm,VMCuentaConfirmarCorreoResponse, } from '../models/cuenta.vm';
+import { MapCuentaCreate, MapCuentaPerfilFromDTO, MapCuentaPerfilUpdate, } from '../mappers/cuenta.mapper';
 
 @Injectable({ providedIn: 'root' })
 export class CuentaService {
@@ -51,4 +52,19 @@ export class CuentaService {
       this.http.patch<void>(`${this.base}/mi-contrasena`, dto)
     );
   }
+  
+  confirmarCorreo(token: string): Observable<VMCuentaConfirmarCorreoResponse> {
+    return this.http
+      .get<DTOCuentaConfirmarCorreoResponse>(`${this.base}/confirmar-correo`, {
+        params: { token },
+      })
+      .pipe(
+        map((dto) => ({
+          id: dto.us_ID,
+          estado: dto.us_estado,
+          message: dto.message,
+        })),
+      );
+  }
+  
 }

@@ -1,24 +1,11 @@
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
-import {
-  FormArray,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import {FormArray,FormBuilder,FormControl,FormGroup,ReactiveFormsModule,Validators,} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
 import { HorarioService } from '../services/horario.service';
-import {
-  DIAS_SEMANA,
-  DiaSemana,
-} from '../models/horario.dominio';
-import {
-  VMHorarioCreate,
-  VMHorarioBloqueForm,
-} from '../models/horario.vm';
+import {DIAS_SEMANA,DiaSemana,} from '../models/horario.dominio';
+import {VMHorarioCreate,VMHorarioBloqueForm,} from '../models/horario.vm';
 import { NotificacionesService } from '@/app/components/notificaciones/services/notificaciones.service';
 import { PageMetaService } from '@/app/services/page_meta.service';
 

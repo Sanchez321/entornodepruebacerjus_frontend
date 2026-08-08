@@ -1,0 +1,2825 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">frontend documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  JustificacionListaPendientes</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" class="nav-link"
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.dev/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.dev/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-justificacion-lista-pendientes</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                        <div>        <code><a href="https://angular.dev/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+</div>
+                        <div>        <code><a href="https://angular.dev/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./justificacion.lista.pendientes.css</code></td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./justificacion.lista.pendientes.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./justificacion.lista.pendientes.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+        <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <p class="comment"><i>No results matching.</i></p>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="https://angular.dev/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/forms/ReactiveFormsModule" target="_blank" >ReactiveFormsModule</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/core/OnInit" target="_blank" >OnInit</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="https://angular.dev/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+</div>
+
+    <div class="tab-pane fade " id="api">    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#decisionForm" >decisionForm</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#decisionItem" >decisionItem</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#decisionMode" >decisionMode</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#decisionOpen" >decisionOpen</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#estadoOpciones" >estadoOpciones</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#fb" >fb</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#firstLoad" >firstLoad</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#form" >form</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#items" >items</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#loading" >loading</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#notify" >notify</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#page" >page</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#pageMeta" >pageMeta</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#pageSize" >pageSize</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#resumen" >resumen</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#service" >service</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#skeletonCards" >skeletonCards</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#subForm" >subForm</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#tipoOpciones" >tipoOpciones</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#total" >total</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#abrirDecision" >abrirDecision</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#cerrarDecision" >cerrarDecision</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#clear" >clear</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#confirmarDecision" >confirmarDecision</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#estadoClass" >estadoClass</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#goTo" >goTo</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#load" >load</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#trackById" >trackById</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Accessors</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--accessor" aria-hidden="true">A</span>
+                                <a href="#lastPage" >lastPage</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--accessor" aria-hidden="true">A</span>
+                                <a href="#pageFrom" >pageFrom</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--accessor" aria-hidden="true">A</span>
+                                <a href="#pageTo" >pageTo</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="abrirDecision"></a>
+                    <span class="name">
+                        <span ><b>abrirDecision</b></span>
+                        <a href="#abrirDecision"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>abrirDecision(mode: "APROBAR" | "RECHAZAR", item: <a href="../interfaces/VMAsistenciaJustificacionItem.html" target="_self">VMAsistenciaJustificacionItem</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="121"
+                                    class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:121</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>mode</td>
+                                            <td>
+                                                        <code>&quot;APROBAR&quot; | &quot;RECHAZAR&quot;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                            <code><a href="../interfaces/VMAsistenciaJustificacionItem.html" target="_self" >VMAsistenciaJustificacionItem</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cerrarDecision"></a>
+                    <span class="name">
+                        <span ><b>cerrarDecision</b></span>
+                        <a href="#cerrarDecision"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cerrarDecision()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="131"
+                                    class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:131</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clear"></a>
+                    <span class="name">
+                        <span ><b>clear</b></span>
+                        <a href="#clear"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>clear()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="99"
+                                    class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:99</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="confirmarDecision"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>confirmarDecision</b></span>
+                        <a href="#confirmarDecision"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>confirmarDecision()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="136"
+                                    class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:136</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="estadoClass"></a>
+                    <span class="name">
+                        <span ><b>estadoClass</b></span>
+                        <a href="#estadoClass"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>estadoClass(estado: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="117"
+                                    class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:117</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>estado</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goTo"></a>
+                    <span class="name">
+                        <span ><b>goTo</b></span>
+                        <a href="#goTo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goTo(page: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="111"
+                                    class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:111</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>page</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="load"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>load</b></span>
+                        <a href="#load"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>load()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="180"
+                                    class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:180</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="94"
+                                    class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:94</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="79"
+                                    class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:79</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="trackById"></a>
+                    <span class="name">
+                        <span ><b>trackById</b></span>
+                        <a href="#trackById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>trackById(_index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, item: <a href="../interfaces/VMAsistenciaJustificacionItem.html" target="_self">VMAsistenciaJustificacionItem</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="176"
+                                    class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:176</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>_index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                            <code><a href="../interfaces/VMAsistenciaJustificacionItem.html" target="_self" >VMAsistenciaJustificacionItem</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="decisionForm"></a>
+                    <span class="name">
+                        <span ><b>decisionForm</b></span>
+                        <a href="#decisionForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.fb.group({
+    motivo: new FormControl(&#x27;&#x27;, {
+      nonNullable: true,
+      validators: [Validators.required, Validators.maxLength(255)],
+    }),
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:58</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="decisionItem"></a>
+                    <span class="name">
+                        <span ><b>decisionItem</b></span>
+                        <a href="#decisionItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/VMAsistenciaJustificacionItem.html" target="_self" >VMAsistenciaJustificacionItem | null</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:57</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="decisionMode"></a>
+                    <span class="name">
+                        <span ><b>decisionMode</b></span>
+                        <a href="#decisionMode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;APROBAR&quot; | &quot;RECHAZAR&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;APROBAR&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:56</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="decisionOpen"></a>
+                    <span class="name">
+                        <span ><b>decisionOpen</b></span>
+                        <a href="#decisionOpen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="estadoOpciones"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>estadoOpciones</b></span>
+                        <a href="#estadoOpciones"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>AJ_ESTADO_OPCIONES</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:35</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fb"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>fb</b></span>
+                        <a href="#fb"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(FormBuilder)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="firstLoad"></a>
+                    <span class="name">
+                        <span ><b>firstLoad</b></span>
+                        <a href="#firstLoad"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="form"></a>
+                    <span class="name">
+                        <span ><b>form</b></span>
+                        <a href="#form"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.fb.group({
+    us_id: new FormControl&lt;number | null&gt;(null),
+    desde: new FormControl&lt;string&gt;(&#x27;&#x27;),
+    hasta: new FormControl&lt;string&gt;(&#x27;&#x27;),
+    tipo: new FormControl&lt;AsistenciaJustificacionTipoFiltro&gt;(&#x27;&#x27;),
+    estado: new FormControl&lt;AsistenciaJustificacionEstadoFiltro&gt;(&#x27;PENDIENTE&#x27;),
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="items"></a>
+                    <span class="name">
+                        <span ><b>items</b></span>
+                        <a href="#items"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/VMAsistenciaJustificacionItem.html" target="_self" >VMAsistenciaJustificacionItem[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loading"></a>
+                    <span class="name">
+                        <span ><b>loading</b></span>
+                        <a href="#loading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="notify"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>notify</b></span>
+                        <a href="#notify"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(NotificacionesService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="page"></a>
+                    <span class="name">
+                        <span ><b>page</b></span>
+                        <a href="#page"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>1</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:50</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pageMeta"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>pageMeta</b></span>
+                        <a href="#pageMeta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(PageMetaService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:33</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pageSize"></a>
+                    <span class="name">
+                        <span ><b>pageSize</b></span>
+                        <a href="#pageSize"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>9</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resumen"></a>
+                    <span class="name">
+                        <span ><b>resumen</b></span>
+                        <a href="#resumen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/VMAsistenciaJustificacionResumen.html" target="_self" >VMAsistenciaJustificacionResumen | null</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="service"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>service</b></span>
+                        <a href="#service"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(JustificacionService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="skeletonCards"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>skeletonCards</b></span>
+                        <a href="#skeletonCards"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[0, 1, 2]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subForm"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>subForm</b></span>
+                        <a href="#subForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:65</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tipoOpciones"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>tipoOpciones</b></span>
+                        <a href="#tipoOpciones"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>AJ_TIPO_OPCIONES</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="total"></a>
+                    <span class="name">
+                        <span ><b>total</b></span>
+                        <a href="#total"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="lastPage"></a>
+                        <span class="name"><b>lastPage</b><a href="#lastPage"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>lastPage()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:67</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="pageFrom"></a>
+                        <span class="name"><b>pageFrom</b><a href="#pageFrom"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>pageFrom()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:71</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="pageTo"></a>
+                        <span class="name"><b>pageTo</b><a href="#pageTo"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>pageTo()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/pages/justificacion/justificacion.lista.pendientes/justificacion.lista.pendientes.ts:75</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule } from &#x27;@angular/common&#x27;;
+import { Component, OnDestroy, OnInit, inject } from &#x27;@angular/core&#x27;;
+import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from &#x27;@angular/forms&#x27;;
+import { Subscription, forkJoin } from &#x27;rxjs&#x27;;
+import { debounceTime, distinctUntilChanged } from &#x27;rxjs/operators&#x27;;
+
+import { NotificacionesService } from &#x27;@/app/components/notificaciones/services/notificaciones.service&#x27;;
+import { PageMetaService } from &#x27;@/app/services/page_meta.service&#x27;;
+import {
+  AJ_ESTADO_OPCIONES,
+  AJ_TIPO_OPCIONES,
+  AsistenciaJustificacionEstadoFiltro,
+  AsistenciaJustificacionTipoFiltro,
+  estadoBadgeClass,
+} from &#x27;../models/justificacion.dominio&#x27;;
+import {
+  VMAsistenciaJustificacionItem,
+  VMAsistenciaJustificacionResumen,
+} from &#x27;../models/justificacion.vm&#x27;;
+import { JustificacionService } from &#x27;../services/justificacion.service&#x27;;
+
+@Component({
+  selector: &#x27;app-justificacion-lista-pendientes&#x27;,
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: &#x27;./justificacion.lista.pendientes.html&#x27;,
+  styleUrl: &#x27;./justificacion.lista.pendientes.css&#x27;,
+})
+export class JustificacionListaPendientes implements OnInit, OnDestroy {
+  private readonly fb &#x3D; inject(FormBuilder);
+  private readonly service &#x3D; inject(JustificacionService);
+  private readonly notify &#x3D; inject(NotificacionesService);
+  private readonly pageMeta &#x3D; inject(PageMetaService);
+
+  readonly estadoOpciones &#x3D; AJ_ESTADO_OPCIONES;
+  readonly tipoOpciones &#x3D; AJ_TIPO_OPCIONES;
+  readonly skeletonCards &#x3D; [0, 1, 2];
+
+  form &#x3D; this.fb.group({
+    us_id: new FormControl&lt;number | null&gt;(null),
+    desde: new FormControl&lt;string&gt;(&#x27;&#x27;),
+    hasta: new FormControl&lt;string&gt;(&#x27;&#x27;),
+    tipo: new FormControl&lt;AsistenciaJustificacionTipoFiltro&gt;(&#x27;&#x27;),
+    estado: new FormControl&lt;AsistenciaJustificacionEstadoFiltro&gt;(&#x27;PENDIENTE&#x27;),
+  });
+
+  items: VMAsistenciaJustificacionItem[] &#x3D; [];
+  resumen: VMAsistenciaJustificacionResumen | null &#x3D; null;
+  total &#x3D; 0;
+  page &#x3D; 1;
+  pageSize &#x3D; 9;
+  loading &#x3D; false;
+  firstLoad &#x3D; true;
+
+  decisionOpen &#x3D; false;
+  decisionMode: &#x27;APROBAR&#x27; | &#x27;RECHAZAR&#x27; &#x3D; &#x27;APROBAR&#x27;;
+  decisionItem: VMAsistenciaJustificacionItem | null &#x3D; null;
+  decisionForm &#x3D; this.fb.group({
+    motivo: new FormControl(&#x27;&#x27;, {
+      nonNullable: true,
+      validators: [Validators.required, Validators.maxLength(255)],
+    }),
+  });
+
+  private subForm?: Subscription;
+
+  get lastPage(): number {
+    return Math.max(1, Math.ceil(this.total / this.pageSize));
+  }
+
+  get pageFrom(): number {
+    return this.total ? (this.page - 1) * this.pageSize + 1 : 0;
+  }
+
+  get pageTo(): number {
+    return Math.min(this.total, this.page * this.pageSize);
+  }
+
+  ngOnInit(): void {
+    this.pageMeta.replace({ titulo: &#x27;Justificaciones pendientes&#x27; });
+    this.load();
+
+    this.subForm &#x3D; this.form.valueChanges
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged((a, b) &#x3D;&gt; JSON.stringify(a) &#x3D;&#x3D;&#x3D; JSON.stringify(b)),
+      )
+      .subscribe(() &#x3D;&gt; {
+        this.page &#x3D; 1;
+        this.load();
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.subForm?.unsubscribe();
+    this.pageMeta.clear();
+  }
+
+  clear(): void {
+    this.form.reset({
+      us_id: null,
+      desde: &#x27;&#x27;,
+      hasta: &#x27;&#x27;,
+      tipo: &#x27;&#x27;,
+      estado: &#x27;PENDIENTE&#x27;,
+    });
+    this.page &#x3D; 1;
+    this.load();
+  }
+
+  goTo(page: number): void {
+    if (page &lt; 1 || page &gt; this.lastPage) return;
+    this.page &#x3D; page;
+    this.load();
+  }
+
+  estadoClass(estado: any): string {
+    return estadoBadgeClass(estado);
+  }
+
+  abrirDecision(
+    mode: &#x27;APROBAR&#x27; | &#x27;RECHAZAR&#x27;,
+    item: VMAsistenciaJustificacionItem,
+  ): void {
+    this.decisionMode &#x3D; mode;
+    this.decisionItem &#x3D; item;
+    this.decisionForm.reset({ motivo: &#x27;&#x27; });
+    this.decisionOpen &#x3D; true;
+  }
+
+  cerrarDecision(): void {
+    this.decisionOpen &#x3D; false;
+    this.decisionItem &#x3D; null;
+  }
+
+  async confirmarDecision(): Promise&lt;void&gt; {
+    if (!this.decisionItem) return;
+
+    if (this.decisionForm.invalid) {
+      this.decisionForm.markAllAsTouched();
+      await this.notify.ok({
+        variant: &#x27;warning&#x27;,
+        title: &#x27;Falta el motivo&#x27;,
+        message: &#x27;Ingrese el motivo de la decisión.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+      return;
+    }
+
+    const reason &#x3D; this.decisionForm.getRawValue().motivo;
+
+    try {
+      if (this.decisionMode &#x3D;&#x3D;&#x3D; &#x27;APROBAR&#x27;) {
+        await this.service.aprobar(this.decisionItem.aj_ID, reason);
+      } else {
+        await this.service.rechazar(this.decisionItem.aj_ID, reason);
+      }
+
+      await this.notify.ok({
+        variant: &#x27;success&#x27;,
+        title:
+          this.decisionMode &#x3D;&#x3D;&#x3D; &#x27;APROBAR&#x27;
+            ? &#x27;Justificación aprobada&#x27;
+            : &#x27;Justificación rechazada&#x27;,
+        message: &#x27;La decisión fue registrada correctamente.&#x27;,
+        primaryText: &#x27;Aceptar&#x27;,
+      });
+
+      this.cerrarDecision();
+      this.load();
+    } catch {
+      // El interceptor muestra el error.
+    }
+  }
+
+  trackById(_index: number, item: VMAsistenciaJustificacionItem): number {
+    return item.aj_ID;
+  }
+
+  private load(): void {
+    this.loading &#x3D; true;
+    const value &#x3D; this.form.getRawValue();
+    const filters &#x3D; {
+      us_id: value.us_id ?? undefined,
+      desde: value.desde || undefined,
+      hasta: value.hasta || undefined,
+      tipo: value.tipo || undefined,
+      estado: value.estado || undefined,
+    };
+
+    forkJoin({
+      page: this.service.listPendientes({
+        ...filters,
+        page: this.page,
+        pageSize: this.pageSize,
+      }),
+      summary: this.service.getResumen(filters),
+    }).subscribe({
+      next: ({ page, summary }) &#x3D;&gt; {
+        this.items &#x3D; page.items;
+        this.total &#x3D; page.total;
+        this.page &#x3D; page.page;
+        this.pageSize &#x3D; page.pageSize;
+        this.resumen &#x3D; summary;
+        this.loading &#x3D; false;
+        this.firstLoad &#x3D; false;
+      },
+      error: () &#x3D;&gt; {
+        this.loading &#x3D; false;
+        this.firstLoad &#x3D; false;
+      },
+    });
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;just-shell&quot;&gt;
+  &lt;div class&#x3D;&quot;page-heading&quot;&gt;
+    &lt;div&gt;
+      &lt;h5 class&#x3D;&quot;mb-1&quot;&gt;Bandeja de justificaciones&lt;/h5&gt;
+      &lt;div class&#x3D;&quot;small text-muted&quot;&gt;
+        La bandeja muestra el horario aplicable y las marcas reales
+        antes de decidir.
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div
+    class&#x3D;&quot;summary-grid mb-3&quot;
+    [class.is-loading]&#x3D;&quot;firstLoad &amp;&amp; !resumen&quot;&gt;
+
+    &lt;div class&#x3D;&quot;summary-card&quot;&gt;
+      &lt;span&gt;Total&lt;/span&gt;
+      @if (firstLoad &amp;&amp; !resumen) {
+        &lt;div class&#x3D;&quot;summary-value-skeleton&quot;&gt;&lt;/div&gt;
+      } @else {
+        &lt;strong&gt;{{ resumen?.total ?? 0 }}&lt;/strong&gt;
+      }
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;summary-card summary-pending&quot;&gt;
+      &lt;span&gt;Pendientes&lt;/span&gt;
+      @if (firstLoad &amp;&amp; !resumen) {
+        &lt;div class&#x3D;&quot;summary-value-skeleton&quot;&gt;&lt;/div&gt;
+      } @else {
+        &lt;strong&gt;{{ resumen?.pendientes ?? 0 }}&lt;/strong&gt;
+      }
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;summary-card summary-approved&quot;&gt;
+      &lt;span&gt;Aprobadas&lt;/span&gt;
+      @if (firstLoad &amp;&amp; !resumen) {
+        &lt;div class&#x3D;&quot;summary-value-skeleton&quot;&gt;&lt;/div&gt;
+      } @else {
+        &lt;strong&gt;{{ resumen?.aprobadas ?? 0 }}&lt;/strong&gt;
+      }
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;summary-card summary-rejected&quot;&gt;
+      &lt;span&gt;Rechazadas&lt;/span&gt;
+      @if (firstLoad &amp;&amp; !resumen) {
+        &lt;div class&#x3D;&quot;summary-value-skeleton&quot;&gt;&lt;/div&gt;
+      } @else {
+        &lt;strong&gt;{{ resumen?.rechazadas ?? 0 }}&lt;/strong&gt;
+      }
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;summary-card&quot;&gt;
+      &lt;span&gt;Tardanzas&lt;/span&gt;
+      @if (firstLoad &amp;&amp; !resumen) {
+        &lt;div class&#x3D;&quot;summary-value-skeleton&quot;&gt;&lt;/div&gt;
+      } @else {
+        &lt;strong&gt;{{ resumen?.tardanzas ?? 0 }}&lt;/strong&gt;
+      }
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;summary-card&quot;&gt;
+      &lt;span&gt;Sin marca&lt;/span&gt;
+      @if (firstLoad &amp;&amp; !resumen) {
+        &lt;div class&#x3D;&quot;summary-value-skeleton&quot;&gt;&lt;/div&gt;
+      } @else {
+        &lt;strong&gt;{{ resumen?.sinMarca ?? 0 }}&lt;/strong&gt;
+      }
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;summary-card&quot;&gt;
+      &lt;span&gt;No programado&lt;/span&gt;
+      @if (firstLoad &amp;&amp; !resumen) {
+        &lt;div class&#x3D;&quot;summary-value-skeleton&quot;&gt;&lt;/div&gt;
+      } @else {
+        &lt;strong&gt;{{ resumen?.noProgramado ?? 0 }}&lt;/strong&gt;
+      }
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class&#x3D;&quot;card filters-card mb-3&quot;&gt;
+    &lt;div class&#x3D;&quot;card-body filters-grid&quot; [formGroup]&#x3D;&quot;form&quot;&gt;
+      &lt;input
+        class&#x3D;&quot;form-control form-control-sm&quot;
+        type&#x3D;&quot;number&quot;
+        min&#x3D;&quot;1&quot;
+        formControlName&#x3D;&quot;us_id&quot;
+        placeholder&#x3D;&quot;ID usuario&quot;&gt;
+
+      &lt;input
+        class&#x3D;&quot;form-control form-control-sm&quot;
+        type&#x3D;&quot;date&quot;
+        formControlName&#x3D;&quot;desde&quot;&gt;
+
+      &lt;input
+        class&#x3D;&quot;form-control form-control-sm&quot;
+        type&#x3D;&quot;date&quot;
+        formControlName&#x3D;&quot;hasta&quot;&gt;
+
+      &lt;select
+        class&#x3D;&quot;form-select form-select-sm&quot;
+        formControlName&#x3D;&quot;tipo&quot;&gt;
+        @for (opt of tipoOpciones; track opt.value) {
+          &lt;option [value]&#x3D;&quot;opt.value&quot;&gt;{{ opt.label }}&lt;/option&gt;
+        }
+      &lt;/select&gt;
+
+      &lt;select
+        class&#x3D;&quot;form-select form-select-sm&quot;
+        formControlName&#x3D;&quot;estado&quot;&gt;
+        @for (opt of estadoOpciones; track opt.value) {
+          &lt;option [value]&#x3D;&quot;opt.value&quot;&gt;{{ opt.label }}&lt;/option&gt;
+        }
+      &lt;/select&gt;
+
+      &lt;button
+        type&#x3D;&quot;button&quot;
+        class&#x3D;&quot;btn btn-sm btn-outline-secondary&quot;
+        (click)&#x3D;&quot;clear()&quot;&gt;
+        Limpiar
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class&#x3D;&quot;requests-stage&quot;&gt;
+    @if (firstLoad) {
+      &lt;div class&#x3D;&quot;request-list&quot;&gt;
+        @for (_ of skeletonCards; track $index) {
+          &lt;article class&#x3D;&quot;card request-card request-card-skeleton&quot;&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+              &lt;div class&#x3D;&quot;request-header&quot;&gt;
+                &lt;div class&#x3D;&quot;skeleton-block&quot;&gt;
+                  &lt;div class&#x3D;&quot;sk-line sk-title&quot;&gt;&lt;/div&gt;
+                  &lt;div class&#x3D;&quot;sk-line sk-subtitle&quot;&gt;&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;sk-badge&quot;&gt;&lt;/div&gt;
+              &lt;/div&gt;
+
+              &lt;div class&#x3D;&quot;request-grid mt-3&quot;&gt;
+                @for (_ of [0, 1, 2, 3]; track $index) {
+                  &lt;div&gt;
+                    &lt;div class&#x3D;&quot;sk-line sk-label&quot;&gt;&lt;/div&gt;
+                    &lt;div class&#x3D;&quot;sk-line sk-value&quot;&gt;&lt;/div&gt;
+                    &lt;div class&#x3D;&quot;sk-line sk-small&quot;&gt;&lt;/div&gt;
+                  &lt;/div&gt;
+                }
+              &lt;/div&gt;
+
+              &lt;div class&#x3D;&quot;reason-box mt-3&quot;&gt;
+                &lt;div class&#x3D;&quot;sk-line sk-label&quot;&gt;&lt;/div&gt;
+                &lt;div class&#x3D;&quot;sk-line sk-reason&quot;&gt;&lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/article&gt;
+        }
+      &lt;/div&gt;
+    } @else if (items.length &gt; 0) {
+      &lt;div class&#x3D;&quot;request-list&quot;&gt;
+        @for (
+          item of items;
+          track trackById($index, item)
+        ) {
+          &lt;article class&#x3D;&quot;card request-card shadow-sm&quot;&gt;
+            &lt;div class&#x3D;&quot;card-body&quot;&gt;
+              &lt;div class&#x3D;&quot;request-header&quot;&gt;
+                &lt;div&gt;
+                  &lt;div class&#x3D;&quot;fw-semibold&quot;&gt;
+                    {{ item.usuarioNombre }}
+                  &lt;/div&gt;
+                  &lt;div class&#x3D;&quot;small text-muted&quot;&gt;
+                    DNI {{ item.usuarioDni ?? &#x27;—&#x27; }}
+                    · Usuario #{{ item.us_id }}
+                    · Solicitud #{{ item.aj_ID }}
+                  &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;div class&#x3D;&quot;text-end&quot;&gt;
+                  &lt;div class&#x3D;&quot;fw-semibold&quot;&gt;
+                    {{ item.fecha_label }}
+                  &lt;/div&gt;
+                  &lt;span
+                    class&#x3D;&quot;badge&quot;
+                    [ngClass]&#x3D;&quot;estadoClass(item.estado)&quot;&gt;
+                    {{ item.estado_label }}
+                  &lt;/span&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+
+              &lt;div class&#x3D;&quot;request-grid mt-3&quot;&gt;
+                &lt;div&gt;
+                  &lt;span class&#x3D;&quot;field-label&quot;&gt;Tipo&lt;/span&gt;
+                  &lt;strong&gt;{{ item.tipo_label }}&lt;/strong&gt;
+                  &lt;small&gt;{{ item.resultado_label }}&lt;/small&gt;
+                &lt;/div&gt;
+
+                &lt;div&gt;
+                  &lt;span class&#x3D;&quot;field-label&quot;&gt;Horario&lt;/span&gt;
+                  &lt;strong&gt;{{ item.horarioNombre ?? &#x27;—&#x27; }}&lt;/strong&gt;
+                  &lt;small&gt;
+                    {{ item.horaInicioProgramada ?? &#x27;—&#x27; }}
+                    –
+                    {{ item.horaFinProgramada ?? &#x27;—&#x27; }}
+                  &lt;/small&gt;
+                &lt;/div&gt;
+
+                &lt;div&gt;
+                  &lt;span class&#x3D;&quot;field-label&quot;&gt;Marcas&lt;/span&gt;
+                  &lt;strong&gt;
+                    Entrada {{ item.horaEntrada ?? &#x27;—&#x27; }}
+                  &lt;/strong&gt;
+                  &lt;small&gt;
+                    Salida {{ item.horaSalida ?? &#x27;—&#x27; }}
+                  &lt;/small&gt;
+                &lt;/div&gt;
+
+                &lt;div&gt;
+                  &lt;span class&#x3D;&quot;field-label&quot;&gt;Asistencia&lt;/span&gt;
+                  &lt;strong&gt;{{ item.asistenciaEstadoLabel }}&lt;/strong&gt;
+                  &lt;small&gt;
+                    ID {{ item.idAsistencia ?? &#x27;—&#x27; }}
+                  &lt;/small&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+
+              &lt;div class&#x3D;&quot;reason-box mt-3&quot;&gt;
+                &lt;span class&#x3D;&quot;field-label&quot;&gt;Motivo del usuario&lt;/span&gt;
+                &lt;div&gt;{{ item.motivo }}&lt;/div&gt;
+
+                @if (item.detalle) {
+                  &lt;div class&#x3D;&quot;small text-muted mt-1&quot;&gt;
+                    {{ item.detalle }}
+                  &lt;/div&gt;
+                }
+              &lt;/div&gt;
+
+              @if (item.estado &#x3D;&#x3D;&#x3D; &#x27;PENDIENTE&#x27;) {
+                &lt;div class&#x3D;&quot;decision-actions&quot;&gt;
+                  &lt;button
+                    class&#x3D;&quot;btn btn-sm btn-success&quot;
+                    type&#x3D;&quot;button&quot;
+                    (click)&#x3D;&quot;abrirDecision(&#x27;APROBAR&#x27;, item)&quot;
+                    [disabled]&#x3D;&quot;loading&quot;&gt;
+                    Aprobar
+                  &lt;/button&gt;
+
+                  &lt;button
+                    class&#x3D;&quot;btn btn-sm btn-danger&quot;
+                    type&#x3D;&quot;button&quot;
+                    (click)&#x3D;&quot;abrirDecision(&#x27;RECHAZAR&#x27;, item)&quot;
+                    [disabled]&#x3D;&quot;loading&quot;&gt;
+                    Rechazar
+                  &lt;/button&gt;
+                &lt;/div&gt;
+              } @else {
+                &lt;div class&#x3D;&quot;decision-box mt-3&quot;&gt;
+                  &lt;div&gt;
+                    &lt;span class&#x3D;&quot;field-label&quot;&gt;Decidido por&lt;/span&gt;
+                    {{ item.aprobadoPorNombre ?? &#x27;—&#x27; }}
+                    ·
+                    {{ item.aprobadoEnLabel ?? &#x27;—&#x27; }}
+                  &lt;/div&gt;
+
+                  &lt;div&gt;
+                    &lt;span class&#x3D;&quot;field-label&quot;&gt;
+                      Motivo de decisión
+                    &lt;/span&gt;
+                    {{ item.decisionMotivo ?? &#x27;—&#x27; }}
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              }
+            &lt;/div&gt;
+          &lt;/article&gt;
+        }
+      &lt;/div&gt;
+
+      &lt;div class&#x3D;&quot;list-footer&quot;&gt;
+        &lt;div class&#x3D;&quot;small text-muted&quot;&gt;
+          Mostrando {{ pageFrom }}–{{ pageTo }} de {{ total }}
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;btn-group btn-group-sm&quot;&gt;
+          &lt;button
+            class&#x3D;&quot;btn btn-outline-secondary&quot;
+            type&#x3D;&quot;button&quot;
+            (click)&#x3D;&quot;goTo(page - 1)&quot;
+            [disabled]&#x3D;&quot;page &lt;&#x3D; 1 || loading&quot;&gt;
+            Anterior
+          &lt;/button&gt;
+
+          &lt;button
+            class&#x3D;&quot;btn btn-outline-secondary&quot;
+            type&#x3D;&quot;button&quot;
+            disabled&gt;
+            {{ page }} / {{ lastPage }}
+          &lt;/button&gt;
+
+          &lt;button
+            class&#x3D;&quot;btn btn-outline-secondary&quot;
+            type&#x3D;&quot;button&quot;
+            (click)&#x3D;&quot;goTo(page + 1)&quot;
+            [disabled]&#x3D;&quot;page &gt;&#x3D; lastPage || loading&quot;&gt;
+            Siguiente
+          &lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    } @else {
+      &lt;div class&#x3D;&quot;empty-card card&quot;&gt;
+        &lt;div class&#x3D;&quot;card-body text-center text-muted&quot;&gt;
+          No se encontraron solicitudes.
+        &lt;/div&gt;
+      &lt;/div&gt;
+    }
+  &lt;/div&gt;
+&lt;/div&gt;
+
+@if (decisionOpen) {
+  &lt;div class&#x3D;&quot;modal-backdrop-custom&quot;&gt;&lt;/div&gt;
+
+  &lt;div class&#x3D;&quot;modal-custom&quot;&gt;
+    &lt;div class&#x3D;&quot;modal-card&quot;&gt;
+      &lt;div class&#x3D;&quot;modal-header&quot;&gt;
+        &lt;div&gt;
+          &lt;div class&#x3D;&quot;fw-semibold&quot;&gt;
+            {{ decisionMode &#x3D;&#x3D;&#x3D; &#x27;APROBAR&#x27; ? &#x27;Aprobar&#x27; : &#x27;Rechazar&#x27; }}
+            solicitud #{{ decisionItem?.aj_ID }}
+          &lt;/div&gt;
+
+          &lt;div class&#x3D;&quot;small text-muted&quot;&gt;
+            {{ decisionItem?.usuarioNombre }}
+            ·
+            {{ decisionItem?.fecha_label }}
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;button
+          class&#x3D;&quot;btn-close&quot;
+          type&#x3D;&quot;button&quot;
+          (click)&#x3D;&quot;cerrarDecision()&quot;&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+
+      &lt;div class&#x3D;&quot;modal-body&quot; [formGroup]&#x3D;&quot;decisionForm&quot;&gt;
+        &lt;div class&#x3D;&quot;decision-preview mb-3&quot;&gt;
+          &lt;div&gt;
+            &lt;span&gt;Horario&lt;/span&gt;
+            {{ decisionItem?.horaInicioProgramada ?? &#x27;—&#x27; }}
+            –
+            {{ decisionItem?.horaFinProgramada ?? &#x27;—&#x27; }}
+          &lt;/div&gt;
+
+          &lt;div&gt;
+            &lt;span&gt;Entrada&lt;/span&gt;
+            {{ decisionItem?.horaEntrada ?? &#x27;—&#x27; }}
+          &lt;/div&gt;
+
+          &lt;div&gt;
+            &lt;span&gt;Salida&lt;/span&gt;
+            {{ decisionItem?.horaSalida ?? &#x27;—&#x27; }}
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;label class&#x3D;&quot;form-label fw-semibold&quot;&gt;
+          Motivo de decisión
+        &lt;/label&gt;
+
+        &lt;textarea
+          class&#x3D;&quot;form-control&quot;
+          rows&#x3D;&quot;3&quot;
+          maxlength&#x3D;&quot;255&quot;
+          formControlName&#x3D;&quot;motivo&quot;&gt;
+        &lt;/textarea&gt;
+      &lt;/div&gt;
+
+      &lt;div class&#x3D;&quot;modal-footer&quot;&gt;
+        &lt;button
+          class&#x3D;&quot;btn btn-outline-secondary&quot;
+          type&#x3D;&quot;button&quot;
+          (click)&#x3D;&quot;cerrarDecision()&quot;&gt;
+          Cancelar
+        &lt;/button&gt;
+
+        &lt;button
+          class&#x3D;&quot;btn&quot;
+          [class.btn-success]&#x3D;&quot;decisionMode &#x3D;&#x3D;&#x3D; &#x27;APROBAR&#x27;&quot;
+          [class.btn-danger]&#x3D;&quot;decisionMode &#x3D;&#x3D;&#x3D; &#x27;RECHAZAR&#x27;&quot;
+          type&#x3D;&quot;button&quot;
+          (click)&#x3D;&quot;confirmarDecision()&quot;&gt;
+          Confirmar
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./justificacion.lista.pendientes.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">:host {
+  display: block;
+}
+
+.just-shell {
+  padding-bottom: 1rem;
+}
+
+.page-heading {
+  min-height: 54px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  margin-bottom: 1rem;
+}
+
+.summary-grid {
+  min-height: 78px;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(110px, 1fr));
+  gap: .65rem;
+}
+
+.summary-card {
+  height: 78px;
+  border: 1px solid #dde5f0;
+  border-radius: .75rem;
+  background: #fff;
+  padding: .7rem .8rem;
+  overflow: hidden;
+}
+
+.summary-card span {
+  display: block;
+  min-height: 17px;
+  color: #6c757d;
+  font-size: .72rem;
+  text-transform: uppercase;
+}
+
+.summary-card strong {
+  display: block;
+  min-height: 30px;
+  color: #12344d;
+  font-size: 1.25rem;
+}
+
+.summary-pending {
+  background: #fff8df;
+}
+
+.summary-approved {
+  background: #e8f7ed;
+}
+
+.summary-rejected {
+  background: #fdebed;
+}
+
+.summary-value-skeleton,
+.sk-line,
+.sk-badge {
+  animation: shimmer 1.4s ease-in-out infinite;
+  background:
+    linear-gradient(
+      90deg,
+      #e7ebee 25%,
+      #dfe4e8 37%,
+      #e7ebee 63%
+    );
+  background-size: 400% 100%;
+}
+
+.summary-value-skeleton {
+  width: 46%;
+  height: 24px;
+  margin-top: .25rem;
+  border-radius: .3rem;
+}
+
+.filters-card {
+  min-height: 64px;
+}
+
+.filters-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(4, minmax(150px, 1fr))
+    auto;
+  gap: .6rem;
+}
+
+.requests-stage {
+  min-height: 590px;
+  position: relative;
+}
+
+.request-list {
+  display: grid;
+  gap: .75rem;
+}
+
+.request-card {
+  min-height: 182px;
+  border: 1px solid #dde5f0;
+  border-radius: .9rem;
+}
+
+.request-card-skeleton {
+  box-shadow: none;
+}
+
+.request-header {
+  min-height: 39px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.request-grid {
+  min-height: 54px;
+  display: grid;
+  grid-template-columns:
+    repeat(4, minmax(140px, 1fr));
+  gap: .8rem;
+}
+
+.request-grid strong,
+.request-grid small {
+  display: block;
+}
+
+.field-label {
+  display: block;
+  color: #6c757d;
+  font-size: .7rem;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  margin-bottom: .15rem;
+}
+
+.reason-box,
+.decision-box {
+  background: #f7f9fb;
+  border-radius: .65rem;
+  padding: .7rem .8rem;
+}
+
+.reason-box {
+  min-height: 60px;
+}
+
+.decision-box {
+  min-height: 84px;
+  display: grid;
+  gap: .55rem;
+  border-left: 4px solid #6c757d;
+}
+
+.list-footer {
+  min-height: 46px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: .75rem;
+}
+
+.empty-card {
+  min-height: 182px;
+}
+
+.empty-card .card-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.skeleton-block {
+  width: min(360px, 70%);
+}
+
+.sk-line {
+  border-radius: .3rem;
+  height: .8rem;
+}
+
+.sk-title {
+  width: 55%;
+  height: 1rem;
+}
+
+.sk-subtitle {
+  width: 78%;
+  margin-top: .4rem;
+}
+
+.sk-badge {
+  width: 78px;
+  height: 24px;
+  border-radius: 999px;
+}
+
+.sk-label {
+  width: 42%;
+  height: .6rem;
+  margin-bottom: .35rem;
+}
+
+.sk-value {
+  width: 72%;
+  height: .9rem;
+}
+
+.sk-small {
+  width: 58%;
+  height: .7rem;
+  margin-top: .35rem;
+}
+
+.sk-reason {
+  width: 86%;
+  height: .9rem;
+  margin-top: .4rem;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .summary-grid {
+    min-height: 166px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .request-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .request-card {
+    min-height: 224px;
+  }
+
+  .requests-stage {
+    min-height: 716px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .page-heading {
+    align-items: stretch;
+  }
+
+  .page-heading .btn {
+    width: 100%;
+  }
+
+  .summary-grid {
+    min-height: 342px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .filters-grid,
+  .request-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .request-card {
+    min-height: 350px;
+  }
+
+  .requests-stage {
+    min-height: 1090px;
+  }
+
+  .list-footer {
+    align-items: stretch;
+    flex-direction: column;
+    gap: .75rem;
+  }
+}
+
+.decision-actions {
+  min-height: 39px;
+  display: flex;
+  justify-content: flex-end;
+  gap: .5rem;
+  margin-top: .75rem;
+}
+
+.modal-backdrop-custom {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .35);
+  z-index: 1040;
+}
+
+.modal-custom {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+  padding: 1rem;
+}
+
+.modal-card {
+  width: min(720px, 100%);
+  background: #fff;
+  border-radius: .75rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .2);
+  overflow: hidden;
+}
+
+.modal-header,
+.modal-footer {
+  padding: .75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  border-bottom: 1px solid rgba(0, 0, 0, .08);
+}
+
+.modal-footer {
+  border-bottom: 0;
+  border-top: 1px solid rgba(0, 0, 0, .08);
+}
+
+.modal-body {
+  padding: 1rem;
+}
+
+.decision-preview {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .6rem;
+  background: #f7f9fb;
+  padding: .7rem;
+  border-radius: .6rem;
+}
+
+.decision-preview span {
+  display: block;
+  color: #6c757d;
+  font-size: .7rem;
+  text-transform: uppercase;
+}
+
+@media (max-width: 575.98px) {
+  .decision-preview {
+    grid-template-columns: 1fr;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="just-shell">  <div class="page-heading">    <div>      <h5 class="mb-1">Bandeja de justificaciones</h5>      <div class="small text-muted">        La bandeja muestra el horario aplicable y las marcas reales        antes de decidir.      </div>    </div>  </div>  <div    class="summary-grid mb-3"    [class.is-loading]="firstLoad && !resumen">    <div class="summary-card">      <span>Total</span>      @if (firstLoad && !resumen) {        <div class="summary-value-skeleton"></div>      } @else {        <strong>{{ resumen?.total ?? 0 }}</strong>      }    </div>    <div class="summary-card summary-pending">      <span>Pendientes</span>      @if (firstLoad && !resumen) {        <div class="summary-value-skeleton"></div>      } @else {        <strong>{{ resumen?.pendientes ?? 0 }}</strong>      }    </div>    <div class="summary-card summary-approved">      <span>Aprobadas</span>      @if (firstLoad && !resumen) {        <div class="summary-value-skeleton"></div>      } @else {        <strong>{{ resumen?.aprobadas ?? 0 }}</strong>      }    </div>    <div class="summary-card summary-rejected">      <span>Rechazadas</span>      @if (firstLoad && !resumen) {        <div class="summary-value-skeleton"></div>      } @else {        <strong>{{ resumen?.rechazadas ?? 0 }}</strong>      }    </div>    <div class="summary-card">      <span>Tardanzas</span>      @if (firstLoad && !resumen) {        <div class="summary-value-skeleton"></div>      } @else {        <strong>{{ resumen?.tardanzas ?? 0 }}</strong>      }    </div>    <div class="summary-card">      <span>Sin marca</span>      @if (firstLoad && !resumen) {        <div class="summary-value-skeleton"></div>      } @else {        <strong>{{ resumen?.sinMarca ?? 0 }}</strong>      }    </div>    <div class="summary-card">      <span>No programado</span>      @if (firstLoad && !resumen) {        <div class="summary-value-skeleton"></div>      } @else {        <strong>{{ resumen?.noProgramado ?? 0 }}</strong>      }    </div>  </div>  <div class="card filters-card mb-3">    <div class="card-body filters-grid" [formGroup]="form">      <input        class="form-control form-control-sm"        type="number"        min="1"        formControlName="us_id"        placeholder="ID usuario">      <input        class="form-control form-control-sm"        type="date"        formControlName="desde">      <input        class="form-control form-control-sm"        type="date"        formControlName="hasta">      <select        class="form-select form-select-sm"        formControlName="tipo">        @for (opt of tipoOpciones; track opt.value) {          <option [value]="opt.value">{{ opt.label }}</option>        }      </select>      <select        class="form-select form-select-sm"        formControlName="estado">        @for (opt of estadoOpciones; track opt.value) {          <option [value]="opt.value">{{ opt.label }}</option>        }      </select>      <button        type="button"        class="btn btn-sm btn-outline-secondary"        (click)="clear()">        Limpiar      </button>    </div>  </div>  <div class="requests-stage">    @if (firstLoad) {      <div class="request-list">        @for (_ of skeletonCards; track $index) {          <article class="card request-card request-card-skeleton">            <div class="card-body">              <div class="request-header">                <div class="skeleton-block">                  <div class="sk-line sk-title"></div>                  <div class="sk-line sk-subtitle"></div>                </div>                <div class="sk-badge"></div>              </div>              <div class="request-grid mt-3">                @for (_ of [0, 1, 2, 3]; track $index) {                  <div>                    <div class="sk-line sk-label"></div>                    <div class="sk-line sk-value"></div>                    <div class="sk-line sk-small"></div>                  </div>                }              </div>              <div class="reason-box mt-3">                <div class="sk-line sk-label"></div>                <div class="sk-line sk-reason"></div>              </div>            </div>          </article>        }      </div>    } @else if (items.length > 0) {      <div class="request-list">        @for (          item of items;          track trackById($index, item)        ) {          <article class="card request-card shadow-sm">            <div class="card-body">              <div class="request-header">                <div>                  <div class="fw-semibold">                    {{ item.usuarioNombre }}                  </div>                  <div class="small text-muted">                    DNI {{ item.usuarioDni ?? \'—\' }}                    · Usuario #{{ item.us_id }}                    · Solicitud #{{ item.aj_ID }}                  </div>                </div>                <div class="text-end">                  <div class="fw-semibold">                    {{ item.fecha_label }}                  </div>                  <span                    class="badge"                    [ngClass]="estadoClass(item.estado)">                    {{ item.estado_label }}                  </span>                </div>              </div>              <div class="request-grid mt-3">                <div>                  <span class="field-label">Tipo</span>                  <strong>{{ item.tipo_label }}</strong>                  <small>{{ item.resultado_label }}</small>                </div>                <div>                  <span class="field-label">Horario</span>                  <strong>{{ item.horarioNombre ?? \'—\' }}</strong>                  <small>                    {{ item.horaInicioProgramada ?? \'—\' }}                    –                    {{ item.horaFinProgramada ?? \'—\' }}                  </small>                </div>                <div>                  <span class="field-label">Marcas</span>                  <strong>                    Entrada {{ item.horaEntrada ?? \'—\' }}                  </strong>                  <small>                    Salida {{ item.horaSalida ?? \'—\' }}                  </small>                </div>                <div>                  <span class="field-label">Asistencia</span>                  <strong>{{ item.asistenciaEstadoLabel }}</strong>                  <small>                    ID {{ item.idAsistencia ?? \'—\' }}                  </small>                </div>              </div>              <div class="reason-box mt-3">                <span class="field-label">Motivo del usuario</span>                <div>{{ item.motivo }}</div>                @if (item.detalle) {                  <div class="small text-muted mt-1">                    {{ item.detalle }}                  </div>                }              </div>              @if (item.estado === \'PENDIENTE\') {                <div class="decision-actions">                  <button                    class="btn btn-sm btn-success"                    type="button"                    (click)="abrirDecision(\'APROBAR\', item)"                    [disabled]="loading">                    Aprobar                  </button>                  <button                    class="btn btn-sm btn-danger"                    type="button"                    (click)="abrirDecision(\'RECHAZAR\', item)"                    [disabled]="loading">                    Rechazar                  </button>                </div>              } @else {                <div class="decision-box mt-3">                  <div>                    <span class="field-label">Decidido por</span>                    {{ item.aprobadoPorNombre ?? \'—\' }}                    ·                    {{ item.aprobadoEnLabel ?? \'—\' }}                  </div>                  <div>                    <span class="field-label">                      Motivo de decisión                    </span>                    {{ item.decisionMotivo ?? \'—\' }}                  </div>                </div>              }            </div>          </article>        }      </div>      <div class="list-footer">        <div class="small text-muted">          Mostrando {{ pageFrom }}–{{ pageTo }} de {{ total }}        </div>        <div class="btn-group btn-group-sm">          <button            class="btn btn-outline-secondary"            type="button"            (click)="goTo(page - 1)"            [disabled]="page <= 1 || loading">            Anterior          </button>          <button            class="btn btn-outline-secondary"            type="button"            disabled>            {{ page }} / {{ lastPage }}          </button>          <button            class="btn btn-outline-secondary"            type="button"            (click)="goTo(page + 1)"            [disabled]="page >= lastPage || loading">            Siguiente          </button>        </div>      </div>    } @else {      <div class="empty-card card">        <div class="card-body text-center text-muted">          No se encontraron solicitudes.        </div>      </div>    }  </div></div>@if (decisionOpen) {  <div class="modal-backdrop-custom"></div>  <div class="modal-custom">    <div class="modal-card">      <div class="modal-header">        <div>          <div class="fw-semibold">            {{ decisionMode === \'APROBAR\' ? \'Aprobar\' : \'Rechazar\' }}            solicitud #{{ decisionItem?.aj_ID }}          </div>          <div class="small text-muted">            {{ decisionItem?.usuarioNombre }}            ·            {{ decisionItem?.fecha_label }}          </div>        </div>        <button          class="btn-close"          type="button"          (click)="cerrarDecision()">        </button>      </div>      <div class="modal-body" [formGroup]="decisionForm">        <div class="decision-preview mb-3">          <div>            <span>Horario</span>            {{ decisionItem?.horaInicioProgramada ?? \'—\' }}            –            {{ decisionItem?.horaFinProgramada ?? \'—\' }}          </div>          <div>            <span>Entrada</span>            {{ decisionItem?.horaEntrada ?? \'—\' }}          </div>          <div>            <span>Salida</span>            {{ decisionItem?.horaSalida ?? \'—\' }}          </div>        </div>        <label class="form-label fw-semibold">          Motivo de decisión        </label>        <textarea          class="form-control"          rows="3"          maxlength="255"          formControlName="motivo">        </textarea>      </div>      <div class="modal-footer">        <button          class="btn btn-outline-secondary"          type="button"          (click)="cerrarDecision()">          Cancelar        </button>        <button          class="btn"          [class.btn-success]="decisionMode === \'APROBAR\'"          [class.btn-danger]="decisionMode === \'RECHAZAR\'"          type="button"          (click)="confirmarDecision()">          Confirmar        </button>      </div>    </div>  </div>}</div>'
+    var COMPONENTS = [{'name': 'AnaliticasDashboard', 'selector': 'app-analiticas-dashboard'},{'name': 'App', 'selector': 'app-root'},{'name': 'AsistenciaLista', 'selector': 'app-asistencia-lista'},{'name': 'AsistenciasDashboard', 'selector': 'app-asistencias-dashboard'},{'name': 'AudienciaCalendario', 'selector': 'app-audiencia-calendario'},{'name': 'AudienciaDetalle', 'selector': 'app-audiencia-detalle'},{'name': 'AudienciaRegistrar', 'selector': 'app-audiencia-registrar'},{'name': 'CiudadanoDetalle', 'selector': 'app-ciudadano-detalle'},{'name': 'CiudadanoLista', 'selector': 'app-ciudadano-lista'},{'name': 'CiudadanoRegistrar', 'selector': 'app-ciudadano-registrar'},{'name': 'ConfirmarCorreo', 'selector': 'app-cuenta-confirmar-correo'},{'name': 'ConsultaDetalle', 'selector': 'app-consulta-detalle'},{'name': 'ConsultaLista', 'selector': 'app-consulta-lista'},{'name': 'ConsultaListaCiudadano', 'selector': 'app-consulta-lista-ciudadano'},{'name': 'ConsultaRegistar', 'selector': 'app-consulta-registrar'},{'name': 'DocumentosListaEntidad', 'selector': 'app-documentos-lista-entidad'},{'name': 'DocumentosListaGeneral', 'selector': 'app-documentos-lista-general'},{'name': 'DocumentosRegistrar', 'selector': 'app-documentos-registrar'},{'name': 'DocumentosRutaBaseLista', 'selector': 'app-documentos-ruta-base-lista'},{'name': 'DocumentosRutaBaseRegistrar', 'selector': 'app-documentos-ruta-base-registrar'},{'name': 'ExportarConDriveComponent', 'selector': 'app-exportar-con-drive'},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'Header', 'selector': 'app-header'},{'name': 'HorarioDetalle', 'selector': 'app-horario-detalle'},{'name': 'HorarioLista', 'selector': 'app-horario-lista'},{'name': 'HorarioRegistrar', 'selector': 'app-horario-registrar'},{'name': 'Ingresar', 'selector': 'app-cuenta-ingresar'},{'name': 'JustificacionListaMis', 'selector': 'app-justificacion-lista-mis'},{'name': 'JustificacionListaPendientes', 'selector': 'app-justificacion-lista-pendientes'},{'name': 'JustificacionRegistrar', 'selector': 'app-justificacion-registrar'},{'name': 'Main_layout', 'selector': 'app-main-layout'},{'name': 'NotificacionestVer', 'selector': 'app-notificaciones-ver'},{'name': 'PaginaNoEncontradaComponent', 'selector': 'app-pagina-no-encontrada'},{'name': 'Perfil', 'selector': 'app-cuenta-perfil'},{'name': 'ProcesoDetalle', 'selector': 'app-proceso-detalle'},{'name': 'ProcesoLista', 'selector': 'app-proceso-lista'},{'name': 'ProcesoRegistrar', 'selector': 'app-proceso-registrar'},{'name': 'Registar', 'selector': 'app-cuenta-registrar'},{'name': 'SeguimientoListaConsulta', 'selector': 'app-seguimiento-lista-consulta'},{'name': 'SeguimientoRegistar', 'selector': 'app-seguimiento-registrar'},{'name': 'Sidebar', 'selector': 'app-sidebar'},{'name': 'Simple_layout', 'selector': 'app-simple_layout'},{'name': 'TramiteDetalle', 'selector': 'app-tramite-detalle'},{'name': 'TramiteLista', 'selector': 'app-tramite-lista'},{'name': 'TramiteRegistrar', 'selector': 'app-tramite-registrar'},{'name': 'UsuarioDetalle', 'selector': 'app-usuario-detalle'},{'name': 'UsuarioHorarioListaUsuario', 'selector': 'app-usuario-horario-lista-usuario'},{'name': 'UsuarioLista', 'selector': 'app-usuario-lista'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'JustificacionListaPendientes'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'JustificacionListaPendientes.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -24,7 +24,6 @@ export function MapProcesoListaItemVM(a: ApiProcesoListaSimple): VMProcesoListaS
 
         numeroExpediente: a.pr_numero_expediente,
         sede: a.pr_sede,
-        parte: a.pr_parte,
         materia: a.pr_materia,
         demandado: a.pr_demandado,
         demandante: a.pr_demandante,
@@ -43,7 +42,9 @@ export function MapProcesoAsesorActual(a: ApiProcesoAsesorActual): VMProcesoAses
 export function MapProcesoDetalleVM(a: ApiProcesoDetalleSimple): VMProcesoDetalleSimple {
     return {
         ...MapProcesoListaItemVM(a),
-
+        fechaRegistrada: a.pr_fecha_registrada
+            ? String(a.pr_fecha_registrada).slice(0, 10)
+            : null,
         creadoPor: a.pr_creado_por,
         fechaCreadoPor: a.pr_fecha_creado_por,
 
@@ -90,7 +91,6 @@ export function MapProcesoListaOpciones(vm: VMProcesoListaOptions): DTOProcesoLi
 
         pr_numero_expediente: trimU(vm.numeroExpediente),
         pr_sede: trimU(vm.sede),
-        pr_parte: trimU(vm.parte),
         pr_materia: trimU(vm.materia),
         pr_demandado: trimU(vm.demandado),
         pr_demandante: trimU(vm.demandante),
@@ -109,7 +109,6 @@ export function MapProcesoCreate(vm: VMProcesoCreate): DTOProcesoCreate {
         pr_numero_expediente: toUpperSafeRequired(vm.numeroExpediente),
 
         pr_sede: toUpperSafeRequired(vm.sede),
-        pr_parte: toUpperSafeRequired(vm.parte),
         pr_materia: toUpperSafeRequired(vm.materia),
         pr_demandado: toUpperSafeRequired(vm.demandado),
         pr_estado_procesal: toUpperSafeRequired(vm.estadoProcesal),
@@ -133,14 +132,15 @@ export function MapProcesoUpdateParcial(_id: number,vm: Partial<VMProcesoUpdate>
     if (vm.asesorActualId != null) dto.pr_asesor_actual_ID = vm.asesorActualId;
     if (vm.numeroExpediente != null) dto.pr_numero_expediente = toUpperSafeRequired(vm.numeroExpediente);
     if (vm.sede != null) dto.pr_sede = toUpperSafeRequired(vm.sede);
-    if (vm.parte != null) dto.pr_parte = toUpperSafeRequired(vm.parte);
     if (vm.materia != null) dto.pr_materia = toUpperSafeRequired(vm.materia);
     if (vm.demandado != null) dto.pr_demandado = toUpperSafeRequired(vm.demandado);
     if (vm.estadoProcesal != null) dto.pr_estado_procesal = toUpperSafeRequired(vm.estadoProcesal);
     if (vm.observacion != null) dto.pr_observacion = optionalUpper(vm.observacion);
-
-    if (vm.fechaRegistrada) {
-        dto.pr_fecha_registrada = new Date(vm.fechaRegistrada).toISOString();
+    
+    if (vm.fechaRegistrada !== undefined) {
+        dto.pr_fecha_registrada = vm.fechaRegistrada
+            ? new Date(vm.fechaRegistrada).toISOString()
+            : null;
     }
 
     return dto;

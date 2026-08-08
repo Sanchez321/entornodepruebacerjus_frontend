@@ -1,60 +1,98 @@
+// src/app/pages/consulta/services/consulta.service.ts
+
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map,Observable } from 'rxjs';
-import { API_URL } from '../../../app.token'; // su token ya existente
-import {firstValueFrom} from 'rxjs';
+import { firstValueFrom, map, Observable } from 'rxjs';
 
-import { DTOConsultaCreate,DTOConsultaListaOptions, DTOConsultaUpdate,DTOConsultaListaCiudadanoOptions } from '../models/consulta.dtos';
-import { ApiConsultaPageGeneralSimple,ApiConsultaListaGeneralSimple,ApiConsultaDetalleSimple,ApiConsultaPageCiudadanoSimple,
-  ApiConsultaListaCiudadanoSimple,ApiConsultaControl,ApiConsultaCiudadanoResumen } from '../models/consulta.api';
-import { VMPage, VMConsultaListaSimple,VMConsultaListaOptions,VMConsultaCreate,VMConsultaDetalleSimple, VMConsultaUpdate,
-  VMConsultaListaCiudadanoOptions,VMConsultaListaGeneralSimple,VMConsultaControl,VMConsultaCiudadanoResumen } from '../models/consulta.vm';
-import { MapConsultaDetalleListaSimple,MapConsultaListaGeneralItemVM, MapPageToVM,MapConsultaListaOpciones,MapConsultaCreate,
-  MapConsultaUpdateParcial,MapConsultaListaCiudadanoOpciones,MapConsultaListaCiudadanoItemVM,MapConsultaControl,MapConsultaCiudadanoResumen
-  } from '../mappers/consulta.mapper';
-import { toHttpParams} from '@app/components/utils/http.utils';
+import { API_URL } from '../../../app.token';
+import {
+  DTOConsultaCreate,
+  DTOConsultaListaCiudadanoOptions,
+  DTOConsultaListaOptions,
+  DTOConsultaUpdate,
+} from '../models/consulta.dtos';
+import {
+  ApiConsultaCiudadanoResumen,
+  ApiConsultaControl,
+  ApiConsultaDetalleSimple,
+  ApiConsultaListaCiudadanoSimple,
+  ApiConsultaListaGeneralSimple,
+  ApiConsultaPageCiudadanoSimple,
+  ApiConsultaPageGeneralSimple,
+} from '../models/consulta.api';
+import {
+  VMConsultaCiudadanoResumen,
+  VMConsultaControl,
+  VMConsultaCreate,
+  VMConsultaDetalleSimple,
+  VMConsultaListaCiudadanoOptions,
+  VMConsultaListaGeneralSimple,
+  VMConsultaListaOptions,
+  VMConsultaListaSimple,
+  VMConsultaReporteTablaOptions,
+  VMConsultaUpdate,
+  VMPage,
+} from '../models/consulta.vm';
+import {
+  MapConsultaCiudadanoResumen,
+  MapConsultaControl,
+  MapConsultaCreate,
+  MapConsultaDetalleListaSimple,
+  MapConsultaListaCiudadanoItemVM,
+  MapConsultaListaCiudadanoOpciones,
+  MapConsultaListaGeneralItemVM,
+  MapConsultaListaOpciones,
+  MapConsultaUpdateParcial,
+  MapPageToVM,
+} from '../mappers/consulta.mapper';
+import { toHttpParams } from '@app/components/utils/http.utils';
+
+export interface ReporteDescargaResultado {
+  driveStatus: string | null;
+  driveMessage: string | null;
+}
 
 @Injectable({ providedIn: 'root' })
 export class ConsultaService {
-  private http = inject(HttpClient);
-  private apiUrl = inject(API_URL);
+  private readonly http = inject(HttpClient);
+  private readonly apiUrl = inject(API_URL);
   private readonly base = `${this.apiUrl}/consulta`;
-  private readonly base2 = `${this.apiUrl}/ciudadano`;
-  /**
-   * Lista general de consultas.
-   * GET /consulta
-   */
-  list(opts: VMConsultaListaOptions): Observable<VMPage<VMConsultaListaGeneralSimple>> {
+  private readonly baseCiudadano = `${this.apiUrl}/ciudadano`;
+  private readonly baseReportes = `${this.apiUrl}/reportes/tablas`;
+
+  list(
+    opts: VMConsultaListaOptions,
+  ): Observable<VMPage<VMConsultaListaGeneralSimple>> {
     const dto: DTOConsultaListaOptions = MapConsultaListaOpciones(opts);
     const params = toHttpParams(dto);
 
     return this.http
       .get<ApiConsultaPageGeneralSimple>(this.base, { params })
       .pipe(
-        map(apiPage =>
-          MapPageToVM<ApiConsultaListaGeneralSimple, VMConsultaListaGeneralSimple>(
-            apiPage,
-            MapConsultaListaGeneralItemVM,
-          ),
+        map((apiPage) =>
+          MapPageToVM<
+            ApiConsultaListaGeneralSimple,
+            VMConsultaListaGeneralSimple
+          >(apiPage, MapConsultaListaGeneralItemVM),
         ),
       );
   }
 
-  /**
-   * Lista de consultas dentro del detalle de ciudadano.
-   * GET /consulta/ciudadano/:id
-   */
   listByCiudadano(
     idciudadano: number,
     opts: VMConsultaListaCiudadanoOptions,
   ): Observable<VMPage<VMConsultaListaSimple>> {
-    const dto: DTOConsultaListaCiudadanoOptions = MapConsultaListaCiudadanoOpciones(opts);
+    const dto: DTOConsultaListaCiudadanoOptions =
+      MapConsultaListaCiudadanoOpciones(opts);
     const params = toHttpParams(dto);
 
     return this.http
-      .get<ApiConsultaPageCiudadanoSimple>(`${this.base}/ciudadano/${idciudadano}`, { params })
+      .get<ApiConsultaPageCiudadanoSimple>(
+        `${this.base}/ciudadano/${idciudadano}`,
+        { params },
+      )
       .pipe(
-        map(apiPage =>
+        map((apiPage) =>
           MapPageToVM<ApiConsultaListaCiudadanoSimple, VMConsultaListaSimple>(
             apiPage,
             MapConsultaListaCiudadanoItemVM,
@@ -62,14 +100,23 @@ export class ConsultaService {
         ),
       );
   }
-  getResumenByDni(dni: string): Observable<VMConsultaCiudadanoResumen | null> {
+
+  getResumenByDni(
+    dni: string,
+  ): Observable<VMConsultaCiudadanoResumen | null> {
     return this.http
-      .get<ApiConsultaCiudadanoResumen | null>(`${this.base2}/buscar/dni/${dni}`)
-      .pipe(map(apiItem => apiItem ? MapConsultaCiudadanoResumen(apiItem) : null));
+      .get<ApiConsultaCiudadanoResumen | null>(
+        `${this.baseCiudadano}/buscar/dni/${dni}`,
+      )
+      .pipe(
+        map((apiItem) =>
+          apiItem ? MapConsultaCiudadanoResumen(apiItem) : null,
+        ),
+      );
   }
+
   async create(vm: VMConsultaCreate): Promise<number> {
     const dto: DTOConsultaCreate = MapConsultaCreate(vm);
-
     const response = await firstValueFrom(
       this.http.post<{ co_ID: number }>(this.base, dto),
     );
@@ -80,20 +127,111 @@ export class ConsultaService {
   getById(id: number): Observable<VMConsultaDetalleSimple> {
     return this.http
       .get<ApiConsultaDetalleSimple>(`${this.base}/${id}`)
-      .pipe(map(apiItem => MapConsultaDetalleListaSimple(apiItem)));
+      .pipe(map((apiItem) => MapConsultaDetalleListaSimple(apiItem)));
   }
+
   getControlById(id: number): Observable<VMConsultaControl> {
     return this.http
       .get<ApiConsultaControl>(`${this.base}/${id}/control`)
-      .pipe(map(apiItem => MapConsultaControl(apiItem)));
+      .pipe(map((apiItem) => MapConsultaControl(apiItem)));
   }
-  async update(id: number, changes: Partial<VMConsultaUpdate>): Promise<number> {
-    const dto: DTOConsultaUpdate = MapConsultaUpdateParcial(id, changes);
 
+  async update(
+    id: number,
+    changes: Partial<VMConsultaUpdate>,
+  ): Promise<number> {
+    const dto: DTOConsultaUpdate = MapConsultaUpdateParcial(id, changes);
     const response = await firstValueFrom(
       this.http.patch<{ co_ID: number }>(`${this.base}/${id}`, dto),
     );
 
     return response.co_ID;
+  }
+
+  async descargarConsultasTabla(
+    opts: VMConsultaReporteTablaOptions,
+    guardarDrive = false,
+  ): Promise<ReporteDescargaResultado> {
+    const params = toHttpParams({
+      formato: opts.formato,
+      modo: opts.modo,
+      estado: opts.estado,
+      anio: opts.anio,
+      mes: opts.mes,
+      guardarDrive,
+    });
+
+    const response = await firstValueFrom(
+      this.http.get(`${this.baseReportes}/consultas/exportar`, {
+        params,
+        responseType: 'blob',
+        observe: 'response',
+      }),
+    );
+
+    const blob = response.body;
+
+    if (!blob) {
+      throw new Error('No se recibió archivo.');
+    }
+
+    const filename =
+      this.getFilenameFromContentDisposition(
+        response.headers.get('content-disposition'),
+      ) ?? this.buildFallbackReporteFilename(opts);
+
+    this.downloadBlob(blob, filename);
+
+    return {
+      driveStatus: response.headers.get('x-drive-save-status'),
+      driveMessage: this.decodeDriveMessage(
+        response.headers.get('x-drive-save-message'),
+      ),
+    };
+  }
+
+  private buildFallbackReporteFilename(
+    opts: VMConsultaReporteTablaOptions,
+  ): string {
+    const mes = String(opts.mes).padStart(2, '0');
+
+    return `consultas_${opts.modo.toLowerCase()}_${mes}_${opts.anio}.${opts.formato}`;
+  }
+
+  private getFilenameFromContentDisposition(
+    value?: string | null,
+  ): string | null {
+    if (!value) return null;
+
+    const utf8Match = /filename\*=UTF-8''([^;]+)/i.exec(value);
+    if (utf8Match?.[1]) {
+      return decodeURIComponent(utf8Match[1]);
+    }
+
+    const normalMatch = /filename="?([^";]+)"?/i.exec(value);
+    return normalMatch?.[1] ?? null;
+  }
+
+  private decodeDriveMessage(value: string | null): string | null {
+    if (!value) return null;
+
+    try {
+      return decodeURIComponent(value);
+    } catch {
+      return value;
+    }
+  }
+
+  private downloadBlob(blob: Blob, filename: string): void {
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    window.URL.revokeObjectURL(url);
   }
 }

@@ -1,124 +1,431 @@
-<div class="asist-shell">
-  <!-- ===== Encabezado ===== -->
-  <div class="card asist-header mb-3 shadow-sm">
-    <div class="card-body asist-header-body">
-      <div class="asist-header-main">
-        <div class="asist-title">{{ headerTitle }}</div>
-        <div class="asist-subtitle text-light">
-          {{ headerSubtitle || 'Seleccione un periodo para revisar la asistencia.' }}
+<div class="analytics-shell">
+  <div class="analytics-top">
+    <div class="card analytics-header shadow-sm">
+      <div class="card-body analytics-header-body">
+        <div class="analytics-header-main">
+          <div class="analytics-title">
+            Panel de asistencia
+          </div>
+
+          <div class="analytics-subtitle">
+            {{
+              headerDetail ||
+                'Configure los filtros para revisar la asistencia.'
+            }}
+          </div>
+        </div>
+
+        <div class="analytics-header-meta">
+          <span class="badge period-badge">
+            {{ periodMain || 'Periodo actual' }}
+          </span>
+
+          <span class="analytics-etl-label">
+            {{ etlLabel }}
+          </span>
         </div>
       </div>
+    </div>
 
-      <div class="ms-auto d-flex flex-column flex-sm-row gap-2 align-items-sm-center asist-header-meta">
-        <span class="badge asist-period-badge">
-          {{ periodBadge || 'Semana actual' }}
-        </span>
+    <div class="card shadow-sm">
+      <div
+        class="card-body analytics-toolbar"
+        [formGroup]="filtros">
 
-        <button type="button" class="btn btn-sm btn-outline-light asist-refresh-btn" (click)="actualizar()">
-          Actualizar
+        <div class="toolbar-row">
+          <div
+            class="btn-group btn-group-sm"
+            role="group"
+            aria-label="Periodo">
+
+            <button
+              type="button"
+              class="btn btn-filter"
+              [class.active]="periodoTipo === 'week'"
+              (click)="setPeriodo('week')">
+              Semana
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-filter"
+              [class.active]="periodoTipo === 'month'"
+              (click)="setPeriodo('month')">
+              Mes
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-filter"
+              [class.active]="periodoTipo === 'year'"
+              (click)="setPeriodo('year')">
+              Año
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-filter"
+              [class.active]="periodoTipo === 'range'"
+              (click)="setPeriodo('range')">
+              Rango
+            </button>
+          </div>
+
+          <div class="period-controls">
+            @if (isWeek || isMonth || isYear) {
+              <select
+                class="form-select form-select-sm filter-select-small"
+                formControlName="year">
+                @for (year of years; track year) {
+                  <option [ngValue]="year">
+                    {{ year }}
+                  </option>
+                }
+              </select>
+            }
+
+            @if (isWeek) {
+              <input
+                type="number"
+                min="1"
+                max="53"
+                class="form-control form-control-sm filter-input-small"
+                formControlName="week"
+                placeholder="Semana">
+            }
+
+            @if (isMonth) {
+              <select
+                class="form-select form-select-sm filter-select-medium"
+                formControlName="month">
+                @for (month of months; track month.value) {
+                  <option [ngValue]="month.value">
+                    {{ month.label }}
+                  </option>
+                }
+              </select>
+            }
+
+            @if (isRange) {
+              <input
+                type="date"
+                class="form-control form-control-sm filter-date"
+                formControlName="start">
+
+              <input
+                type="date"
+                class="form-control form-control-sm filter-date"
+                formControlName="end">
+            }
+
+            <select
+              class="form-select form-select-sm filter-select-medium"
+              formControlName="view">
+              <option value="day">
+                Agrupar por día
+              </option>
+              <option value="month">
+                Agrupar por mes
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="toolbar-row">
+          <select
+            class="form-select form-select-sm user-filter"
+            formControlName="usId">
+            <option [ngValue]="null">
+              Todos los usuarios
+            </option>
+
+            @for (
+              usuario of usuarios;
+              track usuario.usId
+            ) {
+              <option [ngValue]="usuario.usId">
+                {{ usuario.nombre }}
+                {{
+                  usuario.dni
+                    ? ' · ' + usuario.dni
+                    : ''
+                }}
+              </option>
+            }
+          </select>
+
+          <button
+            class="btn btn-sm btn-outline-primary px-3 ms-auto"
+            type="button"
+            (click)="actualizar()">
+            Actualizar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card shadow-sm">
+      <div class="card-body analytics-etl-row">
+        <div class="etl-label">
+          ETL asistencia
+        </div>
+
+        <div
+          class="btn-group btn-group-sm flex-wrap"
+          role="group">
+
+          <button
+            class="btn btn-ghost"
+            type="button"
+            (click)="runPreset('TODAY')"
+            [disabled]="loadingEtl">
+            Hoy
+          </button>
+
+          <button
+            class="btn btn-ghost"
+            type="button"
+            (click)="runPreset('WEEK_THIS')"
+            [disabled]="loadingEtl">
+            Esta semana
+          </button>
+
+          <button
+            class="btn btn-ghost"
+            type="button"
+            (click)="runPreset('WEEK_LAST')"
+            [disabled]="loadingEtl">
+            Semana pasada
+          </button>
+
+          <button
+            class="btn btn-ghost"
+            type="button"
+            (click)="runPreset('MONTH_THIS')"
+            [disabled]="loadingEtl">
+            Este mes
+          </button>
+
+          <button
+            class="btn btn-ghost"
+            type="button"
+            (click)="runPreset('MONTH_LAST')"
+            [disabled]="loadingEtl">
+            Mes pasado
+          </button>
+
+          <button
+            class="btn btn-ghost btn-warning-soft"
+            type="button"
+            (click)="runPreset('SMART')"
+            [disabled]="loadingEtl">
+            Actualización inteligente
+          </button>
+
+          <button
+            class="btn btn-ghost btn-danger-soft"
+            type="button"
+            (click)="runPreset('YEAR_THIS')"
+            [disabled]="loadingEtl">
+            Año actual
+          </button>
+
+          <button
+            class="btn btn-ghost btn-danger-soft"
+            type="button"
+            (click)="runPreset('YEAR_LAST')"
+            [disabled]="loadingEtl">
+            Año anterior
+          </button>
+        </div>
+
+        <div class="ms-auto small">
+          <span class="text-muted">
+            Estado:
+          </span>
+
+          <span
+            [class.text-warning]="etlStatus?.running"
+            [class.text-success]="!etlStatus?.running">
+            {{
+              etlStatus?.running
+                ? 'EN PROCESO'
+                : 'SIN EJECUCIONES ACTIVAS'
+            }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="analytics-content-scroll">
+    <div class="analytics-section">
+      <div class="analytics-section-title">
+        Resumen
+      </div>
+
+      <div class="summary-grid">
+        <div class="summary-card">
+          <div class="summary-card-label">
+            Programados
+          </div>
+          <div class="summary-card-value">
+            {{ cards?.programados ?? 0 }}
+          </div>
+        </div>
+
+        <div class="summary-card">
+          <div class="summary-card-label">
+            Asistencias
+          </div>
+          <div class="summary-card-value">
+            {{ cards?.asistencias ?? 0 }}
+          </div>
+        </div>
+
+        <div class="summary-card">
+          <div class="summary-card-label">
+            Completos
+          </div>
+          <div class="summary-card-value">
+            {{ cards?.completos ?? 0 }}
+          </div>
+        </div>
+
+        <div class="summary-card">
+          <div class="summary-card-label">
+            A tiempo
+          </div>
+          <div class="summary-card-value">
+            {{ cards?.aTiempo ?? 0 }}
+          </div>
+        </div>
+
+        <div class="summary-card">
+          <div class="summary-card-label">
+            Tardanzas
+          </div>
+          <div class="summary-card-value">
+            {{ cards?.tardanzas ?? 0 }}
+          </div>
+        </div>
+
+        <div class="summary-card">
+          <div class="summary-card-label">
+            Ausencias
+          </div>
+          <div class="summary-card-value">
+            {{ cards?.ausencias ?? 0 }}
+          </div>
+        </div>
+
+        <div class="summary-card">
+          <div class="summary-card-label">
+            Incompletos
+          </div>
+          <div class="summary-card-value">
+            {{ cards?.incompletos ?? 0 }}
+          </div>
+        </div>
+
+        <div class="summary-card">
+          <div class="summary-card-label">
+            Justificados
+          </div>
+          <div class="summary-card-value">
+            {{ cards?.justificados ?? 0 }}
+          </div>
+        </div>
+
+        <div class="summary-card">
+          <div class="summary-card-label">
+            Puntualidad
+          </div>
+          <div class="summary-card-value">
+            {{
+              cards?.puntualidadPorcentaje ?? 0
+            }}%
+          </div>
+        </div>
+
+        <div class="summary-card">
+          <div class="summary-card-label">
+            Tardanza promedio
+          </div>
+          <div class="summary-card-value">
+            {{
+              cards?.tardanzaPromedioMin ?? 0
+            }}
+            <span class="summary-unit">min</span>
+          </div>
+        </div>
+
+        <div class="summary-card">
+          <div class="summary-card-label">
+            Tiempo trabajado
+          </div>
+          <div class="summary-card-value">
+            {{ cards?.minutosTrabajados ?? 0 }}
+            <span class="summary-unit">min</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="analytics-section">
+      <div class="analytics-section-title">
+        Exportar filtrado
+      </div>
+
+      <div class="export-strip">
+        <label class="drive-save-check">
+          <input
+            #guardarDriveCheck
+            type="checkbox"
+            [checked]="guardarDrive"
+            (change)="guardarDrive = guardarDriveCheck.checked">
+          <span>Guardar también en Drive</span>
+        </label>
+
+        <button
+          class="btn btn-primary btn-lg export-all-btn"
+          type="button"
+          (click)="descargarTodoPeriodo()"
+          [disabled]="
+            downloading ||
+            loadingDashboard ||
+            !dashboard
+          ">
+          @if (downloading) {
+            Preparando…
+          } @else {
+            Exportar todo el panel XLSX
+          }
         </button>
+
+        <span class="text-muted small export-help">
+          Incluye resumen, asistencia diaria, marcas,
+          justificaciones y resumen mensual.
+        </span>
       </div>
     </div>
-  </div>
 
-  <!-- ===== Toolbar filtros ===== -->
-  <div class="card mb-3 shadow-sm">
-    <div class="card-body d-flex flex-wrap align-items-center gap-3">
-      <div class="d-flex flex-wrap gap-2">
-        <div class="btn-group btn-group-sm" role="group" aria-label="Periodo">
-          <button type="button" class="btn btn-filter"
-                  [class.active]="filtros.value.kind === 'week'"
-                  (click)="filtros.patchValue({ kind: 'week' }, { emitEvent: true })">
-            Semana
-          </button>
-          <button type="button" class="btn btn-filter"
-                  [class.active]="filtros.value.kind === 'month'"
-                  (click)="filtros.patchValue({ kind: 'month' }, { emitEvent: true })">
-            Mes
-          </button>
-          <button type="button" class="btn btn-filter"
-                  [class.active]="filtros.value.kind === 'year'"
-                  (click)="filtros.patchValue({ kind: 'year' }, { emitEvent: true })">
-            Año
-          </button>
-        </div>
-
-        <div class="btn-group btn-group-sm" role="group" aria-label="Rango">
-          <button type="button" class="btn btn-filter"
-                  [class.active]="filtros.value.range === 'this'"
-                  (click)="filtros.patchValue({ range: 'this' }, { emitEvent: true })">
-            Este
-          </button>
-          <button type="button" class="btn btn-filter"
-                  [class.active]="filtros.value.range === 'last'"
-                  (click)="filtros.patchValue({ range: 'last' }, { emitEvent: true })">
-            Pasado
-          </button>
-        </div>
-      </div>
-
-      <div class="ms-sm-auto small text-muted">
-        Vista generada desde marcas de asistencia del sistema.
-      </div>
-    </div>
-  </div>
-
-  <!-- ===== Cards ===== -->
-  @if (cards; as c) {
-    <div class="row g-3 mb-3">
-      <div class="col-6 col-md-3">
-        <div class="card card-kpi shadow-sm">
-          <div class="card-body">
-            <div class="kpi-label">Asistencias hoy</div>
-            <div class="kpi-value">{{ c.asistenciasHoy }} / {{ c.totalProgramadosHoy }}</div>
-            <div class="kpi-sub">Programados con horario activo hoy</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-6 col-md-3">
-        <div class="card card-kpi shadow-sm">
-          <div class="card-body">
-            <div class="kpi-label">Tardanzas hoy</div>
-            <div class="kpi-value">{{ c.tardanzasHoy }}</div>
-            <div class="kpi-sub">Entrada después de la tolerancia</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-6 col-md-3">
-        <div class="card card-kpi shadow-sm">
-          <div class="card-body">
-            <div class="kpi-label">Ausentes hoy</div>
-            <div class="kpi-value">{{ c.ausentesHoy }}</div>
-            <div class="kpi-sub">Sin entrada en la ventana del horario</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-6 col-md-3">
-        <div class="card card-kpi shadow-sm">
-          <div class="card-body">
-            <div class="kpi-label">Incompletos ayer</div>
-            <div class="kpi-value">{{ c.incompletosAyer }}</div>
-            <div class="kpi-sub">Entrada sin salida en el día anterior</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  }
-
-  <!-- ===== Gráfico + Tabla ===== -->
-  <div class="row g-3">
-    <!-- Gráfico -->
-    <div class="col-lg-6">
-      <div class="card asist-card shadow-sm h-100">
-        <div class="card-header border-0 bg-transparent d-flex justify-content-between align-items-center pb-0">
-          <h6 class="mb-0 asist-card-title">Asistencia</h6>
+    <div class="analytics-grid">
+      <div class="card analytics-card shadow-sm span-5 chart-card">
+        <div class="card-header bg-transparent border-0 pb-0">
+          <h6 class="mb-0 analytics-card-title">
+            Distribución de asistencia
+          </h6>
         </div>
 
         <div class="card-body">
-          @if (!firstLoad || !loadingDashboard) {
+          @if (firstLoad) {
+            <div class="chart-skeleton">
+              <div class="sk-bar sk-bar-1"></div>
+              <div class="sk-bar sk-bar-2"></div>
+              <div class="sk-bar sk-bar-3"></div>
+            </div>
+          } @else {
             <apx-chart
               #chartBar
               [series]="optBar.series"
@@ -128,142 +435,239 @@
               [dataLabels]="optBar.dataLabels"
               [legend]="optBar.legend"
               [tooltip]="optBar.tooltip"
-              [title]="optBar.title"
-              [subtitle]="optBar.subtitle">
+              [title]="optBar.title">
             </apx-chart>
-          } @else {
-            <div class="chart-skeleton">
-              <div class="sk-bar sk-bar-1"></div>
-              <div class="sk-bar sk-bar-2"></div>
-              <div class="sk-bar sk-bar-3"></div>
-            </div>
           }
         </div>
       </div>
-    </div>
 
-    <!-- Tabla -->
-    <div class="col-lg-6">
-      <div class="card asist-card shadow-sm h-100">
-        <div class="card-header border-0 bg-transparent d-flex justify-content-between align-items-center pb-0">
+      <div class="card analytics-card shadow-sm span-7 table-card">
+        <div class="card-header bg-transparent border-0 table-header">
           <div>
-            <h6 class="mb-0 asist-card-title">Asistencias del periodo</h6>
+            <h6 class="mb-0 analytics-card-title">
+              Asistencias del periodo
+            </h6>
 
-            <div class="btn-group btn-group-sm mt-2" role="group" aria-label="Segmento tabla">
-              <button type="button" class="btn btn-filter"
-                      [class.active]="tablaSegmento === 'anteriores'"
-                      (click)="setSegment('anteriores')">
+            <div
+              class="btn-group btn-group-sm mt-2"
+              role="group">
+
+              <button
+                type="button"
+                class="btn btn-filter"
+                [class.active]="tablaSegmento === 'all'"
+                (click)="setSegment('all')">
+                Todos ({{ countTodos }})
+              </button>
+
+              <button
+                type="button"
+                class="btn btn-filter"
+                [class.active]="tablaSegmento === 'anteriores'"
+                (click)="setSegment('anteriores')">
                 Anteriores ({{ countAnteriores }})
               </button>
 
-              <button type="button" class="btn btn-filter"
-                      [class.active]="tablaSegmento === 'hoy'"
-                      (click)="setSegment('hoy')">
+              <button
+                type="button"
+                class="btn btn-filter"
+                [class.active]="tablaSegmento === 'hoy'"
+                (click)="setSegment('hoy')">
                 Hoy ({{ countHoy }})
               </button>
 
-              <button type="button" class="btn btn-filter"
-                      [class.active]="tablaSegmento === 'proximos'"
-                      (click)="setSegment('proximos')">
+              <button
+                type="button"
+                class="btn btn-filter"
+                [class.active]="tablaSegmento === 'proximos'"
+                (click)="setSegment('proximos')">
                 Próximos ({{ countProximos }})
               </button>
             </div>
           </div>
 
-          <div class="ms-auto d-flex align-items-center gap-2">
-            <button type="button"
-                  class="btn btn-sm btn-outline-secondary"
-                  (click)="descargarTodoPeriodo()"
-                  [disabled]="downloading || loadingDashboard || !dashboard">
-            Descargar (todo el periodo)
-          </button>
-            <div class="small text-muted">Filas/página:</div>
-            
-            <div class="btn-group btn-group-sm" role="group" aria-label="Page size">
-              <button type="button" class="btn btn-outline-secondary"
-                      [class.active]="pageSize === 10"
-                      (click)="setPageSize(10)">10</button>
-              <button type="button" class="btn btn-outline-secondary"
-                      [class.active]="pageSize === 25"
-                      (click)="setPageSize(25)">25</button>
-              <button type="button" class="btn btn-outline-secondary"
-                      [class.active]="pageSize === 50"
-                      (click)="setPageSize(50)">50</button>
+          <div class="table-page-size">
+            <span class="small text-muted">
+              Filas:
+            </span>
+
+            <div class="btn-group btn-group-sm">
+              <button
+                type="button"
+                class="btn btn-outline-secondary"
+                [class.active]="pageSize === 10"
+                (click)="setPageSize(10)">
+                10
+              </button>
+
+              <button
+                type="button"
+                class="btn btn-outline-secondary"
+                [class.active]="pageSize === 25"
+                (click)="setPageSize(25)">
+                25
+              </button>
+
+              <button
+                type="button"
+                class="btn btn-outline-secondary"
+                [class.active]="pageSize === 50"
+                (click)="setPageSize(50)">
+                50
+              </button>
             </div>
           </div>
         </div>
 
-        <div class="card-body table-responsive">
+        <div class="card-body attendance-table-wrap">
           @if (estadoRows.length > 0) {
-            <table class="table table-sm align-middle mb-0 table-asist">
-              <thead>
-                <tr>
-                  <th>Fecha</th>
-                  <th>Usuario</th>
-                  <th>Horario</th>
-                  <th>Primera marca</th>
-                  <th>Estado</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                @for (r of estadoRows; track r.usId + '-' + r.fechaYmd) {
+            <div class="table-responsive">
+              <table class="table table-sm align-middle mb-0 table-asist">
+                <thead>
                   <tr>
-                    <td>{{ r.fechaLabel }}</td>
-                    <td>{{ r.nombre }}</td>
-                    <td>
-                      <div class="small text-muted">{{ r.horario }}</div>
-                      @if (r.horaInicio) {
-                        <div class="small">Inicio: {{ r.horaInicio }}</div>
-                      }
-                    </td>
-                    <td>
-                      @if (r.primeraMarca) {
-                        <span>{{ r.primeraMarca }}</span>
-                      } @else {
-                        <span>—</span>
-                      }
-                    </td>
-                    <td>
-                      <span class="badge" [ngClass]="r.estadoBadgeClass">{{ r.estadoLabel }}</span>
-                    </td>
+                    <th>Fecha</th>
+                    <th>Usuario</th>
+                    <th>Horario</th>
+                    <th>Marcas</th>
+                    <th>Trabajo</th>
+                    <th>Estado</th>
                   </tr>
-                }
-              </tbody>
-            </table>
+                </thead>
 
-            <div class="d-flex justify-content-between align-items-center mt-2">
+                <tbody>
+                  @for (
+                    row of estadoRows;
+                    track row.usId + '-' + row.fechaYmd
+                  ) {
+                    <tr>
+                      <td>
+                        {{ row.fechaLabel }}
+                      </td>
+
+                      <td>
+                        <div>{{ row.nombre }}</div>
+                        <div class="small text-muted">
+                          {{ row.dni ?? 'Sin DNI' }}
+                        </div>
+                      </td>
+
+                      <td>
+                        <div>{{ row.horario }}</div>
+                        <div class="small text-muted">
+                          {{ row.horaInicio ?? '—' }}
+                          –
+                          {{ row.horaFin ?? '—' }}
+                        </div>
+                      </td>
+
+                      <td>
+                        <div>
+                          E: {{ row.horaEntrada ?? '—' }}
+                        </div>
+                        <div>
+                          S: {{ row.horaSalida ?? '—' }}
+                        </div>
+                      </td>
+
+                      <td>
+                        <div>
+                          {{ row.minutosTrabajados ?? 0 }}
+                          min
+                        </div>
+
+                        @if (row.tardanzaMin) {
+                          <div class="small text-warning">
+                            Tardanza:
+                            {{ row.tardanzaMin }} min
+                          </div>
+                        }
+
+                        @if (row.salidaAnticipadaMin) {
+                          <div class="small text-danger">
+                            Salida anticipada:
+                            {{ row.salidaAnticipadaMin }} min
+                          </div>
+                        }
+                      </td>
+
+                      <td>
+                        <span
+                          class="badge"
+                          [ngClass]="row.estadoBadgeClass">
+                          {{ row.estadoLabel }}
+                        </span>
+
+                        @if (row.justificado) {
+                          <div class="small text-success mt-1">
+                            {{
+                              row.justificacionTipo ??
+                                'Justificado'
+                            }}
+                          </div>
+                        }
+                      </td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+
+            <div class="table-footer">
               <div class="small text-muted">
-                Mostrando {{ pageFrom }}–{{ pageTo }} de {{ estadoTotal }}
+                Mostrando {{ pageFrom }}–{{ pageTo }}
+                de {{ estadoTotal }}
               </div>
 
-              <div class="btn-group btn-group-sm" role="group" aria-label="Paginación">
-                <button type="button" class="btn btn-outline-secondary"
-                        (click)="prevPage()" [disabled]="page <= 1 || loadingPeriodo">
+              <div class="btn-group btn-group-sm">
+                <button
+                  class="btn btn-outline-secondary"
+                  type="button"
+                  (click)="prevPage()"
+                  [disabled]="
+                    page <= 1 || loadingPeriodo
+                  ">
                   «
                 </button>
 
-                <button type="button" class="btn btn-outline-secondary" disabled>
+                <button
+                  class="btn btn-outline-secondary"
+                  type="button"
+                  disabled>
                   Pág. {{ page }} / {{ totalPages }}
                 </button>
 
-                <button type="button" class="btn btn-outline-secondary"
-                        (click)="nextPage()" [disabled]="page >= totalPages || loadingPeriodo">
+                <button
+                  class="btn btn-outline-secondary"
+                  type="button"
+                  (click)="nextPage()"
+                  [disabled]="
+                    page >= totalPages ||
+                    loadingPeriodo
+                  ">
                   »
                 </button>
               </div>
             </div>
+          } @else if (loadingPeriodo) {
+            <div class="table-loading-placeholder">
+              Cargando datos del periodo…
+            </div>
           } @else {
-            <div class="text-muted small">
-              No hay datos de asistencia para el periodo seleccionado.
+            <div class="table-empty-placeholder">
+              No hay datos para los filtros seleccionados.
+              Ejecute la ETL cuando la base analítica todavía
+              no haya sido cargada.
             </div>
           }
         </div>
       </div>
     </div>
-  </div>
 
-  @if (loadingDashboard || loadingPeriodo) {
-    <div class="asist-loading-hint">Actualizando datos de asistencia…</div>
-  }
+    @if (loadingDashboard || loadingPeriodo) {
+      <div
+        class="analytics-loading-overlay d-flex align-items-center justify-content-center">
+        Cargando…
+      </div>
+    }
+  </div>
 </div>

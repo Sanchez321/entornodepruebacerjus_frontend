@@ -1,0 +1,182 @@
+/* src/app/pages/audiencia/audiencia.registrar/audiencia.registrar.css */
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.card--flat {
+  background: transparent;
+}
+
+.consulta-help-text {
+  min-height: 1.25rem;
+}
+
+.empty-overlay {
+  align-items: center;
+  display: flex;
+  inset: var(--thead-h) 0 0 0;
+  justify-content: center;
+  opacity: 1;
+  pointer-events: none;
+  position: absolute;
+  transition: opacity .18s ease;
+}
+.value-box-noedit {
+  display: block;
+  width: 100%;
+  padding: .475rem .75rem;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: .375rem;
+  min-height: calc(1.5em + .95rem + 2px);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  cursor: default;
+  pointer-events: none;
+  user-select: none;
+}
+
+.estado-vacio {
+  font-size: .95rem;
+}
+
+.fullheight {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 6rem;
+}
+
+input[type="number"].no-spinner::-webkit-inner-spin-button,
+input[type="number"].no-spinner::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.loading-overlay {
+  backdrop-filter: blur(1px);
+  background: rgba(255,255,255,0.6);
+  font-weight: 600;
+  inset: 0;
+  position: absolute;
+}
+
+.num-range,
+.total-num {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  min-width: 4ch;
+  text-align: right;
+}
+
+.pager-wrap {
+  min-height: 2rem;
+}
+
+.proceso-seleccionado {
+  --bs-table-accent-bg: rgba(13, 110, 253, .08);
+  outline: 2px solid rgba(13, 110, 253, .25);
+  outline-offset: -2px;
+}
+
+.sk-badge {
+  height: .85rem;
+  width: 70%;
+}
+
+.sk-btn {
+  border-radius: .375rem;
+  height: 1.4rem;
+  width: 60%;
+}
+
+.sk-cell {
+  animation: shimmer 1.4s ease-in-out infinite;
+  background: linear-gradient(90deg, #e7ebee 25%, #dfe4e8 37%, #e7ebee 63%);
+  background-size: 400% 100%;
+  border-radius: .25rem;
+  height: .9rem;
+}
+
+.sk-date {
+  height: .85rem;
+  width: 80%;
+}
+
+.sk-id {
+  width: 2.5rem;
+}
+
+.sk-text {
+  width: 70%;
+}
+
+.sk-wrap {
+  align-items: center;
+  display: flex;
+  height: var(--row-h);
+  padding: 0;
+  width: 100%;
+}
+
+.tabla-wrap {
+  --row-h: 30.7px;
+  --thead-h: 40px;
+
+  contain: paint;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.table > :not(caption) > * > td,
+.table > :not(caption) > * > th {
+  height: var(--row-h);
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  vertical-align: middle;
+}
+
+td,
+th {
+  height: var(--row-h);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.tbody-skeleton {
+  background: transparent !important;
+  height: var(--row-h);
+}
+
+.table-striped tbody tr.tbody-skeleton:nth-of-type(even),
+.table-striped tbody tr.tbody-skeleton:nth-of-type(odd) {
+  --bs-table-accent-bg: transparent;
+  background-color: transparent !important;
+}
+
+.was-validated .form-control.ng-invalid,
+.form-control.ng-invalid.ng-touched {
+  border-color: #dc3545;
+  box-shadow: none;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}

@@ -1,38 +1,46 @@
-//como el frontend lo trata la UI
-export interface VMAsistencia{
-    idasistencia: number;
-    idusuario: number;
-    fechalocal: Date;
-    zonahoraria: string;
-    estadoc: number;
-    creadoen: Date;
-    as_usuario: number;
+export type VMTipoMarca = 'Entrada' | 'Salida' | 'Desconocido';
 
-    idmarca: bigint;
-    idmarcaasistencia: number;
-    tipo: string;
-    fecha: Date;
-    latitud: number;
-    longitud: number;
-    direccionip: string;
-    accuracy: number;
-    nota: string;
-}
-export type VMAsistenciaListaCompleta = VMAsistencia;
-
-export type VMAsistenciaListaSimple = Pick<VMAsistenciaListaCompleta, 
-  'idmarcaasistencia'|'idmarca'|'tipo'
->&Partial<{
+export interface VMAsistenciaListaSimple {
+  idmarcaasistencia: number;
+  idmarca: number;
+  tipo: VMTipoMarca;
+  fechaIso: string;
   fecha_formato: string;
-}>;
+}
 
-export type  VMAsistenciaDetalleCompleta = VMAsistencia;
+export interface VMHorarioHoy {
+  idAsignacion: number;
+  idHorario: number;
+  nombre: string;
+  diaSemana: string;
+  diaSemanaLabel: string;
+  horaInicio: string;
+  horaFin: string;
+  toleranciaMin: number;
+}
 
-export type VMAsistenciaDetalleSimple = Pick<VMAsistenciaListaCompleta, 
-  'idasistencia' | 'idusuario'| 'idmarca'| 'tipo' | 'fecha'|'latitud'|
-  'longitud'|'direccionip'|'accuracy'|'nota'
->
+export interface VMAsistenciaHoy {
+  idAsistencia: number;
+  estado: number;
+  estadoLabel: string;
+  entradaIso: string | null;
+  salidaIso: string | null;
+  entradaHoraLocal: string | null;
+  salidaHoraLocal: string | null;
+}
 
+export interface VMMiHorarioHoy {
+  fechaYmd: string;
+  fechaLabel: string;
+  zonaHoraria: string;
+  programado: boolean;
+  horario: VMHorarioHoy | null;
+  asistencia: VMAsistenciaHoy | null;
+  puedeMarcarEntrada: boolean;
+  puedeMarcarSalida: boolean;
+  puedeCorregirSalida: boolean;
+  mensaje: string;
+}
 
 export interface VMPage<T> {
   items: T[];
@@ -41,8 +49,9 @@ export interface VMPage<T> {
   pageSize: number;
 }
 
-export type VMAsistenciaListaOptions =Partial<VMAsistenciaListaSimple> & {
+export interface VMAsistenciaListaOptions {
   page?: number;
   pageSize?: number;
-  sort?:string;
-};
+  sort?: string;
+  idAsistencia?: number;
+}

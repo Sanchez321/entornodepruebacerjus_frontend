@@ -1,17 +1,9 @@
 // src/app/pages/usuario/mappers/usuario.mapper.ts
 import { ApiUsuarioListaSimple, ApiUsuarioDetalle } from '../models/usuario.api';
-import {
-  VMUsuarioListaSimple,
-  VMUsuarioListaOptions,
-  VMUsuarioDetalle,
-  VMUsuarioUpdateForm,
-  VMPage,
-} from '../models/usuario.vm';
-import {
-  DTOUsuarioListaOptions,
-  DTOUsuarioUpdate,
-} from '../models/usuario.dtos';
-import { EstadoUsuario, estadoUsuarioToLabel } from '../models/usuario.dominio';
+import {VMUsuarioListaSimple,VMUsuarioListaOptions,VMUsuarioDetalle,VMUsuarioUpdateForm, VMUsuarioCorregirIdentidadForm,
+  VMPage,} from '../models/usuario.vm';
+import {DTOUsuarioListaOptions,DTOUsuarioUpdate, DTOUsuarioCorregirIdentidad,} from '../models/usuario.dtos';
+import { EstadoUsuario, estadoUsuarioToLabel,  } from '../models/usuario.dominio';
 
 function toUpperSafe(s?: string | null): string {
   return (s ?? '').trim().toUpperCase();
@@ -19,6 +11,8 @@ function toUpperSafe(s?: string | null): string {
 
 /** Lista simple */
 export function MapUsuarioListaItemVM(a: ApiUsuarioListaSimple): VMUsuarioListaSimple {
+  const estadoNum = (a.us_estado ?? 1) as EstadoUsuario;
+
   return {
     id: a.us_ID,
     dni: a.us_DNI,
@@ -28,6 +22,8 @@ export function MapUsuarioListaItemVM(a: ApiUsuarioListaSimple): VMUsuarioListaS
     fechaCreadoPor: a.us_fecha_creado_por
       ? new Date(a.us_fecha_creado_por as any)
       : new Date(0),
+    estado: estadoNum,
+    estadoTexto: a.us_estado_texto ?? estadoUsuarioToLabel(estadoNum),
   };
 }
 
@@ -84,7 +80,35 @@ export function MapUsuarioDetalleVM(a: ApiUsuarioDetalle): VMUsuarioDetalle {
     fechaEstadoPor: a.us_fecha_estado_por
       ? new Date(a.us_fecha_estado_por as any)
       : null,
+        correoVerificado: !!a.us_correo_verificado,
+    fechaCorreoVerificado: a.us_fecha_correo_verificado
+      ? new Date(a.us_fecha_correo_verificado as any)
+      : null,
+    correoPendiente: a.us_correo_pendiente ?? null,
+    fechaCorreoPendiente: a.us_fecha_correo_pendiente
+      ? new Date(a.us_fecha_correo_pendiente as any)
+      : null,
+
+    autorizadoPor: a.us_autorizado_por ?? null,
+    fechaAutorizadoPor: a.us_fecha_autorizado_por
+      ? new Date(a.us_fecha_autorizado_por as any)
+      : null,  
+  
   };
+  
+}
+export function MapUsuarioCorregirIdentidad(vm: VMUsuarioCorregirIdentidadForm,): DTOUsuarioCorregirIdentidad {
+  const dto: DTOUsuarioCorregirIdentidad = {
+    motivo: (vm.motivo ?? '').trim(),
+  };
+
+  const dni = (vm.dni ?? '').trim();
+  const correo = (vm.correoE ?? '').trim().toLowerCase();
+
+  if (dni) dto.us_DNI = dni;
+  if (correo) dto.us_correo_e = correo;
+
+  return dto;
 }
 
 /** Update parcial (solo estado y rol) */
