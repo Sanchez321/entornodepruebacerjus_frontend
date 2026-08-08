@@ -14,8 +14,8 @@ export class NotificacionesService {
 
   // ajustes (puedes moverlos a InjectionToken si quieres configurarlo global)
   private debounceMs = 1000;      // evita parpadeo
-  private longMs = 2000;         // mensaje “despertando servidor…”
-  private deadmanMs = 30000;     // corta spinners eternos
+  private longMs = 6000;         // mensaje “despertando servidor…”
+  private deadmanMs = 120000;     // corta spinners eternos
 
   startLoading() {
     this.pendingCount++;
